@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "904148149532",
+    "project_id": "fidelight-4e8b7",
+    "storage_bucket": "fidelight-4e8b7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:904148149532:android:ff0134cfc51ac062bfc6d9",
+        "android_client_info": {
+          "package_name": "com.fidelight"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "904148149532-m1c3eh7mht2pgtem84ieeu51h9lnis6m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAtyWfrWwkBtXUSnCeF93Agm-b5jIsBJcY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "904148149532-m1c3eh7mht2pgtem84ieeu51h9lnis6m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

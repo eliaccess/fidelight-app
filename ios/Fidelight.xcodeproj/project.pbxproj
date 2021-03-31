@@ -15,7 +15,7 @@
 		18B2100425CB2FA2003B30A4 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18B2100025CB2FA2003B30A4 /* Poppins-Medium.ttf */; };
 		18B2100525CB2FA2003B30A4 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18B2100125CB2FA2003B30A4 /* Poppins-Bold.ttf */; };
 		18B2100625CB2FA2003B30A4 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18B2100225CB2FA2003B30A4 /* Poppins-Regular.ttf */; };
-		18B2118E25CB3774003B30A4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18B2118D25CB3774003B30A4 /* GoogleService-Info.plist */; };
+		18B28EDC2614350E00C93EED /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18B28EDB2614350E00C93EED /* GoogleService-Info.plist */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -43,7 +43,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		00E356EE1AD99517003FC87E /* FidelightTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FidelightTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* FidelightTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FidelightTests.m; sourceTree = "<group>"; };
@@ -57,7 +56,7 @@
 		18B2100025CB2FA2003B30A4 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-Medium.ttf"; path = "../app/fonts/Poppins-Medium.ttf"; sourceTree = "<group>"; };
 		18B2100125CB2FA2003B30A4 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-Bold.ttf"; path = "../app/fonts/Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		18B2100225CB2FA2003B30A4 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-Regular.ttf"; path = "../app/fonts/Poppins-Regular.ttf"; sourceTree = "<group>"; };
-		18B2118D25CB3774003B30A4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		18B28EDB2614350E00C93EED /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* Fidelight-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fidelight-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* Fidelight-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fidelight-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E4E378410BE169277535788 /* Pods-Fidelight-FidelightTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fidelight-FidelightTests.debug.xcconfig"; path = "Target Support Files/Pods-Fidelight-FidelightTests/Pods-Fidelight-FidelightTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -125,7 +124,6 @@
 		13B07FAE1A68108700A75B9A /* Fidelight */ = {
 			isa = PBXGroup;
 			children = (
-				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -168,7 +166,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				18B2118D25CB3774003B30A4 /* GoogleService-Info.plist */,
+				18B28EDB2614350E00C93EED /* GoogleService-Info.plist */,
 				18B2100125CB2FA2003B30A4 /* Poppins-Bold.ttf */,
 				18B20FFF25CB2FA2003B30A4 /* Poppins-Light.ttf */,
 				18B2100025CB2FA2003B30A4 /* Poppins-Medium.ttf */,
@@ -208,6 +206,7 @@
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
 				03EF7E012BE6CE87AB443512 /* [CP] Copy Pods Resources */,
+				28AD50E394D83AE6CE4AAFA2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -232,6 +231,7 @@
 				354A7F4FFCC73E661956200F /* [CP] Copy Pods Resources */,
 				D49E1B30025679F44B51FA40 /* [CP-User] [RNFB] Core Configuration */,
 				F0685621A28F7F445E3E2346 /* [CP-User] [RNFB] Crashlytics Configuration */,
+				508013333903246A2EE2E584 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -345,7 +345,7 @@
 				18B2100625CB2FA2003B30A4 /* Poppins-Regular.ttf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				18B2118E25CB3774003B30A4 /* GoogleService-Info.plist in Resources */,
+				18B28EDC2614350E00C93EED /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,6 +429,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Fidelight-FidelightTests/Pods-Fidelight-FidelightTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		28AD50E394D83AE6CE4AAFA2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Fidelight-FidelightTests/Pods-Fidelight-FidelightTests-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL/OpenSSL.framework/OpenSSL",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OpenSSL.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Fidelight-FidelightTests/Pods-Fidelight-FidelightTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
@@ -515,6 +533,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		508013333903246A2EE2E584 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Fidelight/Pods-Fidelight-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL/OpenSSL.framework/OpenSSL",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OpenSSL.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Fidelight/Pods-Fidelight-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D49E1B30025679F44B51FA40 /* [CP-User] [RNFB] Core Configuration */ = {
@@ -714,7 +750,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.neat.barber;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fidelight;
 				PRODUCT_NAME = Fidelight;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -738,7 +774,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.neat.barber;
+				PRODUCT_BUNDLE_IDENTIFIER = com.fidelight;
 				PRODUCT_NAME = Fidelight;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
