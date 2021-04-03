@@ -1,14 +1,1 @@
 export const HOME = 'Home';
-export const LOGIN_SIGNUP_SELECTION = 'LoginSignUpSelection';
-export const LOGIN = 'Login';
-export const SIGNUP = 'SignUp';
-export const PERSONAL_INFO = 'PersonalInfo';
-export const PHONE_VERIFICATION = 'PhoneVerification';
-export const FORGET_PASSWORD = 'ForgetPassword';
-export const CHANGE_PASSWORD = 'ChangePassword';
-export const SEARCH = 'Search';
-export const ENTITY_DETAIL = 'EntityDetail';
-export const EXPLORE = 'Explore';
-export const APPOINTMENT_BOOKING = 'AppointmentBooking';
-export const COMMING_SOON = 'CommingSoon';
-export const ON_BOARDING = 'onBoarding';
