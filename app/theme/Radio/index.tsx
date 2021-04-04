@@ -42,7 +42,7 @@ const Radio: React.FC<RadioProps> = ({ type = 'radio', ...props }) => {
       {type !== 'radio' ? (
         <Animated.View style={[style.square, squareAnimation]}>
           <Animated.View style={[style.innerSquare, innerSquareAnimation]}>
-            <Icon name="check" size={12} color={Colors.accentReverse} />
+            <Icon name="check" size={14} color={Colors.accentReverse} />
           </Animated.View>
         </Animated.View>
       ) : (

@@ -10,17 +10,17 @@ export default {
   primaryDark: '#DEDEDE',
   primaryReverse: '#141412',
 
-  accentLight: '#7898f5',
-  accent: '#4F7CFE',
-  accentDark: '#1d55f5',
+  accentLight: '#73C9A4',
+  accent: '#55C595',
+  accentDark: '#1E9763',
   accentReverse: '#FFFFFF',
-  accentDisabled: '#F1693A',
+  accentDisabled: '#C6DCD3',
 
   tertiaryLight: '#01BEB1',
   tertiary: '#01BEB1',
   tertiaryDark: '#01BEB1',
   tertiaryReverse: '#FFFFFF',
-  tertiaryDisabled: '#F1693A',
+  tertiaryDisabled: '#C6DCD3',
 
   textBlack: '#111',
   textGrey: '#555',
@@ -30,6 +30,7 @@ export default {
 
   inputBackground: '#FFF',
   inputBorder: '#D5D5D5',
+  inputLabel: '#77869E',
   placeholder: '#aba7a7',
 
   buttonPrimary: '#005776',

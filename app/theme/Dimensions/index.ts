@@ -44,7 +44,7 @@ const dim = {
   borderRadius2x: 6,
   borderRadius3x: 8,
 
-  inputHeight: 44,
+  inputHeight: 40,
   headerContentHeight,
   headerHeight,
   screenWidth: window.width,

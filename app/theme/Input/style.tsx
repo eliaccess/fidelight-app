@@ -11,28 +11,32 @@ export const inputStyleProps = {
 };
 
 export default StyleSheet.create({
+  container: {
+    marginHorizontal: Dimensions.space2x,
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    justifyContent: 'space-between',
+  },
   input: {
     fontFamily: 'Poppins-Regular',
-    minHeight: INPUT_HEIGHT,
+    height: Dimensions.inputHeight,
     width: '100%',
-    margin: Dimensions.space2x,
-    padding: Dimensions.space2x,
     borderRadius: Dimensions.borderRadius,
-    borderWidth: 1,
-    borderColor: Colors.inputBorder,
+    borderBottomWidth: 1,
+    borderBottomColor: Colors.inputBorder,
     color: Colors.textBlack,
-    backgroundColor: Colors.white,
-    alignSelf: 'center',
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
-    textAlignVertical: 'center',
-    position: 'relative',
+  },
+
+  successInput: {
+    borderBottomColor: Colors.accent,
   },
   inputWithLabel: {
     padding: Dimensions.space3x,
   },
   errorInput: {
-    borderColor: Colors.errorBackground,
+    borderBottomColor: Colors.errorBackground,
   },
   multiline: {
     height: MULTILINE_HEIGHT,
@@ -40,17 +44,16 @@ export default StyleSheet.create({
     textAlignVertical: 'top',
   },
   label: {
-    padding: Dimensions.space1x,
     color: Colors.textBlack,
     fontWeight: '600',
     fontSize: 14,
     overflow: 'hidden',
     alignSelf: 'flex-start',
-    top: -4,
-    zIndex: 1,
-    left: 8,
+    alignItems: 'center',
     position: 'absolute',
-    backgroundColor: Colors.white,
+    top: Dimensions.space1x,
+    zIndex: 1,
+    left: 0,
     borderRadius: Dimensions.borderRadius,
   },
   error: {
@@ -62,11 +65,15 @@ export default StyleSheet.create({
     fontSize: 13,
     overflow: 'hidden',
     alignSelf: 'flex-end',
-    bottom: 0,
-    right: 6,
-    backgroundColor: Colors.white,
     position: 'absolute',
+    bottom: -13,
+    right: 10,
+    backgroundColor: Colors.white,
     zIndex: 1,
+  },
+  inpuCheckbox: {
+    position: 'absolute',
+    right: 0,
   },
   showPasswordButton: {
     position: 'absolute',
