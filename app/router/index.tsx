@@ -5,7 +5,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import configs from 'configs';
 
 import routes from './routes';
-import { HOME } from './routeNames';
 
 const Stack = createStackNavigator();
 
@@ -13,7 +12,7 @@ function Router({ onStateChange }) {
   return (
     <NavigationContainer onStateChange={onStateChange}>
       <Stack.Navigator
-        initialRouteName={HOME}
+        initialRouteName={configs.initialRouteName}
         headerMode="none"
         mode="card"
         screenOptions={{

@@ -2,4 +2,5 @@
 
 export type RootStackParamList = {
   Home: {};
+  AccountSelectionScreen: {};
 };

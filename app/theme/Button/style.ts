@@ -5,10 +5,9 @@ import Dimensions from 'theme/Dimensions';
 
 const style = StyleSheet.create({
   button: {
-    padding: Dimensions.space2x,
+    paddingVertical: Dimensions.space3x - 3,
     margin: Dimensions.space1x,
-    borderRadius: Dimensions.borderRadius,
-    flexDirection: 'row',
+    borderRadius: Dimensions.space5x,
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
@@ -36,14 +35,21 @@ const style = StyleSheet.create({
     backgroundColor: Colors.black,
     borderColor: Colors.black,
   },
+  linearButton: {
+    backgroundColor: Colors.transparent,
+    borderColor: Colors.transparent,
+  },
   primaryForeground: {
-    color: Colors.textBlack,
+    color: Colors.accent,
   },
   accentForeground: {
     color: Colors.accentReverse,
   },
   tertiaryForeground: {
     color: Colors.tertiaryReverse,
+  },
+  linearForeground: {
+    color: Colors.white,
   },
   noBackgroundLabel: {
     color: Colors.textGrey,
@@ -81,6 +87,14 @@ const style = StyleSheet.create({
   largeLabel: {
     fontSize: 16,
     fontWeight: '500',
+  },
+  backdrop: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    width: '100%',
+    borderRadius: Dimensions.space4x,
   },
 });
 export default style;

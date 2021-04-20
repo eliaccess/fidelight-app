@@ -5,6 +5,9 @@
  */
 import React, { useRef } from 'react';
 import Animated from 'react-native-reanimated';
+import LinearGradient from 'react-native-linear-gradient';
+
+import { buttonGradientProps } from 'theme/utils';
 
 import Text from 'theme/Text';
 import Icon from 'theme/Icon';
@@ -18,12 +21,14 @@ const typeBackground = {
   accent: style.accentButton,
   tertiary: style.tertiaryButton,
   apple: style.appleButton,
+  linear: style.linearButton,
 };
 const typeForeground = {
   primary: style.primaryForeground,
   accent: style.accentForeground,
   tertiary: style.tertiaryForeground,
   apple: style.tertiaryForeground,
+  linear: style.linearForeground,
 };
 
 interface ButtonProps {
@@ -34,7 +39,7 @@ interface ButtonProps {
   isFilled?: boolean;
   mini?: boolean;
   flex?: boolean;
-  type?: 'primary' | 'accent' | 'tertiary' | 'apple';
+  type?: 'primary' | 'accent' | 'tertiary' | 'apple' | 'linear';
   disabled?: boolean;
   large?: boolean;
   trailingIcon?: boolean;
@@ -42,7 +47,7 @@ interface ButtonProps {
 }
 const Button: React.FC<ButtonProps> = ({
   isFilled = true,
-  type = 'primary',
+  type = 'linear',
   disabled = false,
   onPress,
   ...props
@@ -72,6 +77,9 @@ const Button: React.FC<ButtonProps> = ({
         },
       ]}
     >
+      {type === 'linear' ? (
+        <LinearGradient {...buttonGradientProps()} style={style.backdrop} />
+      ) : null}
       {props.icon && !props.trailingIcon ? (
         <Icon
           name={props.icon}
