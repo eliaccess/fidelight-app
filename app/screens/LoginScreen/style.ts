@@ -17,12 +17,6 @@ const style = StyleSheet.create({
     marginTop: Dimensions.space6x,
     alignItems: 'center',
   },
-  socialLoginPitch: {
-    color: Colors.textGrey,
-    fontWeight: '500',
-    fontSize: 14,
-    marginBottom: Dimensions.space6x,
-  },
   buttonWrapper: {
     width: '100%',
     marginBottom: Dimensions.space2x,

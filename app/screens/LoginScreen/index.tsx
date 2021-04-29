@@ -11,6 +11,7 @@ import Screen from 'theme/Screen';
 import FormattedMessage, { useFormattedMessage } from 'theme/FormattedMessage';
 import SocialLogin from 'theme/SocialLogin';
 import ScreenHeading from 'theme/ScreenHeading';
+import Separator from 'theme/Separator';
 import { FORGET_PASSWORD, HOME, SIGNUP } from 'router/routeNames';
 
 import EmailPasswordForm from './EmailPasswordForm';
@@ -34,10 +35,7 @@ function LoginScreen(props: LoginScreenProps) {
             />
           </View>
           <View style={style.buttonContainer}>
-            <FormattedMessage
-              {...messages.socialLoginPitch}
-              style={style.socialLoginPitch}
-            />
+            <Separator />
             <SocialLogin
               setShowLoader={() => null}
               onSuccess={() => null}

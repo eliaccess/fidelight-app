@@ -21,10 +21,6 @@ export default defineMessages({
     id: `${scope}.subHeadingLabel`,
     defaultMessage: 'sign in to continue.',
   },
-  socialLoginPitch: {
-    id: `${scope}.socialLoginPitch`,
-    defaultMessage: '_______________ OR _______________ ',
-  },
   googleLabel: {
     id: `${scope}.googleLabel`,
     defaultMessage: 'Google',
