@@ -9,17 +9,9 @@ import { defineMessages } from 'react-intl';
 export const scope = 'app.screens.LoginScreen';
 
 export default defineMessages({
-  header: {
-    id: `${scope}.header`,
-    defaultMessage: 'This is the LoginScreen screen!',
-  },
   headingLabel: {
     id: `${scope}.headingLabel`,
     defaultMessage: 'Welcome Login',
-  },
-  subHeadingLabel: {
-    id: `${scope}.subHeadingLabel`,
-    defaultMessage: 'sign in to continue.',
   },
   googleLabel: {
     id: `${scope}.googleLabel`,

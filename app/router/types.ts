@@ -4,6 +4,6 @@ export type RootStackParamList = {
   Home: {};
   AccountSelectionScreen: {};
   Login?: {};
-  SignUp: {};
+  SignUp?: {};
   ForgetPassword: {};
 };

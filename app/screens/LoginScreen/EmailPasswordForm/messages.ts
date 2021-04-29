@@ -13,17 +13,9 @@ export default defineMessages({
     id: `${scope}.emailLabel`,
     defaultMessage: 'Email',
   },
-  emailPlaceholder: {
-    id: `${scope}.emailPlaceholder`,
-    defaultMessage: 'John@mac.com',
-  },
   passwordLabel: {
     id: `${scope}.passwordLabel`,
     defaultMessage: 'Password',
-  },
-  passwordPlaceholder: {
-    id: `${scope}.passwordPlaceholder`,
-    defaultMessage: '********',
   },
   rememberMeLabel: {
     id: `${scope}.rememberMeLabel`,

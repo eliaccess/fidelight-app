@@ -6,9 +6,6 @@ const style = StyleSheet.create({
   container: {
     paddingHorizontal: Dimensions.space4x,
   },
-  contentContainer: {
-    alignItems: 'center',
-  },
   formContainer: {
     justifyContent: 'flex-start',
     marginTop: Dimensions.space2x,
@@ -16,19 +13,19 @@ const style = StyleSheet.create({
   buttonContainer: {
     alignItems: 'center',
   },
-  signUpContainer: {
-    position: 'absolute',
-    bottom: Dimensions.bottomSpacing,
+  signInContainer: {
+    marginTop: Dimensions.space4x,
     alignSelf: 'center',
+    alignItems: 'center',
   },
-  signUpPitch: {
+  signInPitch: {
     width: '100%',
     color: Colors.textGrey,
     fontWeight: '600',
     fontSize: 14,
     textAlign: 'center',
   },
-  signUpLabel: {
+  signInLabel: {
     color: Colors.accentDark,
     padding: Dimensions.space1x,
     textDecorationLine: 'underline',

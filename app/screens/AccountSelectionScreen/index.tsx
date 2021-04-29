@@ -6,7 +6,7 @@
 
 import React from 'react';
 import { View } from 'react-native';
-import { LOGIN } from 'router/routeNames';
+import { LOGIN, SIGNUP } from 'router/routeNames';
 import Button from 'theme/Button';
 import FormattedMessage from 'theme/FormattedMessage';
 import Image from 'theme/Image';
@@ -33,7 +33,7 @@ function AccountSelectionScreen(props: AccountSelectionScreenProps) {
         <View style={style.buttonHolder}>
           <Button
             type="primary"
-            onPress={() => console.log('onPress')}
+            onPress={() => props.navigation.navigate(SIGNUP)}
             label={
               <FormattedMessage {...messages.asBusinessLabel} isFragment />
             }

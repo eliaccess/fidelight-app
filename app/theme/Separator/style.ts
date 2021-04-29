@@ -12,7 +12,7 @@ const style = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: Dimensions.space4x,
+    marginBottom: Dimensions.space2x,
   },
   line: {
     width: '40%',
