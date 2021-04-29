@@ -1,6 +1,6 @@
 import HomeScreen from 'screens/HomeScreen/Loadable';
 import AccountSelectionScreen from 'screens/AccountSelectionScreen/Loadable';
-import LoginScreen from 'screens/LoginScreen';
+import LoginScreen from 'screens/LoginScreen/Loadable';
 // import SignUpScreen from 'screens/SignUpScreen';
 // import ForgetPasswordScreen from 'screens/ForgetPasswordScreen';
 import routeConfigs from './routeConfigs';
