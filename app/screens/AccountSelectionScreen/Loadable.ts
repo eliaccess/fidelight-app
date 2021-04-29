@@ -4,6 +4,6 @@
  *
  */
 
-import loadable from 'react-suspense-loadable';
+import loadable from 'utils/loadable';
 
 export default loadable(() => import('./index'));

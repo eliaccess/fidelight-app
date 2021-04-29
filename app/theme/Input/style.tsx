@@ -12,7 +12,7 @@ export const inputStyleProps = {
 
 export default StyleSheet.create({
   container: {
-    marginHorizontal: Dimensions.space2x,
+    margin: Dimensions.space2x,
     flexDirection: 'row',
     alignItems: 'flex-start',
     justifyContent: 'space-between',
@@ -44,7 +44,7 @@ export default StyleSheet.create({
     textAlignVertical: 'top',
   },
   label: {
-    color: Colors.textBlack,
+    color: Colors.textGrey,
     fontWeight: '600',
     fontSize: 14,
     overflow: 'hidden',

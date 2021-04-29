@@ -23,7 +23,7 @@ export default {
   tertiaryDisabled: '#C6DCD3',
 
   textBlack: '#111',
-  textGrey: '#555',
+  textGrey: '#77869E',
 
   transparent: 'rgba(255, 255, 255, 0)',
   transparentBlack: 'rgba(0, 0, 0, 0)',

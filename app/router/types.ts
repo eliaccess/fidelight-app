@@ -3,4 +3,7 @@
 export type RootStackParamList = {
   Home: {};
   AccountSelectionScreen: {};
+  Login?: {};
+  SignUp: {};
+  ForgetPassword: {};
 };

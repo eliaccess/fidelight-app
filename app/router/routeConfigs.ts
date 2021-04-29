@@ -7,6 +7,12 @@ const routeConfigs = {
   [routeNames.ACCOUNT_SELECTION]: {
     path: '/account-selection',
   },
+  [routeNames.LOGIN]: {
+    path: '/login',
+  },
+  [routeNames.SIGNUP]: {
+    path: '/sign-up',
+  },
 };
 
 export default routeConfigs;

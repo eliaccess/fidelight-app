@@ -1,5 +1,8 @@
 import HomeScreen from 'screens/HomeScreen/Loadable';
-import AccountSelectionScreen from 'screens/AccountSelectionScreen';
+import AccountSelectionScreen from 'screens/AccountSelectionScreen/Loadable';
+import LoginScreen from 'screens/LoginScreen';
+// import SignUpScreen from 'screens/SignUpScreen';
+// import ForgetPasswordScreen from 'screens/ForgetPasswordScreen';
 import routeConfigs from './routeConfigs';
 import * as routeNames from './routeNames';
 
@@ -12,6 +15,18 @@ const routes = {
     ...routeConfigs[routeNames.ACCOUNT_SELECTION],
     screen: AccountSelectionScreen,
   },
+  [routeNames.LOGIN]: {
+    ...routeConfigs[routeNames.LOGIN],
+    screen: LoginScreen,
+  },
+  // [routeNames.SIGNUP]: {
+  //   ...routeConfigs[routeNames.SIGNUP],
+  //   screen: SignUpScreen,
+  // },
+  // [routeNames.FORGET_PASSWORD]: {
+  //   ...routeConfigs[routeNames.FORGET_PASSWORD],
+  //   screen: ForgetPasswordScreen,
+  // },
 };
 
 export default routes;

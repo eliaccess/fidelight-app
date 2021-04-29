@@ -5,12 +5,13 @@ import Dimensions from 'theme/Dimensions';
 
 const style = StyleSheet.create({
   button: {
-    paddingVertical: Dimensions.space3x - 3,
+    paddingVertical: Dimensions.space2x,
     margin: Dimensions.space1x,
     borderRadius: Dimensions.space5x,
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
+    flexDirection: 'row',
   },
   large: {
     padding: Dimensions.space2x,
@@ -80,7 +81,7 @@ const style = StyleSheet.create({
   label: {
     fontSize: 14,
     color: Colors.textBlack,
-    fontWeight: '500',
+    fontWeight: '700',
     marginHorizontal: Dimensions.space1x,
     textAlign: 'center',
   },

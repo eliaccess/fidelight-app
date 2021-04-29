@@ -37,6 +37,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.RefObject) => {
   };
   const onBlur = () => {
     if (!props.value) {
+      console.log('saeed');
       animation.value = withTiming(0, {
         duration: 400,
         easing: Easing.inOut(Easing.ease),
@@ -58,7 +59,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.RefObject) => {
         onFocus={onFocus}
         onBlur={onBlur}
         blurOnSubmit
-        {...omit(props, ['label', 'style', 'error'])}
+        {...omit(props, ['label', 'style', 'error', 'onFocus', 'onBlur'])}
         ref={ref}
         style={[
           style.input,

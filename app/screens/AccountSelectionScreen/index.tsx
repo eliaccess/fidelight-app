@@ -6,6 +6,7 @@
 
 import React from 'react';
 import { View } from 'react-native';
+import { LOGIN } from 'router/routeNames';
 import Button from 'theme/Button';
 import FormattedMessage from 'theme/FormattedMessage';
 import Image from 'theme/Image';
@@ -14,7 +15,7 @@ import style from './style';
 
 import { AccountSelectionScreenProps } from './types';
 
-function AccountSelectionScreen(_props: AccountSelectionScreenProps) {
+function AccountSelectionScreen(props: AccountSelectionScreenProps) {
   return (
     <View style={style.container}>
       <Image title="bgImage" style={style.imageBackground} resizeMode="cover" />
@@ -25,7 +26,7 @@ function AccountSelectionScreen(_props: AccountSelectionScreenProps) {
         />
         <View style={style.buttonHolder}>
           <Button
-            onPress={() => console.log('onPress')}
+            onPress={() => props.navigation.navigate(LOGIN)}
             label={<FormattedMessage {...messages.asUserLabel} isFragment />}
           />
         </View>
