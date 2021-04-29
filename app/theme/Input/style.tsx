@@ -28,7 +28,6 @@ export default StyleSheet.create({
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
   },
-
   successInput: {
     borderBottomColor: Colors.accent,
   },
@@ -56,20 +55,18 @@ export default StyleSheet.create({
     left: 0,
     borderRadius: Dimensions.borderRadius,
   },
-  error: {
-    padding: Dimensions.space1x,
-    paddingHorizontal: Dimensions.space2x,
-    borderRadius: Dimensions.borderRadius,
-    color: Colors.errorBackground,
-    fontWeight: '600',
-    fontSize: 13,
+  errorWrapper: {
     overflow: 'hidden',
     alignSelf: 'flex-end',
     position: 'absolute',
-    bottom: -13,
-    right: 10,
-    backgroundColor: Colors.white,
+    bottom: -25,
+    right: 0,
     zIndex: 1,
+  },
+  error: {
+    color: Colors.errorBackground,
+    fontWeight: '600',
+    fontSize: 13,
   },
   inpuCheckbox: {
     position: 'absolute',
@@ -77,8 +74,8 @@ export default StyleSheet.create({
   },
   showPasswordButton: {
     position: 'absolute',
-    right: Dimensions.space1x,
-    top: Dimensions.inputHeight / 2 + Dimensions.space1x,
+    right: Dimensions.space2x,
+    top: Dimensions.inputHeight / 2,
     opacity: 0.7,
   },
   phoneInputContainer: {

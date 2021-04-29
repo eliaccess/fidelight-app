@@ -8,15 +8,9 @@ import {
 export function UseLabelAnimation(animationValue) {
   return useAnimatedStyle(() => {
     const scale = interpolate(animationValue.value, [0, 1], [1, 0.9]);
-    const translateY = interpolate(animationValue.value, [0, 1], [6, -18]);
+    const translateY = interpolate(animationValue.value, [0, 1], [6, -22]);
     const translateX = interpolate(animationValue.value, [0, 1], [0, -3]);
-    // const color = interpolateColor(
-    //   animationValue.value,
-    //   [0, 1],
-    //   [Colors.textBlack, Colors.inputLabel],
-    // );
     return {
-      // color,
       transform: [
         {
           scale,

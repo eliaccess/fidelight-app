@@ -15,6 +15,28 @@ const style = StyleSheet.create({
     width: '100%',
     marginBottom: Dimensions.space1x,
   },
+  rememberMeForgetWrapper: {
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginVertical: Dimensions.space2x,
+    paddingHorizontal: Dimensions.space1x,
+  },
+  rememberMeWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  rememberMeLabel: {
+    fontSize: 12,
+    color: Colors.textGrey,
+  },
+  forgotPasswordLabel: {
+    fontWeight: '600',
+    fontSize: 12,
+    color: Colors.accent,
+    textDecorationLine: 'underline',
+  },
   buttonContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -22,18 +44,6 @@ const style = StyleSheet.create({
     width: '100%',
     marginBottom: Dimensions.space2x,
     padding: Dimensions.space1x,
-  },
-  forgotPasswordLabel: {
-    fontWeight: '600',
-    fontSize: 12,
-    color: Colors.textGrey,
-    textAlign: 'left',
-    alignSelf: 'flex-end',
-    marginHorizontal: Dimensions.space2x,
-    paddingVertical: Dimensions.space1x,
-    textDecorationLine: 'underline',
-    marginTop: -Dimensions.space2x,
-    marginBottom: Dimensions.space2x,
   },
 });
 

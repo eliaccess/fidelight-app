@@ -23,7 +23,7 @@ export default defineMessages({
   },
   socialLoginPitch: {
     id: `${scope}.socialLoginPitch`,
-    defaultMessage: '----------- OR -----------',
+    defaultMessage: '_______________ OR _______________ ',
   },
   googleLabel: {
     id: `${scope}.googleLabel`,

@@ -7,8 +7,9 @@ import omit from 'lodash/omit';
 import React, { useRef, useState } from 'react';
 import { TextInput, TextInputProps, View } from 'react-native';
 import { Easing, useSharedValue, withTiming } from 'react-native-reanimated';
-import Radio from 'theme/Radio';
+import * as Animatable from 'react-native-animatable';
 
+import Radio from 'theme/Radio';
 import Text from 'theme/Text';
 import TouchFeedback from 'theme/TouchFeedback';
 import { UseLabelAnimation } from './animation';
@@ -24,7 +25,7 @@ export interface InputProps extends TextInputProps {
 const Input = React.forwardRef((props: InputProps, ref: React.RefObject) => {
   const [isCorrect, setIsCorrect] = useState(false);
   const animation = useRef(useSharedValue(0)).current;
-  const onFocus = () => {
+  const onFocus = (e) => {
     animation.value = withTiming(1, {
       duration: 400,
       easing: Easing.inOut(Easing.ease),
@@ -32,12 +33,11 @@ const Input = React.forwardRef((props: InputProps, ref: React.RefObject) => {
     if (props?.onFocus) {
       setIsCorrect(false);
       // @ts-ignore
-      props?.onFocus();
+      props?.onFocus(e);
     }
   };
-  const onBlur = () => {
+  const onBlur = (e) => {
     if (!props.value) {
-      console.log('saeed');
       animation.value = withTiming(0, {
         duration: 400,
         easing: Easing.inOut(Easing.ease),
@@ -47,7 +47,7 @@ const Input = React.forwardRef((props: InputProps, ref: React.RefObject) => {
     }
     if (props?.onBlur) {
       // @ts-ignore
-      props?.onBlur();
+      props?.onBlur(e);
     }
   };
 
@@ -79,7 +79,13 @@ const Input = React.forwardRef((props: InputProps, ref: React.RefObject) => {
           <Radio type="checkbox" onPress={() => null} active />
         </View>
       ) : null}
-      {props.error ? <Text style={style.error}>{props.error}</Text> : null}
+      {props.error ? (
+        <View style={style.errorWrapper}>
+          <Animatable.View animation="fadeInDown" duration={300}>
+            <Text style={style.error}>{props.error}</Text>
+          </Animatable.View>
+        </View>
+      ) : null}
     </TouchFeedback>
   );
 });

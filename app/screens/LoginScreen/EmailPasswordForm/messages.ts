@@ -25,13 +25,9 @@ export default defineMessages({
     id: `${scope}.passwordPlaceholder`,
     defaultMessage: '********',
   },
-  confirmPasswordLabel: {
-    id: `${scope}.confirmPasswordLabel`,
-    defaultMessage: 'Confirm Password',
-  },
-  confirmPasswordPlaceholder: {
-    id: `${scope}.confirmPasswordPlaceholder`,
-    defaultMessage: '********',
+  rememberMeLabel: {
+    id: `${scope}.rememberMeLabel`,
+    defaultMessage: 'Remember Me',
   },
   forgotPasswordLabel: {
     id: `${scope}.forgotPasswordLabel`,

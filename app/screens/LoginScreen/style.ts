@@ -1,14 +1,10 @@
 import { StyleSheet } from 'react-native';
 import Colors from 'theme/Colors';
 import Dimensions from 'theme/Dimensions';
-// import elevation from "theme/elevation";
 
 const style = StyleSheet.create({
   container: {
-    // flex: 1,
-    // height: Dimensions.screenHeight - 150,
     paddingHorizontal: Dimensions.space4x,
-    // backgroundColor: Colors.primaryDark,
   },
   contentContainer: {
     alignItems: 'center',
@@ -18,14 +14,14 @@ const style = StyleSheet.create({
     marginTop: Dimensions.space2x,
   },
   buttonContainer: {
-    marginTop: Dimensions.space4x,
+    marginTop: Dimensions.space6x,
     alignItems: 'center',
   },
   socialLoginPitch: {
     color: Colors.textGrey,
     fontWeight: '500',
     fontSize: 14,
-    marginVertical: Dimensions.space4x,
+    marginBottom: Dimensions.space6x,
   },
   buttonWrapper: {
     width: '100%',

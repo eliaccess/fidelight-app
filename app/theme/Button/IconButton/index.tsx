@@ -12,9 +12,9 @@ import Icon, { IconProps } from 'theme/Icon';
 
 const style = StyleSheet.create({
   iconButton: {
-    height: 36,
-    width: 36,
-    borderRadius: 18,
+    height: 30,
+    width: 30,
+    borderRadius: 15,
     backgroundColor: Colors.white,
     alignItems: 'center',
     justifyContent: 'center',
