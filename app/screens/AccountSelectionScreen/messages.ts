@@ -6,12 +6,8 @@
  */
 
 import { defineMessages } from 'react-intl';
-const scope = 'app.screen.AccountSelectionScreen';
+const scope = 'app.screens.AccountSelectionScreen';
 export default defineMessages({
-  title: {
-    id: `${scope}.title`,
-    defaultMessage: 'AccountSelection Screen!',
-  },
   chooseOptionHeading: {
     id: `${scope}.chooseOptionHeading`,
     defaultMessage: 'Choose one option',

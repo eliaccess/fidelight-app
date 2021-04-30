@@ -5,8 +5,8 @@ import Dimensions from 'theme/Dimensions';
 
 const style = StyleSheet.create({
   section: {
-    marginVertical: Dimensions.space3x,
-    marginHorizontal: Dimensions.space2x,
+    marginTop: Dimensions.space4x,
+    marginHorizontal: Dimensions.space3x,
   },
   sectionHeader: {
     flexDirection: 'row',

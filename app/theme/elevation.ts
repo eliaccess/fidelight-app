@@ -23,8 +23,8 @@ export default function elevation(
   if (Platform.OS === 'ios') {
     return {
       shadowColor,
-      shadowOpacity: level * 0.08,
-      shadowRadius: level * 2,
+      shadowOpacity: level * 0.05,
+      shadowRadius: level * 5,
       shadowOffset: {
         width: 0,
         height: level * 2,

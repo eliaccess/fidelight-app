@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import { TabView } from 'react-native-tab-view';
 import { Easing, useSharedValue, withTiming } from 'react-native-reanimated';
-// import ExploreScreen from 'screens/ExploreScreen';
+import ExploreScreen from 'screens/ExploreScreen/Loadable';
 import CommingSoonScreen from 'screens/CommingSoonScreen/Loadable';
 import { COMMING_SOON } from 'router/routeNames';
 
@@ -51,7 +51,9 @@ function HomeScreen(props: HomeScreenProps) {
     switch (route.key) {
       case 'explore':
         // @ts-ignore
-        return <CommingSoonScreen />;
+        return (
+          <ExploreScreen navigation={props.navigation} route={props.route} />
+        );
       case 'award':
         // @ts-ignore
         return <CommingSoonScreen />;

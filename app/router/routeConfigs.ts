@@ -16,6 +16,9 @@ const routeConfigs = {
   [routeNames.COMMING_SOON]: {
     path: '/commingsoon',
   },
+  [routeNames.EXPLORE]: {
+    path: '/explore',
+  },
 };
 
 export default routeConfigs;

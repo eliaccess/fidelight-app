@@ -11,11 +11,15 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		18B2100325CB2FA2003B30A4 /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18B20FFF25CB2FA2003B30A4 /* Poppins-Light.ttf */; };
-		18B2100425CB2FA2003B30A4 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18B2100025CB2FA2003B30A4 /* Poppins-Medium.ttf */; };
-		18B2100525CB2FA2003B30A4 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18B2100125CB2FA2003B30A4 /* Poppins-Bold.ttf */; };
-		18B2100625CB2FA2003B30A4 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18B2100225CB2FA2003B30A4 /* Poppins-Regular.ttf */; };
 		18B28EDC2614350E00C93EED /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18B28EDB2614350E00C93EED /* GoogleService-Info.plist */; };
+		18CF9654263C0DF300AFD6F9 /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18CF964C263C0DF300AFD6F9 /* Poppins-Light.ttf */; };
+		18CF9655263C0DF300AFD6F9 /* Gilroy-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18CF964D263C0DF300AFD6F9 /* Gilroy-Regular.ttf */; };
+		18CF9656263C0DF300AFD6F9 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18CF964E263C0DF300AFD6F9 /* Poppins-Regular.ttf */; };
+		18CF9657263C0DF300AFD6F9 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18CF964F263C0DF300AFD6F9 /* Poppins-Bold.ttf */; };
+		18CF9658263C0DF300AFD6F9 /* Gilroy-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18CF9650263C0DF300AFD6F9 /* Gilroy-Medium.ttf */; };
+		18CF9659263C0DF300AFD6F9 /* Gilroy-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18CF9651263C0DF300AFD6F9 /* Gilroy-Bold.ttf */; };
+		18CF965A263C0DF300AFD6F9 /* Gilroy-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18CF9652263C0DF300AFD6F9 /* Gilroy-Light.ttf */; };
+		18CF965B263C0DF300AFD6F9 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18CF9653263C0DF300AFD6F9 /* Poppins-Medium.ttf */; };
 		18D59DD9261883EE00AF6C03 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D59DD8261883EE00AF6C03 /* File.swift */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -53,11 +57,15 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Fidelight/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Fidelight/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Fidelight/main.m; sourceTree = "<group>"; };
-		18B20FFF25CB2FA2003B30A4 /* Poppins-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-Light.ttf"; path = "../app/fonts/Poppins-Light.ttf"; sourceTree = "<group>"; };
-		18B2100025CB2FA2003B30A4 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-Medium.ttf"; path = "../app/fonts/Poppins-Medium.ttf"; sourceTree = "<group>"; };
-		18B2100125CB2FA2003B30A4 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-Bold.ttf"; path = "../app/fonts/Poppins-Bold.ttf"; sourceTree = "<group>"; };
-		18B2100225CB2FA2003B30A4 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-Regular.ttf"; path = "../app/fonts/Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		18B28EDB2614350E00C93EED /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		18CF964C263C0DF300AFD6F9 /* Poppins-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-Light.ttf"; path = "../app/assets/fonts/Poppins-Light.ttf"; sourceTree = "<group>"; };
+		18CF964D263C0DF300AFD6F9 /* Gilroy-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Gilroy-Regular.ttf"; path = "../app/assets/fonts/Gilroy-Regular.ttf"; sourceTree = "<group>"; };
+		18CF964E263C0DF300AFD6F9 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-Regular.ttf"; path = "../app/assets/fonts/Poppins-Regular.ttf"; sourceTree = "<group>"; };
+		18CF964F263C0DF300AFD6F9 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-Bold.ttf"; path = "../app/assets/fonts/Poppins-Bold.ttf"; sourceTree = "<group>"; };
+		18CF9650263C0DF300AFD6F9 /* Gilroy-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Gilroy-Medium.ttf"; path = "../app/assets/fonts/Gilroy-Medium.ttf"; sourceTree = "<group>"; };
+		18CF9651263C0DF300AFD6F9 /* Gilroy-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Gilroy-Bold.ttf"; path = "../app/assets/fonts/Gilroy-Bold.ttf"; sourceTree = "<group>"; };
+		18CF9652263C0DF300AFD6F9 /* Gilroy-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Gilroy-Light.ttf"; path = "../app/assets/fonts/Gilroy-Light.ttf"; sourceTree = "<group>"; };
+		18CF9653263C0DF300AFD6F9 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-Medium.ttf"; path = "../app/assets/fonts/Poppins-Medium.ttf"; sourceTree = "<group>"; };
 		18D59DD7261883EE00AF6C03 /* Fidelight-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Fidelight-Bridging-Header.h"; sourceTree = "<group>"; };
 		18D59DD8261883EE00AF6C03 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* Fidelight-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fidelight-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -171,11 +179,15 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				18CF9651263C0DF300AFD6F9 /* Gilroy-Bold.ttf */,
+				18CF9652263C0DF300AFD6F9 /* Gilroy-Light.ttf */,
+				18CF9650263C0DF300AFD6F9 /* Gilroy-Medium.ttf */,
+				18CF964D263C0DF300AFD6F9 /* Gilroy-Regular.ttf */,
+				18CF964F263C0DF300AFD6F9 /* Poppins-Bold.ttf */,
+				18CF964C263C0DF300AFD6F9 /* Poppins-Light.ttf */,
+				18CF9653263C0DF300AFD6F9 /* Poppins-Medium.ttf */,
+				18CF964E263C0DF300AFD6F9 /* Poppins-Regular.ttf */,
 				18B28EDB2614350E00C93EED /* GoogleService-Info.plist */,
-				18B2100125CB2FA2003B30A4 /* Poppins-Bold.ttf */,
-				18B20FFF25CB2FA2003B30A4 /* Poppins-Light.ttf */,
-				18B2100025CB2FA2003B30A4 /* Poppins-Medium.ttf */,
-				18B2100225CB2FA2003B30A4 /* Poppins-Regular.ttf */,
 				13B07FAE1A68108700A75B9A /* Fidelight */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* FidelightTests */,
@@ -342,10 +354,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18B2100325CB2FA2003B30A4 /* Poppins-Light.ttf in Resources */,
-				18B2100425CB2FA2003B30A4 /* Poppins-Medium.ttf in Resources */,
-				18B2100525CB2FA2003B30A4 /* Poppins-Bold.ttf in Resources */,
-				18B2100625CB2FA2003B30A4 /* Poppins-Regular.ttf in Resources */,
+				18CF9654263C0DF300AFD6F9 /* Poppins-Light.ttf in Resources */,
+				18CF9655263C0DF300AFD6F9 /* Gilroy-Regular.ttf in Resources */,
+				18CF9656263C0DF300AFD6F9 /* Poppins-Regular.ttf in Resources */,
+				18CF9657263C0DF300AFD6F9 /* Poppins-Bold.ttf in Resources */,
+				18CF9658263C0DF300AFD6F9 /* Gilroy-Medium.ttf in Resources */,
+				18CF9659263C0DF300AFD6F9 /* Gilroy-Bold.ttf in Resources */,
+				18CF965A263C0DF300AFD6F9 /* Gilroy-Light.ttf in Resources */,
+				18CF965B263C0DF300AFD6F9 /* Poppins-Medium.ttf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				18B28EDC2614350E00C93EED /* GoogleService-Info.plist in Resources */,

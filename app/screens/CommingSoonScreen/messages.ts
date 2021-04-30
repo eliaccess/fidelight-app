@@ -6,7 +6,7 @@
  */
 
 import { defineMessages } from 'react-intl';
-const scope = 'app.containers.CommingSoonScreen';
+const scope = 'app.screens.CommingSoonScreen';
 export default defineMessages({
   title: {
     id: `${scope}.title`,

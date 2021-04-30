@@ -10,6 +10,8 @@ export default {
   primaryDark: '#DEDEDE',
   primaryReverse: '#141412',
 
+  bg1Color: '#F5FAFF',
+
   accentLight: '#73C9A4',
   accent: '#55C595',
   accentDark: '#1E9763',

@@ -7,4 +7,5 @@ export type RootStackParamList = {
   SignUp?: {};
   ForgetPassword: {};
   CommingSoon?: {};
+  Explore?: {};
 };
