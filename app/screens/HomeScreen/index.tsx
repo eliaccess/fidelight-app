@@ -1,23 +1,81 @@
-/*
- *
- * HomeScreen
- *
- */
-
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
-import Text from 'theme/Text';
+import { TabView } from 'react-native-tab-view';
+import { Easing, useSharedValue, withTiming } from 'react-native-reanimated';
+// import ExploreScreen from 'screens/ExploreScreen';
+import CommingSoonScreen from 'screens/CommingSoonScreen/Loadable';
+import { COMMING_SOON } from 'router/routeNames';
+
+import TabBarButton from './TabBarButton';
+import style, { initialLayout } from './style';
 
 import { HomeScreenProps } from './types';
 
-function HomeScreen(_props: HomeScreenProps) {
-  return (
-    // eslint-disable-next-line react-native/no-inline-styles
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text style={{ fontSize: 24, fontWeight: 'bold' }}>
-        Welcome to FideLight
-      </Text>
+function HomeScreen(props: HomeScreenProps) {
+  const [routeIndex, setRouteIndex] = useState(0);
+  const tabBarAnimation = useSharedValue(0);
+
+  const [routes] = useState([
+    { key: 'explore', icon: 'cpu' },
+    { key: 'QR', major: true, icon: 'qr-code-sharp' },
+    { key: 'favourites', icon: 'heart' },
+  ]);
+
+  useEffect(() => {
+    tabBarAnimation.value = withTiming(routeIndex, {
+      duration: 100,
+      easing: Easing.inOut(Easing.ease),
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [routeIndex]);
+
+  const renderTabBar = (tabBarProps) => (
+    <View style={style.tabBarContainer}>
+      {tabBarProps.navigationState.routes.map((route, i) => (
+        <TabBarButton
+          route={route}
+          key={route.key}
+          onPress={() => {
+            if (route.major) {
+              props.navigation.navigate(COMMING_SOON, {});
+              return;
+            }
+            tabBarProps.jumpTo(route.key);
+          }}
+          active={i === tabBarProps.navigationState.index}
+        />
+      ))}
     </View>
+  );
+  const renderScene = ({ route }) => {
+    switch (route.key) {
+      case 'explore':
+        // @ts-ignore
+        return <CommingSoonScreen />;
+      case 'award':
+        // @ts-ignore
+        return <CommingSoonScreen />;
+      case 'favourites':
+        // @ts-ignore
+        return <CommingSoonScreen />;
+
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <TabView
+      lazy
+      style={style.container}
+      navigationState={{ index: routeIndex, routes }}
+      initialLayout={initialLayout}
+      renderScene={renderScene}
+      renderTabBar={renderTabBar}
+      onIndexChange={setRouteIndex}
+      tabBarPosition="bottom"
+      swipeEnabled={false}
+    />
   );
 }
 

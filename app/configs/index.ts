@@ -1,8 +1,8 @@
-import { ACCOUNT_SELECTION } from 'router/routeNames';
+import { HOME } from 'router/routeNames';
 
 const configs = {
   VERSION: '0.0.1',
-  initialRouteName: ACCOUNT_SELECTION,
+  initialRouteName: HOME,
   initialRouteParams: {},
   LOG_API: false,
   LOG_ANALYTICS: false,

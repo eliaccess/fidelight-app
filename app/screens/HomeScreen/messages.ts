@@ -1,12 +1,13 @@
 /*
  * HomeScreen Messages
  *
- * This contains all the text for the HomeScreen component.
- *
+ * This contains all the text for the HomeScreen.
  */
 
 import { defineMessages } from 'react-intl';
-const scope = 'app.screen.HomeScreen';
+
+const scope = 'app.screens.HomeScreen';
+
 export default defineMessages({
   title: {
     id: `${scope}.title`,

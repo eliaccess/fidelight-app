@@ -13,6 +13,9 @@ const routeConfigs = {
   [routeNames.SIGNUP]: {
     path: '/sign-up',
   },
+  [routeNames.COMMING_SOON]: {
+    path: '/commingsoon',
+  },
 };
 
 export default routeConfigs;
