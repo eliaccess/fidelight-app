@@ -20,3 +20,19 @@ export const buttonGradientProps = () => ({
   locations: [0, 1],
   colors: ['#55C595', '#45BCBD'],
 });
+
+export const getFontFamily = (weight) => {
+  if (weight === 'bold') {
+    return 'Gilroy-Bold';
+  }
+  if (weight >= '600') {
+    return 'Gilroy-Medium';
+  }
+  if (weight >= '400') {
+    return 'Gilroy-Regular';
+  }
+  if (weight >= '300') {
+    return 'Gilroy-Light';
+  }
+  return 'Gilroy-Regular';
+};

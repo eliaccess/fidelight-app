@@ -5,19 +5,16 @@
  */
 
 import React from 'react';
-import { View } from 'react-native';
+// import { View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import HomeHeader from 'components/HomeHeader';
-
-import CategoriesWidget from './Categories';
-import HottestDealsWidget from './HottestDeals';
-import RestaurantsList from './RestaurantsList';
-
-import { ExploreScreenProps } from './types';
 import style from './style';
 
-function ExploreScreen(_props: ExploreScreenProps) {
+import { FavouritePlacesScreenProps } from './types';
+import RestaurantsList from './RestaurantsList';
+
+function FavouritePlacesScreen(_props: FavouritePlacesScreenProps) {
   return (
     <>
       <HomeHeader />
@@ -25,14 +22,10 @@ function ExploreScreen(_props: ExploreScreenProps) {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={style.contentContainerStyle}
       >
-        <View style={style.categoriesSectionWrapper}>
-          <CategoriesWidget />
-        </View>
-        <HottestDealsWidget />
         <RestaurantsList />
       </ScrollView>
     </>
   );
 }
 
-export default React.memo(ExploreScreen);
+export default React.memo(FavouritePlacesScreen);

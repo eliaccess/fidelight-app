@@ -19,6 +19,9 @@ const routeConfigs = {
   [routeNames.EXPLORE]: {
     path: '/explore',
   },
+  [routeNames.FAVOURITE_PLACES]: {
+    path: '/favourite-places',
+  },
 };
 
 export default routeConfigs;

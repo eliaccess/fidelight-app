@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import { TabView } from 'react-native-tab-view';
 import { Easing, useSharedValue, withTiming } from 'react-native-reanimated';
+
 import ExploreScreen from 'screens/ExploreScreen/Loadable';
+import FavouritePlacesScreen from 'screens/FavouritePlacesScreen/Loadable';
 import CommingSoonScreen from 'screens/CommingSoonScreen/Loadable';
 import { COMMING_SOON } from 'router/routeNames';
 
@@ -59,7 +61,7 @@ function HomeScreen(props: HomeScreenProps) {
         return <CommingSoonScreen />;
       case 'favourites':
         // @ts-ignore
-        return <CommingSoonScreen />;
+        return <FavouritePlacesScreen />;
 
       default:
         return null;
@@ -77,6 +79,7 @@ function HomeScreen(props: HomeScreenProps) {
       onIndexChange={setRouteIndex}
       tabBarPosition="bottom"
       swipeEnabled={false}
+      timingConfig={{ duration: 10 }}
     />
   );
 }

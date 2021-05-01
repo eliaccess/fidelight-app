@@ -1,12 +1,12 @@
 /*
- * ExploreScreen.Header Messages
+ * HomeHeader Messages
  *
- * This contains all the text for the ExploreScreen.Header component.
+ * This contains all the text for the HomeHeader component.
  *
  */
 
 import { defineMessages } from 'react-intl';
-const scope = 'app.screens.ExploreScreen.Header';
+const scope = 'app.components.HomeHeader';
 export default defineMessages({
   searchPlaceHolder: {
     id: `${scope}.searchPlaceHolder`,

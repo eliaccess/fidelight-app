@@ -8,4 +8,5 @@ export type RootStackParamList = {
   ForgetPassword: {};
   CommingSoon?: {};
   Explore?: {};
+  FavouritePlaces?: {};
 };

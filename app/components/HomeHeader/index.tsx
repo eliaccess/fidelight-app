@@ -1,6 +1,6 @@
 /*
  *
- * ExploreHeader
+ * HomeHeader
  *
  */
 
@@ -16,7 +16,11 @@ import { buttonGradientProps } from 'theme/utils';
 import messages from './messages';
 import style from './style';
 
-function ExploreHeader(_props) {
+type HomeHeader = {
+  title?: string;
+};
+
+function HomeHeader(_props: HomeHeader) {
   return (
     <View style={style.container}>
       <LinearGradient {...buttonGradientProps()} style={style.backdrop} />
@@ -40,4 +44,4 @@ function ExploreHeader(_props) {
   );
 }
 
-export default React.memo(ExploreHeader);
+export default React.memo(HomeHeader);

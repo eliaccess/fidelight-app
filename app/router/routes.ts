@@ -4,6 +4,7 @@ import LoginScreen from 'screens/LoginScreen/Loadable';
 import SignUpScreen from 'screens/SignUpScreen/Loadable';
 import CommingSoonScreen from 'screens/CommingSoonScreen/Loadable';
 import ExploreScreen from 'screens/ExploreScreen/Loadable';
+import FavouritePlacesScreen from 'screens/FavouritePlacesScreen/Loadable';
 // import ForgetPasswordScreen from 'screens/ForgetPasswordScreen';
 import routeConfigs from './routeConfigs';
 import * as routeNames from './routeNames';
@@ -32,6 +33,10 @@ const routes = {
   [routeNames.EXPLORE]: {
     ...routeConfigs[routeNames.EXPLORE],
     screen: ExploreScreen,
+  },
+  [routeNames.FAVOURITE_PLACES]: {
+    ...routeConfigs[routeNames.FAVOURITE_PLACES],
+    screen: FavouritePlacesScreen,
   },
   // [routeNames.FORGET_PASSWORD]: {
   //   ...routeConfigs[routeNames.FORGET_PASSWORD],

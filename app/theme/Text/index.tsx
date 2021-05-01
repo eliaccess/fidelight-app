@@ -9,6 +9,7 @@ import React from 'react';
 import { Text as RNText, StyleSheet } from 'react-native';
 import Animated from 'react-native-reanimated';
 import Colors from 'theme/Colors';
+import { getFontFamily } from 'theme/utils';
 
 const defaultStyle = StyleSheet.create({
   fontFamily: {
@@ -33,20 +34,20 @@ const Text: React.FC<TextProps> = ({
 
   if (componentStyles && Array.isArray(componentStyles)) {
     style = style.concat(componentStyles);
-    // TODO: need to fix for multiple font values
+    if (findIndex(componentStyles, 'fontWeight') !== -1) {
+      const index = findIndex(componentStyles, 'fontWeight');
 
-    if (findIndex(componentStyles, { fontWeight: 'bold' }) !== -1) {
       // @ts-ignore
-      style.push({ fontFamily: 'Gilroy-Bold' });
+      style.push({
+        fontFamily: getFontFamily(componentStyles[index].fontWeight),
+      });
     }
   } else if (componentStyles) {
     style.push(componentStyles);
 
-    // TODO: need to fix for multiple font values
-    // @ts-ignore
-    if (componentStyles?.fontWeight === 'bold') {
+    if (componentStyles?.fontWeight) {
       // @ts-ignore
-      style.push({ fontFamily: 'Gilroy-Bold' });
+      style.push({ fontFamily: getFontFamily(componentStyles.fontWeight) });
     }
   }
 

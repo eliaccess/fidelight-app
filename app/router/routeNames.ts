@@ -5,3 +5,4 @@ export const SIGNUP = 'SignUp';
 export const FORGET_PASSWORD = 'ForgetPassword';
 export const COMMING_SOON = 'CommingSoon';
 export const EXPLORE = 'Explore';
+export const FAVOURITE_PLACES = 'FavouritePlaces';

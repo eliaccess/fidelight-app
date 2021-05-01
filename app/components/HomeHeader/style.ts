@@ -1,6 +1,6 @@
 /**
  *
- * Styles for ExploreScreen Header
+ * Styles for HomeHeader
  *
  */
 
