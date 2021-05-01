@@ -17,6 +17,13 @@ const style = StyleSheet.create({
     zIndex: 100000,
     flex: 1,
   },
+  backdrop: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    width: '100%',
+  },
   headerBackground: {
     borderBottomColor: Colors.separator,
     borderBottomWidth: 0.3,
@@ -42,14 +49,15 @@ const style = StyleSheet.create({
   backButtonIcon: {
     fontSize: 30,
     fontWeight: '900',
-    color: Colors.textBlack,
+    color: Colors.white,
   },
   title: {
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: 'bold',
     width: '100%',
     textAlign: 'center',
     textAlignVertical: 'center',
+    color: Colors.white,
   },
   contentWrapper: {
     position: 'absolute',
@@ -99,6 +107,8 @@ const style = StyleSheet.create({
   },
   backLabel: {
     marginLeft: -Dimensions.space1x,
+    fontWeight: '600',
+    color: Colors.white,
   },
   darkStyle: {
     color: Colors.white,

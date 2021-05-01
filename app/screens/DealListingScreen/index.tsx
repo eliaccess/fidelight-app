@@ -1,37 +1,28 @@
 /*
  *
- * HottestDeals
+ * DealListingScreen
  *
  */
 
 import React from 'react';
 import { View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 
+import Screen from 'theme/Screen';
 import FormattedMessage from 'theme/FormattedMessage';
-import Image from 'theme/Image';
-import Section from 'theme/Section';
-import Text from 'theme/Text';
 import TouchFeedback from 'theme/TouchFeedback';
-import { DEAL_LISTING } from 'router/routeNames';
+import Image from 'theme/Image';
+import Text from 'theme/Text';
 
-import messages from './messages';
 import style from './style';
+import messages from './messages';
+import { DealListingScreenProps } from './types';
 import Deals from './data';
 
-function HottestDeals(_props) {
-  const navigation = useNavigation();
+function DealListingScreen(_props: DealListingScreenProps) {
   return (
-    <Section
-      heading={<FormattedMessage {...messages.dealsHeading} isFragment />}
-      headerRight={
-        <TouchFeedback onPress={() => navigation.navigate(DEAL_LISTING)}>
-          <FormattedMessage
-            {...messages.seeAllLabel}
-            style={style.seeAllLabel}
-          />
-        </TouchFeedback>
-      }
+    <Screen
+      testID="DealListingScreen"
+      headerTitle={<FormattedMessage {...messages.title} isFragment />}
     >
       <View style={style.container}>
         {Deals.map((item) => (
@@ -46,8 +37,8 @@ function HottestDeals(_props) {
           </TouchFeedback>
         ))}
       </View>
-    </Section>
+    </Screen>
   );
 }
 
-export default React.memo(HottestDeals);
+export default React.memo(DealListingScreen);

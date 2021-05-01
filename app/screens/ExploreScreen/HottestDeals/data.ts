@@ -4,7 +4,7 @@ export default [
     image:
       'https://images.unsplash.com/photo-1544502779-9d192f5da63e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2045&q=80',
     title: 'Upto 30% OFF ',
-    shortDescription: 'on every pasta today asda asdas',
+    shortDescription: 'on every pasta today',
   },
   {
     id: 2,

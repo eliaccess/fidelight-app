@@ -22,6 +22,9 @@ const routeConfigs = {
   [routeNames.FAVOURITE_PLACES]: {
     path: '/favourite-places',
   },
+  [routeNames.DEAL_LISTING]: {
+    path: '/deal-listing',
+  },
 };
 
 export default routeConfigs;

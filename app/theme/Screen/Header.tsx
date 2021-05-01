@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { View, StatusBar } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import Animated, {
   interpolate,
   interpolateColor,
@@ -8,6 +9,7 @@ import Animated, {
 import Colors from 'theme/Colors';
 
 import Text from 'theme/Text';
+import { buttonGradientProps } from 'theme/utils';
 
 import BackButton from './BackButton';
 import style from './style';
@@ -53,6 +55,7 @@ const Header: React.FC<HeaderProps> = (props) => {
 
   return (
     <Animated.View style={[style.header, headerAnimation]} key="header">
+      <LinearGradient {...buttonGradientProps()} style={style.backdrop} />
       <View style={[style.headerContent]}>
         {!props.blockBackPress ? <BackButton {...props} /> : null}
         <Text animated style={[style.title, titleAnimation]} numberOfLines={1}>
