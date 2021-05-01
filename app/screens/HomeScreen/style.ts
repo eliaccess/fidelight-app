@@ -35,7 +35,7 @@ const style = StyleSheet.create({
     borderTopWidth: 1,
   },
   tabBarButtonIcon: {
-    fontSize: 20,
+    fontSize: 22,
     color: Colors.textBlack,
     marginBottom: Dimensions.space1x,
   },

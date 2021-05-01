@@ -18,7 +18,7 @@ export function UseAnimatedIcon(animationValue) {
     const color = interpolateColor(
       animationValue.value,
       [0, 1],
-      [Colors.textBlack, Colors.accentDark],
+      [Colors.textGrey, Colors.accent],
     );
 
     return {

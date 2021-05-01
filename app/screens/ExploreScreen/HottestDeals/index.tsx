@@ -27,7 +27,7 @@ function HottestDeals(_props) {
     >
       <View style={style.container}>
         {Categories.map((item) => (
-          <TouchFeedback onPress={() => null} style={style.item}>
+          <TouchFeedback key={item.id} onPress={() => null} style={style.item}>
             <Image uri={item.image} style={style.image} />
             <View style={style.contentWrapper}>
               <Text style={style.title}>{item.title}</Text>

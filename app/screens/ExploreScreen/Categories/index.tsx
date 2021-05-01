@@ -31,6 +31,7 @@ function CategoriesWidget(_props) {
           const active = index === activeCategoryIndex;
           return (
             <TouchFeedback
+              key={item.id}
               onPress={() => setActiveCategoryIndex(index)}
               style={style.item}
             >
@@ -47,7 +48,9 @@ function CategoriesWidget(_props) {
                     style={style.backdrop}
                   />
                 ) : null}
+
                 <Icon
+                  font={item?.font ? 'feather' : 'fidelight'}
                   name={item.icon}
                   style={[style.itemIcon, active ? style.activeItem : null]}
                 />

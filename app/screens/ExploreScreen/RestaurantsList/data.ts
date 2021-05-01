@@ -1,5 +1,6 @@
 export default [
   {
+    id: 1,
     coverImage:
       'https://images.unsplash.com/photo-1572103900992-23b4bb92e6e4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80',
     logo:
@@ -10,6 +11,7 @@ export default [
     distance: '29 km',
   },
   {
+    id: 2,
     coverImage:
       'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80',
     logo:
@@ -20,6 +22,7 @@ export default [
     distance: '12 km',
   },
   {
+    id: 3,
     coverImage:
       'https://images.unsplash.com/photo-1502301103665-0b95cc738daf?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
     logo:

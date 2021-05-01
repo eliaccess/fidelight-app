@@ -16,9 +16,9 @@ function HomeScreen(props: HomeScreenProps) {
   const tabBarAnimation = useSharedValue(0);
 
   const [routes] = useState([
-    { key: 'explore', icon: 'cpu' },
+    { key: 'explore', icon: 'explore', font: 'fidelight' },
     { key: 'QR', major: true, icon: 'qr-code-sharp' },
-    { key: 'favourites', icon: 'heart' },
+    { key: 'favourites', icon: 'heart', font: 'ionicons' },
   ]);
 
   useEffect(() => {

@@ -1,26 +1,33 @@
 export default [
   {
+    id: 1,
     name: 'All',
-    icon: 'align-justify',
+    icon: 'grid',
+    font: 'feather',
   },
   {
+    id: 2,
     name: 'Grocery',
-    icon: 'gift',
+    icon: 'grocery',
   },
   {
+    id: 3,
     name: 'Coffee',
     icon: 'coffee',
   },
   {
+    id: 4,
     name: 'Fashion',
-    icon: 'shopping-bag',
+    icon: 'shirt',
   },
   {
+    id: 5,
     name: 'Food',
-    icon: 'zap-off',
+    icon: 'food',
   },
   {
+    id: 6,
     name: 'Pharma',
-    icon: 'trello',
+    icon: 'pharma',
   },
 ];

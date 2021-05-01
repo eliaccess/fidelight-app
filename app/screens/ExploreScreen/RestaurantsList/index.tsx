@@ -24,7 +24,7 @@ function RestaurantsList(_props) {
       heading={<FormattedMessage {...messages.restaurantsHeading} isFragment />}
     >
       {Categories.map((item) => (
-        <TouchFeedback onPress={() => null} style={style.item}>
+        <TouchFeedback key={item.id} onPress={() => null} style={style.item}>
           <View style={style.imageWrapper}>
             <Image
               uri={item.coverImage}

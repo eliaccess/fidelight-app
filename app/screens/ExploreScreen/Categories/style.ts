@@ -30,7 +30,7 @@ const style = StyleSheet.create({
   },
   itemIcon: {
     fontSize: 16,
-    color: Colors.accentDark,
+    color: Colors.accent,
   },
   itemName: {
     fontSize: 12,

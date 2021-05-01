@@ -25,6 +25,7 @@ type TabBarButtonProps = {
     key: string;
     icon: string;
     major?: boolean;
+    font?: string;
   };
   active?: boolean;
   onPress: (...args: any) => any;
@@ -42,7 +43,6 @@ function TabBarButton({ active = false, ...props }: TabBarButtonProps) {
   }, [props]);
 
   const animatedIcon = UseAnimatedIcon(animationValue);
-
   if (props.route.major) {
     return (
       <TouchableWithoutFeedback onPress={props.onPress}>
@@ -66,6 +66,8 @@ function TabBarButton({ active = false, ...props }: TabBarButtonProps) {
         <Icon
           animated
           name={props.route.icon}
+          // @ts-ignore
+          font={props.route?.font}
           style={[style.tabBarButtonIcon, animatedIcon]}
         />
       </Animated.View>
