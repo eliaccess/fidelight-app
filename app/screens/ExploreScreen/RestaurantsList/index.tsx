@@ -18,13 +18,13 @@ import messages from './messages';
 import style from './style';
 import Categories from './data';
 
-function RestaurantsList(_props) {
+function RestaurantsList(props) {
   return (
     <Section
       heading={<FormattedMessage {...messages.restaurantsHeading} isFragment />}
     >
       {Categories.map((item) => (
-        <TouchFeedback key={item.id} onPress={() => null} style={style.item}>
+        <TouchFeedback key={item.id} onPress={props.onPress} style={style.item}>
           <View style={style.imageWrapper}>
             <Image
               uri={item.coverImage}

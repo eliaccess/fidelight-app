@@ -22,11 +22,13 @@ interface ScreenProps {
   headerVisibilityThreshold?: number;
   dark?: boolean;
   [x: string]: any;
+  scrollEnabled?: boolean;
 }
 
 const Screen: React.FC<ScreenProps> = ({
   headerVisibilityThreshold = 0,
   useScrollView = true,
+  scrollEnabled = true,
   dark = false,
   ...props
 }) => {
@@ -62,6 +64,7 @@ const Screen: React.FC<ScreenProps> = ({
           props.contentContainerStyle,
         ],
         showsVerticalScrollIndicator: false,
+        scrollEnabled,
       }
     : {};
 

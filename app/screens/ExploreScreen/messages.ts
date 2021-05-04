@@ -12,4 +12,12 @@ export default defineMessages({
     id: `${scope}.categoriesHeading`,
     defaultMessage: 'Categories',
   },
+  termsHeading: {
+    id: `${scope}.termsHeading`,
+    defaultMessage: 'Terms of use',
+  },
+  contactUsHeading: {
+    id: `${scope}.contactUsHeading`,
+    defaultMessage: 'Contact us',
+  },
 });

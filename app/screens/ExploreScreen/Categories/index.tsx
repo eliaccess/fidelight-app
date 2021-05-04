@@ -20,7 +20,7 @@ import messages from './messages';
 import style from './style';
 import Categories from './data';
 
-function CategoriesWidget(_props) {
+function CategoriesWidget(props) {
   const [activeCategoryIndex, setActiveCategoryIndex] = useState(0);
   return (
     <Section
@@ -32,7 +32,11 @@ function CategoriesWidget(_props) {
           return (
             <TouchFeedback
               key={item.id}
-              onPress={() => setActiveCategoryIndex(index)}
+              onPress={() => {
+                setActiveCategoryIndex(index);
+                // @ts-ignore
+                props.onPress();
+              }}
               style={style.item}
             >
               {active ? (

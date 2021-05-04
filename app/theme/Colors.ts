@@ -11,6 +11,7 @@ export default {
   primaryReverse: '#141412',
 
   bg1Color: '#F5FAFF',
+  bg2Color: '#D4ECFB',
 
   accentLight: '#73C9A4',
   accent: '#55C595',
@@ -39,7 +40,7 @@ export default {
   buttonSecondary: '#007d8a',
   buttonTertiary: '#63666a',
 
-  translucentBlackMinor: 'rgba(0, 0, 0, 0.33)',
+  translucentBlackMinor: 'rgba(0, 0, 0, 0.5)',
   translucentBlack: 'rgba(0, 0, 0, 0.94)',
   translucentWhite: 'rgba(255, 255, 255, 0.95)',
 

@@ -32,4 +32,8 @@ export default defineMessages({
     id: `${scope}.rewardsHeading`,
     defaultMessage: 'Rewards',
   },
+  offerDetailLabel: {
+    id: `${scope}.offerDetailLabel`,
+    defaultMessage: 'Offer Detail',
+  },
 });

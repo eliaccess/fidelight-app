@@ -52,7 +52,7 @@ function DealsSection(props) {
           data={deals}
           decelerationRate="fast"
           renderItem={({ item }: any) => (
-            <View style={style.itemWrapper}>
+            <TouchFeedback onPress={props.onPress} style={style.itemWrapper}>
               <View style={style.ellipse} />
               <View style={style.innerEllipse} />
 
@@ -63,7 +63,7 @@ function DealsSection(props) {
                 </Text>
               </View>
               <Image title="dealImage" style={style.dealImage} />
-            </View>
+            </TouchFeedback>
           )}
           pagingEnabled
           showsHorizontalScrollIndicator={false}
