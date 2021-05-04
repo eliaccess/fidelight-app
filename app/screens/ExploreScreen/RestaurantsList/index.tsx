@@ -45,9 +45,9 @@ function RestaurantsList(_props) {
               <View style={style.rating}>
                 <Icon name="star" style={style.ratingIcon} />
                 <Text style={style.ratingValue}>{item.rating}</Text>
-                <Text style={style.tagSeparator}>.</Text>
-                <Text style={style.distance}>{item.distance}</Text>
               </View>
+              <Text style={style.tagSeparator}>.</Text>
+              <Text style={style.distance}>{item.distance}</Text>
             </View>
           </View>
         </TouchFeedback>

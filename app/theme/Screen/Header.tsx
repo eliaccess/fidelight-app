@@ -55,9 +55,13 @@ const Header: React.FC<HeaderProps> = (props) => {
 
   return (
     <Animated.View style={[style.header, headerAnimation]} key="header">
-      <LinearGradient {...buttonGradientProps()} style={style.backdrop} />
+      {props.title ? (
+        <LinearGradient {...buttonGradientProps()} style={style.backdrop} />
+      ) : null}
       <View style={[style.headerContent]}>
-        {!props.blockBackPress ? <BackButton {...props} /> : null}
+        {!props.blockBackPress ? (
+          <BackButton {...props} dark={!props.title} />
+        ) : null}
         <Text animated style={[style.title, titleAnimation]} numberOfLines={1}>
           {props.title}
         </Text>

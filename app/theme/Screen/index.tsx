@@ -33,7 +33,7 @@ const Screen: React.FC<ScreenProps> = ({
   const contentContainer: any = useRef();
 
   const visibleValue = useRef(
-    useSharedValue(headerVisibilityThreshold > 0 ? 0 : 1),
+    useSharedValue(headerVisibilityThreshold >= 0 ? 0 : 1),
   ).current;
 
   const onScroll = ({

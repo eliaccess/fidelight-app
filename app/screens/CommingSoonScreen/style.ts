@@ -1,6 +1,6 @@
 /**
  *
- * Styles for Search Screen
+ * Styles for CommingSoonScreen
  *
  */
 

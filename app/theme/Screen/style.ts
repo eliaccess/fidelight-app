@@ -111,7 +111,7 @@ const style = StyleSheet.create({
     color: Colors.white,
   },
   darkStyle: {
-    color: Colors.white,
+    color: Colors.textBlack,
   },
 });
 

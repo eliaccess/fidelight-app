@@ -13,7 +13,7 @@ import Image from 'theme/Image';
 import Section from 'theme/Section';
 import Text from 'theme/Text';
 import TouchFeedback from 'theme/TouchFeedback';
-import { DEAL_LISTING } from 'router/routeNames';
+import { DEAL_LISTING, ENTITY_DETAIL } from 'router/routeNames';
 
 import messages from './messages';
 import style from './style';
@@ -35,7 +35,11 @@ function HottestDeals(_props) {
     >
       <View style={style.container}>
         {Deals.map((item) => (
-          <TouchFeedback key={item.id} onPress={() => null} style={style.item}>
+          <TouchFeedback
+            key={item.id}
+            onPress={() => navigation.navigate(ENTITY_DETAIL)}
+            style={style.item}
+          >
             <Image uri={item.image} style={style.image} />
             <View style={style.contentWrapper}>
               <Text style={style.title}>{item.title}</Text>

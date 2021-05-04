@@ -7,3 +7,4 @@ export const COMMING_SOON = 'CommingSoon';
 export const EXPLORE = 'Explore';
 export const FAVOURITE_PLACES = 'FavouritePlaces';
 export const DEAL_LISTING = 'DealListing';
+export const ENTITY_DETAIL = 'EntityDetail';

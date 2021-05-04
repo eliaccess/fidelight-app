@@ -25,6 +25,9 @@ const routeConfigs = {
   [routeNames.DEAL_LISTING]: {
     path: '/deal-listing',
   },
+  [routeNames.ENTITY_DETAIL]: {
+    path: '/entity-detail',
+  },
 };
 
 export default routeConfigs;

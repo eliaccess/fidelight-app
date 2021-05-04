@@ -6,7 +6,7 @@ import CommingSoonScreen from 'screens/CommingSoonScreen/Loadable';
 import ExploreScreen from 'screens/ExploreScreen/Loadable';
 import FavouritePlacesScreen from 'screens/FavouritePlacesScreen/Loadable';
 import DealListingScreen from 'screens/DealListingScreen/Loadable';
-// import ForgetPasswordScreen from 'screens/ForgetPasswordScreen';
+import EntityDetailScreen from 'screens/EntityDetailScreen/Loadable';
 import routeConfigs from './routeConfigs';
 import * as routeNames from './routeNames';
 
@@ -42,6 +42,10 @@ const routes = {
   [routeNames.DEAL_LISTING]: {
     ...routeConfigs[routeNames.DEAL_LISTING],
     screen: DealListingScreen,
+  },
+  [routeNames.ENTITY_DETAIL]: {
+    ...routeConfigs[routeNames.ENTITY_DETAIL],
+    screen: EntityDetailScreen,
   },
   // [routeNames.FORGET_PASSWORD]: {
   //   ...routeConfigs[routeNames.FORGET_PASSWORD],

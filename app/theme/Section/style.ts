@@ -14,6 +14,7 @@ const style = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'flex-end',
     marginBottom: Dimensions.space2x,
+    zIndex: 10000,
   },
   sectionHeading: {
     fontSize: 16,
