@@ -13,4 +13,5 @@ export type RootStackParamList = {
   EntityDetail?: {};
   Support?: {};
   ChangePassword?: {};
+  Preference?: {};
 };

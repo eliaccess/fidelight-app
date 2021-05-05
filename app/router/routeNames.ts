@@ -10,3 +10,4 @@ export const DEAL_LISTING = 'DealListing';
 export const ENTITY_DETAIL = 'EntityDetail';
 export const SUPPORT = 'Support';
 export const CHANGE_PASSWORD = 'ChangePassword';
+export const PREFERENCE = 'Preference';
