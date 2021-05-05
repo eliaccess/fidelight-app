@@ -22,6 +22,7 @@ interface HeaderProps {
   };
   blockBackPress?: boolean;
   dark: boolean;
+  isAnimated: boolean;
 }
 
 const Header: React.FC<HeaderProps> = (props) => {
@@ -53,6 +54,8 @@ const Header: React.FC<HeaderProps> = (props) => {
     };
   });
 
+  console.log('props', props);
+
   return (
     <Animated.View style={[style.header, headerAnimation]} key="header">
       {props.title ? (
@@ -62,7 +65,11 @@ const Header: React.FC<HeaderProps> = (props) => {
         {!props.blockBackPress ? (
           <BackButton {...props} dark={!props.title} />
         ) : null}
-        <Text animated style={[style.title, titleAnimation]} numberOfLines={1}>
+        <Text
+          animated
+          style={[style.title, props.isAnimated ? titleAnimation : null]}
+          numberOfLines={1}
+        >
           {props.title}
         </Text>
       </View>

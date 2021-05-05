@@ -28,6 +28,9 @@ const routeConfigs = {
   [routeNames.ENTITY_DETAIL]: {
     path: '/entity-detail',
   },
+  [routeNames.SUPPORT]: {
+    path: '/support',
+  },
 };
 
 export default routeConfigs;

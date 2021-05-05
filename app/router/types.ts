@@ -11,4 +11,5 @@ export type RootStackParamList = {
   FavouritePlaces?: {};
   DealListing?: {};
   EntityDetail?: {};
+  Support?: {};
 };

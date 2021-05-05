@@ -76,6 +76,7 @@ const Screen: React.FC<ScreenProps> = ({
         onBackPress={props.onBackPress}
         blockBackPress={props.blockBackPress}
         dark={dark}
+        isAnimated={headerVisibilityThreshold > 0}
       />
       <View style={style.contentWrapper}>
         <ContentWrapper

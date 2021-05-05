@@ -8,3 +8,4 @@ export const EXPLORE = 'Explore';
 export const FAVOURITE_PLACES = 'FavouritePlaces';
 export const DEAL_LISTING = 'DealListing';
 export const ENTITY_DETAIL = 'EntityDetail';
+export const SUPPORT = 'Support';

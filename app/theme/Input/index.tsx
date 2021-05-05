@@ -70,7 +70,15 @@ const Input = React.forwardRef((props: InputProps, ref: React.RefObject) => {
         ]}
       />
       {props.label ? (
-        <Text animated onPress={onFocus} style={[style.label, labelAnimation]}>
+        <Text
+          animated
+          onPress={onFocus}
+          style={[
+            style.label,
+            labelAnimation,
+            props.multiline ? style.multilineLabel : {},
+          ]}
+        >
           {props.label}
         </Text>
       ) : null}

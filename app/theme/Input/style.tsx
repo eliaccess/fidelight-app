@@ -40,7 +40,10 @@ export default StyleSheet.create({
   multiline: {
     height: MULTILINE_HEIGHT,
     paddingTop: Dimensions.space3x,
+    paddingHorizontal: Dimensions.space1x + 3,
     textAlignVertical: 'top',
+    borderWidth: 1,
+    borderColor: Colors.inputBorder,
   },
   label: {
     color: Colors.textGrey,
@@ -54,6 +57,10 @@ export default StyleSheet.create({
     zIndex: 1,
     left: 0,
     borderRadius: Dimensions.borderRadius,
+  },
+  multilineLabel: {
+    left: 5,
+    top: 2,
   },
   errorWrapper: {
     overflow: 'hidden',
