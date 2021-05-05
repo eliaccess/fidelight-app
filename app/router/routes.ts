@@ -8,6 +8,7 @@ import FavouritePlacesScreen from 'screens/FavouritePlacesScreen/Loadable';
 import DealListingScreen from 'screens/DealListingScreen/Loadable';
 import EntityDetailScreen from 'screens/EntityDetailScreen/Loadable';
 import SupportScreen from 'screens/SupportScreen/Loadable';
+import ChangePasswordScreen from 'screens/ChangePasswordScreen/Loadable';
 import routeConfigs from './routeConfigs';
 import * as routeNames from './routeNames';
 
@@ -51,6 +52,10 @@ const routes = {
   [routeNames.SUPPORT]: {
     ...routeConfigs[routeNames.SUPPORT],
     screen: SupportScreen,
+  },
+  [routeNames.CHANGE_PASSWORD]: {
+    ...routeConfigs[routeNames.CHANGE_PASSWORD],
+    screen: ChangePasswordScreen,
   },
   // [routeNames.FORGET_PASSWORD]: {
   //   ...routeConfigs[routeNames.FORGET_PASSWORD],

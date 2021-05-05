@@ -31,6 +31,9 @@ const routeConfigs = {
   [routeNames.SUPPORT]: {
     path: '/support',
   },
+  [routeNames.CHANGE_PASSWORD]: {
+    path: '/change-password',
+  },
 };
 
 export default routeConfigs;

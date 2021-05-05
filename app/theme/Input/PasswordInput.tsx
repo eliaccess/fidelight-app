@@ -27,6 +27,7 @@ const PasswordInput = React.forwardRef(
           textContentType="password"
           importantForAutofill="yes"
           ref={ref}
+          showSuccessInput={false}
         />
         {props.value ? (
           <View style={style.showPasswordButton}>
