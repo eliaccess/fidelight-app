@@ -4,17 +4,20 @@
  *
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 // import { View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import HomeHeader from 'components/HomeHeader';
+import QRCode from 'components/QRCode';
+
 import style from './style';
 
 import { FavouritePlacesScreenProps } from './types';
 import RestaurantsList from './RestaurantsList';
 
 function FavouritePlacesScreen(_props: FavouritePlacesScreenProps) {
+  const [visibleQR, setVisibleQR] = useState(false);
   return (
     <>
       <HomeHeader />
@@ -22,8 +25,9 @@ function FavouritePlacesScreen(_props: FavouritePlacesScreenProps) {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={style.contentContainerStyle}
       >
-        <RestaurantsList />
+        <RestaurantsList onPress={() => setVisibleQR(true)} />
       </ScrollView>
+      <QRCode visible={visibleQR} onRequestClose={() => setVisibleQR(false)} />
     </>
   );
 }

@@ -6,6 +6,7 @@ import avatar from './avatar.jpeg';
 import coverImage from './coverImage.jpeg';
 import dealImage from './dealImage.png';
 import badge from './badge.png';
+import qrCode from './qrCode.png';
 const images = {
   googleIcon,
   facebookIcon,
@@ -15,6 +16,7 @@ const images = {
   coverImage,
   dealImage,
   badge,
+  qrCode,
 };
 
 export default images;

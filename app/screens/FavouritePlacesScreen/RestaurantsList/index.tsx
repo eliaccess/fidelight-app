@@ -15,11 +15,11 @@ import Icon from 'theme/Icon';
 import style from './style';
 import Categories from './data';
 
-function RestaurantsList(_props) {
+function RestaurantsList(props) {
   return (
     <View style={style.container}>
       {Categories.map((item) => (
-        <TouchFeedback key={item.id} onPress={() => null} style={style.item}>
+        <TouchFeedback key={item.id} onPress={props.onPress} style={style.item}>
           <View style={style.imageWrapper}>
             <Image
               uri={item.coverImage}
