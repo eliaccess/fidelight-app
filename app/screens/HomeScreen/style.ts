@@ -1,8 +1,8 @@
-import { StyleSheet, Platform } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import Colors from 'theme/Colors';
 import Dimensions from 'theme/Dimensions/';
-import elevation from 'theme/elevation';
+// import elevation from 'theme/elevation';
 
 const style = StyleSheet.create({
   container: {
@@ -14,51 +14,6 @@ const style = StyleSheet.create({
     left: 0,
     position: 'absolute',
   },
-  tabBarContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    borderTopWidth: 0.5,
-    borderTopColor: Colors.white,
-    ...Platform.select({
-      ios: { paddingBottom: Dimensions.bottomSpacing },
-      android: { paddingBottom: Dimensions.space2x },
-    }),
-    backgroundColor: Colors.white,
-    ...elevation(5),
-  },
-  tabBarButton: {
-    flex: 0.2,
-    alignItems: 'center',
-    paddingTop: Dimensions.space2x,
-    borderTopColor: Colors.white,
-    borderTopWidth: 1,
-  },
-  tabBarButtonIcon: {
-    fontSize: 22,
-    color: Colors.textBlack,
-    marginBottom: Dimensions.space1x,
-  },
-  activeTab: {
-    color: Colors.accentDark,
-  },
-  tabBarMajorButtonView: {
-    flex: 0,
-    width: 62,
-    height: 62,
-    borderRadius: 31,
-    backgroundColor: Colors.accent,
-    borderTopWidth: 0,
-    marginTop: -30,
-    ...elevation(4, Colors.accentDark),
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingBottom: Dimensions.space2x,
-  },
-  tabBarMajorButtonIcon: {
-    fontSize: 30,
-    color: Colors.white,
-  },
   backdrop: {
     position: 'absolute',
     top: 0,
@@ -66,6 +21,44 @@ const style = StyleSheet.create({
     bottom: 0,
     width: '100%',
     borderRadius: 50,
+  },
+  drawer: {
+    width: Dimensions.screenWidth + 10,
+    height: Dimensions.screenHeight + 10,
+    top: -2,
+    left: -2,
+    position: 'absolute',
+    paddingTop: '60%',
+  },
+  drawerMenu: {
+    padding: Dimensions.space3x,
+  },
+  menuItem: {
+    marginVertical: Dimensions.space3x,
+  },
+  menuItemLabel: {
+    fontSize: 20,
+    color: Colors.white,
+    fontWeight: '600',
+  },
+  authButtonHolder: {
+    position: 'absolute',
+    bottom: 100,
+    left: 15,
+    width: 120,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: Colors.accentLight,
+    borderRadius: Dimensions.borderRadius10x,
+  },
+  logoutButtonLable: {
+    fontSize: 18,
+    color: Colors.white,
+    fontWeight: '600',
+  },
+  tabViewWrapper: {
+    // transform: [{ scale: 0.8 }, { translateY: 100 }, { translateX: 200 }],
   },
 });
 

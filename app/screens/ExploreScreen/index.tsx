@@ -8,7 +8,6 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
-import HomeHeader from 'components/HomeHeader';
 import Modal from 'theme/Modal';
 import FormattedMessage from 'theme/FormattedMessage';
 import Text from 'theme/Text';
@@ -27,7 +26,6 @@ function ExploreScreen(_props: ExploreScreenProps) {
   const [showContactInfo, setShowContactInfo] = useState(false);
   return (
     <>
-      <HomeHeader />
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={style.contentContainerStyle}

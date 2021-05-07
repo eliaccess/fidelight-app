@@ -13,4 +13,8 @@ export default defineMessages({
     id: `${scope}.title`,
     defaultMessage: 'Home Screen!',
   },
+  logoutButtonLable: {
+    id: `${scope}.logoutButtonLable`,
+    defaultMessage: 'Logout',
+  },
 });

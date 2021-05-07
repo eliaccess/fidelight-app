@@ -17,6 +17,7 @@ const style = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     zIndex: 1000,
+    borderRadius: Dimensions.borderRadius10x,
   },
   backdrop: {
     position: 'absolute',
