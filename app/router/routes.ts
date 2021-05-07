@@ -11,6 +11,7 @@ import SupportScreen from 'screens/SupportScreen/Loadable';
 import ChangePasswordScreen from 'screens/ChangePasswordScreen/Loadable';
 import PreferenceScreen from 'screens/PreferenceScreen/Loadable';
 import ProfileScreen from 'screens/ProfileScreen/Loadable';
+import ProfileEditScreen from 'screens/ProfileEditScreen/Loadable';
 import routeConfigs from './routeConfigs';
 import * as routeNames from './routeNames';
 
@@ -66,6 +67,10 @@ const routes = {
   [routeNames.PROFILE]: {
     ...routeConfigs[routeNames.PROFILE],
     screen: ProfileScreen,
+  },
+  [routeNames.PROFILE_EDIT]: {
+    ...routeConfigs[routeNames.PROFILE_EDIT],
+    screen: ProfileEditScreen,
   },
   // [routeNames.FORGET_PASSWORD]: {
   //   ...routeConfigs[routeNames.FORGET_PASSWORD],

@@ -12,3 +12,4 @@ export const SUPPORT = 'Support';
 export const CHANGE_PASSWORD = 'ChangePassword';
 export const PREFERENCE = 'Preference';
 export const PROFILE = 'Profile';
+export const PROFILE_EDIT = 'ProfileEdit';

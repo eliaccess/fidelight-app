@@ -27,7 +27,7 @@ const Input = React.forwardRef(
   // @ts-ignore
   ({ showSuccessInput = true, ...props }: InputProps, ref: React.RefObject) => {
     const [isCorrect, setIsCorrect] = useState(false);
-    const animation = useRef(useSharedValue(0)).current;
+    const animation = useRef(useSharedValue(props.value ? 1 : 0)).current;
     const onFocus = (e) => {
       animation.value = withTiming(1, {
         duration: 400,

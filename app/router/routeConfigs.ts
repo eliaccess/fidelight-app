@@ -40,6 +40,9 @@ const routeConfigs = {
   [routeNames.PROFILE]: {
     path: '/profile',
   },
+  [routeNames.PROFILE_EDIT]: {
+    path: '/profile-edit',
+  },
 };
 
 export default routeConfigs;
