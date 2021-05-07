@@ -7,6 +7,7 @@ import coverImage from './coverImage.jpeg';
 import dealImage from './dealImage.png';
 import badge from './badge.png';
 import qrCode from './qrCode.png';
+import transactionIcon from './transactionIcon.png';
 const images = {
   googleIcon,
   facebookIcon,
@@ -17,6 +18,7 @@ const images = {
   dealImage,
   badge,
   qrCode,
+  transactionIcon,
 };
 
 export default images;

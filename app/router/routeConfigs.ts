@@ -37,6 +37,9 @@ const routeConfigs = {
   [routeNames.PREFERENCE]: {
     path: '/preference',
   },
+  [routeNames.PROFILE]: {
+    path: '/profile',
+  },
 };
 
 export default routeConfigs;
