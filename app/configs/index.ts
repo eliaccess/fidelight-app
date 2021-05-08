@@ -1,8 +1,8 @@
-import { HOME } from 'router/routeNames';
+import { BUSINESS_SIGNUP, HOME } from 'router/routeNames';
 
 const configs = {
   VERSION: '0.0.1',
-  initialRouteName: HOME,
+  initialRouteName: BUSINESS_SIGNUP,
   initialRouteParams: {},
   LOG_API: false,
   LOG_ANALYTICS: false,

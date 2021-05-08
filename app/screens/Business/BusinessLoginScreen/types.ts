@@ -2,14 +2,17 @@ import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from 'router/types';
 
-type LoginScreenRouteProp = RouteProp<RootStackParamList, 'Login'>;
-
-type LoginScreenNavigationProp = StackNavigationProp<
+type BusinessLoginScreenRouteProp = RouteProp<
   RootStackParamList,
-  'Login'
+  'BusinessLogin'
 >;
 
-export type LoginScreenProps = {
-  route: LoginScreenRouteProp;
-  navigation: LoginScreenNavigationProp;
+type BusinessLoginScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  'BusinessLogin'
+>;
+
+export type BusinessLoginScreenProps = {
+  route: BusinessLoginScreenRouteProp;
+  navigation: BusinessLoginScreenNavigationProp;
 };

@@ -16,3 +16,4 @@ export const PROFILE_EDIT = 'ProfileEdit';
 
 // Business
 export const BUSINESS_LOGIN = 'BusinessLogin';
+export const BUSINESS_SIGNUP = 'BusinessSignUp';

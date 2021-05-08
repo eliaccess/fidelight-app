@@ -13,6 +13,7 @@ import PreferenceScreen from 'screens/PreferenceScreen/Loadable';
 import ProfileScreen from 'screens/ProfileScreen/Loadable';
 import ProfileEditScreen from 'screens/ProfileEditScreen/Loadable';
 import BusinessLoginScreen from 'screens/Business/BusinessLoginScreen/Loadable';
+import BusinessSignUpScreen from 'screens/Business/BusinessSignUpScreen/Loadable';
 import routeConfigs from './routeConfigs';
 import * as routeNames from './routeNames';
 
@@ -76,6 +77,10 @@ const routes = {
   [routeNames.BUSINESS_LOGIN]: {
     ...routeConfigs[routeNames.BUSINESS_LOGIN],
     screen: BusinessLoginScreen,
+  },
+  [routeNames.BUSINESS_SIGNUP]: {
+    ...routeConfigs[routeNames.BUSINESS_SIGNUP],
+    screen: BusinessSignUpScreen,
   },
   // [routeNames.FORGET_PASSWORD]: {
   //   ...routeConfigs[routeNames.FORGET_PASSWORD],
