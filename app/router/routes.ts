@@ -12,6 +12,7 @@ import ChangePasswordScreen from 'screens/ChangePasswordScreen/Loadable';
 import PreferenceScreen from 'screens/PreferenceScreen/Loadable';
 import ProfileScreen from 'screens/ProfileScreen/Loadable';
 import ProfileEditScreen from 'screens/ProfileEditScreen/Loadable';
+import BusinessLoginScreen from 'screens/Business/BusinessLoginScreen/Loadable';
 import routeConfigs from './routeConfigs';
 import * as routeNames from './routeNames';
 
@@ -71,6 +72,10 @@ const routes = {
   [routeNames.PROFILE_EDIT]: {
     ...routeConfigs[routeNames.PROFILE_EDIT],
     screen: ProfileEditScreen,
+  },
+  [routeNames.BUSINESS_LOGIN]: {
+    ...routeConfigs[routeNames.BUSINESS_LOGIN],
+    screen: BusinessLoginScreen,
   },
   // [routeNames.FORGET_PASSWORD]: {
   //   ...routeConfigs[routeNames.FORGET_PASSWORD],

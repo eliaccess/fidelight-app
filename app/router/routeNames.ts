@@ -13,3 +13,6 @@ export const CHANGE_PASSWORD = 'ChangePassword';
 export const PREFERENCE = 'Preference';
 export const PROFILE = 'Profile';
 export const PROFILE_EDIT = 'ProfileEdit';
+
+// Business
+export const BUSINESS_LOGIN = 'BusinessLogin';

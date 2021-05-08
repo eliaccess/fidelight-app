@@ -43,6 +43,9 @@ const routeConfigs = {
   [routeNames.PROFILE_EDIT]: {
     path: '/profile-edit',
   },
+  [routeNames.BUSINESS_LOGIN]: {
+    path: '/business-login',
+  },
 };
 
 export default routeConfigs;

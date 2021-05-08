@@ -16,4 +16,5 @@ export type RootStackParamList = {
   Preference?: {};
   Profile?: {};
   ProfileEdit?: {};
+  BusinessLogin?: {};
 };
