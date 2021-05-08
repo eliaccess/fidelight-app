@@ -35,6 +35,11 @@ function BusinessSignUpScreen(props: BusinessSignUpScreenProps) {
       >
         <View style={style.container}>
           <ScreenHeading heading={heading} />
+          <FormattedMessage
+            {...messages.stepLabel}
+            values={{ activeStep }}
+            style={style.stepLabel}
+          />
           <View style={style.formContainer}>
             <Form
               onStepChange={(stp) => setActiveStep(stp)}

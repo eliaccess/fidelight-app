@@ -13,24 +13,17 @@ export default defineMessages({
     id: `${scope}.headingLabel`,
     defaultMessage: 'Fidelight partner Signup',
   },
-  subHeadingLabel: {
-    id: `${scope}.subHeadingLabel`,
-    defaultMessage: 'sign in to continue.',
-  },
-  googleLabel: {
-    id: `${scope}.googleLabel`,
-    defaultMessage: 'Google',
-  },
-  facebookLabel: {
-    id: `${scope}.facebookLabel`,
-    defaultMessage: 'Facebook',
-  },
+
   signInPitch: {
     id: `${scope}.signInPitch`,
-    defaultMessage: 'Already have Fidelight Account?',
+    defaultMessage: 'Already have Fidelight Business Account?',
   },
   signInLabel: {
     id: `${scope}.signInLabel`,
     defaultMessage: 'Sign in',
+  },
+  stepLabel: {
+    id: `${scope}.stepLabel`,
+    defaultMessage: 'Step {activeStep}/2',
   },
 });

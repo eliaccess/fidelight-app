@@ -49,6 +49,11 @@ const style = StyleSheet.create({
     alignSelf: 'center',
     marginTop: Dimensions.space4x,
   },
+  stepLabel: {
+    fontSize: 16,
+    color: Colors.textGrey,
+    fontWeight: '600',
+  },
 });
 
 export default style;
