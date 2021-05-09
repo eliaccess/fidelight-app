@@ -16,4 +16,8 @@ export default defineMessages({
     id: `${scope}.transactionHeading`,
     defaultMessage: 'Transactions',
   },
+  createGiftHeading: {
+    id: `${scope}.createGiftHeading`,
+    defaultMessage: 'Create New gift point',
+  },
 });

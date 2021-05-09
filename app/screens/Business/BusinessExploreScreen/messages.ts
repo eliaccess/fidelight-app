@@ -32,4 +32,12 @@ export default defineMessages({
     id: `${scope}.deactivateRewardLabel`,
     defaultMessage: 'Deactivate Rewards',
   },
+  createOfferHeading: {
+    id: `${scope}.createOfferHeading`,
+    defaultMessage: 'Create New Offer',
+  },
+  createRewardHeading: {
+    id: `${scope}.createRewardHeading`,
+    defaultMessage: 'Create New Reward',
+  },
 });

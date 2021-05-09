@@ -1,6 +1,6 @@
 /*
  *
- * Search
+ * BusinessExploreScreen
  *
  */
 
@@ -14,16 +14,20 @@ import Icon from 'theme/Icon';
 import LinearGradient from 'react-native-linear-gradient';
 import { buttonGradientProps } from 'theme/utils';
 import TouchFeedback from 'theme/TouchFeedback';
+import Modal from 'theme/Modal';
 
 import { BusinessExploreScreenProps } from './types';
 import style from './style';
 import messages from './messages';
 import BusinessExploreOffers from './Offers';
 import BusinessExploreRewards from './Rewards';
+import CreateOfferForm from './CreateOfferForm';
+import CreateRewardForm from './CreateRewardForm';
 
 function BusinessExploreScreen(_props: BusinessExploreScreenProps) {
   const [activeTabIndex, setActiveTabIndex] = useState(0);
-
+  const [showCreateOffers, setShowCreateOffers] = useState(false);
+  const [showCreateReward, setShowCreateReward] = useState(false);
   return (
     <>
       <View style={style.container}>
@@ -72,9 +76,42 @@ function BusinessExploreScreen(_props: BusinessExploreScreenProps) {
           <BusinessExploreRewards />
         )}
       </ScrollView>
-      <TouchFeedback onPress={() => null} style={style.addButtonWrapper}>
+      <TouchFeedback
+        onPress={() => {
+          if (activeTabIndex === 0) {
+            setShowCreateOffers(true);
+          } else {
+            setShowCreateReward(true);
+          }
+        }}
+        style={style.addButtonWrapper}
+      >
         <Icon name="plus" style={style.addIcon} />
       </TouchFeedback>
+      <Modal
+        visible={showCreateOffers}
+        onRequestClose={() => setShowCreateOffers(false)}
+      >
+        <View style={style.modalContent}>
+          <FormattedMessage
+            {...messages.createOfferHeading}
+            style={style.modalHeading}
+          />
+          <CreateOfferForm onSubmit={() => null} />
+        </View>
+      </Modal>
+      <Modal
+        visible={showCreateReward}
+        onRequestClose={() => setShowCreateReward(false)}
+      >
+        <View style={style.rewardModalContent}>
+          <FormattedMessage
+            {...messages.createRewardHeading}
+            style={style.modalHeading}
+          />
+          <CreateRewardForm onSubmit={() => null} />
+        </View>
+      </Modal>
     </>
   );
 }

@@ -10,7 +10,8 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import Button from 'theme/Button';
+import Icon from 'theme/Icon';
+import TouchFeedback from 'theme/TouchFeedback';
 
 import style from './style';
 import { UseModalAnimation } from './animation';
@@ -35,9 +36,12 @@ function Modal(props: ModalProps) {
     <Animated.View style={[style.container, modalAnimation]}>
       <View style={style.content}>
         {props.children}
-        <View style={style.closeButtonHolder}>
-          <Button onPress={props.onRequestClose} label="close" />
-        </View>
+        <TouchFeedback
+          onPress={props.onRequestClose}
+          style={style.closeButtonHolder}
+        >
+          <Icon name="x" style={style.closeIcon} />
+        </TouchFeedback>
       </View>
     </Animated.View>
   );

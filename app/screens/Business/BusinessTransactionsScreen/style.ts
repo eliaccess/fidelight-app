@@ -71,6 +71,17 @@ const style = StyleSheet.create({
     fontSize: 28,
     color: Colors.accent,
   },
+  modalHeading: {
+    fontSize: 14,
+    color: Colors.textBlack,
+    fontWeight: '600',
+  },
+  modalContent: {
+    padding: Dimensions.space2x,
+    paddingTop: Dimensions.space3x,
+    width: Dimensions.screenWidth - Dimensions.screenWidth / 6,
+    height: 250,
+  },
 });
 
 export default style;
