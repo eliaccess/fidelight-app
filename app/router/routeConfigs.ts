@@ -49,6 +49,12 @@ const routeConfigs = {
   [routeNames.BUSINESS_SIGNUP]: {
     path: '/business-signUp',
   },
+  [routeNames.BUSINESS_HOME]: {
+    path: '/business-home',
+  },
+  [routeNames.BUSINESS_EXPLORE]: {
+    path: '/business-explore',
+  },
 };
 
 export default routeConfigs;
