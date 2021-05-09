@@ -3,7 +3,8 @@ import { View } from 'react-native';
 import { TabView } from 'react-native-tab-view';
 import { Easing, useSharedValue, withTiming } from 'react-native-reanimated';
 
-import ExploreScreen from 'screens/Business/BusinessExploreScreen/Loadable';
+import BusinessExploreScreen from 'screens/Business/BusinessExploreScreen/Loadable';
+import BusinessTransactionsScreen from 'screens/Business/BusinessTransactionsScreen/Loadable';
 import FavouritePlacesScreen from 'screens/FavouritePlacesScreen/Loadable';
 import CommingSoonScreen from 'screens/CommingSoonScreen/Loadable';
 import { COMMING_SOON } from 'router/routeNames';
@@ -52,14 +53,17 @@ function HomeTabView(props) {
       case 'explore':
         // @ts-ignore
         return (
-          <ExploreScreen navigation={props.navigation} route={props.route} />
+          <BusinessExploreScreen
+            navigation={props.navigation}
+            route={props.route}
+          />
         );
       case 'award':
         // @ts-ignore
         return <CommingSoonScreen />;
       case 'favourites':
         // @ts-ignore
-        return <FavouritePlacesScreen />;
+        return <BusinessTransactionsScreen />;
 
       default:
         return null;

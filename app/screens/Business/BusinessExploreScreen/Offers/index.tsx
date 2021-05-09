@@ -60,7 +60,7 @@ function BusinessExploreOffers(_props) {
               </Text>
             </View>
             <View style={style.editIconHolder}>
-              <Icon name="edit" style={style.editIcon} />
+              <Icon name="edit" font="fidelight" style={style.editIcon} />
             </View>
           </View>
         ))}
