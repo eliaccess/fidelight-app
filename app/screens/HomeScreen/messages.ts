@@ -17,4 +17,12 @@ export default defineMessages({
     id: `${scope}.logoutButtonLable`,
     defaultMessage: 'Logout',
   },
+  termsHeading: {
+    id: `${scope}.termsHeading`,
+    defaultMessage: 'Terms of use',
+  },
+  contactUsHeading: {
+    id: `${scope}.contactUsHeading`,
+    defaultMessage: 'Contact us',
+  },
 });

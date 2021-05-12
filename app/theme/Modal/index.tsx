@@ -34,15 +34,13 @@ function Modal(props: ModalProps) {
 
   return (
     <Animated.View style={[style.container, modalAnimation]}>
-      <View style={style.content}>
-        {props.children}
-        <TouchFeedback
-          onPress={props.onRequestClose}
-          style={style.closeButtonHolder}
-        >
-          <Icon name="x" style={style.closeIcon} />
-        </TouchFeedback>
-      </View>
+      <TouchFeedback
+        onPress={props.onRequestClose}
+        style={style.closeButtonHolder}
+      >
+        <Icon name="x" style={style.closeIcon} />
+      </TouchFeedback>
+      <View style={style.content}>{props.children}</View>
     </Animated.View>
   );
 }

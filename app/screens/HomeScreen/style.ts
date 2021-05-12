@@ -57,8 +57,36 @@ const style = StyleSheet.create({
     color: Colors.white,
     fontWeight: '600',
   },
-  tabViewWrapper: {
-    // transform: [{ scale: 0.8 }, { translateY: 100 }, { translateX: 200 }],
+  modalHeading: {
+    fontSize: 14,
+    color: Colors.textBlack,
+    fontWeight: '600',
+  },
+  modalContent: {
+    padding: Dimensions.space2x,
+    width: 300,
+  },
+  terms: {
+    marginVertical: Dimensions.space2x,
+    fontSize: 12,
+    color: Colors.textGrey,
+    lineHeight: 17,
+  },
+  contactInfoContainer: {},
+  contactInfoItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: Dimensions.space2x,
+  },
+  contactInfoIcon: {
+    fontSize: 18,
+    color: Colors.accent,
+  },
+  contactInfoItemLabel: {
+    fontSize: 12,
+    color: Colors.textGrey,
+    lineHeight: 17,
+    marginLeft: Dimensions.space2x,
   },
 });
 

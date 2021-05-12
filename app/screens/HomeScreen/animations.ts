@@ -18,3 +18,12 @@ export function UseDrawerAnimation(animationValue) {
     };
   });
 }
+
+export function UseDrawerMenuAnimation(animationValue) {
+  return useAnimatedStyle(() => {
+    const opacity = interpolate(animationValue.value, [0, 1], [0, 1]);
+    return {
+      opacity,
+    };
+  });
+}

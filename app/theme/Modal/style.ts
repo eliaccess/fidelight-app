@@ -28,13 +28,11 @@ const style = StyleSheet.create({
     backgroundColor: Colors.white,
     borderRadius: Dimensions.borderRadius3x,
     ...elevation(5),
-    position: 'relative',
   },
   closeButtonHolder: {
     padding: Dimensions.space2x,
-    position: 'absolute',
-    top: '-12%',
-    right: '-3%',
+    alignSelf: 'flex-end',
+    marginRight: '10%',
   },
   closeIcon: {
     fontSize: 26,
