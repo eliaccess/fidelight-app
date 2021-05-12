@@ -17,6 +17,7 @@ import BusinessSignUpScreen from 'screens/Business/BusinessSignUpScreen/Loadable
 import BusinessHomeScreen from 'screens/Business/BusinessHomeScreen/Loadable';
 import BusinessExploreScreen from 'screens/Business/BusinessExploreScreen/Loadable';
 import BusinessTransactionsScreen from 'screens/Business/BusinessTransactionsScreen/Loadable';
+import EditBusinessInfoScreen from 'screens/Business/EditBusinessInfoScreen/Loadable';
 import routeConfigs from './routeConfigs';
 import * as routeNames from './routeNames';
 
@@ -96,6 +97,10 @@ const routes = {
   [routeNames.BUSINESS_TRANSACTIONS]: {
     ...routeConfigs[routeNames.BUSINESS_TRANSACTIONS],
     screen: BusinessTransactionsScreen,
+  },
+  [routeNames.EDIT_BUSINESS_INFO]: {
+    ...routeConfigs[routeNames.EDIT_BUSINESS_INFO],
+    screen: EditBusinessInfoScreen,
   },
   // [routeNames.FORGET_PASSWORD]: {
   //   ...routeConfigs[routeNames.FORGET_PASSWORD],

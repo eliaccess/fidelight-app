@@ -26,7 +26,7 @@ function HomeScreen(props: HomeScreenProps) {
   const drawerAnimation = UseDrawerAnimation(animation);
   useEffect(() => {
     animation.value = withTiming(isVisible ? 1 : 0, {
-      duration: 400,
+      duration: 300,
       easing: Easing.inOut(Easing.ease),
     });
   }, [animation, isVisible]);

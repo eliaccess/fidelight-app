@@ -21,4 +21,5 @@ export type RootStackParamList = {
   BusinessHome?: {};
   BusinessExplore?: {};
   BusinessTransactions?: {};
+  EditBusinessInfo?: {};
 };

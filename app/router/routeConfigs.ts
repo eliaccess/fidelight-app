@@ -58,6 +58,9 @@ const routeConfigs = {
   [routeNames.BUSINESS_TRANSACTIONS]: {
     path: '/business-transactions',
   },
+  [routeNames.EDIT_BUSINESS_INFO]: {
+    path: '/edit-business-info',
+  },
 };
 
 export default routeConfigs;

@@ -20,3 +20,4 @@ export const BUSINESS_SIGNUP = 'BusinessSignUp';
 export const BUSINESS_HOME = 'BusinessHome';
 export const BUSINESS_EXPLORE = 'BuisnessExplore';
 export const BUSINESS_TRANSACTIONS = 'BusinessTransactions';
+export const EDIT_BUSINESS_INFO = 'EditBusinessInfo';
