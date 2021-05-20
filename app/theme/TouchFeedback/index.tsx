@@ -15,7 +15,7 @@ const AnimatedPressable =
 const TouchFeedback: React.FC<TouchableOpacityProps> = (props) => (
   <AnimatedPressable
     android_ripple={{
-      color: 'rgba(0, 0, 0, 0.1)',
+      color: 'rgba(0, 0, 0, 0.04)',
     }}
     {...props}
   />

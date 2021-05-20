@@ -94,6 +94,7 @@ const Button: React.FC<ButtonProps> = ({
       {props.image ? <Image style={style.image} {...props.image} /> : null}
 
       <Text
+        animated
         style={[
           style.label,
           typeForeground[type],

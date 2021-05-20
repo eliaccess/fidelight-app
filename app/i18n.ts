@@ -10,8 +10,15 @@
  */
 import 'intl';
 import 'intl/locale-data/jsonp/en';
+import { Platform } from 'react-native';
 
 import { DEFAULT_LOCALE } from './locales';
+
+if (Platform.OS === 'android') {
+  if (typeof (Intl as any).__disableRegExpRestore === 'function') {
+    (Intl as any).__disableRegExpRestore();
+  }
+}
 
 /**
  * Pluralization Polyfill

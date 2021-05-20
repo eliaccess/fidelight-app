@@ -17,7 +17,7 @@ const style = StyleSheet.create({
   },
   itemWrapper: {
     flexDirection: 'row',
-    padding: Dimensions.space2x,
+    marginBottom: Dimensions.space2x,
     alignItems: 'center',
   },
   logoWrapper: {

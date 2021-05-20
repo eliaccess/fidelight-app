@@ -35,7 +35,7 @@ function CategoriesWidget(props) {
               onPress={() => {
                 setActiveCategoryIndex(index);
                 // @ts-ignore
-                props.onPress();
+                // props.onPress();
               }}
               style={style.item}
             >

@@ -12,7 +12,7 @@ import Dimensions from 'theme/Dimensions';
 const style = StyleSheet.create({
   contentContainerStyle: {
     width: Dimensions.screenWidth,
-    paddingTop: 180,
+    paddingTop: 150,
     paddingBottom: Dimensions.bottomSpacing,
   },
   categoriesSectionWrapper: {

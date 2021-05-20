@@ -18,7 +18,7 @@ function AppContainer() {
     <>
       <StatusBar
         backgroundColor={Colors.statusBar}
-        barStyle="dark-content"
+        barStyle="light-content"
         translucent
       />
       <Router onStateChange={debouncedOnStateChange} />

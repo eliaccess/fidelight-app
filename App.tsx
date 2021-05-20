@@ -1,11 +1,10 @@
 /**
  *
- * Neat Barber
+ * Fidelight
  *
  */
 
 import React from 'react';
-
 import { Provider } from 'react-redux';
 import { enableScreens } from 'react-native-screens';
 

@@ -54,8 +54,6 @@ const Header: React.FC<HeaderProps> = (props) => {
     };
   });
 
-  console.log('props', props);
-
   return (
     <Animated.View style={[style.header, headerAnimation]} key="header">
       {props.title ? (

@@ -15,10 +15,10 @@ import fontelloConfig from 'assets/fonts/fidelight.json';
 
 const FidelightIcons = Platform.select({
   ios: createIconSetFromFontello(fontelloConfig),
-  // android: createIconSetFromFontello(
-  //   { ...fontelloConfig, name: 'Bogo.ttf' },
-  //   'Bogo',
-  // ),
+  android: createIconSetFromFontello(
+    { ...fontelloConfig, name: 'Fidelight.ttf' },
+    'Fidelight',
+  ),
 });
 
 export type IconProps = {

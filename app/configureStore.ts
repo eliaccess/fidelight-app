@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 /**
  * Create the store with dynamic reducers
  */
@@ -10,10 +11,15 @@ import createReducer from './reducers';
 export default function configureAppStore(initialState = {}) {
   const reduxSagaMonitorOptions = {};
   const sagaMiddleware = createSagaMiddleware(reduxSagaMonitorOptions);
+
   const { run: runSaga } = sagaMiddleware;
 
   // sagaMiddleware: Makes redux-sagas work
   const middlewares = [sagaMiddleware];
+  if (__DEV__) {
+    const createDebugger = require('redux-flipper').default;
+    middlewares.push(createDebugger());
+  }
 
   const enhancers = [
     createInjectorsEnhancer({

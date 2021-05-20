@@ -40,9 +40,9 @@ function HomeScreen(props: HomeScreenProps) {
 
   return (
     <View style={style.container}>
-      <View style={style.drawer}>
+      <Animated.View style={[style.drawer, drawerMenuAnimation]}>
         <LinearGradient {...buttonGradientProps()} style={style.backdrop} />
-        <Animated.View style={[style.drawerMenu, drawerMenuAnimation]}>
+        <View style={[style.drawerMenu]}>
           {Menu.map((item) => (
             <TouchFeedback
               key={item.id}
@@ -67,21 +67,22 @@ function HomeScreen(props: HomeScreenProps) {
               <Text style={style.menuItemLabel}>{item.name}</Text>
             </TouchFeedback>
           ))}
-        </Animated.View>
+        </View>
         <TouchFeedback style={style.authButtonHolder}>
           <FormattedMessage
             {...messages.logoutButtonLable}
             style={style.logoutButtonLable}
           />
         </TouchFeedback>
-      </View>
+      </Animated.View>
 
-      <Animated.View style={drawerAnimation}>
+      <Animated.View style={[style.container, drawerAnimation]}>
         <HomeTabView
           onPressDrawer={() => setIsVisible(!isVisible)}
           navigation={props.navigation}
         />
       </Animated.View>
+
       <Modal visible={showTerms} onRequestClose={() => setShowTerms(false)}>
         <View style={style.modalContent}>
           <FormattedMessage

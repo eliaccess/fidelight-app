@@ -4,7 +4,7 @@
  *
  */
 
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 
 import Colors from 'theme/Colors';
 import Dimensions from 'theme/Dimensions';
@@ -46,7 +46,10 @@ const style = StyleSheet.create({
   },
   sectionWrapper: {
     backgroundColor: Colors.white,
-    height: 220,
+    ...Platform.select({
+      ios: { height: 200 },
+      android: { height: 220 },
+    }),
   },
   modalHeader: {
     backgroundColor: Colors.bg2Color,

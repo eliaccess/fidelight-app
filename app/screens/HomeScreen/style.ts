@@ -13,6 +13,8 @@ const style = StyleSheet.create({
     top: 0,
     left: 0,
     position: 'absolute',
+    overflow: 'hidden',
+    borderRadius: Dimensions.borderRadius3x,
   },
   backdrop: {
     position: 'absolute',

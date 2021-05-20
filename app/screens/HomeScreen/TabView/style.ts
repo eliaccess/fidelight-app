@@ -13,7 +13,6 @@ const style = StyleSheet.create({
     top: 0,
     left: 0,
     position: 'absolute',
-    borderRadius: Dimensions.borderRadius10x,
   },
   tabBarContainer: {
     flexDirection: 'row',
@@ -23,7 +22,7 @@ const style = StyleSheet.create({
     borderTopColor: Colors.white,
     ...Platform.select({
       ios: { paddingBottom: Dimensions.bottomSpacing },
-      android: { paddingBottom: Dimensions.space2x },
+      android: { paddingBottom: Dimensions.bottomSpacing },
     }),
     backgroundColor: Colors.white,
     ...elevation(5),
@@ -51,10 +50,13 @@ const style = StyleSheet.create({
     backgroundColor: Colors.accent,
     borderTopWidth: 0,
     marginTop: -30,
-    ...elevation(4, Colors.accentDark),
     alignItems: 'center',
     justifyContent: 'center',
     paddingBottom: Dimensions.space2x,
+    ...Platform.select({
+      ios: { ...elevation(4, Colors.accentDark) },
+      android: { ...elevation(3) },
+    }),
   },
   tabBarMajorButtonIcon: {
     fontSize: 30,

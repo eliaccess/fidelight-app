@@ -5,9 +5,8 @@ import {
 } from 'react-native-iphone-x-helper';
 import ExtraDimensions from 'react-native-extra-dimensions-android';
 
-const window = Dimensions.get('window');
+const window = Dimensions.get('screen');
 const headerContentHeight = 44;
-
 const statusBarHeight =
   Platform.OS === 'ios'
     ? getStatusBarHeight(true)

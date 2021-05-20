@@ -13,11 +13,11 @@ import elevation from 'theme/elevation';
 const style = StyleSheet.create({
   container: {
     width: Dimensions.screenWidth,
-    height: 180,
+    height: 150,
     alignItems: 'center',
-    justifyContent: 'center',
     zIndex: 1000,
     borderRadius: Dimensions.borderRadius10x,
+    paddingTop: Dimensions.statusBarHeight,
   },
   backdrop: {
     position: 'absolute',

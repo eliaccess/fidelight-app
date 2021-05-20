@@ -45,7 +45,7 @@ export default {
   translucentWhite: 'rgba(255, 255, 255, 0.95)',
 
   ripple: '#e3e1e1',
-  statusBar: 'rgba(0, 0, 0, 0.7)',
+  statusBar: 'rgba(0, 0, 0, 0.2)',
 
   facebook: '#3C66C4',
   whatsapp: '#00b300',
