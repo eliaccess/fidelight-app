@@ -6,7 +6,7 @@ const configs = {
   initialRouteParams: {},
   LOG_API: false,
   LOG_ANALYTICS: false,
-  API_DOMAIN: '',
+  API_DOMAIN: 'http://localhost:4000',
   PLAY_STORE_LINK: '',
   ITUNES_LINK: '',
   CONTACT_NUMBER: '',

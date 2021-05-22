@@ -15,6 +15,7 @@ import Modal from 'theme/Modal';
 import Icon from 'theme/Icon';
 import { PREFERENCE, SUPPORT } from 'router/routeNames';
 import { buttonGradientProps } from 'theme/utils';
+import { useCategories } from 'containers/Categories';
 
 import style from './style';
 import HomeTabView from './TabView';
@@ -37,6 +38,11 @@ function HomeScreen(props: HomeScreenProps) {
       easing: Easing.cubic,
     });
   }, [animation, isVisible]);
+  const categories = useCategories({
+    city: 'Karachi',
+    country: 'Pakistan',
+  });
+  console.log('categories', categories);
 
   return (
     <View style={style.container}>
