@@ -5,7 +5,7 @@
  */
 import React, { useRef } from 'react';
 import { View, ScrollView } from 'react-native';
-import { Easing, useSharedValue, withTiming } from 'react-native-reanimated';
+import Animated, { Easing } from 'react-native-reanimated';
 import Header from './Header';
 import Footer from './Footer';
 import style from './style';
@@ -35,7 +35,7 @@ const Screen: React.FC<ScreenProps> = ({
   const contentContainer: any = useRef();
 
   const visibleValue = useRef(
-    useSharedValue(headerVisibilityThreshold >= 0 ? 0 : 1),
+    new Animated.Value(headerVisibilityThreshold >= 0 ? 0 : 1),
   ).current;
 
   const onScroll = ({
@@ -46,10 +46,11 @@ const Screen: React.FC<ScreenProps> = ({
     if (!headerVisibilityThreshold) {
       return;
     }
-    visibleValue.value = withTiming(y > headerVisibilityThreshold ? 1 : 0, {
+    Animated.timing(visibleValue, {
+      toValue: y > headerVisibilityThreshold ? 1 : 0,
       duration: 400,
       easing: Easing.inOut(Easing.ease),
-    });
+    }).start();
   };
 
   const ContentWrapper: any = useScrollView ? ScrollView : View;

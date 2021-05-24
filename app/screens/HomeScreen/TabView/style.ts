@@ -36,11 +36,11 @@ const style = StyleSheet.create({
   },
   tabBarButtonIcon: {
     fontSize: 22,
-    color: Colors.textBlack,
+    color: Colors.textGrey,
     marginBottom: Dimensions.space1x,
   },
   activeTab: {
-    color: Colors.accentDark,
+    color: Colors.accent,
   },
   tabBarMajorButtonView: {
     flex: 0,

@@ -1,34 +1,26 @@
-import {
-  Extrapolate,
-  interpolate,
-  useAnimatedStyle,
-} from 'react-native-reanimated';
+import { Extrapolate, interpolate } from 'react-native-reanimated';
 
 import Dimensions from 'theme/Dimensions';
 
 const height = Dimensions.screenHeight;
 
 export function UseQRCodeAnimation(animationValue) {
-  return useAnimatedStyle(() => {
-    const opacity = interpolate(
-      animationValue.value,
-      [0, 1],
-      [0, 1],
-      Extrapolate.CLAMP,
-    );
-    const translateY = interpolate(
-      animationValue.value,
-      [0, 1],
-      [height, 1],
-      Extrapolate.CLAMP,
-    );
-    return {
-      transform: [
-        {
-          translateY,
-        },
-      ],
-      opacity,
-    };
+  const opacity = interpolate(animationValue, {
+    inputRange: [0, 1],
+    outputRange: [0, 1],
+    extrapolate: Extrapolate.CLAMP,
   });
+  const translateY = interpolate(animationValue, {
+    inputRange: [0, 1],
+    outputRange: [height, 1],
+    extrapolate: Extrapolate.CLAMP,
+  });
+  return {
+    transform: [
+      {
+        translateY,
+      },
+    ],
+    opacity,
+  };
 }

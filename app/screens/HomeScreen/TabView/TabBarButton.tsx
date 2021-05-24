@@ -7,11 +7,7 @@
 import React, { useRef, useEffect } from 'react';
 import { TouchableWithoutFeedback } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import Animated, {
-  Easing,
-  useSharedValue,
-  withTiming,
-} from 'react-native-reanimated';
+import Animated, { Easing } from 'react-native-reanimated';
 
 import Icon from 'theme/Icon';
 import { buttonGradientProps } from 'theme/utils';
@@ -32,12 +28,13 @@ type TabBarButtonProps = {
 };
 
 function TabBarButton({ active = false, ...props }: TabBarButtonProps) {
-  const animationValue = useRef(useSharedValue(active ? 0 : 1)).current;
+  const animationValue = useRef(new Animated.Value(active ? 0 : 1)).current;
   useEffect(() => {
-    animationValue.value = withTiming(active ? 1 : 0, {
+    Animated.timing(animationValue, {
+      toValue: active ? 1 : 0,
       duration: 100,
       easing: Easing.inOut(Easing.ease),
-    });
+    }).start();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props]);
@@ -68,7 +65,11 @@ function TabBarButton({ active = false, ...props }: TabBarButtonProps) {
           name={props.route.icon}
           // @ts-ignore
           font={props.route?.font}
-          style={[style.tabBarButtonIcon, animatedIcon]}
+          style={[
+            style.tabBarButtonIcon,
+            animatedIcon,
+            active ? style.activeTab : null,
+          ]}
         />
       </Animated.View>
     </TouchableWithoutFeedback>

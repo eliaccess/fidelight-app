@@ -5,11 +5,7 @@
  */
 import React, { useEffect, useRef } from 'react';
 import { View } from 'react-native';
-import Animated, {
-  Easing,
-  useSharedValue,
-  withTiming,
-} from 'react-native-reanimated';
+import Animated, { Easing } from 'react-native-reanimated';
 import Icon from 'theme/Icon';
 import TouchFeedback from 'theme/TouchFeedback';
 import FormattedMessage from 'theme/FormattedMessage';
@@ -26,12 +22,13 @@ interface QRCodeProps {
 }
 
 function QRCode(props: QRCodeProps) {
-  const animation = useRef(useSharedValue(0)).current;
+  const animation = useRef(new Animated.Value(0)).current;
   useEffect(() => {
-    animation.value = withTiming(props.visible ? 1 : 0, {
+    Animated.timing(animation, {
+      toValue: props.visible ? 1 : 0,
       duration: 400,
       easing: Easing.inOut(Easing.ease),
-    });
+    }).start();
   }, [animation, props.visible]);
   const QRCodeAnimation = UseQRCodeAnimation(animation);
 

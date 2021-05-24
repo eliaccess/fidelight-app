@@ -1,12 +1,8 @@
 import React, { useEffect } from 'react';
 import { View, StatusBar } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import Animated, {
-  interpolate,
-  interpolateColor,
-  useAnimatedStyle,
-} from 'react-native-reanimated';
-import Colors from 'theme/Colors';
+import Animated from 'react-native-reanimated';
+// import Colors from 'theme/Colors';
 
 import Text from 'theme/Text';
 import { buttonGradientProps } from 'theme/utils';
@@ -17,9 +13,7 @@ import style from './style';
 interface HeaderProps {
   title?: React.ReactNode | string;
   onBackPress?: (...args: any[]) => any;
-  visibleValue: {
-    value: number;
-  };
+  visibleValue: Animated.Value<0 | 1>;
   blockBackPress?: boolean;
   dark: boolean;
   isAnimated: boolean;
@@ -30,32 +24,21 @@ const Header: React.FC<HeaderProps> = (props) => {
     StatusBar.setBarStyle('dark-content');
   }, []);
 
-  const titleAnimation = useAnimatedStyle(() => {
-    const opacity = interpolate(props.visibleValue.value, [0, 1], [0, 1]);
-    return {
-      opacity,
-    };
-  });
+  // const opacity = props.visibleValue;
 
-  const headerAnimation = useAnimatedStyle(() => {
-    const backgroundColor = interpolateColor(
-      props.visibleValue.value,
-      [0, 1],
-      [Colors.transparent, Colors.white],
-    );
-    const borderBottomColor = interpolateColor(
-      props.visibleValue.value,
-      [0, 1],
-      [Colors.transparent, Colors.white],
-    );
-    return {
-      backgroundColor,
-      borderBottomColor,
-    };
-  });
+  // const headerAnimation = {
+  //   backgroundColor: Animated.interpolate(props.visibleValue, {
+  //     inputRange: [0, 1],
+  //     outputRange: [Colors.transparent, Colors.white],
+  //   }),
+  //   borderBottomColor: Animated.interpolate(props.visibleValue, {
+  //     inputRange: [0, 1],
+  //     outputRange: [Colors.transparent, Colors.white],
+  //   }),
+  // };
 
   return (
-    <Animated.View style={[style.header, headerAnimation]} key="header">
+    <Animated.View style={[style.header]} key="header">
       {props.title ? (
         <LinearGradient {...buttonGradientProps()} style={style.backdrop} />
       ) : null}
@@ -65,7 +48,7 @@ const Header: React.FC<HeaderProps> = (props) => {
         ) : null}
         <Text
           animated
-          style={[style.title, props.isAnimated ? titleAnimation : null]}
+          style={[style.title, props.isAnimated ? null : null]}
           numberOfLines={1}
         >
           {props.title}

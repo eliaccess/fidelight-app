@@ -4,8 +4,8 @@ import { View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Animated, {
   Easing,
-  useSharedValue,
-  withTiming,
+  // useSharedValue,
+  // withTiming,
 } from 'react-native-reanimated';
 
 import TouchFeedback from 'theme/TouchFeedback';
@@ -15,7 +15,6 @@ import Modal from 'theme/Modal';
 import Icon from 'theme/Icon';
 import { PREFERENCE, SUPPORT } from 'router/routeNames';
 import { buttonGradientProps } from 'theme/utils';
-import { useCategories } from 'containers/Categories';
 
 import style from './style';
 import HomeTabView from './TabView';
@@ -27,22 +26,18 @@ import { UseDrawerAnimation, UseDrawerMenuAnimation } from './animations';
 
 function HomeScreen(props: HomeScreenProps) {
   const [isVisible, setIsVisible] = useState(false);
-  const animation = useRef(useSharedValue(0)).current;
+  const animation = useRef(new Animated.Value(0)).current;
   const drawerAnimation = UseDrawerAnimation(animation);
   const drawerMenuAnimation = UseDrawerMenuAnimation(animation);
   const [showTerms, setShowTerms] = useState(false);
   const [showContactInfo, setShowContactInfo] = useState(false);
   useEffect(() => {
-    animation.value = withTiming(isVisible ? 1 : 0, {
+    Animated.timing(animation, {
+      toValue: isVisible ? 1 : 0,
       duration: 400,
       easing: Easing.cubic,
-    });
+    }).start();
   }, [animation, isVisible]);
-  const categories = useCategories({
-    city: 'Karachi',
-    country: 'Pakistan',
-  });
-  console.log('categories', categories);
 
   return (
     <View style={style.container}>
