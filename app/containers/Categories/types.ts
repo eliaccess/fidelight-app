@@ -3,8 +3,6 @@ export interface UseCategoriesProps {
   country?: string;
   limit?: number;
   offset?: number;
-  collectionIds?: number[];
-  onMyCollections?: boolean;
 }
 
 export interface CategoriesProps extends UseCategoriesProps {
