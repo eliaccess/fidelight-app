@@ -1,8 +1,9 @@
 // import { Route } from '@react-navigation/native';
 
 export type RootStackParamList = {
+  Splash: {};
   Home: {};
-  AccountSelectionScreen: {};
+  AccountSelection: {};
   Login?: {};
   SignUp?: {};
   ForgetPassword: {};

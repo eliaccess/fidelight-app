@@ -1,6 +1,9 @@
 import * as routeNames from './routeNames';
 
 const routeConfigs = {
+  [routeNames.SPLASH]: {
+    path: '/',
+  },
   [routeNames.HOME]: {
     path: '/',
   },

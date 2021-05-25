@@ -1,19 +1,17 @@
-/* eslint-disable no-fallthrough */
 import React, { useEffect, useRef, useState } from 'react';
 import { View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import Animated, {
-  Easing,
-  // useSharedValue,
-  // withTiming,
-} from 'react-native-reanimated';
+import Animated, { Easing } from 'react-native-reanimated';
 
+import { useAuthentication } from 'containers/Authentication';
+
+import { useToastContext } from 'theme/Toast';
 import TouchFeedback from 'theme/TouchFeedback';
 import Text from 'theme/Text';
-import FormattedMessage from 'theme/FormattedMessage';
+import FormattedMessage, { useFormattedMessage } from 'theme/FormattedMessage';
 import Modal from 'theme/Modal';
 import Icon from 'theme/Icon';
-import { PREFERENCE, SUPPORT } from 'router/routeNames';
+import { ACCOUNT_SELECTION, PREFERENCE, SUPPORT } from 'router/routeNames';
 import { buttonGradientProps } from 'theme/utils';
 
 import style from './style';
@@ -31,6 +29,7 @@ function HomeScreen(props: HomeScreenProps) {
   const drawerMenuAnimation = UseDrawerMenuAnimation(animation);
   const [showTerms, setShowTerms] = useState(false);
   const [showContactInfo, setShowContactInfo] = useState(false);
+  const auth = useAuthentication();
   useEffect(() => {
     Animated.timing(animation, {
       toValue: isVisible ? 1 : 0,
@@ -38,6 +37,11 @@ function HomeScreen(props: HomeScreenProps) {
       easing: Easing.cubic,
     }).start();
   }, [animation, isVisible]);
+
+  const toast = useToastContext();
+  const logoutSuccessMessage = useFormattedMessage(
+    messages.logoutSuccessMessage,
+  );
 
   return (
     <View style={style.container}>
@@ -69,7 +73,27 @@ function HomeScreen(props: HomeScreenProps) {
             </TouchFeedback>
           ))}
         </View>
-        <TouchFeedback style={style.authButtonHolder}>
+        <TouchFeedback
+          onPress={() => {
+            setIsVisible(false);
+            auth.logout();
+            toast.show({
+              message: logoutSuccessMessage,
+              delay: 1000,
+            });
+            setTimeout(() => {
+              props.navigation.reset({
+                index: 0,
+                routes: [
+                  {
+                    name: ACCOUNT_SELECTION,
+                  },
+                ],
+              });
+            }, 1000);
+          }}
+          style={style.authButtonHolder}
+        >
           <FormattedMessage
             {...messages.logoutButtonLable}
             style={style.logoutButtonLable}

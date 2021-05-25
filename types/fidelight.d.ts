@@ -8,5 +8,6 @@ export declare global {
     preferences: any;
     profilePicture?: string;
     transactionCount?: number;
+    accountType: 'business' | 'user';
   }
 }

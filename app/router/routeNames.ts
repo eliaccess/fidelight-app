@@ -1,3 +1,4 @@
+export const SPLASH = 'Splash';
 export const HOME = 'Home';
 export const ACCOUNT_SELECTION = 'AccountSelection';
 export const LOGIN = 'Login';

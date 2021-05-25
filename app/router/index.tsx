@@ -6,6 +6,7 @@ import SplashScreen from 'react-native-splash-screen';
 import configs from 'configs';
 
 import routes from './routes';
+import { SPLASH } from './routeNames';
 
 const Stack = createStackNavigator();
 
@@ -14,7 +15,7 @@ function Router({ onStateChange }) {
   return (
     <NavigationContainer onStateChange={onStateChange}>
       <Stack.Navigator
-        initialRouteName={configs.initialRouteName}
+        initialRouteName={SPLASH}
         headerMode="none"
         mode="card"
         screenOptions={{

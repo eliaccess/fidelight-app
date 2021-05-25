@@ -5,7 +5,7 @@ import Dimensions from 'theme/Dimensions';
 
 const style = StyleSheet.create({
   button: {
-    paddingVertical: Dimensions.space2x,
+    paddingVertical: Dimensions.space3x - 3,
     margin: Dimensions.space1x,
     borderRadius: Dimensions.space5x,
     alignItems: 'center',

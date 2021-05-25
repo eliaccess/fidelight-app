@@ -1,18 +1,29 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /*
  *
  * LoginScreen
  *
  */
 
-import React from 'react';
-import { View } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Platform, View } from 'react-native';
+
+import { useAuthentication } from 'containers/Authentication';
 
 import Screen from 'theme/Screen';
 import FormattedMessage, { useFormattedMessage } from 'theme/FormattedMessage';
 import SocialLogin from 'theme/SocialLogin';
 import ScreenHeading from 'theme/ScreenHeading';
 import Separator from 'theme/Separator';
-import { FORGET_PASSWORD, HOME, SIGNUP } from 'router/routeNames';
+import ErrorMessage from 'theme/ErrorMessage';
+import FullScreenLoader from 'theme/FullScreenLoader';
+import { useToastContext } from 'theme/Toast';
+import {
+  BUSINESS_HOME,
+  FORGET_PASSWORD,
+  HOME,
+  SIGNUP,
+} from 'router/routeNames';
 
 import EmailPasswordForm from './EmailPasswordForm';
 import messages from './messages';
@@ -20,15 +31,57 @@ import style from './style';
 import { LoginScreenProps } from './types';
 
 function LoginScreen(props: LoginScreenProps) {
+  const [showLoader, setShowLoader] = useState(false);
+  const toast = useToastContext();
+  const loginSuccessMessage = useFormattedMessage(messages.loginSuccessMessage);
+
+  const authentication = useAuthentication();
   const heading = useFormattedMessage(messages.headingLabel);
+
+  useEffect(() => {
+    if (authentication.user.data?.id) {
+      toast?.show({
+        message: loginSuccessMessage,
+        delay: 3000,
+        type: 'success',
+      });
+      props.navigation.reset({
+        index: 0,
+        routes: [
+          {
+            name:
+              authentication.user.data.accountType === 'business'
+                ? BUSINESS_HOME
+                : HOME,
+          },
+        ],
+      });
+    }
+  }, [authentication.user.data?.id, props.navigation]);
+
+  useEffect(() => authentication.reset, []);
+
   return (
     <>
       <Screen testID="loginScreen">
         <View style={style.container}>
           <ScreenHeading heading={heading} />
+          {authentication.error ? (
+            <ErrorMessage text={authentication.error} />
+          ) : null}
           <View style={style.formContainer}>
             <EmailPasswordForm
-              onSubmit={() => props.navigation.navigate(HOME, {})}
+              onSubmit={(value) => {
+                authentication.login({
+                  provider: 'local',
+                  medium:
+                    Platform.OS === 'ios' ? 'platform-ios' : 'platform-android',
+                  data: {
+                    email: value.email,
+                    password: value.password,
+                  },
+                });
+              }}
               onForgotPasswordPress={() =>
                 props.navigation.navigate(FORGET_PASSWORD, {})
               }
@@ -37,8 +90,8 @@ function LoginScreen(props: LoginScreenProps) {
           <View style={style.buttonContainer}>
             <Separator />
             <SocialLogin
-              setShowLoader={() => null}
-              onSuccess={() => null}
+              setShowLoader={setShowLoader}
+              onSuccess={(data) => authentication.login(data)}
               onFailure={() => {}}
             />
           </View>
@@ -52,6 +105,11 @@ function LoginScreen(props: LoginScreenProps) {
           onPress={() => props.navigation.navigate(SIGNUP, {})}
         />
       </View>
+      {showLoader ||
+      authentication.fetchingRemoteToken ||
+      authentication.user.fetching ? (
+        <FullScreenLoader />
+      ) : null}
     </>
   );
 }

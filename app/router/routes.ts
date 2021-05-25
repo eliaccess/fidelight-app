@@ -1,3 +1,4 @@
+import SplashScreen from 'screens/SplashScreen';
 import HomeScreen from 'screens/HomeScreen/Loadable';
 import AccountSelectionScreen from 'screens/AccountSelectionScreen/Loadable';
 import LoginScreen from 'screens/LoginScreen/Loadable';
@@ -22,6 +23,10 @@ import routeConfigs from './routeConfigs';
 import * as routeNames from './routeNames';
 
 const routes = {
+  [routeNames.SPLASH]: {
+    ...routeConfigs[routeNames.SPLASH],
+    screen: SplashScreen,
+  },
   [routeNames.HOME]: {
     ...routeConfigs[routeNames.HOME],
     screen: HomeScreen,

@@ -1,4 +1,6 @@
 apply plugin: "com.android.application"
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
 
 import com.android.build.OutputFile
 project.ext.vectoricons = [
@@ -168,6 +170,13 @@ android {
             signingConfig signingConfigs.debug
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            /* Add the firebaseCrashlytics extension (by default,
+            * it's disabled to improve build speeds) and set
+            * nativeSymbolUploadEnabled to true. */
+
+            // firebaseCrashlytics {
+            //     nativeSymbolUploadEnabled true
+            // }
         }
     }
 
@@ -197,7 +206,7 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules
-
+    implementation 'androidx.multidex:multidex:2.0.1'   
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
 
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {

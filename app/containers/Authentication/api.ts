@@ -46,7 +46,7 @@ export async function fetchUserDetails(): Promise<
 > {
   const resp = await service({
     method: 'POST',
-    url: '/api/v1.1/user/me',
+    url: '/v1/user/me',
     parseError: true,
   });
 
@@ -115,7 +115,7 @@ export async function login(
     };
     resp = await service({
       method: 'POST',
-      url: '/api/v1.1/auth/local',
+      url: '/v1/user/login/',
       body,
       noAuth: true,
       parseError: true,
@@ -135,10 +135,10 @@ export async function login(
       noAuth: true,
     });
   }
-  if (resp?.data?.tokens?.jwtToken) {
-    setAuthenticationHeader({ token: resp?.data.tokens.jwtToken });
-    await LocalStorage.setItem(AUTH_TOKEN_KEY, resp?.data.tokens.jwtToken);
-    return !!resp?.data.tokens.jwtToken;
+  if (resp?.token) {
+    setAuthenticationHeader({ token: resp.token });
+    await LocalStorage.setItem(AUTH_TOKEN_KEY, resp.token);
+    return !!resp.token;
   }
   throw Error(resp?.data?.msg || 'Something went wrong');
 }

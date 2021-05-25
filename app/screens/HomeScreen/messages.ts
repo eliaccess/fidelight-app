@@ -25,4 +25,8 @@ export default defineMessages({
     id: `${scope}.contactUsHeading`,
     defaultMessage: 'Contact us',
   },
+  logoutSuccessMessage: {
+    id: `${scope}.logoutSuccessMessage`,
+    defaultMessage: 'Logged out successfully',
+  },
 });

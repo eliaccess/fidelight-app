@@ -7,7 +7,7 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 
 import { Warn } from 'platform/Logger';
-import * as eventsListeners from 'platform/eventsListeners';
+// import * as eventsListeners from 'platform/eventsListeners';
 
 import {
   LoginActionProps,
@@ -19,10 +19,10 @@ import { actions } from './slice';
 import * as api from './api';
 
 function onSignIn(user) {
-  eventsListeners.onSignIn({
-    ...user,
-    ...user.stats,
-  });
+  // eventsListeners.onSignIn({
+  //   ...user,
+  //   ...user.stats,
+  // });
 }
 
 export const fetchLocalSaga = function* fetchLocal() {
@@ -33,11 +33,11 @@ export const fetchLocalSaga = function* fetchLocal() {
       yield put(actions.fetchUser());
     } else {
       yield put(actions.fetchLocalFailure());
-      eventsListeners.onSignOut();
+      // eventsListeners.onSignOut();
     }
   } catch (error) {
     yield put(actions.fetchLocalFailure());
-    eventsListeners.onSignOut();
+    // eventsListeners.onSignOut();
   }
 };
 
@@ -143,7 +143,7 @@ export const updateUserInfoSaga = function* updateUserInfo(
 export const logoutSaga = function* logout() {
   try {
     yield call(api.logout);
-    eventsListeners.onSignOut();
+    // eventsListeners.onSignOut();
   } catch (error) {
     Warn(error.message);
   }
