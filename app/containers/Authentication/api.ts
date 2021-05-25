@@ -115,7 +115,7 @@ export async function login(
     };
     resp = await service({
       method: 'POST',
-      url: '/v1/user/login/',
+      url: '/v1/auth/local',
       body,
       noAuth: true,
       parseError: true,
@@ -128,9 +128,10 @@ export async function login(
       providerUuid: payload.providerUuid,
       medium: payload.medium,
     };
+
     resp = await service({
       method: 'POST',
-      url: '/api/v1.1/auth/social',
+      url: '/v1/auth/social',
       body,
       noAuth: true,
     });
@@ -146,7 +147,7 @@ export async function login(
 export function logout() {
   service({
     method: 'POST',
-    url: '/api/v1.1/auth/logout',
+    url: '/v1/auth/logout',
   });
   LocalStorage.removeItem(AUTH_TOKEN_KEY);
   LocalStorage.removeItem(AUTH_OLD_TOKEN_KEY);

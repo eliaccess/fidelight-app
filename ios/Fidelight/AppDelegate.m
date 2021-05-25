@@ -1,5 +1,5 @@
 #import "AppDelegate.h"
-
+#import <React/RCTLinkingManager.h>
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
@@ -12,6 +12,7 @@
 #import <FlipperKitNetworkPlugin/FlipperKitNetworkPlugin.h>
 #import <SKIOSNetworkPlugin/SKIOSNetworkAdapter.h>
 #import <FlipperKitReactPlugin/FlipperKitReactPlugin.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 
 static void InitializeFlipper(UIApplication *application) {
   FlipperClient *client = [FlipperClient sharedClient];
@@ -34,6 +35,8 @@ static void InitializeFlipper(UIApplication *application) {
 //if ([FIRApp defaultApp] == nil) {
 //    [FIRApp configure];
 //}
+ [[FBSDKApplicationDelegate sharedInstance] application:application
+                           didFinishLaunchingWithOptions:launchOptions];
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
                                                    moduleName:@"Fidelight"
@@ -60,6 +63,31 @@ static void InitializeFlipper(UIApplication *application) {
 #else
   return [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 #endif
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(nonnull NSURL *)url options:(nonnull NSDictionary<NSString *,id> *)options
+{
+  if ([[FBSDKApplicationDelegate sharedInstance] application:application
+                                                           openURL:url
+                                                 sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
+                                                        annotation:options[UIApplicationOpenURLOptionsAnnotationKey]]) {
+     return YES;
+   }
+
+  //  if ([RNGoogleSignin application:application openURL:url options:options]) {
+  //    return YES;
+  //  }
+
+   return [RCTLinkingManager application:application openURL:url options:options];
+}
+
+
+- (BOOL)application:(UIApplication *)application continueUserActivity:(nonnull NSUserActivity *)userActivity
+ restorationHandler:(nonnull void (^)(NSArray<id<UIUserActivityRestoring>> * _Nullable))restorationHandler
+{
+  return [RCTLinkingManager application:application
+                  continueUserActivity:userActivity
+                    restorationHandler:restorationHandler];
 }
 
 @end
