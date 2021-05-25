@@ -1292,6 +1292,11 @@
   resolved "https://registry.yarnpkg.com/@react-native-firebase/perf/-/perf-12.0.0.tgz#77558e7d170b52f18e91686366fb5353cdf5207b"
   integrity sha512-WDZCCuVn3U15RXVVwYdYJOXObkltumTepyP0XcXD3Fs8TiDmlCKK7oIyBASSwqNGupsS6VRVCoD9DAWoAy8s1A==
 
+"@react-native-google-signin/google-signin@^6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@react-native-google-signin/google-signin/-/google-signin-6.0.0.tgz#115b666221169cbd6aabd6d9a622a7f48205ea2e"
+  integrity sha512-xmrrG2muhwmoPy9AdfP+ceLBZtnrXkZwgN/jR5u3xOHadyerJfvD76w2BSmm7zeoiMB1wwSkZkzFSa9+i1BdKA==
+
 "@react-native/assets@1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@react-native/assets/-/assets-1.0.0.tgz#c6f9bf63d274bafc8e970628de24986b30a55c8e"

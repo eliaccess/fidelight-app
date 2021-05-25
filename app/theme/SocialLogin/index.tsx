@@ -4,11 +4,13 @@
  *
  */
 
-import { useNavigation } from '@react-navigation/native';
-import { facebookAuthentication } from 'platform/Authentication';
+import {
+  facebookAuthentication,
+  googleAuthentication,
+} from 'platform/Authentication';
+import { Warn } from 'platform/Logger';
 import React from 'react';
 import { Platform, View } from 'react-native';
-import { HOME } from 'router/routeNames';
 
 import Button from 'theme/Button';
 import FormattedMessage from 'theme/FormattedMessage';
@@ -32,9 +34,25 @@ interface SocialLoginProps {
 }
 
 function SocialLogin({ setShowLoader, onSuccess }: SocialLoginProps) {
-  const navigation = useNavigation();
   const authGoogle = async () => {
-    navigation.navigate(HOME);
+    setShowLoader(true);
+    try {
+      const resp = await googleAuthentication();
+      onSuccess({
+        provider: 'google',
+        providerUuid: resp.data?.providerUuid || resp.data?.userId || 'N/A',
+        medium: Platform.OS === 'ios' ? 'platform-ios' : 'platform-android',
+        data: {
+          email: resp.data?.email || 'user@google.com',
+          name: resp.data?.name || 'Name',
+          ...resp.data,
+        },
+      });
+    } catch (e) {
+      Warn(e);
+    } finally {
+      setShowLoader(false);
+    }
   };
 
   const authFacebook = async () => {
@@ -42,7 +60,6 @@ function SocialLogin({ setShowLoader, onSuccess }: SocialLoginProps) {
     try {
       const fbUser = await facebookAuthentication();
       if (fbUser) {
-        console.log('fbUser', fbUser);
         onSuccess({
           provider: 'facebook',
           providerUuid: fbUser.userId,
@@ -55,8 +72,7 @@ function SocialLogin({ setShowLoader, onSuccess }: SocialLoginProps) {
         });
       }
     } catch (e) {
-      console.log('eeee', e);
-      // Warn(e);
+      Warn(e);
     } finally {
       setShowLoader(false);
     }

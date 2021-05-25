@@ -4,13 +4,13 @@ import {
   GraphRequest,
   GraphRequestManager,
 } from 'react-native-fbsdk';
-// import firebaseAuth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
-// import { GoogleSignin } from '@react-native-community/google-signin';
+import firebaseAuth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 // import { appleAuth } from '@invertase/react-native-apple-authentication';
 
 import configs from 'configs';
 // import { Platform } from 'react-native';
-// import { Log, Warn } from './Logger';
+import { Log, Warn } from './Logger';
 
 type AuthenticationResponse = {
   token?: string;
@@ -85,65 +85,64 @@ export async function facebookAuthentication(): Promise<
   });
 }
 
-// let isGoogleSigninConfigured = false;
-// export async function googleAuthentication(): Promise<AuthenticationResponse> {
-//   if (!isGoogleSigninConfigured) {
-//     GoogleSignin.configure({
-//       webClientId: configs.GOOGLE_WEB_CLIENT_ID,
-//     });
-//     isGoogleSigninConfigured = true;
-//   }
+let isGoogleSigninConfigured = false;
+export async function googleAuthentication(): Promise<AuthenticationResponse> {
+  if (!isGoogleSigninConfigured) {
+    GoogleSignin.configure({
+      webClientId: configs.GOOGLE_WEB_CLIENT_ID,
+    });
+    isGoogleSigninConfigured = true;
+  }
 
-//   try {
-//     await GoogleSignin.hasPlayServices();
-//     if (await GoogleSignin.isSignedIn()) {
-//       GoogleSignin.signOut();
-//     }
-//     const googleResp = await GoogleSignin.signIn();
-//     const { idToken } = googleResp;
-//     Log({ googleResp });
-//     const googleCredential = firebaseAuth.GoogleAuthProvider.credential(
-//       idToken,
-//     );
-//     await firebaseAuth().signInWithCredential(googleCredential);
+  try {
+    await GoogleSignin.hasPlayServices();
+    if (await GoogleSignin.isSignedIn()) {
+      GoogleSignin.signOut();
+    }
+    const googleResp = await GoogleSignin.signIn();
+    const { idToken } = googleResp;
+    Log({ googleResp });
+    const googleCredential =
+      firebaseAuth.GoogleAuthProvider.credential(idToken);
+    await firebaseAuth().signInWithCredential(googleCredential);
 
-//     return new Promise((res, rej) => {
-//       let unsubscribe;
-//       const onAuthStateChanged = (user: FirebaseAuthTypes.User | null) => {
-//         try {
-//           unsubscribe();
-//           GoogleSignin.signOut();
-//         } catch (e) {
-//           Warn(e);
-//         }
-//         if (!user || !user?.providerId) {
-//           rej(Error('Something went wrong'));
-//         }
-//         Log({ user, googleCredential });
-//         res({
-//           token: googleCredential.token,
-//           data: {
-//             name: user?.displayName || 'User',
-//             email: user?.email || `${user?.providerId}@google.com`,
-//             provider: 'google',
-//             userId: googleResp.user.id || user?.uid || 'uid',
-//             providerUuid: googleResp.user.id || user?.uid || 'uid',
-//             profilePicture: user?.photoURL || '',
-//             phoneNumber: user?.phoneNumber,
-//             emailVerified: true,
-//           },
-//         });
-//       };
-//       unsubscribe = firebaseAuth().onAuthStateChanged(onAuthStateChanged);
-//     });
-//   } catch (e) {
-//     Warn(e);
-//     throw e;
-//     // return {
-//     //   error: true,
-//     // };
-//   }
-// }
+    return new Promise((res, rej) => {
+      let unsubscribe;
+      const onAuthStateChanged = (user: FirebaseAuthTypes.User | null) => {
+        try {
+          unsubscribe();
+          GoogleSignin.signOut();
+        } catch (e) {
+          Warn(e);
+        }
+        if (!user || !user?.providerId) {
+          rej(Error('Something went wrong'));
+        }
+        Log({ user, googleCredential });
+        res({
+          token: googleCredential.token,
+          data: {
+            name: user?.displayName || 'User',
+            email: user?.email || `${user?.providerId}@google.com`,
+            provider: 'google',
+            userId: googleResp.user.id || user?.uid || 'uid',
+            providerUuid: googleResp.user.id || user?.uid || 'uid',
+            profilePicture: user?.photoURL || '',
+            phoneNumber: user?.phoneNumber,
+            emailVerified: true,
+          },
+        });
+      };
+      unsubscribe = firebaseAuth().onAuthStateChanged(onAuthStateChanged);
+    });
+  } catch (e) {
+    Warn(e);
+    throw e;
+    // return {
+    //   error: true,
+    // };
+  }
+}
 
 // let codeConfirmation;
 

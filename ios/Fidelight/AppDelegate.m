@@ -13,6 +13,7 @@
 #import <SKIOSNetworkPlugin/SKIOSNetworkAdapter.h>
 #import <FlipperKitReactPlugin/FlipperKitReactPlugin.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <RNGoogleSignin/RNGoogleSignin.h>
 
 static void InitializeFlipper(UIApplication *application) {
   FlipperClient *client = [FlipperClient sharedClient];
@@ -74,9 +75,9 @@ static void InitializeFlipper(UIApplication *application) {
      return YES;
    }
 
-  //  if ([RNGoogleSignin application:application openURL:url options:options]) {
-  //    return YES;
-  //  }
+   if ([RNGoogleSignin application:application openURL:url options:options]) {
+     return YES;
+   }
 
    return [RCTLinkingManager application:application openURL:url options:options];
 }
