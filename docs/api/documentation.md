@@ -1,6 +1,6 @@
 # Register a user
 
-**URL** : `https://api.fidelight.com/v1/user/register`
+**URL** : `https://api.fidelight.fr/v1/user/register`
 
 **Method** : `POST`
 
@@ -31,17 +31,23 @@
 {
   "id": 2,
   "qr_key": "aLFO1AlBdL",
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gR9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gR9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+  "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gR9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
 }
 ```
 
 ## Error Response
 
-//
+Code | Solution
+--- | ---
+`500 Internal server error` | Something happened on the server side. Try again later.
+`400 Bad request` | Verify the format of the query.
+`409 Conflict` | The email is already registered. Try with another one.
+`410 Gone` | Verify the logs, usually happens when db query fails.
 
 # Unregister a user
 
-**URL** : `https://api.fidelight.com/v1/user/register`
+**URL** : `https://api.fidelight.fr/v1/user/register`
 
 **Method** : `DELETE`
 
@@ -53,20 +59,22 @@
 
 ## Error Response
 
-//
+Code | Solution
+--- | ---
+`500 Internal server error` | Something happened on the server side. Try again later.
+`400 Bad request` | Verify the format of the query.
+`401 Unauthorized` | Provide an access token or refresh it using the refreshing route and the refrresh token.
+`403 Forbidden` | The access token is not a user one, of the account was already deleted.
+`409 Conflict` | The email is already registered. Try with another one.
+`410 Gone` | Verify the logs, usually happens when db query fails.
 
 # Register a user through Google OAuth2.0
 
-**URL** : `https://api.fidelight.com/v1/user/register/gauth`
+**URL** : `https://api.fidelight.fr/v1/user/register/gauth`
 
 **Method** : `GET`
 
 **Auth required** : NO
-
-## Request Format
-
-**Content example**
-To define
 
 ## Success Response
 
@@ -74,11 +82,22 @@ To define
 
 ## Error Response
 
-//
+**Content**
 
-# Register a user through Facebook OAuth2.0
+Answers with a link to authentify with google. Redirecting on `https://api.fidelight.fr/v1/user/register/gauth/authenticate` to get this :
 
-**URL** : `https://api.fidelight.com/v1/user/register/fauth`
+```json
+{
+  "id": 2,
+  "qr_key": "aLFO1AlBdL",
+  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gR9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+  "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gR9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+}
+```
+
+# Register a user through Facebook OAuth2.0 (unsupported yet, do not work with it)
+
+**URL** : `https://api.fidelight.fr/v1/user/register/fauth`
 
 **Method** : `GET`
 
@@ -99,7 +118,7 @@ To define
 
 # Change the password of a user
 
-**URL** : `https://api.fidelight.com/v1/user/password/`
+**URL** : `https://api.fidelight.fr/v1/user/password/`
 
 **Method** : `PUT`
 
@@ -126,7 +145,7 @@ To define
 
 # Login a user
 
-**URL** : `https://api.fidelight.com/v1/user/login/`
+**URL** : `https://api.fidelight.fr/v1/user/login/`
 
 **Method** : `POST`
 
@@ -165,7 +184,7 @@ To define
 
 # Get the profile of a user
 
-**URL** : `https://api.fidelight.com/v1/user/profile/`
+**URL** : `https://api.fidelight.fr/v1/user/profile/`
 
 **Method** : `GET`
 
@@ -193,7 +212,7 @@ To define
 
 # Edit the profile of a user
 
-**URL** : `https://api.fidelight.com/v1/user/profile/`
+**URL** : `https://api.fidelight.fr/v1/user/profile/`
 
 **Method** : `PUT`
 
@@ -223,7 +242,7 @@ To define
 
 # Get the balance of a user in a company
 
-**URL** : `https://api.fidelight.com/v1/user/balance/$company_id`
+**URL** : `https://api.fidelight.fr/v1/user/balance/$company_id`
 
 **Method** : `GET`
 
@@ -247,7 +266,7 @@ To define
 
 # Get the last transactions of a user
 
-**URL** : `https://api.fidelight.com/v1/company/transaction`
+**URL** : `https://api.fidelight.fr/v1/company/transaction`
 
 **Method** : `GET`
 
@@ -286,7 +305,7 @@ To define
 
 # Get company types
 
-**URL** : `https://api.fidelight.com/v1/company/type`
+**URL** : `https://api.fidelight.fr/v1/company/type`
 
 **Method** : `GET`
 
@@ -321,7 +340,7 @@ To define
 
 # Register a company
 
-**URL** : `https://api.fidelight.com/v1/company/register`
+**URL** : `https://api.fidelight.fr/v1/company/register`
 
 **Method** : `POST`
 
@@ -366,7 +385,7 @@ To define
 
 # Unregister a company
 
-**URL** : `https://api.fidelight.com/v1/company/register`
+**URL** : `https://api.fidelight.fr/v1/company/register`
 
 **Method** : `DELETE`
 
@@ -382,7 +401,7 @@ To define
 
 # Login as a company
 
-**URL** : `https://api.fidelight.com/v1/company/login`
+**URL** : `https://api.fidelight.fr/v1/company/login`
 
 **Method** : `POST`
 
@@ -419,7 +438,7 @@ To define
 
 # Change the password of a company
 
-**URL** : `https://api.fidelight.com/v1/company/password`
+**URL** : `https://api.fidelight.fr/v1/company/password`
 
 **Method** : `PUT`
 
@@ -446,7 +465,7 @@ To define
 
 # Get the profile of a company
 
-**URL** : `https://api.fidelight.com/v1/company/profile/$company.id`
+**URL** : `https://api.fidelight.fr/v1/company/profile/$company.id`
 
 **Method** : `GET`
 
@@ -479,7 +498,7 @@ To define
 
 # Edit the profile of a company
 
-**URL** : `https://api.fidelight.com/v1/company/profile`
+**URL** : `https://api.fidelight.fr/v1/company/profile`
 
 **Method** : `PUT`
 
@@ -512,7 +531,7 @@ To define
 
 # Get earning policy types
 
-**URL** : `https://api.fidelight.com/v1/points/type`
+**URL** : `https://api.fidelight.fr/v1/points/type`
 
 **Method** : `GET`
 
@@ -547,7 +566,7 @@ To define
 
 # Get the earning policy of a company
 
-**URL** : `https://api.fidelight.com/v1/company/points/$company.id`
+**URL** : `https://api.fidelight.fr/v1/company/points/$company.id`
 
 **Method** : `GET`
 
@@ -572,7 +591,7 @@ To define
 
 # Edit the earning policy of a company
 
-**URL** : `https://api.fidelight.com/v1/company/points`
+**URL** : `https://api.fidelight.fr/v1/company/points`
 
 **Method** : `PUT`
 
@@ -599,7 +618,7 @@ To define
 
 # Give points to a user
 
-**URL** : `https://api.fidelight.com/v1/company/points/use/$user.id`
+**URL** : `https://api.fidelight.fr/v1/company/points/use/$user.id`
 
 **Method** : `POST`
 
@@ -635,7 +654,7 @@ To define
 
 # Undo a transaction with a user
 
-**URL** : `https://api.fidelight.com/v1/company/points/use/$transaction.id`
+**URL** : `https://api.fidelight.fr/v1/company/points/use/$transaction.id`
 
 **Method** : `DELETE`
 
@@ -651,7 +670,7 @@ To define
 
 # Get offers / discount types
 
-**URL** : `https://api.fidelight.com/v1/company/discount/$discount.id`
+**URL** : `https://api.fidelight.fr/v1/company/discount/$discount.id`
 
 **Method** : `GET`
 
@@ -686,7 +705,7 @@ To define
 
 # Post an offer or a discount
 
-**URL** : `https://api.fidelight.com/v1/company/discount/`
+**URL** : `https://api.fidelight.fr/v1/company/discount/`
 
 **Method** : `POST`
 
@@ -730,7 +749,7 @@ To define
 
 # Edit an offer or a discount
 
-**URL** : `https://api.fidelight.com/v1/company/discount/$discount.id`
+**URL** : `https://api.fidelight.fr/v1/company/discount/$discount.id`
 
 **Method** : `PUT`
 
@@ -773,7 +792,7 @@ To define
 
 # Deactivate / delete an offer or a discount
 
-**URL** : `https://api.fidelight.com/v1/company/discount/$discount.id`
+**URL** : `https://api.fidelight.fr/v1/company/discount/$discount.id`
 
 **Method** : `DELETE`
 
@@ -799,7 +818,7 @@ To define
 
 # List all offers or discounts of a company
 
-**URL** : `https://api.fidelight.com/v1/company/discount/$company.id`
+**URL** : `https://api.fidelight.fr/v1/company/discount/$company.id`
 
 **Method** : `GET`
 
@@ -841,7 +860,7 @@ To define
 
 # Get details about a discount or an offer
 
-**URL** : `https://api.fidelight.com/v1/company/discount/$discount.id`
+**URL** : `https://api.fidelight.fr/v1/company/discount/$discount.id`
 
 **Method** : `GET`
 
@@ -877,7 +896,7 @@ To define
 
 # Use an offer on a user
 
-**URL** : `https://api.fidelight.com/v1/company/discount/use/$user.id`
+**URL** : `https://api.fidelight.fr/v1/company/discount/use/$user.id`
 
 **Method** : `GET`
 
