@@ -1,3 +1,16 @@
+# To know before using the API
+
+Please use HTTPS to communicate with the API.
+
+The domain name `api.fidelight.fr` is redirecting (status 302) on `fidelightapp-314712.ew.r.appspot.com`. If you have issues using the first one you can use the second.
+
+These functions are not supported yet :
+- Connect with facebook
+- Forgot password
+- Upload logos and background pictures (coming soon)
+
+Error codes are at the end of the file.
+
 # Register a user
 
 **URL** : `https://api.fidelight.fr/v1/user/register`
@@ -30,20 +43,12 @@
 ```json
 {
   "id": 2,
-  "qr_key": "aLFO1AlBdL",
+  "qr_key": "aLFO1AlBdL.2",
   "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gR9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
   "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gR9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
 }
 ```
 
-## Error Response
-
-Code | Solution
---- | ---
-`500 Internal server error` | Something happened on the server side. Try again later.
-`400 Bad request` | Verify the format of the query.
-`409 Conflict` | The email is already registered. Try with another one.
-`410 Gone` | Verify the logs, usually happens when db query fails.
 
 # Unregister a user
 
@@ -57,18 +62,8 @@ Code | Solution
 
 **Code** : `200 OK`
 
-## Error Response
 
-Code | Solution
---- | ---
-`500 Internal server error` | Something happened on the server side. Try again later.
-`400 Bad request` | Verify the format of the query.
-`401 Unauthorized` | Provide an access token or refresh it using the refreshing route and the refrresh token.
-`403 Forbidden` | The access token is not a user one, of the account was already deleted.
-`409 Conflict` | The email is already registered. Try with another one.
-`410 Gone` | Verify the logs, usually happens when db query fails.
-
-# Register a user through Google OAuth2.0
+# Register / login a user through Google OAuth2.0
 
 **URL** : `https://api.fidelight.fr/v1/user/register/gauth`
 
@@ -80,22 +75,21 @@ Code | Solution
 
 **Code** : `200 OK`
 
-## Error Response
-
-**Content**
+**Content example**
 
 Answers with a link to authentify with google. Redirecting on `https://api.fidelight.fr/v1/user/register/gauth/authenticate` to get this :
 
 ```json
 {
   "id": 2,
-  "qr_key": "aLFO1AlBdL",
+  "qrCode": "aLFO1AlBdL.2",
   "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gR9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
   "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gR9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
 }
 ```
 
-# Register a user through Facebook OAuth2.0 (unsupported yet, do not work with it)
+
+# Register / login a user through Facebook OAuth2.0 (unsupported yet, do not work with it)
 
 **URL** : `https://api.fidelight.fr/v1/user/register/fauth`
 
@@ -112,9 +106,6 @@ To define
 
 **Code** : `200 OK`
 
-## Error Response
-
-//
 
 # Change the password of a user
 
@@ -139,9 +130,37 @@ To define
 
 **Code** : `200 OK`
 
-## Error Response
 
-//
+# Refresh the access token of a user
+
+**URL** : `https://api.fidelight.fr/v1/user/token/`
+
+**Method** : `POST`
+
+**Auth required** : NO
+
+## Request Format
+
+**Content example**
+
+```json
+{
+  "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gR9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+}
+```
+
+## Success Response
+
+**Code** : `200 OK`
+
+**Content example**
+
+```json
+{
+  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gR9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+}
+```
+
 
 # Login a user
 
@@ -159,8 +178,6 @@ To define
 {
   "email": "jeff.dos-santos@gmail.com",
   "password": "this_is_a_password_13",
-  "google_token": null,
-  "google_token": null
 }
 ```
 
@@ -173,14 +190,12 @@ To define
 ```json
 {
   "id": 2,
-  "qr_key": "aLFO1AlBdL",
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gR9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+  "qrCode": "aLFO1AlBdL.2",
+  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gR9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+  "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gR9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
 }
 ```
 
-## Error Response
-
-//
 
 # Get the profile of a user
 
@@ -202,13 +217,10 @@ To define
   "name": "Dos Santos",
   "phone": "0605040302",
   "email": "jeff.dos-santos@gmail.com",
-  "birthdate": 1995 - 05 - 21
+  "birthdate": 1995-05-21
 }
 ```
 
-## Error Response
-
-//
 
 # Edit the profile of a user
 
@@ -228,7 +240,7 @@ To define
   "name": "Dos Santos",
   "phone": "0605040302",
   "email": "jeff.dos-santos@gmail.com",
-  "birthdate": 1995 - 05 - 21
+  "birthdate": 1995-05-21
 }
 ```
 
@@ -236,9 +248,6 @@ To define
 
 **Code** : `200 OK`
 
-## Error Response
-
-//
 
 # Get the balance of a user in a company
 
@@ -260,17 +269,79 @@ To define
 }
 ```
 
-## Error Response
 
-//
+# Get the last 20 transactions of a user or a company
 
-# Get the last transactions of a user
-
-**URL** : `https://api.fidelight.fr/v1/company/transaction`
+**URL** : `https://api.fidelight.fr/v1/transaction`
 
 **Method** : `GET`
 
 **Auth required** : YES
+
+**Details** : The transactions are limited to 20 and are ordered from the most to the least recent.
+
+## Success Response
+
+**Code** : `200 OK`
+
+**Content example for a user**
+
+```json
+{
+  "transactions": [
+    {
+      "transaction": 2,
+      "company_id": 56,
+      "company_name": "The Coffee",
+      "discount": 654,
+      "value": 800,
+      "date": "2021-01-02T09:34:12.648Z"
+    },
+    {
+      "transaction": 18,
+      "company_id": 13,
+      "company_name": "Pizza'Yolo",
+      "discount": null,
+      "value": 120,
+      "date": "2021-01-01T10:39:14.698Z"
+    }
+  ]
+}
+```
+
+**Content example for a company**
+
+```json
+{
+  "transactions": [
+    {
+      "transaction": 2,
+      "user": 264,
+      "discount": 654,
+      "value": 800,
+      "date": "2021-01-02T09:34:12.648Z"
+    },
+    {
+      "transaction": 18,
+      "user": 25,
+      "discount": null,
+      "value": 120,
+      "date": "2021-01-01T10:39:14.698Z"
+    }
+  ]
+}
+```
+
+
+# Get the details of a transaction
+
+**URL** : `https://api.fidelight.fr/v1/transaction/$transaction.id`
+
+**Method** : `GET`
+
+**Auth required** : YES
+
+**Details** : Of the transaction is a discount, discount id and discount name are sent. If not, then only the other data are sent.
 
 ## Success Response
 
@@ -280,28 +351,81 @@ To define
 
 ```json
 {
-  "transactions": [
+  "transaction": 256,
+  "discount_id": 30,
+  "discount_name": "50 cts off on the croissants",
+  "company_id": 56,
+  "company_name": "The Coffee",
+  "user_id": 31,
+  "user_surname": "Peter",
+  "user_name": "Jackson",
+  "value": 800,
+  "date": "2021-01-02T09:34:12.648Z"
+}
+```
+
+
+# Add a company to likes
+
+**URL** : `https://api.fidelight.fr/v1/user/like/`
+
+**Method** : `POST`
+
+**Auth required** : YES
+
+**Content example**
+
+```json
+{
+  "company": 31
+}
+```
+
+## Success Response
+
+**Code** : `200 OK`
+
+
+# Get all liked companies
+
+**URL** : `https://api.fidelight.fr/v1/user/like/`
+
+**Method** : `GET`
+
+**Auth required** : YES
+
+**Content example**
+
+```json
+{
+  "companies":[
     {
-      "id": 2,
-      "discount": 654,
-      "value": 800,
-      "date": "2021-01-02T09:34:12.648Z",
-      "nb_used": 1
+      "company": 10
     },
     {
-      "id": 18,
-      "discount": null,
-      "value": 120,
-      "date": "2021-01-01T10:39:14.698Z",
-      "nb_used": 1
+      "company": 117
     }
   ]
 }
 ```
 
-## Error Response
+## Success Response
 
-//
+**Code** : `200 OK`
+
+
+# Remove a company from likes
+
+**URL** : `https://api.fidelight.fr/v1/user/like/$company.id`
+
+**Method** : `DELETE`
+
+**Auth required** : YES
+
+## Success Response
+
+**Code** : `200 OK`
+
 
 # Get company types
 
@@ -309,7 +433,7 @@ To define
 
 **Method** : `GET`
 
-**Auth required** : NO
+**Auth required** : YES
 
 ## Success Response
 
@@ -334,9 +458,6 @@ To define
 }
 ```
 
-## Error Response
-
-//
 
 # Register a company
 
@@ -375,13 +496,11 @@ To define
 {
   "id": 7,
   "login": "coffeeshop12",
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gR9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gR9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+  "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gR9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
 }
 ```
 
-## Error Response
-
-//
 
 # Unregister a company
 
@@ -395,9 +514,6 @@ To define
 
 **Code** : `200 OK`
 
-## Error Response
-
-//
 
 # Login as a company
 
@@ -428,13 +544,42 @@ To define
 {
   "id": 7,
   "login": "coffeeshop12",
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gR9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gR9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+  "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gR9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
 }
 ```
 
-## Error Response
 
-//
+# Refresh the access token of a company
+
+**URL** : `https://api.fidelight.fr/v1/company/token/`
+
+**Method** : `POST`
+
+**Auth required** : NO
+
+## Request Format
+
+**Content example**
+
+```json
+{
+  "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gR9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+}
+```
+
+## Success Response
+
+**Code** : `200 OK`
+
+**Content example**
+
+```json
+{
+  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gR9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+}
+```
+
 
 # Change the password of a company
 
@@ -459,9 +604,66 @@ To define
 
 **Code** : `200 OK`
 
-## Error Response
 
-//
+# Add / Edit the logo of a company
+
+**URL** : `https://api.fidelight.fr/v1/company/logo`
+
+**Method** : `POST`
+
+**Auth required** : YES
+
+## Request Format
+
+Puth the file in a form, with "logo" as key.
+
+## Success Response
+
+**Code** : `200 OK`
+
+
+# Delete the logo of a company
+
+**URL** : `https://api.fidelight.fr/v1/company/logo`
+
+**Method** : `DELETE`
+
+**Auth required** : YES
+
+## Success Response
+
+**Code** : `200 OK`
+
+
+# Add / Edit the background picture of a company
+
+**URL** : `https://api.fidelight.fr/v1/company/background`
+
+**Method** : `POST`
+
+**Auth required** : YES
+
+## Request Format
+
+Puth the file in a form, with "background_picture" as key.
+
+## Success Response
+
+**Code** : `200 OK`
+
+
+# Delete the background picture of a company
+
+**URL** : `https://api.fidelight.fr/v1/company/background`
+
+**Method** : `DELETE`
+
+**Auth required** : YES
+
+## Success Response
+
+**Code** : `200 OK`
+
 
 # Get the profile of a company
 
@@ -470,6 +672,8 @@ To define
 **Method** : `GET`
 
 **Auth required** : YES, as a user or as a company.
+
+**Details** : to get the private profile of a company, put "me" as the company id in the URL (adds the email).
 
 ## Success Response
 
@@ -487,14 +691,11 @@ To define
   "city": "Paris",
   "street_name": "Rue du Paprika",
   "street_number": 357,
-  "logo": "https://fidelight.com/pictures/cofee_shop_petunia_16515.jpg",
-  "background_picture": "https://fidelight.com/pictures/cofee_shop_petunia_16514.jpg"
+  "logo": "/company/cofee_shop_petunia_16515.jpg",
+  "background_picture": "/company/cofee_shop_petunia_16514.jpg"
 }
 ```
 
-## Error Response
-
-//
 
 # Edit the profile of a company
 
@@ -525,9 +726,61 @@ To define
 
 **Code** : `200 OK`
 
-## Error Response
 
-//
+# Add or edit the opening time of one or multiple days of a company
+
+**URL** : `https://api.fidelight.fr/v1/company/schedule/`
+
+**Method** : `POST`
+
+**Auth required** : YES
+
+**Details** : if "close_am" (and "close_pm") equals to null, then the company is open for a whole day. "day" values from 1 to 7.
+
+## Request Format
+
+**Content example**
+
+```json
+{
+  "schedule":[
+    {
+      "day": 1,
+      "open_am": "08:00:00",
+      "close_am": "12:00:00",
+      "open_pm": "14:30:00",
+      "close_pm": "20:00:00"
+    },
+    {
+      "day": 3,
+      "open_am": "09:00:00",
+      "close_am": null,
+      "open_pm": null,
+      "close_pm": "18:00:00"
+    }
+  ]
+}
+```
+
+## Success Response
+
+**Code** : `200 OK`
+
+
+# Remove the opening time of one day of a company
+
+**URL** : `https://api.fidelight.fr/v1/company/schedule/$day`
+
+**Method** : `DELETE`
+
+**Auth required** : YES
+
+**Details** : "day" values from 1 to 7.
+
+## Success Response
+
+**Code** : `200 OK`
+
 
 # Get earning policy types
 
@@ -535,7 +788,7 @@ To define
 
 **Method** : `GET`
 
-**Auth required** : YES, as a user or a company.
+**Auth required** : YES
 
 ## Success Response
 
@@ -560,9 +813,6 @@ To define
 }
 ```
 
-## Error Response
-
-//
 
 # Get the earning policy of a company
 
@@ -585,9 +835,6 @@ To define
 }
 ```
 
-## Error Response
-
-//
 
 # Edit the earning policy of a company
 
@@ -612,13 +859,10 @@ To define
 
 **Code** : `200 OK`
 
-## Error Response
-
-//
 
 # Give points to a user
 
-**URL** : `https://api.fidelight.fr/v1/company/points/use/$user.id`
+**URL** : `https://api.fidelight.fr/v1/company/points/use/`
 
 **Method** : `POST`
 
@@ -630,8 +874,7 @@ To define
 
 ```json
 {
-  "qr_key": "aLFO1AlBdL",
-  "company": 3,
+  "user": "aLFO1AlBdL.2", //Scanned from User's QR code
   "points": 100
 }
 ```
@@ -648,29 +891,25 @@ To define
 }
 ```
 
-## Error Response
 
-//
+# Delete a transaction
 
-# Undo a transaction with a user
-
-**URL** : `https://api.fidelight.fr/v1/company/points/use/$transaction.id`
+**URL** : `https://api.fidelight.fr/v1/transaction/$transaction.id`
 
 **Method** : `DELETE`
 
-**Auth required** : YES
+**Auth required** : YES, as a company
+
+**Details** : It is impossible to delete a transaction that was done more than 10 minutes ago.
 
 ## Success Response
 
 **Code** : `200 OK`
 
-## Error Response
 
-//
+# Get discount types
 
-# Get offers / discount types
-
-**URL** : `https://api.fidelight.fr/v1/company/discount/$discount.id`
+**URL** : `https://api.fidelight.fr/v1/discount/type/`
 
 **Method** : `GET`
 
@@ -699,13 +938,10 @@ To define
 }
 ```
 
-## Error Response
-
-//
 
 # Post an offer or a discount
 
-**URL** : `https://api.fidelight.fr/v1/company/discount/`
+**URL** : `https://api.fidelight.fr/v1/discount/`
 
 **Method** : `POST`
 
@@ -726,7 +962,7 @@ To define
   "product": "Kebab",
   "start_date": null,
   "expiration_date": null,
-  "per_day": [
+  "per_day": {
     "monday": 0,
     "tuesday": 1,
     "wednesday": 0,
@@ -734,7 +970,7 @@ To define
     "friday": 0,
     "saturday": 1,
     "sunday": 1
-    ],
+  },
   "value": 5.0
 }
 ```
@@ -743,13 +979,10 @@ To define
 
 **Code** : `200 OK`
 
-## Error Response
-
-//
 
 # Edit an offer or a discount
 
-**URL** : `https://api.fidelight.fr/v1/company/discount/$discount.id`
+**URL** : `https://api.fidelight.fr/v1/discount/$discount.id`
 
 **Method** : `PUT`
 
@@ -769,7 +1002,7 @@ To define
   "product": "Tacos",
   "start_date": null,
   "expiration_date": null,
-  "per_day": [
+  "per_day": {
     "monday": 1,
     "tuesday": 1,
     "wednesday": 0,
@@ -777,7 +1010,7 @@ To define
     "friday": 0,
     "saturday": 1,
     "sunday": 1
-    ],
+  },
   "value": 5.10
 }
 ```
@@ -786,43 +1019,27 @@ To define
 
 **Code** : `200 OK`
 
-## Error Response
 
-//
+# Delete an offer or a discount
 
-# Deactivate / delete an offer or a discount
-
-**URL** : `https://api.fidelight.fr/v1/company/discount/$discount.id`
+**URL** : `https://api.fidelight.fr/v1/discount/$discount.id`
 
 **Method** : `DELETE`
 
 **Auth required** : YES
 
-## Request format
-
-**Content example**
-
-```json
-{
-  "total_delete": 0
-}
-```
-
 ## Success Response
 
 **Code** : `200 OK`
 
-## Error Response
-
-//
 
 # List all offers or discounts of a company
 
-**URL** : `https://api.fidelight.fr/v1/company/discount/$company.id`
+**URL** : `https://api.fidelight.fr/v1/discount/company/$company.id`
 
 **Method** : `GET`
 
-**Auth required** : YES, as a user or a company
+**Auth required** : YES
 
 ## Success Response
 
@@ -835,7 +1052,6 @@ To define
   "discounts": [
     {
       "id": 5896,
-      "picture_link": "https://fidelight.com/pictures/discount_5315313515.jpg",
       "discount_type": 3,
       "cost": 250,
       "name": "-4€ on the tacos",
@@ -844,7 +1060,6 @@ To define
     },
     {
       "id": 8955,
-      "picture_link": "https://fidelight.com/pictures/discount_3155135135448.jpg",
       "discount_type": 2,
       "cost": 50,
       "name": "-50% on the tea",
@@ -854,17 +1069,14 @@ To define
 }
 ```
 
-## Error Response
-
-//
 
 # Get details about a discount or an offer
 
-**URL** : `https://api.fidelight.fr/v1/company/discount/$discount.id`
+**URL** : `https://api.fidelight.fr/v1/discount/$discount.id`
 
 **Method** : `GET`
 
-**Auth required** : YES, as a user or a company
+**Auth required** : YES
 
 ## Success Response
 
@@ -877,7 +1089,6 @@ To define
   "id": 5896,
   "company": 9,
   "discount_type": 3,
-  "picture_link": "https://fidelight.com/pictures/discount_5315313515.jpg",
   "name": "-4€ on the tacos",
   "description": "Pay your kebab 3 euros instead of 7 in your Perfect Coffee shop !",
   "product": "Kebab",
@@ -885,18 +1096,23 @@ To define
   "nb_max": null,
   "start_date": null,
   "expiration_date": null,
-  "per_day": ["monday", "tuesday", "thursday"],
-  "value": 5.1
+  "per_day": {
+    "monday": 1,
+    "tuesday": 1,
+    "wednesday": 0,
+    "thursday": 1,
+    "friday": 0,
+    "saturday": 1,
+    "sunday": 1
+  },
+  "value": 3
 }
 ```
 
-## Error Response
-
-//
 
 # Use an offer on a user
 
-**URL** : `https://api.fidelight.fr/v1/company/discount/use/$user.id`
+**URL** : `https://api.fidelight.fr/v1/discount/use/$user.id`
 
 **Method** : `GET`
 
@@ -908,8 +1124,7 @@ To define
 
 ```json
 {
-  "qr_key": "aLFO1AlBdL",
-  "company": 3,
+  "user": "aLFO1AlBdL.5",
   "discount": 164
 }
 ```
@@ -926,6 +1141,84 @@ To define
 }
 ```
 
-## Error Response
 
-//
+# Get the hot deals in a city
+
+**URL** : `https://api.fidelight.fr/v1/discount/hotdeals/$city`
+
+**Method** : `GET`
+
+**Auth required** : YES
+
+**Details** : Giving a maximum of 6 most used active discounts.
+
+## Success Response
+
+**Code** : `200 OK`
+
+**Content example**
+
+```json
+{
+  "topDiscounts": [
+    {
+      "discount": 9,
+    },
+    {
+      "discount": 12,
+    },
+  ]
+}
+```
+
+
+# Search one or more companies
+
+**URL** : `https://api.fidelight.fr/v1/discount/hotdeals/$parameters?`
+
+**Method** : `GET`
+
+**Auth required** : YES
+
+**Details** : Route to search companies using one or more parameters:
+Parameter | Usage
+--- | ---
+city | Used to search companies in a precise city.
+name | Used to search using the name of a company, or a part of its name.
+type | Pass company type here to search companies by category.
+page | If there are more than 10 results, this parameter is used to get the first 10 results if equals to 1, the 10 next if equals to 2 etc. Default value is 1.
+
+## Success Response
+
+**Code** : `200 OK`
+
+**Content example**
+
+```json
+{
+  "res": [
+    {
+      "id": 1523,
+      "name": "Coffee Shop Petunia",
+      "description": "Perfect Coffee is your coffee shop since 1989 ...",
+      "company_type": 5,
+      "city": "Paris",
+      "street_name": "Rue du Paprika",
+      "street_number": 357,
+      "logo": "/company/cofee_shop_petunia_16515.jpg"
+    }
+  ]
+}
+```
+
+
+# Error Response
+
+Code | Solution
+--- | ---
+`500 Internal server error` | Something happened on the server side. Try again later.
+`400 Bad request` | Verify the format of the query.
+`401 Unauthorized` | Provide an access token or refresh it using the refreshing route and the refrresh token.
+`403 Forbidden` | The access token does not allow you to do this action
+`409 Conflict` | The email is already registered. Try with another one.
+`410 Gone` | Verify the logs, usually happens when db query fails.
