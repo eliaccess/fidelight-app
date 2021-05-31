@@ -4,15 +4,18 @@
  *
  */
 
-import React from 'react';
-import { View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Platform, View } from 'react-native';
+
+import { useAuthentication } from 'containers/Authentication';
 
 import Screen from 'theme/Screen';
 import FormattedMessage, { useFormattedMessage } from 'theme/FormattedMessage';
 import SocialLogin from 'theme/SocialLogin';
 import ScreenHeading from 'theme/ScreenHeading';
 import Separator from 'theme/Separator';
-import { FORGET_PASSWORD, HOME, LOGIN } from 'router/routeNames';
+import FullScreenLoader from 'theme/FullScreenLoader';
+import { BUSINESS_HOME, HOME, LOGIN } from 'router/routeNames';
 
 import EmailPasswordForm from './Form';
 import messages from './messages';
@@ -20,7 +23,42 @@ import style from './style';
 import { SignUpScreenProps } from './types';
 
 function SignUpScreen(props: SignUpScreenProps) {
+  const [showLoader, setShowLoader] = useState(false);
+  const authentication = useAuthentication();
+
+  useEffect(() => {
+    authentication.reset();
+    return authentication.reset;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    const { user } = authentication;
+    if (!user.data?.id) {
+      return;
+    }
+
+    props.navigation.reset({
+      index: 0,
+      routes: [
+        {
+          name:
+            authentication?.user?.data?.accountType === 'business'
+              ? BUSINESS_HOME
+              : HOME,
+        },
+      ],
+    });
+  }, [props.navigation, authentication]);
+
+  useEffect(() => {
+    if (authentication.error) {
+      setShowLoader(false);
+    }
+  }, [authentication.error]);
+
   const heading = useFormattedMessage(messages.headingLabel);
+
   return (
     <>
       <Screen testID="SignUpScreen">
@@ -28,10 +66,22 @@ function SignUpScreen(props: SignUpScreenProps) {
           <ScreenHeading heading={heading} />
           <View style={style.formContainer}>
             <EmailPasswordForm
-              onSubmit={() => props.navigation.navigate(HOME, {})}
-              onForgotPasswordPress={() =>
-                props.navigation.navigate(FORGET_PASSWORD, {})
-              }
+              onSubmit={(data) => {
+                authentication.signUp({
+                  provider: 'local',
+                  data: {
+                    email: data.email,
+                    name: data.username,
+                    password: data.password,
+                    phone: data.phone,
+                    birthdate: data.dob,
+                    medium:
+                      Platform.OS === 'ios'
+                        ? 'platform-ios'
+                        : 'platform-android',
+                  },
+                });
+              }}
             />
           </View>
           <View style={style.buttonContainer}>
@@ -55,6 +105,12 @@ function SignUpScreen(props: SignUpScreenProps) {
           />
         </View>
       </Screen>
+      {showLoader ||
+      authentication.submitting ||
+      authentication.fetchingRemoteToken ||
+      authentication.user.fetching ? (
+        <FullScreenLoader />
+      ) : null}
     </>
   );
 }

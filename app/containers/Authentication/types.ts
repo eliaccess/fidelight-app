@@ -75,6 +75,8 @@ export interface SignUpActionPayload {
   data: {
     name: string;
     email: string;
+    phone: string;
+    birthdate: string;
     password: string;
     medium: string;
   };

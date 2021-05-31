@@ -8,6 +8,7 @@ import LocalStorage from 'platform/LocalStorage';
 import service, {
   setAuthenticationHeader,
   removeAuthenticationHeader,
+  setAuthenticationTokens,
 } from 'services/fidelight';
 import {
   FetchUserAPIResponse,
@@ -18,16 +19,15 @@ import {
 } from './types';
 
 const AUTH_TOKEN_KEY = 'Fidelight/AuthToken';
-const AUTH_OLD_TOKEN_KEY = 'TOKEN_KEY';
+
 const USER_DETAIL_KEY = 'Fidelight/UserDetails';
 
 export async function fetchLocalToken(): Promise<boolean> {
   const token = (await LocalStorage.getItem(AUTH_TOKEN_KEY)) || '';
-  const oldToken = (await LocalStorage.getItem(AUTH_OLD_TOKEN_KEY)) || '';
-  if (token || oldToken) {
-    setAuthenticationHeader({ token, oldToken });
+  if (token) {
+    setAuthenticationHeader({ token });
   }
-  return !!token || !!oldToken;
+  return !!token;
 }
 
 export async function fetchLocalUserDetails(): Promise<
@@ -83,29 +83,31 @@ export async function signUp(
   const body = {
     name: payload.data.name,
     email: payload.data.email,
+    phone: payload.data.phone,
+    birthdate: payload.data.birthdate,
     password: payload.data.password,
-    medium: payload.data.medium,
   };
 
   const resp = await service({
     method: 'POST',
-    url: '/api/v1.1/user/signup',
+    url: '/v1/user/register',
     body,
     noAuth: true,
     parseError: true,
   });
-  if (resp?.data?.tokens?.jwtToken) {
-    setAuthenticationHeader({ token: resp?.data.tokens.jwtToken });
-    await LocalStorage.setItem(AUTH_TOKEN_KEY, resp?.data.tokens.jwtToken);
+  if (resp?.id) {
+    setAuthenticationTokens({
+      accessToken: resp.accessToken,
+      refreshToken: resp.refreshToken,
+    });
     return true;
   }
-  throw Error(resp?.data?.msg);
+  throw Error(resp?.msg);
 }
 
 export async function login(
   payload: LoginActionPayload,
 ): Promise<boolean | Error> {
-  LocalStorage.removeItem(AUTH_OLD_TOKEN_KEY);
   let resp: any = null;
   if (payload?.provider === 'local') {
     const body = {
@@ -136,12 +138,14 @@ export async function login(
       noAuth: true,
     });
   }
-  if (resp?.token) {
-    setAuthenticationHeader({ token: resp.token });
-    await LocalStorage.setItem(AUTH_TOKEN_KEY, resp.token);
-    return !!resp.token;
+  if (resp?.id) {
+    setAuthenticationTokens({
+      accessToken: resp.accessToken,
+      refreshToken: resp.refreshToken,
+    });
+    return true;
   }
-  throw Error(resp?.data?.msg || 'Something went wrong');
+  throw Error(resp?.msg || 'Something went wrong');
 }
 
 export function logout() {
@@ -150,7 +154,6 @@ export function logout() {
     url: '/v1/auth/logout',
   });
   LocalStorage.removeItem(AUTH_TOKEN_KEY);
-  LocalStorage.removeItem(AUTH_OLD_TOKEN_KEY);
   LocalStorage.removeItem(USER_DETAIL_KEY);
   removeAuthenticationHeader();
 }

@@ -10,7 +10,6 @@ import routes from './routeConfigs';
 function getRouteObject(match) {
   // eslint-disable-next-line no-restricted-syntax
   for (const key in routes) {
-    // console.log('key', key);
     const pattern = new UrlPattern(routes[key].path);
     const check = pattern.match(match);
     if (check) {
@@ -36,15 +35,12 @@ export function urlExtractor(url): {
       path = path.replace('/bogo.pk', '');
     }
     path = path.replace(/ /g, '-').replace(/'|\.|\+|,|%|&|\(|\)/g, '');
-    // console.log({ path });
     const routeObject = getRouteObject(encodeURI(path));
-    // console.log({ routeObject });
     if (!routeObject) {
       return null;
     }
     const { pattern, routeName } = routeObject;
     let params = pattern.match(path);
-    // console.log({ params });
     if (!params) {
       return null;
     }

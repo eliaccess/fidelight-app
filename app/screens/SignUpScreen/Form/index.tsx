@@ -23,7 +23,6 @@ import messages from './messages';
 
 interface FormProps {
   onSubmit: (data: FormState) => void;
-  onForgotPasswordPress: () => void;
 }
 
 type FormState = {
