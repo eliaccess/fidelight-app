@@ -8,6 +8,9 @@ const configs = {
   LOG_ANALYTICS: false,
   API_DOMAIN: 'http://localhost:4000',
   // API_DOMAIN: 'https://api.fidelight.fr',
+  AUTH_ACCESS_TOKEN_KEY: 'AuthAccessToken',
+  AUTH_REFRESH_TOKEN_KEY: 'AuthRefreshToken',
+  USER_DETAIL_KEY: 'Fidelight/UserDetails',
   FACEBOOK_PERMISSIONS: ['email', 'public_profile'],
   GOOGLE_WEB_CLIENT_ID:
     '904148149532-m1c3eh7mht2pgtem84ieeu51h9lnis6m.apps.googleusercontent.com',

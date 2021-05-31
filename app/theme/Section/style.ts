@@ -5,8 +5,8 @@ import Dimensions from 'theme/Dimensions';
 
 const style = StyleSheet.create({
   section: {
-    marginTop: Dimensions.space4x,
-    marginHorizontal: Dimensions.space3x,
+    marginVertical: Dimensions.space3x,
+    marginHorizontal: Dimensions.space2x,
   },
   sectionHeader: {
     flexDirection: 'row',
@@ -14,12 +14,11 @@ const style = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'flex-end',
     marginBottom: Dimensions.space2x,
-    zIndex: 10000,
   },
   sectionHeading: {
     fontSize: 16,
     color: Colors.textBlack,
-    fontWeight: '600',
+    fontWeight: '500',
   },
   headingLoader: {
     width: '50%',

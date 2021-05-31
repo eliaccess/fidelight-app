@@ -4,11 +4,12 @@
  *
  */
 
+import configs from 'configs';
 import LocalStorage from 'platform/LocalStorage';
 import service, {
   setAuthenticationHeader,
-  removeAuthenticationHeader,
   setAuthenticationTokens,
+  removeAuthenticationTokens,
 } from 'services/fidelight';
 import {
   FetchUserAPIResponse,
@@ -18,12 +19,9 @@ import {
   UpdateUserInfoAPIResponse,
 } from './types';
 
-const AUTH_TOKEN_KEY = 'Fidelight/AuthToken';
-
-const USER_DETAIL_KEY = 'Fidelight/UserDetails';
-
 export async function fetchLocalToken(): Promise<boolean> {
-  const token = (await LocalStorage.getItem(AUTH_TOKEN_KEY)) || '';
+  const token =
+    (await LocalStorage.getItem(configs.AUTH_ACCESS_TOKEN_KEY)) || '';
   if (token) {
     setAuthenticationHeader({ token });
   }
@@ -33,12 +31,12 @@ export async function fetchLocalToken(): Promise<boolean> {
 export async function fetchLocalUserDetails(): Promise<
   FetchUserAPIResponse | Error
 > {
-  const user = await LocalStorage.getItem(USER_DETAIL_KEY);
+  const user = await LocalStorage.getItem(configs.USER_DETAIL_KEY);
   return user;
 }
 
 export function setLocalUserDetails(data: FetchUserAPIResponse): void {
-  LocalStorage.setItem(USER_DETAIL_KEY, { ...data.data });
+  LocalStorage.setItem(configs.USER_DETAIL_KEY, { ...data.data });
 }
 
 export async function fetchUserDetails(): Promise<
@@ -153,7 +151,6 @@ export function logout() {
     method: 'POST',
     url: '/v1/auth/logout',
   });
-  LocalStorage.removeItem(AUTH_TOKEN_KEY);
-  LocalStorage.removeItem(USER_DETAIL_KEY);
-  removeAuthenticationHeader();
+  // remove accessToken, refreshToken, removeAuthHeader, removeUserDetails
+  removeAuthenticationTokens();
 }

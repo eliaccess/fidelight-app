@@ -48,6 +48,18 @@ const style = StyleSheet.create({
     width: '100%',
     borderRadius: 50,
   },
+  loaderContainer: {
+    flexDirection: 'row',
+  },
+  loaderStyle: {
+    width: 60,
+    height: 90,
+    borderRadius: 75,
+    backgroundColor: Colors.primaryDark,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: Dimensions.space2x,
+  },
 });
 
 export default style;

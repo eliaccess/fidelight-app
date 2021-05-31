@@ -3,8 +3,6 @@ import LocalStorage from 'platform/LocalStorage';
 import { Log } from 'platform/Logger';
 import qs from 'query-string';
 
-const AUTH_ACCESS_TOKEN_KEY = 'AuthAccessToken';
-const AUTH_REFRESH_TOKEN_KEY = 'AuthRefreshToken';
 const defaultHeaders: {
   'Content-Type': string;
   Authorization?: string;
@@ -20,10 +18,17 @@ export function setAuthenticationTokens({
   refreshToken: string;
 }) {
   if (accessToken && refreshToken) {
-    LocalStorage.setItem(AUTH_ACCESS_TOKEN_KEY, accessToken);
-    LocalStorage.setItem(AUTH_REFRESH_TOKEN_KEY, refreshToken);
+    LocalStorage.setItem(configs.AUTH_ACCESS_TOKEN_KEY, accessToken);
+    LocalStorage.setItem(configs.AUTH_REFRESH_TOKEN_KEY, refreshToken);
     setAuthenticationHeader({ token: accessToken });
   }
+}
+
+export function removeAuthenticationTokens() {
+  LocalStorage.removeItem(configs.AUTH_ACCESS_TOKEN_KEY);
+  LocalStorage.removeItem(configs.AUTH_REFRESH_TOKEN_KEY);
+  LocalStorage.removeItem(configs.USER_DETAIL_KEY);
+  removeAuthenticationHeader();
 }
 
 export function setAuthenticationHeader({ token }: { token: string }) {
@@ -46,7 +51,9 @@ export function getLocationParam(payload) {
 }
 
 export async function updateToken() {
-  const refreshToken = await LocalStorage.getItem(AUTH_REFRESH_TOKEN_KEY);
+  const refreshToken = await LocalStorage.getItem(
+    configs.AUTH_REFRESH_TOKEN_KEY,
+  );
   const body = {
     refresh_token: refreshToken,
   };

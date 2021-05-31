@@ -31,8 +31,8 @@ export function urlExtractor(url): {
   try {
     [, path] = url.split(':/');
     [path, queryString] = path.split('?');
-    if (path.indexOf('bogo.pk') > -1) {
-      path = path.replace('/bogo.pk', '');
+    if (path.indexOf('fidelight.pk') > -1) {
+      path = path.replace('/fidelight.pk', '');
     }
     path = path.replace(/ /g, '-').replace(/'|\.|\+|,|%|&|\(|\)/g, '');
     const routeObject = getRouteObject(encodeURI(path));

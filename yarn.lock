@@ -7012,6 +7012,11 @@ react-native-animatable@1.3.3, react-native-animatable@^1.3.3:
   dependencies:
     prop-types "^15.7.2"
 
+react-native-animated-skeleton@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-animated-skeleton/-/react-native-animated-skeleton-0.0.1.tgz#46a6a29910d0a67cf9931a287d10238fcc178664"
+  integrity sha512-R6ypzrEOdDbFh6yQg2zd4QIm4oRRPzqlGZhzLYP160a807Ee3mfPwzMgSOs/PU+HkNabgJlt3i6EjZ5kEU3jfQ==
+
 react-native-codegen@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/react-native-codegen/-/react-native-codegen-0.0.6.tgz#b3173faa879cf71bfade8d030f9c4698388f6909"
