@@ -23,7 +23,6 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     marginVertical: Dimensions.space2x,
     marginRight: Dimensions.space2x,
-    width: '46%',
     overflow: 'hidden',
   },
   image: {
@@ -44,6 +43,30 @@ const style = StyleSheet.create({
   shortDescription: {
     fontSize: 12,
     color: Colors.textGrey,
+  },
+  loaderContainer: {
+    width: Dimensions.screenWidth,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
+  logoLoader: {
+    width: 43,
+    height: 43,
+    borderRadius: 21,
+    backgroundColor: Colors.primaryDark,
+  },
+  titleLoader: {
+    width: 80,
+    height: 6,
+    borderRadius: Dimensions.borderRadius,
+    backgroundColor: Colors.primaryDark,
+  },
+  shortDescriptionLoader: {
+    marginTop: Dimensions.space1x,
+    width: 100,
+    height: 4,
+    borderRadius: Dimensions.borderRadius,
+    backgroundColor: Colors.primaryDark,
   },
 });
 
