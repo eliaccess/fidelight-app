@@ -17,8 +17,6 @@ export interface FetchProps {
   type: string;
 }
 
-// export interface FetchPropsPayload extends UseCompanyTypesProps {}
-
 export interface CompanyTypesAPIResponse {
   data?: {
     id: number;

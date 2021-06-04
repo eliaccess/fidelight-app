@@ -31,13 +31,14 @@ const style = StyleSheet.create({
     borderColor: Colors.primaryDark,
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: Dimensions.space2x,
   },
   logo: {
     width: 35,
     height: 35,
   },
-  contentWrapper: {},
+  contentWrapper: {
+    marginLeft: Dimensions.space2x,
+  },
   title: {
     fontSize: 18,
     color: Colors.textBlack,
@@ -54,6 +55,25 @@ const style = StyleSheet.create({
     fontWeight: '600',
     position: 'absolute',
     right: 0,
+  },
+  logoLoader: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    backgroundColor: Colors.primaryDark,
+  },
+  titleLoader: {
+    width: 100,
+    height: 8,
+    borderRadius: Dimensions.borderRadius,
+    backgroundColor: Colors.primaryDark,
+  },
+  dateLoader: {
+    marginTop: Dimensions.space1x,
+    width: 150,
+    height: 6,
+    borderRadius: Dimensions.borderRadius,
+    backgroundColor: Colors.primaryDark,
   },
 });
 

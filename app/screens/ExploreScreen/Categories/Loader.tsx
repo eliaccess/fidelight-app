@@ -6,7 +6,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import Animated from 'react-native-reanimated';
-import useLoaderAnimationValue from 'hooks/useLoaderAnimation';
+import { useSkeletonValue } from 'react-native-animated-skeleton';
 
 import Section, { SectionProps } from 'theme/Section';
 
@@ -22,7 +22,7 @@ const CategoriesWidgetLoader: React.FC<CategoriesWidgetLoaderProps> = ({
   numberOfItems,
   ...props
 }) => {
-  const progress: Animated.Value<number> = useLoaderAnimationValue();
+  const progress: Animated.Value<number> = useSkeletonValue();
   const length = numberOfItems;
   const delta = 1 / length;
 
