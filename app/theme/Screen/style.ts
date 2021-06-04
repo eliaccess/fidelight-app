@@ -32,9 +32,8 @@ const style = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'center',
-    width: '100%',
     height: Dimensions.headerContentHeight + Dimensions.space2x,
-    paddingHorizontal: 60,
+    paddingHorizontal: 35,
   },
   backButton: {
     position: 'absolute',

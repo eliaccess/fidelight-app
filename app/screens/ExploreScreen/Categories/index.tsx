@@ -11,7 +11,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import { useCompanyTypes } from 'containers/CompanyTypes';
 
 import FormattedMessage from 'theme/FormattedMessage';
-import Icon from 'theme/Icon';
+import Image from 'theme/Image';
 import Section from 'theme/Section';
 import Text from 'theme/Text';
 import HorizontalSlidingList from 'theme/HorizontalSlidingList';
@@ -21,7 +21,6 @@ import useStateHandler from 'hooks/useStateHandler';
 
 import messages from './messages';
 import style from './style';
-import Categories from './data';
 import CategoriesWidgetLoader from './Loader';
 
 function CategoriesWidget(_props) {
@@ -46,12 +45,13 @@ function CategoriesWidget(_props) {
   if (!categories.data) {
     return null;
   }
+
   return (
     <Section
       heading={<FormattedMessage {...messages.categoriesHeading} isFragment />}
     >
       <HorizontalSlidingList>
-        {Categories.map((item, index) => {
+        {categories.data.map((item, index) => {
           const active = index === activeCategoryIndex;
           return (
             <TouchFeedback
@@ -77,14 +77,10 @@ function CategoriesWidget(_props) {
                   />
                 ) : null}
 
-                <Icon
-                  font={item?.font ? 'feather' : 'fidelight'}
-                  name={item.icon}
-                  style={[style.itemIcon, active ? style.activeItem : null]}
-                />
+                <Image uri={item.imageUrl} style={style.itemImage} />
               </View>
-              <Text style={[style.itemName, active ? style.activeItem : null]}>
-                {item.name}
+              <Text style={[style.itemTitle, active ? style.activeItem : null]}>
+                {item.title}
               </Text>
             </TouchFeedback>
           );

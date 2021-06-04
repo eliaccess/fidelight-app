@@ -11,8 +11,8 @@ import Dimensions from 'theme/Dimensions';
 
 const style = StyleSheet.create({
   item: {
-    width: 60,
-    height: 90,
+    width: 65,
+    height: 95,
     borderRadius: 75,
     backgroundColor: Colors.white,
     alignItems: 'center',
@@ -28,13 +28,16 @@ const style = StyleSheet.create({
     justifyContent: 'center',
     marginBottom: Dimensions.space2x,
   },
-  itemIcon: {
-    fontSize: 16,
-    color: Colors.accent,
+  itemImage: {
+    width: 16,
+    height: 16,
+    borderRadius: Dimensions.borderRadius,
   },
-  itemName: {
+  itemTitle: {
     fontSize: 12,
     color: Colors.textGrey,
+    textAlign: 'center',
+    marginHorizontal: Dimensions.space1x,
   },
   activeItem: {
     color: Colors.white,

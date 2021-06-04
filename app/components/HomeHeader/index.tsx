@@ -20,6 +20,7 @@ import style from './style';
 type HomeHeader = {
   title?: string;
   onPressDrawer: (...arg: any) => any;
+  onProfilePress: () => void;
 };
 
 function HomeHeader(props: HomeHeader) {
@@ -34,9 +35,9 @@ function HomeHeader(props: HomeHeader) {
           <Icon name="menu" style={style.menuIcon} />
         </TouchFeedback>
         <Image title="thumbLogo" style={style.logo} />
-        <View style={style.avatar}>
+        <TouchFeedback onPress={props.onProfilePress} style={style.avatar}>
           <Image title="avatar" style={style.avatarImage} resizeMode="cover" />
-        </View>
+        </TouchFeedback>
       </View>
       <View style={style.searchBarWrapper}>
         <Icon name="search" style={style.searchIcon} />

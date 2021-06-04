@@ -13,7 +13,6 @@ import Modal from 'theme/Modal';
 import Icon from 'theme/Icon';
 import { ACCOUNT_SELECTION, PREFERENCE, SUPPORT } from 'router/routeNames';
 import { buttonGradientProps } from 'theme/utils';
-import { useCompanyTypes } from 'containers/CompanyTypes';
 import style from './style';
 import HomeTabView from './TabView';
 import { HomeScreenProps } from './types';
@@ -37,9 +36,6 @@ function HomeScreen(props: HomeScreenProps) {
       easing: Easing.cubic,
     }).start();
   }, [animation, isVisible]);
-  const companyTypes = useCompanyTypes();
-
-  console.log('companyTypes', companyTypes);
 
   const toast = useToastContext();
   const logoutSuccessMessage = useFormattedMessage(

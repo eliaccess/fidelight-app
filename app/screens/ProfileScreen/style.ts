@@ -17,6 +17,10 @@ const style = StyleSheet.create({
     height: Dimensions.screenHeight,
     backgroundColor: Colors.bg1Color,
   },
+  editProfileIcon: {
+    fontSize: 22,
+    color: Colors.white,
+  },
   userInfoSection: {
     marginVertical: Dimensions.space2x,
     width: Dimensions.screenWidth,
@@ -59,6 +63,31 @@ const style = StyleSheet.create({
   changePasswordIcon: {
     fontSize: 20,
     color: Colors.black,
+  },
+  userInfoLoader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '100%',
+    // backgroundColor: Colors.accent,
+  },
+  avatarLoader: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    backgroundColor: Colors.primaryDark,
+  },
+  userNameLoader: {
+    width: 100,
+    height: 8,
+    borderRadius: Dimensions.borderRadius,
+    backgroundColor: Colors.primaryDark,
+  },
+  userPhoneLoader: {
+    marginTop: Dimensions.space1x,
+    width: 150,
+    height: 6,
+    borderRadius: Dimensions.borderRadius,
+    backgroundColor: Colors.primaryDark,
   },
 });
 

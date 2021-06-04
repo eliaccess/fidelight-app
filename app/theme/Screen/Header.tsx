@@ -17,6 +17,7 @@ interface HeaderProps {
   blockBackPress?: boolean;
   dark: boolean;
   isAnimated: boolean;
+  headerRight?: React.ReactNode;
 }
 
 const Header: React.FC<HeaderProps> = (props) => {
@@ -53,6 +54,7 @@ const Header: React.FC<HeaderProps> = (props) => {
         >
           {props.title}
         </Text>
+        {props.headerRight ? props.headerRight : null}
       </View>
     </Animated.View>
   );

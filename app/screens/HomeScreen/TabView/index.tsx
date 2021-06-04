@@ -7,7 +7,7 @@ import HomeHeader from 'components/HomeHeader';
 import ExploreScreen from 'screens/ExploreScreen/Loadable';
 import FavouritePlacesScreen from 'screens/FavouritePlacesScreen/Loadable';
 import CommingSoonScreen from 'screens/CommingSoonScreen/Loadable';
-import { COMMING_SOON } from 'router/routeNames';
+import { COMMING_SOON, PROFILE } from 'router/routeNames';
 
 import TabBarButton from './TabBarButton';
 import style, { initialLayout } from './style';
@@ -70,7 +70,12 @@ function HomeTabView(props) {
 
   return (
     <>
-      <HomeHeader onPressDrawer={props.onPressDrawer} />
+      <HomeHeader
+        onProfilePress={() => {
+          props.navigation.navigate(PROFILE);
+        }}
+        onPressDrawer={props.onPressDrawer}
+      />
       <TabView
         lazy
         style={style.container}
