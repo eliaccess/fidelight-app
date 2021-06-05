@@ -10,6 +10,8 @@ export interface UserProfileProps extends UseUserProfileProps {
 export interface State {
   fetching: boolean;
   error: boolean;
+  updating: boolean;
+  success: boolean;
   data: ResponsePayload['data'];
 }
 
@@ -24,6 +26,21 @@ export interface UserProfileAPIResponse {
     email: string;
     birthdate: string;
     avatar: string;
+  };
+}
+
+export interface UpdateProps {
+  type: string;
+  payload: UpdatePropsPayload;
+}
+
+export interface UpdatePropsPayload {
+  data: {
+    name?: string;
+    phone?: string;
+    email: string;
+    birthdate?: string;
+    avatar?: string;
   };
 }
 

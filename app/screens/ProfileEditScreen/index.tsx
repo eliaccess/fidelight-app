@@ -9,15 +9,15 @@ import { View } from 'react-native';
 
 import Screen from 'theme/Screen';
 import FormattedMessage from 'theme/FormattedMessage';
-
-import { HOME } from 'router/routeNames';
+import { useUserProfile } from 'containers/UserProfile';
 
 import Form from './Form';
 import messages from './messages';
 import style from './style';
 import { ProfileEditScreenProps } from './types';
 
-function ProfileEditScreen(props: ProfileEditScreenProps) {
+function ProfileEditScreen(_props: ProfileEditScreenProps) {
+  const userProfile = useUserProfile();
   return (
     <>
       <Screen
@@ -26,7 +26,11 @@ function ProfileEditScreen(props: ProfileEditScreenProps) {
       >
         <View style={style.container}>
           <View style={style.formContainer}>
-            <Form onSubmit={() => props.navigation.navigate(HOME, {})} />
+            <Form
+              onSubmit={(values) => {
+                userProfile.update({ data: values });
+              }}
+            />
           </View>
         </View>
       </Screen>

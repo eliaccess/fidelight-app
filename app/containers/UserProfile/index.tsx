@@ -4,16 +4,27 @@
  *
  */
 
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { shallowEqual, useSelector, useDispatch } from 'react-redux';
 import { useInjectReducer, useInjectSaga } from 'redux-injectors';
 
-import { UserProfileProps, UseUserProfileProps, State } from './types';
+import {
+  UserProfileProps,
+  UseUserProfileProps,
+  State,
+  UpdatePropsPayload,
+} from './types';
 import makeSelectUserProfile from './selectors';
 import { actions, reducer, name as STORE_KEY } from './slice';
 import saga from './saga';
 
-export function useUserProfile(_props?: UseUserProfileProps): State {
+interface UserProfileReturn extends State {
+  update: (...args: any[]) => any;
+}
+
+export function useUserProfile(
+  _props?: UseUserProfileProps,
+): UserProfileReturn {
   useInjectReducer({ key: STORE_KEY, reducer });
   useInjectSaga({ key: STORE_KEY, saga });
 
@@ -21,14 +32,21 @@ export function useUserProfile(_props?: UseUserProfileProps): State {
   const store = useSelector(makeSelectUserProfile(), shallowEqual);
 
   useEffect(() => {
-    if (store?.fetching || store?.data?.length > 0) {
+    if (store?.fetching || Object.keys(store?.data).length) {
       return;
     }
     dispatch(actions.fetch());
     /* eslint-disable react-hooks/exhaustive-deps */
   }, []);
 
-  return store;
+  const update = useCallback(
+    (payload: UpdatePropsPayload) => dispatch(actions.update(payload)),
+    [],
+  );
+  return {
+    ...store,
+    update,
+  };
 }
 
 export function UserProfile({ children, ...props }: UserProfileProps) {
