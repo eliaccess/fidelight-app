@@ -89,6 +89,26 @@ const style = StyleSheet.create({
     fontSize: 14,
     color: Colors.textGrey,
   },
+  logoLoader: {
+    width: 80,
+    height: 80,
+    borderRadius: Dimensions.borderRadius3x,
+    backgroundColor: Colors.primaryDark,
+  },
+  titleLoader: {
+    width: 200,
+    height: 6,
+    borderRadius: Dimensions.borderRadius,
+    backgroundColor: Colors.primaryDark,
+    marginTop: Dimensions.space1x,
+  },
+  shortDescriptionLoader: {
+    marginTop: Dimensions.space2x,
+    width: 180,
+    height: 6,
+    borderRadius: Dimensions.borderRadius,
+    backgroundColor: Colors.primaryDark,
+  },
 });
 
 export default style;
