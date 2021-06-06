@@ -1,0 +1,13 @@
+{
+  "issueURL": "",
+  "apiURL": "/v1/user/profile/",
+  "deployed": false,
+  "method": "GET",
+  "resp": {
+    "name": "Dos Santos",
+    "phone": "0605040302",
+    "email": "jeff.dos-santos@gmail.com",
+    "birthdate": "1995-05-21",
+    "avatar": "https://images.unsplash.com/photo-1545167622-3a6ac756afa4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=712&q=80"
+  }
+}

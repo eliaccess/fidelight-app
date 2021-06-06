@@ -1,0 +1,26 @@
+{
+  "issueURL": "",
+  "apiURL": "/v1/transaction",
+  "deployed": false,
+  "method": "GET",
+  "resp": {
+    "transactions": [
+      {
+        "transaction": 2,
+        "companyId": 56,
+        "companyName": "The Coffee",
+        "discount": 654,
+        "value": 800,
+        "date": "2021-01-02"
+      },
+      {
+        "transaction": 18,
+        "companyId": 13,
+        "companyName": "Pizza'Yolo",
+        "discount": null,
+        "value": 120,
+        "date": "2021-01-01"
+      }
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "issueURL": "",
+  "apiURL": "/v1/auth/logout",
+  "method": "POST",
+  "deployed": false,
+  "resp": {
+    "msg": "Logget out successfully"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "issueURL": "",
+  "apiURL": "/v1/user/me",
+  "deployed": false,
+  "method": "POST",
+  "resp": {
+    "data": {
+      "user": {
+        "id": 1,
+        "name": "John Doe",
+        "imageUrl": "https://abc.com/image.png",
+        "email": "abc@xyz.com",
+        "contactNumber": "+92929393334",
+        "connectedAccounts": {
+          "facebookId": "0202020393",
+          "google": "0202020393"
+        }
+      }
+    }
+  }
+}

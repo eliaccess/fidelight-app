@@ -1,0 +1,48 @@
+{
+  "issueURL": "",
+  "apiURL": "/v1/company/type",
+  "deployed": false,
+  "method": "POST",
+  "resp": {
+    "data": {
+      "types": [
+        {
+          "id": 1,
+          "title": "Food",
+          "description": "A place that sells some nice bread.",
+          "imageUrl": "https://i.ibb.co/GQycYzj/2.png"
+        },
+        {
+          "id": 2,
+          "title": "Beauty & Fitness",
+          "description": "A shop where food is cooked and sold to feast.",
+          "imageUrl": "https://i.ibb.co/h2PHLV3/5.png"
+        },
+        {
+          "id": 3,
+          "title": "Food Delivery",
+          "description": "A shop where food is cooked and sold to feast.",
+          "imageUrl": "https://i.ibb.co/xF1BB8W/1.png"
+        },
+        {
+          "id": 4,
+          "title": "Entertainment",
+          "description": "A shop where food is cooked and sold to feast.",
+          "imageUrl": "https://i.ibb.co/RhZKtYb/4.png"
+        },
+        {
+          "id": 5,
+          "title": "Retail",
+          "description": "A shop where food is cooked and sold to feast.",
+          "imageUrl": "https://i.ibb.co/KXrzZC9/6.png"
+        },
+        {
+          "id": 6,
+          "title": "Electronics",
+          "description": "A shop where food is cooked and sold to feast.",
+          "imageUrl": "https://i.ibb.co/rMVmFSx/8.png"
+        }
+      ]
+    }
+  }
+}
