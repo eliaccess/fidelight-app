@@ -1,4 +1,8 @@
 # To know before using the API
+<<<<<<< HEAD
+
+Please use HTTPS to communicate with the API.
+=======
 
 Please use HTTPS to communicate with the API.
 
@@ -14,28 +18,31 @@ Error codes are at the end of the file.
 # Register a user
 
 **URL** : `https://api.fidelight.fr/v1/user/register`
+>>>>>>> 41985094473e8ec233074f58f74880cce59e61e3
 
-**Method** : `POST`
+The domain name `api.fidelight.fr` is redirecting (status 302) on `fidelightapp-314712.ew.r.appspot.com`. If you have issues using the first one you can use the second.
 
-**Auth required** : NO
+These functions are not supported yet :
+- Connect with facebook
+- Forgot password
+- Upload logos and background pictures (coming soon)
 
-## Request Format
+Error codes are at the end of the file.
 
-**Content example**
+# Files
 
-```json
-{
-  "surname": "Jeff",
-  "name": "Dos Santos",
-  "phone": "0605040302",
-  "password": "this_is_a_password_12",
-  "email": "jeff.dos-santos@gmail.com",
-  "birthdate": "1995-05-21"
-}
-```
+The different parts of the API are available here:
+- companies [here](./companies.md)
+- users [here](./users.md)
+- searching functionnality [here](./search.md)
+- offers / hot deals / discount [here](./offers.md)
+- transactions [here](./transactions.md)
+- earning policies of companies [here](./earningPolicies.md)
 
-## Success Response
+# Error Response
 
+<<<<<<< HEAD
+=======
 **Code** : `200 OK`
 
 **Content example**
@@ -1419,6 +1426,7 @@ page | If there are more than 10 results, this parameter is used to get the firs
 
 # Error Response
 
+>>>>>>> 41985094473e8ec233074f58f74880cce59e61e3
 Code | Solution
 --- | ---
 `500 Internal server error` | Something happened on the server side. Try again later.
