@@ -18,7 +18,7 @@ const style = StyleSheet.create({
   sectionHeading: {
     fontSize: 16,
     color: Colors.textBlack,
-    fontWeight: '500',
+    fontWeight: 'bold',
   },
   headingLoader: {
     width: '50%',

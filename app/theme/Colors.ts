@@ -62,7 +62,7 @@ export default {
   successBackground: '#006400',
   successForeground: '#FDFBFB',
 
-  skeleton: '#F2F7F9',
+  skeleton: '#55C595',
 
   separator: '#DDD',
 };

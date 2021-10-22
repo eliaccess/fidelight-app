@@ -3,15 +3,10 @@
  * Section
  *
  */
+import { useLoaderAnimation } from 'hooks/useLoaderAnimation';
 import React from 'react';
 import { View } from 'react-native';
-import Animated, {
-  interpolate,
-  useAnimatedStyle,
-  useSharedValue,
-  withRepeat,
-  withTiming,
-} from 'react-native-reanimated';
+import Animated from 'react-native-reanimated';
 
 import Text from 'theme/Text';
 
@@ -26,20 +21,7 @@ export interface SectionProps {
 }
 
 export const HeadingLoader = () => {
-  const shared = useSharedValue(0);
-
-  React.useEffect(() => {
-    shared.value = withRepeat(
-      withTiming(1, { duration: 1000 }),
-      Infinity,
-      true,
-    );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  });
-
-  const animatedStyle = useAnimatedStyle(() => ({
-    opacity: interpolate(shared.value, [0, 1], [0.2, 1]),
-  }));
+  const animatedStyle = useLoaderAnimation();
   return <Animated.View style={[style.headingLoader, animatedStyle]} />;
 };
 

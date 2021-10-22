@@ -53,20 +53,20 @@ const style = StyleSheet.create({
     width: 43,
     height: 43,
     borderRadius: 21,
-    backgroundColor: Colors.primaryDark,
+    backgroundColor: Colors.skeleton,
   },
   titleLoader: {
     width: 80,
     height: 6,
     borderRadius: Dimensions.borderRadius,
-    backgroundColor: Colors.primaryDark,
+    backgroundColor: Colors.skeleton,
   },
   shortDescriptionLoader: {
     marginTop: Dimensions.space1x,
     width: 100,
     height: 4,
     borderRadius: Dimensions.borderRadius,
-    backgroundColor: Colors.primaryDark,
+    backgroundColor: Colors.skeleton,
   },
 });
 

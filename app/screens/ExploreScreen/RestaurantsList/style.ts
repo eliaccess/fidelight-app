@@ -93,13 +93,13 @@ const style = StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: Dimensions.borderRadius3x,
-    backgroundColor: Colors.primaryDark,
+    backgroundColor: Colors.skeleton,
   },
   titleLoader: {
     width: 200,
     height: 6,
     borderRadius: Dimensions.borderRadius,
-    backgroundColor: Colors.primaryDark,
+    backgroundColor: Colors.skeleton,
     marginTop: Dimensions.space1x,
   },
   shortDescriptionLoader: {
@@ -107,7 +107,7 @@ const style = StyleSheet.create({
     width: 180,
     height: 6,
     borderRadius: Dimensions.borderRadius,
-    backgroundColor: Colors.primaryDark,
+    backgroundColor: Colors.skeleton,
   },
 });
 
