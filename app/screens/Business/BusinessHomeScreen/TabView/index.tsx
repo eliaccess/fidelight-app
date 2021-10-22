@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import { TabView } from 'react-native-tab-view';
-import Animated, { Easing } from 'react-native-reanimated';
+import { Easing, useSharedValue, withTiming } from 'react-native-reanimated';
 
 import BusinessExploreScreen from 'screens/Business/BusinessExploreScreen/Loadable';
 import BusinessTransactionsScreen from 'screens/Business/BusinessTransactionsScreen/Loadable';
+import FavouritePlacesScreen from 'screens/FavouritePlacesScreen/Loadable';
 import CommingSoonScreen from 'screens/CommingSoonScreen/Loadable';
 import { COMMING_SOON } from 'router/routeNames';
 
@@ -13,7 +14,7 @@ import style, { initialLayout } from './style';
 
 function HomeTabView(props) {
   const [routeIndex, setRouteIndex] = useState(0);
-  const tabBarAnimation = new Animated.Value(0);
+  const tabBarAnimation = useSharedValue(0);
 
   const [routes] = useState([
     { key: 'explore', icon: 'businesshome', font: 'fidelight' },
@@ -22,11 +23,10 @@ function HomeTabView(props) {
   ]);
 
   useEffect(() => {
-    Animated.timing(tabBarAnimation, {
-      toValue: routeIndex,
+    tabBarAnimation.value = withTiming(routeIndex, {
       duration: 100,
       easing: Easing.inOut(Easing.ease),
-    }).start();
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [routeIndex]);
 

@@ -25,7 +25,7 @@ const style = StyleSheet.create({
     height: 24,
     borderRadius: Dimensions.borderRadius,
     borderColor: Colors.textGrey,
-    backgroundColor: Colors.primaryDark,
+    backgroundColor: Colors.skeleton,
     ...Platform.select({
       ios: {
         height: 21,

@@ -7,7 +7,10 @@
 import React, { useRef } from 'react';
 import { FlatList, View } from 'react-native';
 
-import Animated from 'react-native-reanimated';
+import Animated, {
+  useAnimatedScrollHandler,
+  useSharedValue,
+} from 'react-native-reanimated';
 
 import { DEAL_LISTING } from 'router/routeNames';
 import FormattedMessage from 'theme/FormattedMessage';
@@ -24,11 +27,13 @@ import Pagination from './Pagination';
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 
 function DealsSection(props) {
-  const scrollX = useRef(new Animated.Value(0)).current;
+  const scrollX = useRef(useSharedValue(0)).current;
 
-  const scrollHandler = (event) => {
-    scrollX = event.contentOffset.x;
-  };
+  const scrollHandler = useAnimatedScrollHandler({
+    onScroll: (event) => {
+      scrollX.value = event.contentOffset.x;
+    },
+  });
 
   return (
     <Section

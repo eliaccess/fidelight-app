@@ -5,8 +5,14 @@
  */
 import React from 'react';
 import { View } from 'react-native';
-import Animated from 'react-native-reanimated';
-import { useSkeletonValue } from 'react-native-animated-skeleton';
+import Animated, {
+  useSharedValue,
+  withRepeat,
+  withTiming,
+  interpolate,
+  useAnimatedStyle,
+} from 'react-native-reanimated';
+// import { useSkeletonValue } from 'react-native-animated-skeleton';
 
 import Section, { SectionProps } from 'theme/Section';
 
@@ -16,31 +22,31 @@ interface CategoriesWidgetLoaderProps extends SectionProps {
   numberOfItems: number;
 }
 
-const { interpolate, Extrapolate } = Animated;
-
 const CategoriesWidgetLoader: React.FC<CategoriesWidgetLoaderProps> = ({
   numberOfItems,
   ...props
 }) => {
-  const progress: Animated.Value<number> = useSkeletonValue();
-  const length = numberOfItems;
-  const delta = 1 / length;
+  const shared = useSharedValue(0);
+
+  React.useEffect(() => {
+    shared.value = withRepeat(
+      withTiming(1, { duration: 1000 }),
+      Infinity,
+      true,
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  });
+
+  const animatedStyle = useAnimatedStyle(() => ({
+    opacity: interpolate(shared.value, [0, 1], [0.2, 1]),
+  }));
 
   return (
     <Section heading={props.heading} isLoading>
       <View style={style.loaderContainer}>
-        {Array.from(Array(numberOfItems), (_a, i) => {
-          const start = i * delta;
-          const end = start + delta;
-          const opacity = interpolate(progress, {
-            inputRange: [start, end],
-            outputRange: [0.4, 1],
-            extrapolate: Extrapolate.CLAMP,
-          });
-          return (
-            <Animated.View key={i} style={[style.loaderStyle, { opacity }]} />
-          );
-        })}
+        {Array.from(Array(numberOfItems), (_a, i) => (
+          <Animated.View key={i} style={[style.loaderStyle, animatedStyle]} />
+        ))}
       </View>
     </Section>
   );

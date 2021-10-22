@@ -1,23 +1,26 @@
-// import { interpolateColor, useAnimatedStyle } from 'react-native-reanimated';
+import { interpolateColor, useAnimatedStyle } from 'react-native-reanimated';
 import Colors from 'theme/Colors';
 
 export function UseSquareAnimation(animationValue) {
-  const borderColor = animationValue.interpolate({
-    inputRange: [0, 1],
-    outputRange: [Colors.textBlack, Colors.accent],
+  return useAnimatedStyle(() => {
+    const borderColor = interpolateColor(
+      animationValue.value,
+      [0, 1],
+      [Colors.textBlack, Colors.accent],
+    );
+    return {
+      borderColor,
+    };
   });
-  return {
-    borderColor,
-  };
 }
 
 export function UseInnerSquareAnimation(animationValue) {
-  return {
+  return useAnimatedStyle(() => ({
     transform: [
       {
-        scale: animationValue,
+        scale: animationValue.value,
       },
     ],
-    opacity: animationValue,
-  };
+    opacity: animationValue.value,
+  }));
 }

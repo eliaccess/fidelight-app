@@ -1,10 +1,14 @@
 import React, { useRef, useEffect } from 'react';
+import Animated, {
+  Easing,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated';
 
 import Icon from 'theme/Icon';
 import Text from 'theme/Text';
 import Colors from 'theme/Colors';
 import TouchFeedback from 'theme/TouchFeedback';
-import { Animated, Easing } from 'react-native';
 
 import style from './style';
 import { UseInnerSquareAnimation, UseSquareAnimation } from './animation';
@@ -17,15 +21,13 @@ type RadioProps = {
 };
 
 const Radio: React.FC<RadioProps> = ({ type = 'radio', ...props }) => {
-  const animation = useRef(new Animated.Value(0)).current;
+  const animation = useRef(useSharedValue(0)).current;
 
   useEffect(() => {
-    Animated.timing(animation, {
-      toValue: props.active ? 1 : 0,
+    animation.value = withTiming(props.active ? 1 : 0, {
       duration: 400,
       easing: Easing.inOut(Easing.ease),
-      useNativeDriver: false,
-    }).start();
+    });
   }, [animation, props.active]);
 
   const squareAnimation = UseSquareAnimation(animation);

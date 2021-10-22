@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import { TabView } from 'react-native-tab-view';
-import Animated, { Easing } from 'react-native-reanimated';
+import { Easing, useSharedValue, withTiming } from 'react-native-reanimated';
 
 import HomeHeader from 'components/HomeHeader';
 import ExploreScreen from 'screens/ExploreScreen/Loadable';
@@ -14,7 +14,7 @@ import style, { initialLayout } from './style';
 
 function HomeTabView(props) {
   const [routeIndex, setRouteIndex] = useState(0);
-  const tabBarAnimation = new Animated.Value(0);
+  const tabBarAnimation = useSharedValue(0);
 
   const [routes] = useState([
     { key: 'explore', icon: 'explore', font: 'fidelight' },
@@ -23,11 +23,10 @@ function HomeTabView(props) {
   ]);
 
   useEffect(() => {
-    Animated.timing(tabBarAnimation, {
-      toValue: routeIndex,
+    tabBarAnimation.value = withTiming(routeIndex, {
       duration: 100,
       easing: Easing.inOut(Easing.ease),
-    }).start();
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [routeIndex]);
 
@@ -86,7 +85,7 @@ function HomeTabView(props) {
         onIndexChange={setRouteIndex}
         tabBarPosition="bottom"
         swipeEnabled={false}
-        timingConfig={{ duration: 10 }}
+        // timingConfig={{ duration: 10 }}
       />
     </>
   );

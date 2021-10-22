@@ -5,7 +5,7 @@
  */
 import React, { useRef } from 'react';
 import { View, ScrollView } from 'react-native';
-import Animated, { Easing } from 'react-native-reanimated';
+import { Easing, useSharedValue, withTiming } from 'react-native-reanimated';
 import Header from './Header';
 import Footer from './Footer';
 import style from './style';
@@ -23,7 +23,6 @@ interface ScreenProps {
   dark?: boolean;
   [x: string]: any;
   scrollEnabled?: boolean;
-  headerRight?: React.ReactNode;
 }
 
 const Screen: React.FC<ScreenProps> = ({
@@ -36,7 +35,7 @@ const Screen: React.FC<ScreenProps> = ({
   const contentContainer: any = useRef();
 
   const visibleValue = useRef(
-    new Animated.Value(headerVisibilityThreshold >= 0 ? 0 : 1),
+    useSharedValue(headerVisibilityThreshold >= 0 ? 0 : 1),
   ).current;
 
   const onScroll = ({
@@ -47,11 +46,10 @@ const Screen: React.FC<ScreenProps> = ({
     if (!headerVisibilityThreshold) {
       return;
     }
-    Animated.timing(visibleValue, {
-      toValue: y > headerVisibilityThreshold ? 1 : 0,
+    visibleValue.value = withTiming(y > headerVisibilityThreshold ? 1 : 0, {
       duration: 400,
       easing: Easing.inOut(Easing.ease),
-    }).start();
+    });
   };
 
   const ContentWrapper: any = useScrollView ? ScrollView : View;
@@ -79,7 +77,6 @@ const Screen: React.FC<ScreenProps> = ({
         blockBackPress={props.blockBackPress}
         dark={dark}
         isAnimated={headerVisibilityThreshold > 0}
-        headerRight={props.headerRight}
       />
       <View style={style.contentWrapper}>
         <ContentWrapper

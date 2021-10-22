@@ -1,7 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import Animated, { Easing } from 'react-native-reanimated';
+import Animated, {
+  Easing,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated';
 
 import TouchFeedback from 'theme/TouchFeedback';
 import Text from 'theme/Text';
@@ -14,20 +18,17 @@ import { HomeScreenProps } from './types';
 import Menu from './Menu';
 
 import messages from './messages';
-// import { UseDrawerAnimation, UseDrawerMenuAnimation } from './animations';
+import { UseDrawerAnimation } from './animations';
 
 function HomeScreen(props: HomeScreenProps) {
   const [isVisible, setIsVisible] = useState(false);
-  const animation = useRef(new Animated.Value(0)).current;
-  // const drawerAnimation = UseDrawerAnimation(animation);
-  // const drawerMenuAnimation = UseDrawerMenuAnimation(animation);
-
+  const animation = useRef(useSharedValue(0)).current;
+  const drawerAnimation = UseDrawerAnimation(animation);
   useEffect(() => {
-    Animated.timing(animation, {
-      toValue: isVisible ? 1 : 0,
+    animation.value = withTiming(isVisible ? 1 : 0, {
       duration: 400,
-      easing: Easing.cubic,
-    }).start();
+      easing: Easing.inOut(Easing.ease),
+    });
   }, [animation, isVisible]);
 
   return (
@@ -49,7 +50,7 @@ function HomeScreen(props: HomeScreenProps) {
         </TouchFeedback>
       </View>
 
-      <Animated.View style={[style.tabViewWrapper]}>
+      <Animated.View style={[style.tabViewWrapper, drawerAnimation]}>
         <HomeTabView
           onPressDrawer={() => setIsVisible(!isVisible)}
           navigation={props.navigation}

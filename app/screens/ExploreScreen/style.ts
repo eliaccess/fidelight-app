@@ -17,7 +17,7 @@ const style = StyleSheet.create({
   },
   categoriesSectionWrapper: {
     paddingVertical: Dimensions.space4x,
-    backgroundColor: Colors.bg1Color,
+    // backgroundColor: Colors.bg1Color,
   },
   modalHeading: {
     fontSize: 14,

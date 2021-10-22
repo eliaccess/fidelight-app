@@ -6,7 +6,7 @@
 import omit from 'lodash/omit';
 import React, { useRef, useState } from 'react';
 import { TextInput, TextInputProps, View } from 'react-native';
-import Animated, { Easing } from 'react-native-reanimated';
+import { Easing, useSharedValue, withTiming } from 'react-native-reanimated';
 import * as Animatable from 'react-native-animatable';
 
 import Radio from 'theme/Radio';
@@ -27,13 +27,12 @@ const Input = React.forwardRef(
   // @ts-ignore
   ({ showSuccessInput = true, ...props }: InputProps, ref: React.RefObject) => {
     const [isCorrect, setIsCorrect] = useState(false);
-    const animation = useRef(new Animated.Value(props.value ? 1 : 0)).current;
+    const animation = useRef(useSharedValue(props.value ? 1 : 0)).current;
     const onFocus = (e) => {
-      Animated.timing(animation, {
-        toValue: 1,
+      animation.value = withTiming(1, {
         duration: 400,
         easing: Easing.inOut(Easing.ease),
-      }).start();
+      });
       if (props?.onFocus) {
         setIsCorrect(false);
         // @ts-ignore
@@ -42,11 +41,10 @@ const Input = React.forwardRef(
     };
     const onBlur = (e) => {
       if (!props.value) {
-        Animated.timing(animation, {
-          toValue: 0,
+        animation.value = withTiming(0, {
           duration: 400,
           easing: Easing.inOut(Easing.ease),
-        }).start();
+        });
       } else {
         setIsCorrect(true);
       }

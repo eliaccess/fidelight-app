@@ -1,41 +1,34 @@
 import {
   interpolate,
   // interpolateColor,
+  useAnimatedStyle,
 } from 'react-native-reanimated';
 // import Colors from 'theme/Colors';
 
 export function UseLabelAnimation(animationValue) {
-  const scale = interpolate(animationValue, {
-    inputRange: [0, 1],
-    outputRange: [1, 0.9],
+  return useAnimatedStyle(() => {
+    const scale = interpolate(animationValue.value, [0, 1], [1, 0.9]);
+    const translateY = interpolate(animationValue.value, [0, 1], [6, -22]);
+    const translateX = interpolate(animationValue.value, [0, 1], [0, -3]);
+    return {
+      transform: [
+        {
+          scale,
+        },
+        { translateY },
+        { translateX },
+      ],
+    };
   });
-  const translateY = interpolate(animationValue, {
-    inputRange: [0, 1],
-    outputRange: [6, -22],
-  });
-  const translateX = interpolate(animationValue, {
-    inputRange: [0, 1],
-    outputRange: [0, -3],
-  });
-
-  return {
-    transform: [
-      {
-        scale,
-      },
-      { translateY },
-      { translateX },
-    ],
-  };
 }
 
 export function UseInnerSquareAnimation(animationValue) {
-  return {
+  return useAnimatedStyle(() => ({
     transform: [
       {
-        scale: animationValue,
+        scale: animationValue.value,
       },
     ],
-    opacity: animationValue,
-  };
+    opacity: animationValue.value,
+  }));
 }
