@@ -1,6 +1,6 @@
 # Search one or more companies
 
-**URL** : `https://api.fidelight.fr/v1/discount/hotdeals/$parameters?`
+**URL** : `https://api.fidelight.fr/v1/v1/search/company/$parameters?`
 
 **Method** : `GET`
 
@@ -25,14 +25,24 @@ page | If there are more than 10 results, this parameter is used to get the firs
 {
   "data": [
     {
-      "id": 1523,
+      "companyId": 56,
+      "name": "Kebab Flowerish",
+      "description": "Best kebab of Paris since 1958",
+      "companyTypeId": 3,
+      "city": "Paris",
+      "streetName": "Rue du Poulet",
+      "streetNumber": 22,
+      "logo": "https://storage.google.com/company/kebab_flowerish_16515.jpg"
+    },
+    {
+      "companyId": 1523,
       "name": "Coffee Shop Petunia",
       "description": "Perfect Coffee is your coffee shop since 1989 ...",
-      "company_type": 5,
+      "companyTypeId": 5,
       "city": "Paris",
-      "street_name": "Rue du Paprika",
-      "street_number": 357,
-      "logo": "/company/cofee_shop_petunia_16515.jpg"
+      "streetName": "Rue du Paprika",
+      "streetNumber": 357,
+      "logo": "https://storage.google.com/company/cofee_shop_petunia_16515.jpg"
     }
   ],
   "msg": "success"

@@ -32,9 +32,9 @@
   "msg":"Registered Successfully",
   "data":{
     "id": 2,
-    "qr_key": "aLFO1AlBdL.2",
-    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gR9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
-    "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gR9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+    "qrCode": "aLFO1AlBdL.2",
+    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gR9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gR9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
   }
 }
 ```
@@ -337,10 +337,16 @@ To define
   "data":{
     "companies":[
       {
-        "company": 10
+        "id": 10,
+        "name": "The Kebabos",
+        "description":"The best Kebab of the year",
+        "logoLink" : "https://storage.google.com/company/logo/the_kebabos_a66azsds6.png"
       },
       {
-        "company": 117
+        "id": 85,
+        "name": "Tea Time",
+        "description":"Since 1981",
+        "logoLink" : "https://storage.google.com/company/logo/tea_time_f65sqa.png"
       }
     ]
   },

@@ -18,13 +18,13 @@
 {
   "data":{
     "transaction": 256,
-    "discount_id": 30,
-    "discount_name": "50 cts off on the croissants",
-    "company_id": 56,
-    "company_name": "The Coffee",
-    "user_id": 31,
-    "user_surname": "Peter",
-    "user_name": "Jackson",
+    "discountId": 30,
+    "discountName": "50 cts off on the croissants",
+    "companyId": 56,
+    "companyName": "The Coffee",
+    "userId": 31,
+    "userSurname": "Peter",
+    "userName": "Jackson",
     "value": 800,
     "date": "2021-01-02T09:34:12.648Z"
   },
@@ -77,17 +77,20 @@
   "data":{
     "transactions": [
       {
-        "transaction": 2,
-        "company_id": 56,
-        "company_name": "The Coffee",
-        "discount": 654,
+        "id": 2,
+        "companyId": 56,
+        "companyName": "The Coffee",
+        "companyLogoLink": "https://storage.google.com/company/logo/the_coffe_azeaze.png",
+        "discountId": 654,
+        "discountName": "-4 euros on the Kebabs",
         "value": 800,
         "date": "2021-01-02T09:34:12.648Z"
       },
       {
-        "transaction": 18,
-        "company_id": 13,
-        "company_name": "Pizza'Yolo",
+        "id": 18,
+        "companyId": 13,
+        "companyName": "Pizza'Yolo",
+        "companyLogoLink": "https://storage.google.com/company/logo/pizza_yolo_azeojn6.png",
         "discount": null,
         "value": 120,
         "date": "2021-01-01T10:39:14.698Z"
@@ -105,15 +108,16 @@
   "data":{
     "transactions": [
       {
-        "transaction": 2,
-        "user": 264,
-        "discount": 654,
+        "id": 2,
+        "discountId": 654,
+        "discountName": "-4 euros on kebabs",
+        "userSurname": "Jeff",
         "value": 800,
         "date": "2021-01-02T09:34:12.648Z"
       },
       {
-        "transaction": 18,
-        "user": 25,
+        "id": 18,
+        "userSurname": "Jeff",
         "discount": null,
         "value": 120,
         "date": "2021-01-01T10:39:14.698Z"
