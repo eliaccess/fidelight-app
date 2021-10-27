@@ -1,6 +1,6 @@
 # Get company types
 
-**URL** : `https://api.fidelight.fr/v1/company/type`
+**URL** : `https://api.fidelight.fr/v1/company/types`
 
 **Method** : `GET`
 
