@@ -13,7 +13,7 @@ import HottestDealsWidget from './HottestDeals';
 import RestaurantsList from './RestaurantsList';
 
 import { ExploreScreenProps } from './types';
-import ThemePicker from './ThemePicker';
+
 import { useGetStyles } from './style';
 
 function ExploreScreen(_props: ExploreScreenProps) {
@@ -27,7 +27,6 @@ function ExploreScreen(_props: ExploreScreenProps) {
       >
         <View style={style.categoriesSectionWrapper}>
           <CategoriesWidget />
-          <ThemePicker />
         </View>
         <HottestDealsWidget />
         <RestaurantsList />

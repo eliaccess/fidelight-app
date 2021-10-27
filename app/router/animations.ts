@@ -1,3 +1,10 @@
+import {
+  Extrapolate,
+  interpolate,
+  useAnimatedStyle,
+} from 'react-native-reanimated';
+import Dimensions from 'theme/Dimensions';
+
 export const RightToLeftAnimation = {
   gestureDirection: 'horizontal',
   cardStyleInterpolator: ({ current, layouts }) => ({
@@ -55,3 +62,28 @@ export const bottomToTopAnimation = {
     },
   }),
 };
+
+export const useOverlay = (animation) =>
+  useAnimatedStyle(() => {
+    const opacity = interpolate(
+      animation.value,
+      [0, 1],
+      [0, 0.5],
+      Extrapolate.CLAMP,
+    );
+    const translateX = interpolate(
+      animation.value,
+      [0, 1],
+      [-Dimensions.screenWidth, Dimensions.screenWidth],
+      Extrapolate.CLAMP,
+    );
+
+    return {
+      transform: [
+        {
+          translateX,
+        },
+      ],
+      opacity,
+    };
+  });

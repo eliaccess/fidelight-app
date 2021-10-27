@@ -139,6 +139,8 @@ export const lightTheme = {
   skeleton: '#55C595',
 
   separator: '#DDD',
+
+  themeIconColor: '#FFFFFF',
 };
 
 export const darkTheme = {
@@ -210,4 +212,5 @@ export const darkTheme = {
   skeleton: '#55C595',
 
   separator: '#DDD',
+  themeIconColor: '#FFE484',
 };

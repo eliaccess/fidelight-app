@@ -5,21 +5,18 @@ import { createStackNavigator } from '@react-navigation/stack';
 import SplashScreen from 'react-native-splash-screen';
 import Animated, {
   Easing,
-  Extrapolate,
-  interpolate,
-  useAnimatedStyle,
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
 import configs from 'configs';
 
-import Dimensions from 'theme/Dimensions';
-
 import { ThemeContext } from 'theme/ThemeManager';
+import ThemeSwitch from 'theme/ThemeSwitch';
 
 import routes from './routes';
 import { SPLASH } from './routeNames';
 import { useGetStyles } from './style';
+import { useOverlay } from './animations';
 
 const Stack = createStackNavigator();
 
@@ -28,40 +25,20 @@ function Router({ onStateChange }) {
   const style = useGetStyles();
   // @ts-ignore
   const { theme } = React.useContext(ThemeContext);
-  const animation = useRef(useSharedValue(0)).current;
+  const overLayAnimation = useRef(useSharedValue(0)).current;
+
   useEffect(() => {
-    animation.value = withTiming(theme === 'dark' ? 1 : 0, {
+    overLayAnimation.value = withTiming(theme === 'dark' ? 1 : 0, {
       duration: 400,
       easing: Easing.inOut(Easing.ease),
     });
-  }, [animation, theme]);
+  }, [overLayAnimation, theme]);
 
-  const animatedStyle = useAnimatedStyle(() => {
-    const opacity = interpolate(
-      animation.value,
-      [0, 1],
-      [0, 0.5],
-      Extrapolate.CLAMP,
-    );
-    const translateX = interpolate(
-      animation.value,
-      [0, 1],
-      [-Dimensions.screenWidth, Dimensions.screenWidth],
-      Extrapolate.CLAMP,
-    );
-
-    return {
-      transform: [
-        {
-          translateX,
-        },
-      ],
-      opacity,
-    };
-  });
+  const animatedStyle = useOverlay(overLayAnimation);
   return (
     <NavigationContainer onStateChange={onStateChange}>
       <Animated.View style={[style.container, animatedStyle]} />
+      <ThemeSwitch />
       <Stack.Navigator
         initialRouteName={SPLASH}
         headerMode="none"
