@@ -20,10 +20,12 @@ import TouchFeedback from 'theme/TouchFeedback';
 import useStateHandler from 'hooks/useStateHandler';
 
 import messages from './messages';
-import style from './style';
+
 import CategoriesWidgetLoader from './Loader';
+import { useGetStyles } from './style';
 
 function CategoriesWidget(_props) {
+  const style = useGetStyles();
   const [activeCategoryIndex, setActiveCategoryIndex] = useState(0);
   const categories = useCompanyTypes();
 
@@ -70,17 +72,13 @@ function CategoriesWidget(_props) {
                 />
               ) : null}
               <View style={style.itemIconHolder}>
-                {active ? (
-                  <LinearGradient
-                    {...buttonGradientProps()}
-                    style={style.backdrop}
-                  />
-                ) : null}
-
-                <Image uri={item.imageUrl} style={style.itemImage} />
+                <Image uri={item.logoLink} style={style.itemImage} />
               </View>
-              <Text style={[style.itemTitle, active ? style.activeItem : null]}>
-                {item.title}
+              <Text
+                style={[style.itemTitle, active ? style.activeItem : null]}
+                numberOfLines={1}
+              >
+                {item.name}
               </Text>
             </TouchFeedback>
           );

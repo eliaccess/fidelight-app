@@ -15,7 +15,7 @@ import TouchFeedback from 'theme/TouchFeedback';
 import { buttonGradientProps } from 'theme/utils';
 
 import messages from './messages';
-import style from './style';
+import { useGetStyles } from './style';
 
 type HomeHeader = {
   title?: string;
@@ -24,6 +24,7 @@ type HomeHeader = {
 };
 
 function HomeHeader(props: HomeHeader) {
+  const style = useGetStyles();
   return (
     <View style={style.container}>
       <LinearGradient {...buttonGradientProps()} style={style.backdrop} />

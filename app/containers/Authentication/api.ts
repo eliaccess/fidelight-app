@@ -93,7 +93,7 @@ export async function signUp(
     noAuth: true,
     parseError: true,
   });
-  if (resp?.id) {
+  if (resp?.data.id) {
     setAuthenticationTokens({
       accessToken: resp.accessToken,
       refreshToken: resp.refreshToken,

@@ -14,6 +14,7 @@ import { ToastProvider, ToastProps } from './app/theme/Toast';
 import { translationMessages } from './app/i18n';
 import configureStore from './app/configureStore';
 import Dimensions from './app/theme/Dimensions';
+import { ThemeProvider } from './app/theme/ThemeManager';
 
 const initialState = {};
 const store = configureStore(initialState);
@@ -31,7 +32,9 @@ function App() {
     <Provider store={store}>
       <LanguageProvider messages={translationMessages}>
         <ToastProvider defaultTheme={toastTheme}>
-          <AppContainer />
+          <ThemeProvider>
+            <AppContainer />
+          </ThemeProvider>
         </ToastProvider>
       </LanguageProvider>
     </Provider>

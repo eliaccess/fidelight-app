@@ -20,9 +20,9 @@ export interface FetchProps {
 export interface CompanyTypesAPIResponse {
   data?: {
     id: number;
-    title: string;
+    name: string;
     description: string;
-    imageUrl: string;
+    logoLink: string;
   }[];
 }
 

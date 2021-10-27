@@ -10,9 +10,10 @@ import CommingSoonScreen from 'screens/CommingSoonScreen/Loadable';
 import { COMMING_SOON, PROFILE } from 'router/routeNames';
 
 import TabBarButton from './TabBarButton';
-import style, { initialLayout } from './style';
+import { initialLayout, useGetStyles } from './style';
 
 function HomeTabView(props) {
+  const style = useGetStyles();
   const [routeIndex, setRouteIndex] = useState(0);
   const tabBarAnimation = useSharedValue(0);
 

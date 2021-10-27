@@ -10,7 +10,7 @@ import Animated from 'react-native-reanimated';
 
 import Text from 'theme/Text';
 
-import style from './style';
+import { useGetStyles } from './style';
 
 export interface SectionProps {
   heading?: React.ReactNode | string;
@@ -21,28 +21,32 @@ export interface SectionProps {
 }
 
 export const HeadingLoader = () => {
+  const style = useGetStyles();
   const animatedStyle = useLoaderAnimation();
   return <Animated.View style={[style.headingLoader, animatedStyle]} />;
 };
 
-const Section: React.FC<SectionProps> = (props) => (
-  <View style={style.section} testID={props.testID}>
-    {props.heading ? (
-      <View style={style.sectionHeader}>
-        {props.isLoading ? (
-          <HeadingLoader />
-        ) : (
-          <>
-            <Text style={style.sectionHeading} numberOfLines={1}>
-              {props.heading}
-            </Text>
-            {props.headerRight}
-          </>
-        )}
-      </View>
-    ) : null}
-    {props.children}
-  </View>
-);
+const Section: React.FC<SectionProps> = (props) => {
+  const style = useGetStyles();
+  return (
+    <View style={style.section} testID={props.testID}>
+      {props.heading ? (
+        <View style={style.sectionHeader}>
+          {props.isLoading ? (
+            <HeadingLoader />
+          ) : (
+            <>
+              <Text style={style.sectionHeading} numberOfLines={1}>
+                {props.heading}
+              </Text>
+              {props.headerRight}
+            </>
+          )}
+        </View>
+      ) : null}
+      {props.children}
+    </View>
+  );
+};
 
 export default Section;

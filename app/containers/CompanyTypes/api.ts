@@ -14,6 +14,6 @@ export async function fetch(): Promise<CompanyTypesAPIResponse | Error> {
   });
 
   return {
-    data: resp.data.types,
+    data: resp.data,
   };
 }

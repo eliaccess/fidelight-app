@@ -9,8 +9,9 @@ import { View } from 'react-native';
 import Animated from 'react-native-reanimated';
 
 import Section, { SectionProps } from 'theme/Section';
+import { useGetStyles } from './style';
 
-import style from './style';
+// import style from './style';
 
 interface CategoriesWidgetLoaderProps extends SectionProps {
   numberOfItems: number;
@@ -20,6 +21,7 @@ const CategoriesWidgetLoader: React.FC<CategoriesWidgetLoaderProps> = ({
   numberOfItems,
   ...props
 }) => {
+  const style = useGetStyles();
   const animatedStyle = useLoaderAnimation();
 
   return (

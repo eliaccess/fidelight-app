@@ -17,10 +17,11 @@ import Text from 'theme/Text';
 import TouchFeedback from 'theme/TouchFeedback';
 
 import messages from './messages';
-import style from './style';
+import { useGetStyles } from './style';
 import ResturantLoader from './Loader';
 
 function RestaurantsList(props) {
+  const style = useGetStyles();
   const restaurants = useResturants({
     city: 'Paris',
   });

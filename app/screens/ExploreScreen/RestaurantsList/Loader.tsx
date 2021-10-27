@@ -10,7 +10,7 @@ import Animated from 'react-native-reanimated';
 import Section, { SectionProps } from 'theme/Section';
 import { useLoaderAnimation } from 'hooks/useLoaderAnimation';
 
-import style from './style';
+import { useGetStyles } from './style';
 
 interface ResturantLoaderProps extends SectionProps {
   numberOfItems: number;
@@ -21,6 +21,7 @@ const ResturantLoader: React.FC<ResturantLoaderProps> = ({
   ...props
 }) => {
   const animatedStyle = useLoaderAnimation();
+  const style = useGetStyles();
 
   return (
     <Section heading={props.heading} isLoading>

@@ -8,6 +8,8 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 
+import { useAuthentication } from 'containers/Authentication';
+
 import TouchFeedback from 'theme/TouchFeedback';
 import Text from 'theme/Text';
 import FormattedMessage from 'theme/FormattedMessage';
@@ -25,6 +27,7 @@ import messages from './messages';
 import { UseDrawerAnimation, UseDrawerMenuAnimation } from './animations';
 
 function HomeScreen(props: HomeScreenProps) {
+  const authentication = useAuthentication();
   const [isVisible, setIsVisible] = useState(false);
   const animation = useRef(useSharedValue(0)).current;
   const drawerAnimation = UseDrawerAnimation(animation);
@@ -68,7 +71,12 @@ function HomeScreen(props: HomeScreenProps) {
             </TouchFeedback>
           ))}
         </View>
-        <TouchFeedback style={style.authButtonHolder}>
+        <TouchFeedback
+          onPress={() => {
+            authentication.logout();
+          }}
+          style={style.authButtonHolder}
+        >
           <FormattedMessage
             {...messages.logoutButtonLable}
             style={style.logoutButtonLable}

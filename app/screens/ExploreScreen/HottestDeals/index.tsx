@@ -21,10 +21,11 @@ import HorizontalSlidingList from 'theme/HorizontalSlidingList';
 import { DEAL_LISTING, ENTITY_DETAIL } from 'router/routeNames';
 
 import messages from './messages';
-import style from './style';
+import { useGetStyles } from './style';
 import HottestDealsLoader from './Loader';
 
 function HottestDeals(_props) {
+  const style = useGetStyles();
   const navigation = useNavigation();
   const hotDeals = useHotDeals({
     city: 'Paris',
@@ -46,6 +47,7 @@ function HottestDeals(_props) {
   if (!hotDeals.data) {
     return null;
   }
+  const { length } = hotDeals.data;
   return (
     <Section
       heading={<FormattedMessage {...messages.dealsHeading} isFragment />}
@@ -60,38 +62,44 @@ function HottestDeals(_props) {
     >
       <View style={style.container}>
         <HorizontalSlidingList>
-          {hotDeals.data.slice(0, 3).map((item) => (
-            <TouchFeedback
-              key={item.id}
-              onPress={() => navigation.navigate(ENTITY_DETAIL)}
-              style={style.item}
-            >
-              <Image uri={item.image} style={style.image} />
-              <View style={style.contentWrapper}>
-                <Text style={style.title}>{item.title}</Text>
-                <Text style={style.shortDescription} numberOfLines={1}>
-                  {item.shortDescription}
-                </Text>
-              </View>
-            </TouchFeedback>
-          ))}
-        </HorizontalSlidingList>
-        <HorizontalSlidingList>
-          {hotDeals.data.slice(3, hotDeals.data.length).map((item) => (
-            <TouchFeedback
-              key={item.id}
-              onPress={() => navigation.navigate(ENTITY_DETAIL)}
-              style={style.item}
-            >
-              <Image uri={item.image} style={style.image} />
-              <View style={style.contentWrapper}>
-                <Text style={style.title}>{item.title}</Text>
-                <Text style={style.shortDescription} numberOfLines={1}>
-                  {item.shortDescription}
-                </Text>
-              </View>
-            </TouchFeedback>
-          ))}
+          <View>
+            <View style={style.listWrapper}>
+              {hotDeals.data.slice(0, Math.ceil(length / 2)).map((item) => (
+                <TouchFeedback
+                  key={item.id}
+                  onPress={() => navigation.navigate(ENTITY_DETAIL)}
+                  style={style.item}
+                >
+                  <Image uri={item.image} style={style.image} />
+                  <View style={style.contentWrapper}>
+                    <Text style={style.title}>{item.title}</Text>
+                    <Text style={style.shortDescription} numberOfLines={1}>
+                      {item.shortDescription}
+                    </Text>
+                  </View>
+                </TouchFeedback>
+              ))}
+            </View>
+            <View style={style.listWrapper}>
+              {hotDeals.data
+                .slice(Math.ceil(length / 2), length)
+                .map((item) => (
+                  <TouchFeedback
+                    key={item.id}
+                    onPress={() => navigation.navigate(ENTITY_DETAIL)}
+                    style={style.item}
+                  >
+                    <Image uri={item.image} style={style.image} />
+                    <View style={style.contentWrapper}>
+                      <Text style={style.title}>{item.title}</Text>
+                      <Text style={style.shortDescription} numberOfLines={1}>
+                        {item.shortDescription}
+                      </Text>
+                    </View>
+                  </TouchFeedback>
+                ))}
+            </View>
+          </View>
         </HorizontalSlidingList>
       </View>
     </Section>

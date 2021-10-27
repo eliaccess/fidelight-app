@@ -26,6 +26,9 @@ export const getFontFamily = (weight) => {
     return 'Gilroy-Bold';
   }
   if (weight >= '600') {
+    return 'Gilroy-SemiBold';
+  }
+  if (weight >= '500') {
     return 'Gilroy-Medium';
   }
   if (weight >= '400') {

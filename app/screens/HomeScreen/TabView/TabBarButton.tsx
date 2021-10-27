@@ -18,7 +18,7 @@ import { buttonGradientProps } from 'theme/utils';
 
 import { UseAnimatedIcon } from './animations';
 
-import style from './style';
+import { useGetStyles } from './style';
 
 type TabBarButtonProps = {
   route: {
@@ -32,6 +32,7 @@ type TabBarButtonProps = {
 };
 
 function TabBarButton({ active = false, ...props }: TabBarButtonProps) {
+  const style = useGetStyles();
   const animationValue = useRef(useSharedValue(active ? 0 : 1)).current;
   useEffect(() => {
     animationValue.value = withTiming(active ? 1 : 0, {
