@@ -29,6 +29,7 @@ export function useAuthentication(): UseAuthenticationReturn {
 
   useEffect(() => {
     if (!store.localChecked) {
+      dispatch(actions.getAccountType());
       dispatch(actions.fetchLocalToken());
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -42,7 +43,6 @@ export function useAuthentication(): UseAuthenticationReturn {
   const updateUserInfo = (payload: UpdateUserInfoActionPayload) =>
     dispatch(actions.updateUserInfo(payload));
   const reset = () => dispatch(actions.reset());
-
   return { ...store, signUp, login, logout, updateUserInfo, reset };
 }
 
@@ -58,6 +58,7 @@ export function useIsActiveUser() {
 
 export function Authentication({ children }: AuthenticationProps) {
   const store = useAuthentication();
+
   return store ? children(store) : null;
 }
 

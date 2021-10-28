@@ -4,9 +4,11 @@
  *
  */
 
+import configs from 'configs';
+import LocalStorage from 'platform/LocalStorage';
 import React from 'react';
 import { View } from 'react-native';
-import { LOGIN, SIGNUP } from 'router/routeNames';
+import { BUSINESS_LOGIN, LOGIN } from 'router/routeNames';
 import Button from 'theme/Button';
 import FormattedMessage from 'theme/FormattedMessage';
 import Image from 'theme/Image';
@@ -26,14 +28,20 @@ function AccountSelectionScreen(props: AccountSelectionScreenProps) {
         />
         <View style={style.buttonHolder}>
           <Button
-            onPress={() => props.navigation.navigate(LOGIN)}
+            onPress={() => {
+              LocalStorage.setItem(configs.ACCOUNT_TYPE, 'user');
+              props.navigation.navigate(LOGIN);
+            }}
             label={<FormattedMessage {...messages.asUserLabel} isFragment />}
           />
         </View>
         <View style={style.buttonHolder}>
           <Button
             type="primary"
-            onPress={() => props.navigation.navigate(SIGNUP)}
+            onPress={() => {
+              LocalStorage.setItem(configs.ACCOUNT_TYPE, 'business');
+              props.navigation.navigate(BUSINESS_LOGIN);
+            }}
             label={
               <FormattedMessage {...messages.asBusinessLabel} isFragment />
             }

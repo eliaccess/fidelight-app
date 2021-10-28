@@ -28,6 +28,11 @@ export async function fetchLocalToken(): Promise<boolean> {
   return !!token;
 }
 
+export async function getAccountType(): Promise<string> {
+  const type = (await LocalStorage.getItem(configs.ACCOUNT_TYPE)) || '';
+  return type;
+}
+
 export async function fetchLocalUserDetails(): Promise<
   FetchUserAPIResponse | Error
 > {
@@ -44,13 +49,10 @@ export async function fetchUserDetails(): Promise<
 > {
   const resp = await service({
     method: 'POST',
-    url: '/v1/user/me',
+    url: '/v1/user/profile/',
     parseError: true,
   });
 
-  resp.data = {
-    ...resp.data.user,
-  };
   return resp;
 }
 
@@ -79,6 +81,7 @@ export async function signUp(
   payload: SignUpActionPayload,
 ): Promise<boolean | Error> {
   const body = {
+    surname: payload.data.surname,
     name: payload.data.name,
     email: payload.data.email,
     phone: payload.data.phone,
@@ -95,8 +98,8 @@ export async function signUp(
   });
   if (resp?.data.id) {
     setAuthenticationTokens({
-      accessToken: resp.accessToken,
-      refreshToken: resp.refreshToken,
+      accessToken: resp.data.accessToken,
+      refreshToken: resp.data.refreshToken,
     });
     return true;
   }
@@ -111,7 +114,7 @@ export async function login(
     const body = {
       email: payload.data.email,
       password: payload.data.password,
-      medium: payload.medium,
+      // medium: payload.medium,
     };
     resp = await service({
       method: 'POST',
@@ -136,10 +139,10 @@ export async function login(
       noAuth: true,
     });
   }
-  if (resp?.id) {
+  if (resp?.data?.id) {
     setAuthenticationTokens({
-      accessToken: resp.accessToken,
-      refreshToken: resp.refreshToken,
+      accessToken: resp.data.accessToken,
+      refreshToken: resp.data.refreshToken,
     });
     return true;
   }

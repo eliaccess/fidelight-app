@@ -43,9 +43,7 @@ function SignUpScreen(props: SignUpScreenProps) {
       routes: [
         {
           name:
-            authentication?.user?.data?.accountType === 'business'
-              ? BUSINESS_HOME
-              : HOME,
+            authentication.accountType === 'business' ? BUSINESS_HOME : HOME,
         },
       ],
     });
@@ -70,8 +68,9 @@ function SignUpScreen(props: SignUpScreenProps) {
                 authentication.signUp({
                   provider: 'local',
                   data: {
+                    surname: data.surname,
                     email: data.email,
-                    name: data.username,
+                    name: data.name,
                     password: data.password,
                     phone: data.phone,
                     birthdate: data.dob,

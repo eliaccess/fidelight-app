@@ -18,6 +18,7 @@ export interface State {
   localChecked: boolean;
   isAuthenticated: boolean;
   submitting: boolean;
+  accountType: string;
   user: {
     fetching: boolean;
     data?: IUser;
@@ -73,6 +74,7 @@ export interface LoginActionPayload {
 export interface SignUpActionPayload {
   provider: 'facebook' | 'google' | 'local';
   data: {
+    surname: string;
     name: string;
     email: string;
     phone: string;

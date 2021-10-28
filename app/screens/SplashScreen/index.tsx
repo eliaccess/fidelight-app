@@ -47,7 +47,7 @@ function SplashScreen({ navigation }: SplashProps) {
       return;
     }
     if (authentication.isAuthenticated) {
-      if (authentication.user.data?.accountType === 'business') {
+      if (authentication.accountType === 'business') {
         navigation.reset({
           index: 0,
           // @ts-ignore

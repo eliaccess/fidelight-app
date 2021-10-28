@@ -50,9 +50,7 @@ function LoginScreen(props: LoginScreenProps) {
         routes: [
           {
             name:
-              authentication.user.data.accountType === 'business'
-                ? BUSINESS_HOME
-                : HOME,
+              authentication.accountType === 'business' ? BUSINESS_HOME : HOME,
           },
         ],
       });

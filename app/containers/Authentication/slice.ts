@@ -16,6 +16,7 @@ export const initialState = {
   localChecked: false,
   isAuthenticated: false,
   submitting: false,
+  accountType: '',
   user: {
     fetching: false,
     data: undefined,
@@ -43,7 +44,6 @@ const slice = createSlice({
       state.localChecked = true;
       state.isAuthenticated = false;
     },
-
     login(state: State, _action: PayloadAction<LoginActionPayload>): void {
       state.fetchingRemoteToken = true;
       state.error = undefined;
@@ -129,7 +129,6 @@ const slice = createSlice({
       state.user.updating = false;
       state.user.error = action.payload.error?.message;
     },
-
     logout(state: State): void {
       state.localChecked = true;
       state.isAuthenticated = false;
@@ -138,6 +137,12 @@ const slice = createSlice({
     reset(state: State): void {
       state.error = undefined;
       state.user.updated = false;
+    },
+    getAccountType(state: State): void {
+      state.error = undefined;
+    },
+    getAccountTypeSuccess(state: State, action: PayloadAction<string>): void {
+      state.accountType = action.payload;
     },
   },
 });

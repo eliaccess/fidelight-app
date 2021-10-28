@@ -38,7 +38,7 @@ function Router({ onStateChange }) {
   return (
     <NavigationContainer onStateChange={onStateChange}>
       <Animated.View style={[style.container, animatedStyle]} />
-      <ThemeSwitch />
+      {/* <ThemeSwitch /> */}
       <Stack.Navigator
         initialRouteName={SPLASH}
         headerMode="none"

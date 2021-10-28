@@ -9,9 +9,13 @@ import { defineMessages } from 'react-intl';
 export const scope = 'app.components.SignUpScreen.Form';
 
 export default defineMessages({
-  usernameLabel: {
-    id: `${scope}.usernameLabel`,
-    defaultMessage: 'User Name',
+  surnameLabel: {
+    id: `${scope}.surnameLabel`,
+    defaultMessage: 'Surname',
+  },
+  nameLabel: {
+    id: `${scope}.nameLabel`,
+    defaultMessage: 'Name',
   },
   emailLabel: {
     id: `${scope}.emailLabel`,

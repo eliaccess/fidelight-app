@@ -41,14 +41,20 @@ export const fetchLocalSaga = function* fetchLocal() {
   }
 };
 
+export const getAccountTypeSaga = function* getAccountType() {
+  const data = yield call(api.getAccountType);
+  yield put(actions.getAccountTypeSuccess(data));
+};
+
 export const loginSaga = function* login(action: LoginActionProps) {
   try {
     const data: boolean = yield call(api.login, action.payload);
     if (data) {
       yield put(actions.loginSuccess());
       yield put(actions.fetchUser());
+      yield put(actions.getAccountType());
     }
-  } catch (error) {
+  } catch (error: any) {
     yield put(
       actions.loginFailure({
         message: error?.error?.msg || 'Something went wrong',
@@ -64,7 +70,7 @@ export const signUpSaga = function* signUp(action: SignUpActionProps) {
       yield put(actions.signUpSuccess());
       yield put(actions.fetchUser());
     }
-  } catch (error) {
+  } catch (error: any) {
     Warn(error);
     yield put(
       actions.signUpFailure({
@@ -94,7 +100,7 @@ export const fetchUserSaga = function* fetchUser() {
         data: data.data,
       }),
     );
-  } catch (error) {
+  } catch (error: any) {
     yield put(
       actions.fetchUserFailure({
         error: {
@@ -129,7 +135,7 @@ export const updateUserInfoSaga = function* updateUserInfo(
         }),
       );
     }
-  } catch (error) {
+  } catch (error: any) {
     yield put(
       actions.updateUserInfoFailure({
         error: {
@@ -144,13 +150,14 @@ export const logoutSaga = function* logout() {
   try {
     yield call(api.logout);
     // eventsListeners.onSignOut();
-  } catch (error) {
+  } catch (error: any) {
     Warn(error.message);
   }
 };
 
 export default function* authenticationSaga() {
   yield takeLatest(actions.fetchLocalToken.type, fetchLocalSaga);
+  yield takeLatest(actions.getAccountType.type, getAccountTypeSaga);
   yield takeLatest(actions.login.type, loginSaga);
   yield takeLatest(actions.signUp.type, signUpSaga);
   yield takeLatest(actions.fetchUser.type, fetchUserSaga);

@@ -3,7 +3,7 @@ import * as yup from 'yup';
 export const password = yup
   .string()
   .required('Password is required')
-  .min(8, 'Password should be 8 chars minimum.');
+  .min(6, 'Password should be 6 chars minimum.');
 
 export const email = yup.string().email('Invalid email address');
 

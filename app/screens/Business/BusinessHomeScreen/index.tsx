@@ -24,6 +24,7 @@ function HomeScreen(props: HomeScreenProps) {
   const [isVisible, setIsVisible] = useState(false);
   const animation = useRef(useSharedValue(0)).current;
   const drawerAnimation = UseDrawerAnimation(animation);
+
   useEffect(() => {
     animation.value = withTiming(isVisible ? 1 : 0, {
       duration: 400,

@@ -6,6 +6,7 @@ const configs = {
   initialRouteParams: {},
   LOG_API: false,
   LOG_ANALYTICS: false,
+  ACCOUNT_TYPE: 'accountType',
   API_DOMAIN: 'http://localhost:4000',
   // API_DOMAIN: 'https://api.fidelight.fr',
   AUTH_ACCESS_TOKEN_KEY: 'AuthAccessToken',
