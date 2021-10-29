@@ -5,6 +5,7 @@ export default {
 
   headerBackground: '#FDFBFB',
   footerBackground: '#FDFBFB',
+  itemBackgroundColor: '#F6F6F6',
 
   primary: '#F0F0F0',
   primaryDark: '#DEDEDE',

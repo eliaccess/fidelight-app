@@ -1,6 +1,6 @@
 /**
  *
- * Resturants
+ * Entities
  *
  */
 
@@ -9,25 +9,22 @@ import { shallowEqual, useSelector, useDispatch } from 'react-redux';
 import { useInjectReducer, useInjectSaga } from 'redux-injectors';
 import { generateDuxKey } from 'fs-frontend-commons';
 
-import { ResturantsProps, UseResturantsProps, StateItem } from './types';
-import { selectResturantsByKey } from './selectors';
+import { EntitiesProps, UseEntitiesProps, StateItem } from './types';
+import { selectEntitiesByKey } from './selectors';
 import { actions, reducer, name as STORE_KEY } from './slice';
 import saga from './saga';
 
-function getKeyFromProps(props: UseResturantsProps): string {
+function getKeyFromProps(props: UseEntitiesProps): string {
   return generateDuxKey(props, ['city'], true);
 }
 
-export function useResturants(props: UseResturantsProps): StateItem {
+export function useEntities(props: UseEntitiesProps): StateItem {
   useInjectReducer({ key: STORE_KEY, reducer });
   useInjectSaga({ key: STORE_KEY, saga });
 
   const key = getKeyFromProps(props);
   const dispatch = useDispatch();
-  const store: StateItem = useSelector(
-    selectResturantsByKey(key),
-    shallowEqual,
-  );
+  const store: StateItem = useSelector(selectEntitiesByKey(key), shallowEqual);
 
   useEffect(() => {
     if (!props.city || store?.data?.length) {
@@ -45,9 +42,9 @@ export function useResturants(props: UseResturantsProps): StateItem {
   return store;
 }
 
-export function Resturants({ children, ...props }: ResturantsProps) {
-  const store = useResturants(props);
+export function Entities({ children, ...props }: EntitiesProps) {
+  const store = useEntities(props);
   return store ? children(store) : null;
 }
 
-export default React.memo(Resturants);
+export default React.memo(Entities);

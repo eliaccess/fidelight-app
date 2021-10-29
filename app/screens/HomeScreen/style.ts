@@ -60,13 +60,12 @@ const style = StyleSheet.create({
     fontWeight: '600',
   },
   modalHeading: {
-    fontSize: 14,
+    fontSize: 16,
     color: Colors.textBlack,
     fontWeight: '600',
   },
   modalContent: {
     padding: Dimensions.space2x,
-    width: 300,
   },
   terms: {
     marginVertical: Dimensions.space2x,

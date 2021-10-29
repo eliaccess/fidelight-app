@@ -1,6 +1,6 @@
 /**
  *
- * ResturantLoader
+ * RestaurantLoader
  *
  */
 import React from 'react';
@@ -12,11 +12,11 @@ import { useLoaderAnimation } from 'hooks/useLoaderAnimation';
 
 import { useGetStyles } from './style';
 
-interface ResturantLoaderProps extends SectionProps {
+interface RestaurantLoaderProps extends SectionProps {
   numberOfItems: number;
 }
 
-const ResturantLoader: React.FC<ResturantLoaderProps> = ({
+const RestaurantLoader: React.FC<RestaurantLoaderProps> = ({
   numberOfItems,
   ...props
 }) => {
@@ -40,4 +40,4 @@ const ResturantLoader: React.FC<ResturantLoaderProps> = ({
   );
 };
 
-export default ResturantLoader;
+export default RestaurantLoader;

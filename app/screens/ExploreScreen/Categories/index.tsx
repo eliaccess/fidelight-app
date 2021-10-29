@@ -4,11 +4,9 @@
  *
  */
 
-import React, { useState } from 'react';
+import React from 'react';
 import { View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-
-import { useCompanyTypes } from 'containers/CompanyTypes';
 
 import FormattedMessage from 'theme/FormattedMessage';
 import Image from 'theme/Image';
@@ -17,51 +15,37 @@ import Text from 'theme/Text';
 import HorizontalSlidingList from 'theme/HorizontalSlidingList';
 import { buttonGradientProps } from 'theme/utils';
 import TouchFeedback from 'theme/TouchFeedback';
-import useStateHandler from 'hooks/useStateHandler';
 
 import messages from './messages';
 
-import CategoriesWidgetLoader from './Loader';
 import { useGetStyles } from './style';
 
-function CategoriesWidget(_props) {
+type CategoriesWidgetProps = {
+  onPress: (...args: any) => void;
+  activeCategoryId: number;
+  data: {
+    id: number;
+    name: string;
+    description: string;
+    logoLink: string;
+  }[];
+};
+
+function CategoriesWidget(props: CategoriesWidgetProps) {
   const style = useGetStyles();
-  const [activeCategoryIndex, setActiveCategoryIndex] = useState(0);
-  const categories = useCompanyTypes();
-
-  const showContent = useStateHandler({
-    state: categories,
-  });
-
-  if (!showContent) {
-    return (
-      <CategoriesWidgetLoader
-        heading={
-          <FormattedMessage {...messages.categoriesHeading} isFragment />
-        }
-        numberOfItems={6}
-      />
-    );
-  }
-
-  if (!categories.data) {
-    return null;
-  }
 
   return (
     <Section
       heading={<FormattedMessage {...messages.categoriesHeading} isFragment />}
     >
       <HorizontalSlidingList>
-        {categories.data.map((item, index) => {
-          const active = index === activeCategoryIndex;
+        {props.data.map((item) => {
+          const active = item.id === props.activeCategoryId;
           return (
             <TouchFeedback
               key={item.id}
               onPress={() => {
-                setActiveCategoryIndex(index);
-                // @ts-ignore
-                // props.onPress();
+                props.onPress(item.id);
               }}
               style={style.item}
             >

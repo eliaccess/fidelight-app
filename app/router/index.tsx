@@ -11,7 +11,7 @@ import Animated, {
 import configs from 'configs';
 
 import { ThemeContext } from 'theme/ThemeManager';
-import ThemeSwitch from 'theme/ThemeSwitch';
+// import ThemeSwitch from 'theme/ThemeSwitch';
 
 import routes from './routes';
 import { SPLASH } from './routeNames';
@@ -41,8 +41,8 @@ function Router({ onStateChange }) {
       {/* <ThemeSwitch /> */}
       <Stack.Navigator
         initialRouteName={SPLASH}
-        headerMode="none"
-        mode="card"
+        // headerMode="none"
+        // mode="card"
         screenOptions={{
           headerShown: false,
           cardOverlayEnabled: false,

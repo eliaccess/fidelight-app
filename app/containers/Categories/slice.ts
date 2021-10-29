@@ -9,7 +9,7 @@ export const initialState = {
 
 /* eslint-disable , no-param-reassign */
 const slice = createSlice({
-  name: 'app/CompanyTypes',
+  name: 'app/Categories',
   initialState,
   reducers: {
     fetch(state: State): void {

@@ -8,7 +8,7 @@ import { StyleSheet } from 'react-native';
 
 import { useColors } from 'theme/Colors2';
 import Dimensions from 'theme/Dimensions';
-import elevation from 'theme/elevation';
+// import elevation from 'theme/elevation';
 
 export const useGetStyles = () => {
   const Colors = useColors();
@@ -27,41 +27,25 @@ export const useGetStyles = () => {
       height: 80,
       borderRadius: Dimensions.borderRadius3x,
     },
-    coverImage: {
+    logo: {
       width: '100%',
       height: '100%',
       borderRadius: Dimensions.borderRadius3x,
     },
-    logoWrapper: {
-      position: 'absolute',
-      bottom: '10%',
-      right: '5%',
-      width: 40,
-      height: 40,
-      borderRadius: 20,
-      backgroundColor: Colors.white,
-      padding: Dimensions.space1x,
-      alignItems: 'center',
-      justifyContent: 'center',
-      ...elevation(2),
-    },
-    logo: {
-      width: 36,
-      height: 36,
-      borderRadius: 18,
-    },
     contentWrapper: {
+      width: '75%',
       marginLeft: Dimensions.space2x,
     },
     title: {
       fontSize: 16,
       fontWeight: 'bold',
       color: Colors.textBlack,
-      marginBottom: Dimensions.space1x,
+      marginBottom: Dimensions.space2x,
     },
     shortDescription: {
       fontSize: 14,
       color: Colors.textGrey,
+      textAlign: 'justify',
     },
     tagsWrapper: {
       flexDirection: 'row',

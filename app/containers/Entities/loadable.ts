@@ -1,6 +1,6 @@
 /**
  *
- * Asynchronously loads the component for CompanyTypes
+ * Asynchronously loads the component for Entities
  *
  */
 

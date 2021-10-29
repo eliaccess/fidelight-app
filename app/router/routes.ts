@@ -13,6 +13,7 @@ import ChangePasswordScreen from 'screens/ChangePasswordScreen/Loadable';
 import PreferenceScreen from 'screens/PreferenceScreen/Loadable';
 import ProfileScreen from 'screens/ProfileScreen/Loadable';
 import ProfileEditScreen from 'screens/ProfileEditScreen/Loadable';
+import DealDetailScreen from 'screens/DealDetailScreen/Loadable';
 import BusinessLoginScreen from 'screens/Business/BusinessLoginScreen/Loadable';
 import BusinessSignUpScreen from 'screens/Business/BusinessSignUpScreen/Loadable';
 import BusinessHomeScreen from 'screens/Business/BusinessHomeScreen/Loadable';
@@ -107,6 +108,11 @@ const routes = {
     ...routeConfigs[routeNames.EDIT_BUSINESS_INFO],
     screen: EditBusinessInfoScreen,
   },
+  [routeNames.DEAL_DETAIL]: {
+    ...routeConfigs[routeNames.DEAL_DETAIL],
+    screen: DealDetailScreen,
+  },
+
   // [routeNames.FORGET_PASSWORD]: {
   //   ...routeConfigs[routeNames.FORGET_PASSWORD],
   //   screen: ForgetPasswordScreen,

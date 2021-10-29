@@ -14,6 +14,7 @@ export const CHANGE_PASSWORD = 'ChangePassword';
 export const PREFERENCE = 'Preference';
 export const PROFILE = 'Profile';
 export const PROFILE_EDIT = 'ProfileEdit';
+export const DEAL_DETAIL = 'DealDetail';
 
 // Business
 export const BUSINESS_LOGIN = 'BusinessLogin';

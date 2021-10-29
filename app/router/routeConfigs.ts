@@ -46,6 +46,10 @@ const routeConfigs = {
   [routeNames.PROFILE_EDIT]: {
     path: '/profile-edit',
   },
+  [routeNames.DEAL_DETAIL]: {
+    path: '/deal-detail',
+    options: { presentation: 'transparentModal' },
+  },
   [routeNames.BUSINESS_LOGIN]: {
     path: '/business-login',
   },

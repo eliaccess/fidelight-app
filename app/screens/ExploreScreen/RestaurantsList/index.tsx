@@ -7,7 +7,7 @@
 import React from 'react';
 import { View } from 'react-native';
 
-import { useResturants } from 'containers/Resturants';
+import { useEntities } from 'containers/Entities';
 import useStateHandler from 'hooks/useStateHandler';
 
 import FormattedMessage from 'theme/FormattedMessage';
@@ -18,21 +18,21 @@ import TouchFeedback from 'theme/TouchFeedback';
 
 import messages from './messages';
 import { useGetStyles } from './style';
-import ResturantLoader from './Loader';
+import RestaurantLoader from './Loader';
 
 function RestaurantsList(props) {
   const style = useGetStyles();
-  const restaurants = useResturants({
+  const entities = useEntities({
     city: 'Paris',
   });
 
   const showContent = useStateHandler({
-    state: restaurants,
+    state: entities,
   });
 
   if (!showContent) {
     return (
-      <ResturantLoader
+      <RestaurantLoader
         heading={
           <FormattedMessage {...messages.restaurantsHeading} isFragment />
         }
@@ -41,30 +41,27 @@ function RestaurantsList(props) {
     );
   }
 
-  if (!restaurants.data) {
+  if (!entities.data) {
     return null;
   }
   return (
     <Section
       heading={<FormattedMessage {...messages.restaurantsHeading} isFragment />}
     >
-      {restaurants.data.map((item) => (
-        <TouchFeedback key={item.id} onPress={props.onPress} style={style.item}>
+      {entities.data.map((item) => (
+        <TouchFeedback
+          key={item.companyId}
+          onPress={props.onPress}
+          style={style.item}
+        >
           <View style={style.imageWrapper}>
-            <Image
-              uri={item.coverImage}
-              style={style.coverImage}
-              resizeMode="cover"
-            />
-            <View style={style.logoWrapper}>
-              <Image uri={item.logo} style={style.logo} resizeMode="cover" />
-            </View>
+            <Image uri={item.logoLink} style={style.logo} resizeMode="cover" />
           </View>
 
           <View style={style.contentWrapper}>
-            <Text style={style.title}>{item.name}</Text>
-            <Text style={style.shortDescription} numberOfLines={1}>
-              {item.shortDescription}
+            <Text style={style.title}>{item.companyName}</Text>
+            <Text style={style.shortDescription} numberOfLines={2}>
+              {item.description}
             </Text>
             {/* <View style={style.tagsWrapper}>
               <View style={style.rating}>

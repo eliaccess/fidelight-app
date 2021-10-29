@@ -15,6 +15,7 @@ import FormattedMessage from 'theme/FormattedMessage';
 import TouchFeedback from 'theme/TouchFeedback';
 import Image from 'theme/Image';
 import Text from 'theme/Text';
+import { DEAL_DETAIL } from 'router/routeNames';
 
 import style from './style';
 import messages from './messages';
@@ -22,7 +23,7 @@ import { DealListingScreenProps } from './types';
 
 import DealListingLoader from './Loader';
 
-function DealListingScreen(_props: DealListingScreenProps) {
+function DealListingScreen(props: DealListingScreenProps) {
   const hotDeals = useHotDeals({
     city: 'Paris',
   });
@@ -43,7 +44,9 @@ function DealListingScreen(_props: DealListingScreenProps) {
           {hotDeals?.data?.map((item) => (
             <TouchFeedback
               key={item.id}
-              onPress={() => null}
+              onPress={() => {
+                props.navigation.navigate(DEAL_DETAIL);
+              }}
               style={style.item}
             >
               <Image uri={item.image} style={style.image} />

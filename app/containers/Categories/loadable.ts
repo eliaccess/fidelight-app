@@ -1,6 +1,6 @@
 /**
  *
- * Asynchronously loads the component for Resturants
+ * Asynchronously loads the component for Categories
  *
  */
 

@@ -453,7 +453,7 @@ PODS:
     - React-Core
   - react-native-pager-view (5.4.7):
     - React-Core
-  - react-native-safe-area-context (3.2.0):
+  - react-native-safe-area-context (3.3.2):
     - React-Core
   - react-native-splash-screen (3.2.0):
     - React
@@ -592,8 +592,9 @@ PODS:
     - React-RCTVibration
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNScreens (3.2.0):
+  - RNScreens (3.9.0):
     - React-Core
+    - React-RCTImage
   - RNVectorIcons (8.1.0):
     - React-Core
   - SDWebImage (5.12.1):
@@ -894,7 +895,7 @@ SPEC CHECKSUMS:
   react-native-fbsdk: 00c15d138bba6d4efa628670886fc58cec858c19
   react-native-flipper: ea662ba3eca5e763761837e20e635d26de8ca921
   react-native-pager-view: 741e7606ee2f6e399fc7da777f5519454a4b38c5
-  react-native-safe-area-context: f0906bf8bc9835ac9a9d3f97e8bde2a997d8da79
+  react-native-safe-area-context: 584dc04881deb49474363f3be89e4ca0e854c057
   react-native-splash-screen: 200d11d188e2e78cea3ad319964f6142b6384865
   React-perflogger: aad6d4b4a267936b3667260d1f649b6f6069a675
   React-RCTActionSheet: fc376be462c9c8d6ad82c0905442fd77f82a9d2a
@@ -923,7 +924,7 @@ SPEC CHECKSUMS:
   RNGoogleSignin: 111fd4792913208f338fe3178005f7a22e490ff9
   RNPermissions: 5df468064df661a4c8c017e2791ce90d7695eea5
   RNReanimated: ac4231e7a905f98bf1b719081f7cd230531a24e2
-  RNScreens: c277bfc4b5bb7c2fe977d19635df6f974f95dfd6
+  RNScreens: 4d79118be80f79fa1f4aa131909a1d6e86280af3
   RNVectorIcons: 31cebfcf94e8cf8686eb5303ae0357da64d7a5a4
   SDWebImage: 4dc3e42d9ec0c1028b960a33ac6b637bb432207b
   SDWebImageWebPCoder: d0dac55073088d24b2ac1b191a71a8f8d0adac21

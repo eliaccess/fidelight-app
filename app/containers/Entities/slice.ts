@@ -5,7 +5,7 @@ export const initialState = {} as State;
 
 /* eslint-disable no-param-reassign */
 const slice = createSlice({
-  name: 'app/Resturants',
+  name: 'app/Entities',
   initialState,
   reducers: {
     fetch(state: State, action: PayloadAction<FetchPropsPayload>): void {

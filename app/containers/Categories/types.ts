@@ -1,9 +1,9 @@
-export type UseCompanyTypesProps = {
+export type UseCategoriesProps = {
   limit?: number;
   offset?: number;
 };
 
-export interface CompanyTypesProps extends UseCompanyTypesProps {
+export interface CategoriesProps extends UseCategoriesProps {
   children: (props: any) => any;
 }
 
@@ -17,7 +17,7 @@ export interface FetchProps {
   type: string;
 }
 
-export interface CompanyTypesAPIResponse {
+export interface CategoriesAPIResponse {
   data?: {
     id: number;
     name: string;
@@ -26,4 +26,4 @@ export interface CompanyTypesAPIResponse {
   }[];
 }
 
-export interface ResponsePayload extends CompanyTypesAPIResponse {}
+export interface ResponsePayload extends CategoriesAPIResponse {}

@@ -6,7 +6,6 @@
 
 import React from 'react';
 import { Provider } from 'react-redux';
-import { enableScreens } from 'react-native-screens';
 
 import LanguageProvider from './app/containers/LanguageProvider';
 import AppContainer from './app/containers/App';
@@ -18,7 +17,6 @@ import { ThemeProvider } from './app/theme/ThemeManager';
 
 const initialState = {};
 const store = configureStore(initialState);
-enableScreens();
 
 const toastTheme = {
   position: 'bottom',

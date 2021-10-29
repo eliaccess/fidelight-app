@@ -23,6 +23,7 @@ const style = StyleSheet.create({
     zIndex: 1000000,
   },
   content: {
+    width: '90%',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: Colors.white,
@@ -30,9 +31,9 @@ const style = StyleSheet.create({
     ...elevation(5),
   },
   closeButtonHolder: {
-    padding: Dimensions.space2x,
-    alignSelf: 'flex-end',
-    marginRight: '10%',
+    width: Dimensions.screenWidth / 3,
+    alignSelf: 'center',
+    marginBottom: Dimensions.space1x,
   },
   closeIcon: {
     fontSize: 26,
