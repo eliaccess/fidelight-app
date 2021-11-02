@@ -1,3 +1,5 @@
+import { EntityItemTypes } from 'types/EntityItemTypes';
+
 export interface UseEntitiesProps {
   city?: string;
   page?: number;
@@ -28,17 +30,7 @@ export interface FetchPropsPayload extends UseEntitiesProps {
 }
 
 export interface EntitiesAPIResponse {
-  data?: {
-    companyId: number;
-    companyTypeId: number;
-    companyName: string;
-    coverImage: string;
-    logoLink: string;
-    description: string;
-    streetNumber: string;
-    streetName: string;
-    city: string;
-  }[];
+  data?: EntityItemTypes[];
 }
 
 export interface ResponsePayload extends EntitiesAPIResponse {

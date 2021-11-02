@@ -5,12 +5,9 @@
  */
 import React from 'react';
 import { View } from 'react-native';
-import Animated from 'react-native-reanimated';
 
 import Section, { SectionProps } from 'theme/Section';
-import { useLoaderAnimation } from 'hooks/useLoaderAnimation';
-
-import { useGetStyles } from './style';
+import EntityCardLoader from 'components/EntityCard/Loader';
 
 interface RestaurantLoaderProps extends SectionProps {
   numberOfItems: number;
@@ -19,25 +16,14 @@ interface RestaurantLoaderProps extends SectionProps {
 const RestaurantLoader: React.FC<RestaurantLoaderProps> = ({
   numberOfItems,
   ...props
-}) => {
-  const animatedStyle = useLoaderAnimation();
-  const style = useGetStyles();
-
-  return (
-    <Section heading={props.heading} isLoading>
-      <View>
-        {Array.from(Array(numberOfItems), (_a, i) => (
-          <Animated.View key={i} style={[style.item, animatedStyle]}>
-            <Animated.View style={style.logoLoader} />
-            <View style={style.contentWrapper}>
-              <Animated.View style={style.titleLoader} />
-              <Animated.View style={style.shortDescriptionLoader} />
-            </View>
-          </Animated.View>
-        ))}
-      </View>
-    </Section>
-  );
-};
+}) => (
+  <Section heading={props.heading} isLoading>
+    <View>
+      {Array.from(Array(numberOfItems), (_a, i) => (
+        <EntityCardLoader />
+      ))}
+    </View>
+  </Section>
+);
 
 export default RestaurantLoader;

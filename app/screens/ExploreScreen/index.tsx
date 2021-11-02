@@ -20,7 +20,7 @@ import { useGetStyles } from './style';
 import CategoriesWidgetLoader from './Categories/Loader';
 import messages from './messages';
 
-function ExploreScreen(_props: ExploreScreenProps) {
+function ExploreScreen(props: ExploreScreenProps) {
   const style = useGetStyles();
   const [activeCategoryId, setActiveCategoryId] = useState(0);
   const categories = useCategories();
@@ -50,16 +50,18 @@ function ExploreScreen(_props: ExploreScreenProps) {
                 onPress={(id) => setActiveCategoryId(id)}
               />
             </View>
-            <HottestDealsWidget />
+            <HottestDealsWidget navigation={props.navigation} />
             <RestaurantsList />
           </>
         ) : (
-          <CategoriesWidgetLoader
-            heading={
-              <FormattedMessage {...messages.categoriesHeading} isFragment />
-            }
-            numberOfItems={6}
-          />
+          <View style={style.categoriesSectionWrapper}>
+            <CategoriesWidgetLoader
+              heading={
+                <FormattedMessage {...messages.categoriesHeading} isFragment />
+              }
+              numberOfItems={6}
+            />
+          </View>
         )}
       </ScrollView>
     </>

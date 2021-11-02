@@ -1,6 +1,6 @@
 /**
  *
- * Asynchronously loads the component for FavouritePlacesScreen
+ * Asynchronously loads the component for FavoriteEntitiesScreen
  *
  */
 

@@ -5,7 +5,7 @@ import LoginScreen from 'screens/LoginScreen/Loadable';
 import SignUpScreen from 'screens/SignUpScreen/Loadable';
 import CommingSoonScreen from 'screens/CommingSoonScreen/Loadable';
 import ExploreScreen from 'screens/ExploreScreen/Loadable';
-import FavouritePlacesScreen from 'screens/FavouritePlacesScreen/Loadable';
+import FavoriteEntitiesScreen from 'screens/FavoriteEntitiesScreen/Loadable';
 import DealListingScreen from 'screens/DealListingScreen/Loadable';
 import EntityDetailScreen from 'screens/EntityDetailScreen/Loadable';
 import SupportScreen from 'screens/SupportScreen/Loadable';
@@ -52,9 +52,9 @@ const routes = {
     ...routeConfigs[routeNames.EXPLORE],
     screen: ExploreScreen,
   },
-  [routeNames.FAVOURITE_PLACES]: {
-    ...routeConfigs[routeNames.FAVOURITE_PLACES],
-    screen: FavouritePlacesScreen,
+  [routeNames.FAVORITE_ENTITIES]: {
+    ...routeConfigs[routeNames.FAVORITE_ENTITIES],
+    screen: FavoriteEntitiesScreen,
   },
   [routeNames.DEAL_LISTING]: {
     ...routeConfigs[routeNames.DEAL_LISTING],

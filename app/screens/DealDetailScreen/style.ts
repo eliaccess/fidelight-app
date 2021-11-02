@@ -28,7 +28,7 @@ const style = StyleSheet.create({
     color: Colors.textBlack,
     fontWeight: 'bold',
   },
-  dealShortDescription: {
+  dealProduct: {
     fontSize: 14,
     color: Colors.textGrey,
     marginTop: Dimensions.space1x,
@@ -57,7 +57,7 @@ const style = StyleSheet.create({
     color: Colors.errorBackground,
   },
   dealDetailWrapper: {
-    width: '95%',
+    width: Dimensions.screenWidth / 1.2,
     marginVertical: Dimensions.space2x,
     padding: Dimensions.space3x,
     borderRadius: Dimensions.borderRadius10x,
@@ -74,6 +74,12 @@ const style = StyleSheet.create({
     marginTop: Dimensions.space1x,
     lineHeight: 18,
     textAlign: 'justify',
+  },
+  loaderContainer: {
+    width: '100%',
+    height: 350,
+    marginHorizontal: Dimensions.space4x,
+    backgroundColor: Colors.skeleton,
   },
 });
 

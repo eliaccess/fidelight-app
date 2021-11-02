@@ -44,6 +44,8 @@ const dim = {
   borderRadius3x: 8,
   borderRadius10x: 30,
 
+  horizontalSpace: 16,
+
   inputHeight: 40,
   headerContentHeight,
   headerHeight,

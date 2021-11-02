@@ -33,8 +33,8 @@ export const useGetStyles = () => {
       borderRadius: Dimensions.borderRadius3x,
     },
     contentWrapper: {
-      width: '75%',
-      marginLeft: Dimensions.space2x,
+      width: '62%',
+      marginHorizontal: Dimensions.space2x,
     },
     title: {
       fontSize: 16,

@@ -45,7 +45,9 @@ function DealListingScreen(props: DealListingScreenProps) {
             <TouchFeedback
               key={item.id}
               onPress={() => {
-                props.navigation.navigate(DEAL_DETAIL);
+                props.navigation.navigate(DEAL_DETAIL, {
+                  dealId: item.id.toString(),
+                });
               }}
               style={style.item}
             >

@@ -22,8 +22,8 @@ const routeConfigs = {
   [routeNames.EXPLORE]: {
     path: '/explore',
   },
-  [routeNames.FAVOURITE_PLACES]: {
-    path: '/favourite-places',
+  [routeNames.FAVORITE_ENTITIES]: {
+    path: '/favorite-entities',
   },
   [routeNames.DEAL_LISTING]: {
     path: '/deal-listing',

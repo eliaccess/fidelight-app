@@ -9,8 +9,8 @@ export type RootStackParamList = {
   ForgetPassword: {};
   CommingSoon?: {};
   Explore?: {};
-  FavouritePlaces?: {};
-  DealListing?: {};
+  FavoriteEntities?: {};
+  DealListing: {};
   EntityDetail?: {};
   Support?: {};
   ChangePassword?: {};
@@ -23,5 +23,7 @@ export type RootStackParamList = {
   BusinessExplore?: {};
   BusinessTransactions?: {};
   EditBusinessInfo?: {};
-  DealDetail?: {};
+  DealDetail: {
+    dealId: string;
+  };
 };

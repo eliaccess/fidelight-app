@@ -4,6 +4,8 @@
  *
  */
 
+import { useHotDealDetail } from 'containers/HotDealDetail';
+import useStateHandler from 'hooks/useStateHandler';
 import React from 'react';
 import { View } from 'react-native';
 
@@ -11,6 +13,7 @@ import FormattedMessage from 'theme/FormattedMessage';
 import Image from 'theme/Image';
 import Modal from 'theme/Modal';
 import Text from 'theme/Text';
+import DealDetailLoader from './Loader';
 
 import messages from './messages';
 import style from './style';
@@ -18,6 +21,15 @@ import style from './style';
 import { DealDetailScreenProps } from './types';
 
 function DealDetailScreen(props: DealDetailScreenProps) {
+  const dealDetail = useHotDealDetail({
+    dealId: props.route.params.dealId,
+  });
+
+  const showContent = useStateHandler({
+    state: dealDetail,
+    stateIdentifier: 'data.id',
+  });
+
   return (
     <View style={style.container}>
       <Modal
@@ -26,28 +38,33 @@ function DealDetailScreen(props: DealDetailScreenProps) {
         }}
         visible={true}
       >
-        <View style={style.modalHeader}>
-          <Text style={style.dealTitle}>30% OFF</Text>
-          <Text style={style.dealShortDescription}>
-            on every medium pizza today
-          </Text>
-          <Image title="dealImage" style={style.dealImage} />
-        </View>
-        <View style={style.modalContent}>
-          <View style={style.dealValidDateWrapper}>
-            <Text style={style.dealValidDate}>Valid Til 12th Jan, 2020</Text>
-          </View>
-          <View style={style.dealDetailWrapper}>
-            <FormattedMessage
-              {...messages.offerDetailLabel}
-              style={style.offerDetailLabel}
-            />
-            <Text style={style.dealDetail}>
-              If you have any idea or wanting to merge some pages let us know.
-              We will be delighted togive you more information on any point.
-            </Text>
-          </View>
-        </View>
+        {!showContent ? (
+          <DealDetailLoader />
+        ) : (
+          <>
+            <View style={style.modalHeader}>
+              <Text style={style.dealTitle}>{dealDetail?.data?.name}</Text>
+              <Text style={style.dealProduct}>{dealDetail?.data?.product}</Text>
+              <Image title="dealImage" style={style.dealImage} />
+            </View>
+            <View style={style.modalContent}>
+              <View style={style.dealValidDateWrapper}>
+                <Text style={style.dealValidDate}>
+                  Valid Til {dealDetail?.data?.expirationDate?.split('T')[0]}
+                </Text>
+              </View>
+              <View style={style.dealDetailWrapper}>
+                <FormattedMessage
+                  {...messages.offerDetailLabel}
+                  style={style.offerDetailLabel}
+                />
+                <Text style={style.dealDetail}>
+                  {dealDetail?.data?.description}
+                </Text>
+              </View>
+            </View>
+          </>
+        )}
       </Modal>
     </View>
   );

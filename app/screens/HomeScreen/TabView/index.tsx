@@ -5,7 +5,7 @@ import { Easing, useSharedValue, withTiming } from 'react-native-reanimated';
 
 import HomeHeader from 'components/HomeHeader';
 import ExploreScreen from 'screens/ExploreScreen/Loadable';
-import FavouritePlacesScreen from 'screens/FavouritePlacesScreen/Loadable';
+import FavoriteEntitiesScreen from 'screens/FavoriteEntitiesScreen/Loadable';
 import CommingSoonScreen from 'screens/CommingSoonScreen/Loadable';
 import { COMMING_SOON, PROFILE } from 'router/routeNames';
 
@@ -20,7 +20,7 @@ function HomeTabView(props) {
   const [routes] = useState([
     { key: 'explore', icon: 'explore', font: 'fidelight' },
     { key: 'QR', major: true, icon: 'qr-code-sharp' },
-    { key: 'favourites', icon: 'heart', font: 'ionicons' },
+    { key: 'favorites', icon: 'heart', font: 'ionicons' },
   ]);
 
   useEffect(() => {
@@ -59,9 +59,13 @@ function HomeTabView(props) {
       case 'award':
         // @ts-ignore
         return <CommingSoonScreen />;
-      case 'favourites':
-        // @ts-ignore
-        return <FavouritePlacesScreen />;
+      case 'favorites':
+        return (
+          <FavoriteEntitiesScreen
+            navigation={props.navigation}
+            route={props.route}
+          />
+        );
 
       default:
         return null;

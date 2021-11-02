@@ -5,7 +5,7 @@ import { Easing, useSharedValue, withTiming } from 'react-native-reanimated';
 
 import BusinessExploreScreen from 'screens/Business/BusinessExploreScreen/Loadable';
 import BusinessTransactionsScreen from 'screens/Business/BusinessTransactionsScreen/Loadable';
-import FavouritePlacesScreen from 'screens/FavouritePlacesScreen/Loadable';
+// import FavoriteEntitiesScreen from 'screens/FavoriteEntitiesScreen/Loadable';
 import CommingSoonScreen from 'screens/CommingSoonScreen/Loadable';
 import { COMMING_SOON } from 'router/routeNames';
 
@@ -19,7 +19,7 @@ function HomeTabView(props) {
   const [routes] = useState([
     { key: 'explore', icon: 'businesshome', font: 'fidelight' },
     { key: 'QR', major: true, icon: 'qr-code-sharp' },
-    { key: 'favourites', icon: 'transactions', font: 'fidelight' },
+    { key: 'favorites', icon: 'transactions', font: 'fidelight' },
   ]);
 
   useEffect(() => {
@@ -61,7 +61,7 @@ function HomeTabView(props) {
       case 'award':
         // @ts-ignore
         return <CommingSoonScreen />;
-      case 'favourites':
+      case 'favorites':
         // @ts-ignore
         return <BusinessTransactionsScreen />;
 
@@ -82,7 +82,7 @@ function HomeTabView(props) {
         onIndexChange={setRouteIndex}
         tabBarPosition="bottom"
         swipeEnabled={false}
-        timingConfig={{ duration: 10 }}
+        // timingConfig={{ duration: 10 }}
       />
     </>
   );
