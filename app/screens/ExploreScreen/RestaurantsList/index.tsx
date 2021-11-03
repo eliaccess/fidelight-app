@@ -49,7 +49,16 @@ function RestaurantsList(props) {
         }
       >
         {entities.data.map((item) => (
-          <EntityCard entity={item} onPress={props.onPress} />
+          <EntityCard
+            onWishListPress={() => {
+              entities.toggleFavorite({
+                id: item.id,
+                isFavorite: item.isFavorite,
+              });
+            }}
+            entity={item}
+            onPress={props.onPress}
+          />
         ))}
       </Section>
     </Animatable.View>

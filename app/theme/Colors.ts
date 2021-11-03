@@ -68,6 +68,8 @@ export default {
   skeleton: '#55C595',
 
   separator: '#DDD',
+
+  favorite: '#FF545A',
 };
 
 export const lightTheme = {

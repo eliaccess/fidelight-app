@@ -7,4 +7,5 @@ export interface EntityItemTypes {
   streetNumber: string;
   streetName: string;
   city: string;
+  isFavorite: boolean;
 }

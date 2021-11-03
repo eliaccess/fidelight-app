@@ -25,6 +25,11 @@ export interface FetchProps {
   payload: FetchPropsPayload;
 }
 
+export interface ToggleFavoriteProps {
+  type: string;
+  payload: ToggleFavoriteActionPayload;
+}
+
 export interface FetchPropsPayload extends UseEntitiesProps {
   key: string;
 }
@@ -35,4 +40,10 @@ export interface EntitiesAPIResponse {
 
 export interface ResponsePayload extends EntitiesAPIResponse {
   key: string;
+}
+
+export interface ToggleFavoriteActionPayload {
+  key: string;
+  id: number;
+  isFavorite: boolean;
 }

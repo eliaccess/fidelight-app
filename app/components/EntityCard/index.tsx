@@ -20,9 +20,10 @@ import { useGetStyles } from './style';
 interface EntityCardProps {
   entity: EntityItemTypes;
   onPress: (...args: any[]) => any;
+  onWishListPress: (...args: any) => any;
 }
 
-function EntityCard({ entity, onPress }: EntityCardProps) {
+function EntityCard({ entity, onPress, onWishListPress }: EntityCardProps) {
   const style = useGetStyles();
 
   return (
@@ -45,7 +46,7 @@ function EntityCard({ entity, onPress }: EntityCardProps) {
               <Text style={style.distance}>{item.distance}</Text>
             </View> */}
       </View>
-      <WishlistButton active={true} onPress={() => null} />
+      <WishlistButton active={entity.isFavorite} onPress={onWishListPress} />
     </TouchFeedback>
   );
 }

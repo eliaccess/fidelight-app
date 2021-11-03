@@ -43,10 +43,10 @@ const WishlistButton: React.FC<WishlistButtonProps> = (props) => {
     });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [progress]);
+  }, [progress, props.active]);
 
   const animatedStyle = useAnimatedStyle(() => ({
-    opacity: interpolate(progress.value, [0, 1], [1, 0]),
+    opacity: interpolate(progress.value, [0, 0.25], [1, 0]),
   }));
 
   return (

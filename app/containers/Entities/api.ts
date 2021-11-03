@@ -5,7 +5,11 @@
  */
 
 import service from 'services/fidelight';
-import { EntitiesAPIResponse, FetchPropsPayload } from './types';
+import {
+  EntitiesAPIResponse,
+  FetchPropsPayload,
+  ToggleFavoriteActionPayload,
+} from './types';
 
 export async function fetch(
   _payload: FetchPropsPayload,
@@ -15,6 +19,25 @@ export async function fetch(
   const resp = await service({
     method: 'GET',
     url: '/v1/companies',
+    // url: `/v1/search/company/parameters?type=${type}&city=${city}&page=${page}`,
+  });
+
+  return resp;
+}
+
+export async function toggleFavorite(
+  payload: ToggleFavoriteActionPayload,
+): Promise<EntitiesAPIResponse | Error> {
+  const { id } = payload;
+
+  const body = {
+    company: id,
+  };
+
+  const resp = await service({
+    method: 'POST',
+    url: '/v1/user/like/favorite',
+    body,
     // url: `/v1/search/company/parameters?type=${type}&city=${city}&page=${page}`,
   });
 

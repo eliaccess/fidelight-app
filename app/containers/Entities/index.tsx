@@ -14,11 +14,19 @@ import { selectEntitiesByKey } from './selectors';
 import { actions, reducer, name as STORE_KEY } from './slice';
 import saga from './saga';
 
+type toggleFavoriteProps = {
+  id: number;
+  isFavorite: boolean;
+};
+interface UseEntitiesReturnProps extends StateItem {
+  toggleFavorite: (args: toggleFavoriteProps) => void;
+}
+
 function getKeyFromProps(props: UseEntitiesProps): string {
   return generateDuxKey(props, ['city'], true);
 }
 
-export function useEntities(props: UseEntitiesProps): StateItem {
+export function useEntities(props: UseEntitiesProps): UseEntitiesReturnProps {
   useInjectReducer({ key: STORE_KEY, reducer });
   useInjectSaga({ key: STORE_KEY, saga });
 
@@ -39,7 +47,13 @@ export function useEntities(props: UseEntitiesProps): StateItem {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [key]);
 
-  return store;
+  const toggleFavorite = (payload: toggleFavoriteProps) =>
+    dispatch(actions.toggleFavorite({ ...payload, key }));
+
+  return {
+    ...store,
+    toggleFavorite,
+  };
 }
 
 export function Entities({ children, ...props }: EntitiesProps) {

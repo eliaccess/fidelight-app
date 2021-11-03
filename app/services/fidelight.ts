@@ -106,7 +106,7 @@ export async function reTry({ fetchUrl, params, args }) {
 
 interface IAPIArgs {
   url: string;
-  method: 'GET' | 'POST';
+  method: 'GET' | 'POST' | 'DELETE';
   body?: any;
   headers?: any;
   params?: any;
