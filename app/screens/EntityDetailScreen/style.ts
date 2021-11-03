@@ -18,14 +18,14 @@ const style = StyleSheet.create({
   timingsContainer: {
     backgroundColor: Colors.white,
     borderRadius: Dimensions.borderRadius2x,
-    flexDirection: 'row',
-    padding: Dimensions.space2x,
+    padding: Dimensions.space1x,
     marginVertical: Dimensions.space2x,
     ...elevation(1),
   },
   timeItem: {
     flexDirection: 'row',
     marginHorizontal: Dimensions.space1x,
+    marginVertical: Dimensions.space1x,
   },
   timeHeading: {
     fontSize: 16,
@@ -110,6 +110,72 @@ const style = StyleSheet.create({
     marginTop: Dimensions.space1x,
     lineHeight: 18,
     textAlign: 'justify',
+  },
+  loaderHeader: {
+    width: Dimensions.screenWidth,
+    height: 230,
+    backgroundColor: Colors.skeleton,
+  },
+  entityNameLoader: {
+    marginTop: Dimensions.space6x,
+    marginLeft: Dimensions.horizontalSpace,
+    borderRadius: Dimensions.borderRadius,
+    borderColor: Colors.textGrey,
+    backgroundColor: Colors.skeleton,
+    height: 14,
+    width: '50%',
+  },
+  entityDescriptionLoader: {
+    marginTop: Dimensions.space3x,
+    marginLeft: Dimensions.horizontalSpace,
+    borderRadius: Dimensions.borderRadius2x,
+    borderColor: Colors.textGrey,
+    backgroundColor: Colors.skeleton,
+    height: 8,
+    width: '60%',
+  },
+  dayName: {
+    fontSize: 14,
+    color: Colors.textBlack,
+    fontWeight: '600',
+    alignSelf: 'center',
+    width: 100,
+  },
+  dayTimingsWrapper: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  dayTimingItem: {
+    flexDirection: 'row',
+    marginVertical: Dimensions.space1x / 2,
+  },
+  timingItemLabel: {
+    fontSize: 14,
+    color: Colors.textBlack,
+  },
+  timingIconWrapper: {
+    position: 'absolute',
+    right: '2%',
+    top: 20,
+  },
+  timingIcon: {
+    fontSize: 22,
+    color: Colors.black,
+  },
+  activeDay: {
+    color: Colors.accentDark,
+  },
+  loaderContentWrapper: {
+    marginTop: Dimensions.space10x,
+  },
+  labelLoader: {
+    marginVertical: Dimensions.space2x,
+    marginLeft: Dimensions.horizontalSpace,
+    borderRadius: Dimensions.borderRadius2x,
+    borderColor: Colors.textGrey,
+    backgroundColor: Colors.skeleton,
+    height: 8,
+    width: '80%',
   },
 });
 

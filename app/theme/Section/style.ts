@@ -25,8 +25,6 @@ export const useGetStyles = () => {
       fontWeight: '600',
     },
     headingLoader: {
-      width: '50%',
-      height: 24,
       borderRadius: Dimensions.borderRadius,
       borderColor: Colors.textGrey,
       backgroundColor: Colors.skeleton,

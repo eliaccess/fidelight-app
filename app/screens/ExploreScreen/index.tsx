@@ -51,7 +51,7 @@ function ExploreScreen(props: ExploreScreenProps) {
               />
             </View>
             <HottestDealsWidget navigation={props.navigation} />
-            <RestaurantsList />
+            <RestaurantsList navigation={props.navigation} />
           </>
         ) : (
           <View style={style.categoriesSectionWrapper}>

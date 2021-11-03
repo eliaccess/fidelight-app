@@ -19,7 +19,7 @@ function EntityInfo(_props) {
       <View style={style.facilitiesWrapper}>
         <Text style={style.facilityIem}>Coffee</Text>
       </View>
-      <View style={style.tagsWrapper}>
+      {/* <View style={style.tagsWrapper}>
         <View style={style.rating}>
           <Icon name="star" style={style.ratingIcon} />
           <Text style={style.ratingValue}>4.1</Text>
@@ -28,7 +28,7 @@ function EntityInfo(_props) {
         <Text style={style.distance}>29Km</Text>
         <Text style={style.tagSeparator}>.</Text>
         <Text style={style.reviews}>25 Reviews</Text>
-      </View>
+      </View> */}
       <View style={style.separationLine} />
       <View style={style.contactInfoContainer}>
         <View style={style.contactInfoItem}>

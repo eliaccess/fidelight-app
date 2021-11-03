@@ -13,12 +13,17 @@ import useStateHandler from 'hooks/useStateHandler';
 import FormattedMessage from 'theme/FormattedMessage';
 import Section from 'theme/Section';
 import EntityCard from 'components/EntityCard';
+import { ENTITY_DETAIL } from 'router/routeNames';
 
 import messages from './messages';
 
 import RestaurantLoader from './Loader';
 
-function RestaurantsList(props) {
+type RestaurantsListProps = {
+  navigation: any;
+};
+
+function RestaurantsList(props: RestaurantsListProps) {
   const entities = useEntities({
     city: 'Paris',
   });
@@ -57,7 +62,11 @@ function RestaurantsList(props) {
               });
             }}
             entity={item}
-            onPress={props.onPress}
+            onPress={() =>
+              props.navigation.navigate(ENTITY_DETAIL, {
+                entityId: item.id,
+              })
+            }
             isFavorite={item.isFavorite}
           />
         ))}

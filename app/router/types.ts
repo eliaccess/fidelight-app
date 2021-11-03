@@ -11,7 +11,9 @@ export type RootStackParamList = {
   Explore?: {};
   FavoriteEntities?: {};
   DealListing: {};
-  EntityDetail?: {};
+  EntityDetail: {
+    entityId: string;
+  };
   Support?: {};
   ChangePassword?: {};
   Preference?: {};
