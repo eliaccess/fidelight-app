@@ -58,6 +58,7 @@ function RestaurantsList(props) {
             }}
             entity={item}
             onPress={props.onPress}
+            isFavorite={item.isFavorite}
           />
         ))}
       </Section>

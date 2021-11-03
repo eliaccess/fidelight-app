@@ -47,6 +47,8 @@ function FavoriteEntitiesScreen(props: FavoriteEntitiesScreenProps) {
                 onPress={() => {
                   props.navigation.navigate(ENTITY_DETAIL);
                 }}
+                onWishListPress={() => {}}
+                isFavorite={true}
               />
             ))}
           </Animatable.View>
