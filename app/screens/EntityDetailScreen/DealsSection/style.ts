@@ -8,9 +8,9 @@ import { StyleSheet } from 'react-native';
 
 import Colors from 'theme/Colors';
 import Dimensions from 'theme/Dimensions';
-// import elevation from 'theme/elevation';
-export const DOT_SIZE = 40;
-export const ITEM_WIDTH = Dimensions.screenWidth - Dimensions.screenWidth / 6;
+
+export const DOT_SIZE = 30;
+export const ITEM_WIDTH = Dimensions.screenWidth - Dimensions.screenWidth / 11;
 const style = StyleSheet.create({
   seeAllLabel: {
     fontSize: 12,
@@ -19,7 +19,7 @@ const style = StyleSheet.create({
   },
   // eslint-disable-next-line react-native/no-color-literals
   itemWrapper: {
-    width: Dimensions.screenWidth - Dimensions.screenWidth / 6,
+    width: Dimensions.screenWidth - Dimensions.screenWidth / 11,
     backgroundColor: '#D4ECFB',
     borderRadius: Dimensions.borderRadius3x,
     paddingHorizontal: Dimensions.space3x,
@@ -27,7 +27,7 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginHorizontal: Dimensions.space2x,
+    marginRight: Dimensions.space2x,
   },
   itemContent: {},
   title: {
@@ -89,6 +89,12 @@ const style = StyleSheet.create({
     left: '8%',
     backgroundColor: Colors.accent,
     zIndex: 1000,
+  },
+  loaderStyle: {
+    width: Dimensions.screenWidth - Dimensions.screenWidth / 11,
+    height: 120,
+    backgroundColor: Colors.skeleton,
+    borderRadius: Dimensions.borderRadius3x,
   },
 });
 

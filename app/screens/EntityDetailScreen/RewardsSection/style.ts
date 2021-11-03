@@ -17,8 +17,11 @@ const style = StyleSheet.create({
   },
   itemWrapper: {
     flexDirection: 'row',
-    marginBottom: Dimensions.space2x,
+    paddingBottom: Dimensions.space4x,
     alignItems: 'center',
+    marginBottom: Dimensions.space3x,
+    borderBottomWidth: 0.5,
+    borderBottomColor: Colors.primaryDark,
   },
   logoWrapper: {
     padding: Dimensions.space2x,
@@ -48,14 +51,13 @@ const style = StyleSheet.create({
   },
   progressBarWrapper: {
     marginTop: Dimensions.space3x,
-    width: '100%',
+    width: Dimensions.screenWidth - 120,
     height: 7,
     borderRadius: Dimensions.borderRadius2x,
     backgroundColor: Colors.accentLight,
     flexDirection: 'row',
   },
   activeProgress: {
-    width: '65%',
     height: 7,
     borderRadius: Dimensions.borderRadius2x,
     backgroundColor: Colors.accentDark,
@@ -63,7 +65,6 @@ const style = StyleSheet.create({
   progressValueWrapper: {
     position: 'absolute',
     top: -10,
-    left: '64%',
     padding: Dimensions.space1x,
     paddingHorizontal: Dimensions.space2x,
     borderRadius: Dimensions.borderRadius10x,
@@ -72,6 +73,13 @@ const style = StyleSheet.create({
   progressValue: {
     fontSize: 14,
     color: Colors.white,
+  },
+  loaderStyle: {
+    width: Dimensions.screenWidth - Dimensions.screenWidth / 11,
+    height: 80,
+    backgroundColor: Colors.skeleton,
+    borderRadius: Dimensions.borderRadius3x,
+    marginBottom: Dimensions.space4x,
   },
 });
 

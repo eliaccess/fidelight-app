@@ -10,19 +10,28 @@ import Icon from 'theme/Icon';
 
 import Image from 'theme/Image';
 import Text from 'theme/Text';
+import { EntityDetailItemTypes } from 'types/EntityItemTypes';
 import style from './style';
 
-function EntityHeader(_props) {
+type EntityHeaderProps = {
+  data: EntityDetailItemTypes;
+};
+
+function EntityHeader(props: EntityHeaderProps) {
   return (
     <View style={style.container}>
-      <Image title="coverImage" style={style.coverImage} resizeMode="cover" />
+      <Image
+        uri={props.data.backgroundPicture}
+        style={style.coverImage}
+        resizeMode="cover"
+      />
       <View style={style.favoriteIconWrapper}>
         <Icon name="heart" font="ionicons" style={style.favoriteIcon} />
       </View>
       <View style={style.content}>
         <View style={style.logoWrapper}>
           <Image
-            uri="https://ebenisteriealfredo.com/adminRev2018-B/images/newsImg/1479758183.jpg"
+            uri={props.data.logoUrl}
             style={style.logo}
             resizeMode="cover"
           />

@@ -9,15 +9,20 @@ import { View } from 'react-native';
 
 import Icon from 'theme/Icon';
 import Text from 'theme/Text';
+import { EntityDetailItemTypes } from 'types/EntityItemTypes';
 
 import style from './style';
 
-function EntityInfo(_props) {
+type EntityInfoProps = {
+  data: EntityDetailItemTypes;
+};
+
+function EntityInfo(props: EntityInfoProps) {
   return (
     <View style={style.infoContainer}>
-      <Text style={style.name}>Alfredo Positano coffee </Text>
+      <Text style={style.name}>{props.data.name} </Text>
       <View style={style.facilitiesWrapper}>
-        <Text style={style.facilityIem}>Coffee</Text>
+        <Text style={style.facilityIem}>{props.data.description}</Text>
       </View>
       {/* <View style={style.tagsWrapper}>
         <View style={style.rating}>
@@ -34,16 +39,18 @@ function EntityInfo(_props) {
         <View style={style.contactInfoItem}>
           <Icon name="map-pin" style={style.contactInfoIcon} />
           <Text style={style.contactInfoItemLabel}>
-            7 bis Rue de Boulainvilliers, 75016 Paris, France
+            {props.data.streetName}
           </Text>
         </View>
         <View style={style.contactInfoItem}>
           <Icon name="phone" style={style.contactInfoIcon} />
-          <Text style={style.contactInfoItemLabel}>+423432532672</Text>
+          <Text style={style.contactInfoItemLabel}> {props.data.phone}</Text>
         </View>
         <View style={style.contactInfoItem}>
           <Icon name="globe" style={style.contactInfoIcon} />
-          <Text style={style.contactInfoItemLabel}>www.katsui.com</Text>
+          <Text style={style.contactInfoItemLabel}>
+            {props.data.websiteUrl}
+          </Text>
         </View>
       </View>
     </View>

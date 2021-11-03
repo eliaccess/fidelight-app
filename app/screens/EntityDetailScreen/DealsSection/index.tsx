@@ -12,7 +12,10 @@ import Animated, {
   useSharedValue,
 } from 'react-native-reanimated';
 
-import { DEAL_LISTING } from 'router/routeNames';
+import { useEntityOffersRewards } from 'containers/EntityOffersRewards';
+import useStateHandler from 'hooks/useStateHandler';
+
+import { DEAL_DETAIL, DEAL_LISTING } from 'router/routeNames';
 import FormattedMessage from 'theme/FormattedMessage';
 import Image from 'theme/Image';
 import Section from 'theme/Section';
@@ -21,12 +24,25 @@ import TouchFeedback from 'theme/TouchFeedback';
 
 import messages from '../messages';
 import style from './style';
-import { deals } from './data';
+
 import Pagination from './Pagination';
+import DealsSectionLoader from './Loader';
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 
-function DealsSection(props) {
+type DealsSectionProps = {
+  entityId: number;
+  navigation: any;
+};
+function DealsSection(props: DealsSectionProps) {
+  const entityOffersRewards = useEntityOffersRewards({
+    entityId: props.entityId,
+  });
+
+  const showContent = useStateHandler({
+    state: entityOffersRewards,
+    stateIdentifier: 'data.offers.length',
+  });
   const scrollX = useRef(useSharedValue(0)).current;
 
   const scrollHandler = useAnimatedScrollHandler({
@@ -34,6 +50,15 @@ function DealsSection(props) {
       scrollX.value = event.contentOffset.x;
     },
   });
+
+  if (!showContent) {
+    return (
+      <DealsSectionLoader
+        heading={<FormattedMessage {...messages.weeksDealHeading} isFragment />}
+      />
+    );
+  }
+  const deals = entityOffersRewards.data?.offers;
 
   return (
     <Section
@@ -52,15 +77,20 @@ function DealsSection(props) {
           data={deals}
           decelerationRate="fast"
           renderItem={({ item }: any) => (
-            <TouchFeedback onPress={props.onPress} style={style.itemWrapper}>
+            <TouchFeedback
+              onPress={() => {
+                props.navigation.navigate(DEAL_DETAIL, {
+                  dealId: item.id,
+                });
+              }}
+              style={style.itemWrapper}
+            >
               <View style={style.ellipse} />
               <View style={style.innerEllipse} />
 
               <View style={style.itemContent}>
-                <Text style={style.title}>{item.title}</Text>
-                <Text style={style.shortDescription}>
-                  {item.shortDescription}
-                </Text>
+                <Text style={style.title}>{item.name}</Text>
+                <Text style={style.shortDescription}>{item.description}</Text>
               </View>
               <Image title="dealImage" style={style.dealImage} />
             </TouchFeedback>
@@ -70,7 +100,7 @@ function DealsSection(props) {
           horizontal
           onScroll={scrollHandler}
         />
-        <Pagination scrollX={scrollX} />
+        <Pagination length={deals ? deals.length : 3} scrollX={scrollX} />
       </>
     </Section>
   );

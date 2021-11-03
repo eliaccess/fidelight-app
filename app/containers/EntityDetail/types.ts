@@ -1,7 +1,7 @@
 import { EntityDetailItemTypes } from 'types/EntityItemTypes';
 
 export interface UseEntityDetailProps {
-  entityId: string;
+  entityId: number;
 }
 
 export interface EntityDetailProps extends UseEntityDetailProps {

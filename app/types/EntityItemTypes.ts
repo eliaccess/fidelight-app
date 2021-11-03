@@ -22,6 +22,7 @@ export interface EntityDetailItemTypes {
   city: string;
   country: string;
   isFavorite: boolean;
+  websiteUrl: string;
   schedule: {
     day: number;
     dayName: string;

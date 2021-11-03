@@ -12,7 +12,7 @@ export type RootStackParamList = {
   FavoriteEntities?: {};
   DealListing: {};
   EntityDetail: {
-    entityId: string;
+    entityId: number;
   };
   Support?: {};
   ChangePassword?: {};
