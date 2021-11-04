@@ -20,6 +20,7 @@ import saga from './saga';
 
 interface UserProfileReturn extends State {
   update: (...args: any[]) => any;
+  reset: () => void;
 }
 
 export function useUserProfile(
@@ -43,9 +44,11 @@ export function useUserProfile(
     (payload: UpdatePropsPayload) => dispatch(actions.update(payload)),
     [],
   );
+  const reset = () => dispatch(actions.reset());
   return {
     ...store,
     update,
+    reset,
   };
 }
 

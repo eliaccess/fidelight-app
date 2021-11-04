@@ -13,9 +13,7 @@ export async function fetch(): Promise<UserProfileAPIResponse | Error> {
     url: '/v1/user/profile/',
   });
 
-  return {
-    data: resp,
-  };
+  return resp;
 }
 
 export async function update(
@@ -24,13 +22,12 @@ export async function update(
   const body = {
     ...payload,
   };
+
   const resp = await service({
     method: 'GET',
     url: '/v1/user/profile/',
     body,
   });
 
-  return {
-    data: resp,
-  };
+  return resp;
 }

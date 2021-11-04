@@ -25,7 +25,7 @@ export const fetchSaga = function* fetch(_action: FetchProps) {
 export const updateSaga = function* update(action: UpdateProps) {
   try {
     yield call(api.update, action.payload);
-    yield put(actions.updateSuccess());
+    yield put(actions.updateSuccess({ ...action.payload }));
   } catch (error) {
     Warn(error);
     yield put(actions.updateFailure());

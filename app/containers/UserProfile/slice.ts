@@ -31,14 +31,20 @@ const slice = createSlice({
       state.updating = true;
       state.error = false;
     },
-    updateSuccess(state: State): void {
+    updateSuccess(state: State, action: PayloadAction<ResponsePayload>): void {
       state.updating = false;
       state.error = false;
       state.success = true;
+      state.data = action.payload.data;
     },
     updateFailure(state: State): void {
       state.updating = false;
       state.error = true;
+    },
+    reset(state: State): void {
+      state.updating = false;
+      state.error = false;
+      state.success = false;
     },
   },
 });

@@ -9,8 +9,12 @@ import { defineMessages } from 'react-intl';
 export const scope = 'app.screens.ProfileEditScreen.Form';
 
 export default defineMessages({
-  usernameLabel: {
-    id: `${scope}.usernameLabel`,
+  surnameLabel: {
+    id: `${scope}.surnameLabel`,
+    defaultMessage: 'Surname',
+  },
+  nameLabel: {
+    id: `${scope}.nameLabel`,
     defaultMessage: 'User Name',
   },
   emailLabel: {
@@ -21,8 +25,8 @@ export default defineMessages({
     id: `${scope}.phoneLabel`,
     defaultMessage: 'Phone',
   },
-  dobLabel: {
-    id: `${scope}.dobLabel`,
+  birthdateLabel: {
+    id: `${scope}.birthdateLabel`,
     defaultMessage: 'Date of Birth',
   },
   submitLabel: {

@@ -11,7 +11,7 @@ import { useUserProfile } from 'containers/UserProfile';
 
 import Screen from 'theme/Screen';
 import FormattedMessage from 'theme/FormattedMessage';
-import Image from 'theme/Image';
+// import Image from 'theme/Image';
 import Text from 'theme/Text';
 import Icon from 'theme/Icon';
 import TouchFeedback from 'theme/TouchFeedback';
@@ -31,30 +31,31 @@ function ProfileScreen(props: ProfileScreenProps) {
     <Screen
       testID="ProfileScreen"
       headerTitle={<FormattedMessage {...messages.title} isFragment />}
-      headerRight={
-        <TouchFeedback
-          onPress={() => {
-            props.navigation.navigate(PROFILE_EDIT);
-          }}
-        >
-          <Icon name="edit" style={style.editProfileIcon} />
-        </TouchFeedback>
-      }
     >
       <View style={style.container}>
         {userProfile.fetching ? (
           <UserInfoLoader numberOfItems={1} />
         ) : (
           <View style={style.userInfoSection}>
-            <Image
-              uri={userProfile.data.avatar}
-              style={style.avatar}
-              resizeMode="cover"
-            />
-            <View style={style.userInfo}>
-              <Text style={style.userName}>{userProfile.data.name}</Text>
-              <Text style={style.userPhone}>{userProfile.data.phone}</Text>
+            <View style={style.imageInfoWrapper}>
+              {/* <Image
+                uri={userProfile.data.avatar}
+                style={style.avatar}
+                resizeMode="cover"
+              /> */}
+              <View style={style.userInfo}>
+                <Text style={style.userName}>{userProfile.data.name}</Text>
+                <Text style={style.userPhone}>{userProfile.data.phone}</Text>
+              </View>
             </View>
+            <TouchFeedback
+              style={style.editProfileButtonWrapper}
+              onPress={() => {
+                props.navigation.navigate(PROFILE_EDIT);
+              }}
+            >
+              <Icon name="edit-3" style={style.editProfileIcon} />
+            </TouchFeedback>
           </View>
         )}
         <TouchFeedback

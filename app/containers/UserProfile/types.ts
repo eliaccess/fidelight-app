@@ -21,11 +21,11 @@ export interface FetchProps {
 
 export interface UserProfileAPIResponse {
   data: {
+    surname: string;
     name: string;
     phone: string;
     email: string;
     birthdate: string;
-    avatar: string;
   };
 }
 
@@ -36,11 +36,11 @@ export interface UpdateProps {
 
 export interface UpdatePropsPayload {
   data: {
-    name?: string;
-    phone?: string;
+    surname: string;
+    name: string;
+    phone: string;
     email: string;
-    birthdate?: string;
-    avatar?: string;
+    birthdate: string;
   };
 }
 

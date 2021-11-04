@@ -24,30 +24,35 @@ import messages from './messages';
 
 interface FormProps {
   onSubmit: (data: FormState) => void;
+  initialValues: FormState;
 }
 
 type FormState = {
-  username: string;
+  surname: string;
+  name: string;
   email: string;
   phone: string;
-  dob: string;
+  birthdate: string;
 };
 
 const schema = yup.object().shape({
-  username: yup.string().required('User Name is Required'),
-  email: email.required('Required'),
-  phone: yup.string().required('Required'),
-  dob: yup.string().required('Required'),
+  surname: yup.string().required('surname is required'),
+  name: yup.string().required('name is required'),
+  email: email.required('required'),
+  phone: yup.string().required('required'),
+  birthdate: yup.string().required('required'),
 });
 
-const initialValue = {
-  username: 'Michelle johnson',
-  email: 'Michellejohnson75@gmail.com',
-  phone: '+42 323236562',
-  dob: '12th Jan, 2020',
-};
+// const initialValue = {
+//   surname: 'Ahmed',
+//   name: 'Michelle johnson',
+//   email: 'Michellejohnson75@gmail.com',
+//   phone: '+42 323236562',
+//   dob: '12th Jan, 2020',
+// };
 
 const Form: React.FC<FormProps> = (props) => {
+  const nameFieldRef = useRef();
   const emailFieldRef = useRef();
   const phoneFieldRef = useRef();
   const dobFieldRef = useRef();
@@ -56,7 +61,7 @@ const Form: React.FC<FormProps> = (props) => {
   return (
     <Animatable.View style={style.container} animation="fadeIn">
       <Formik
-        initialValues={initialValue}
+        initialValues={props.initialValues}
         validationSchema={schema}
         onSubmit={props.onSubmit}
       >
@@ -83,9 +88,33 @@ const Form: React.FC<FormProps> = (props) => {
                 keyboardType="default"
                 returnKeyType="next"
                 autoCapitalize="none"
-                onChangeText={handleChange('username')}
-                onBlur={handleBlur('username')}
-                value={values.username}
+                onChangeText={handleChange('surname')}
+                onBlur={handleBlur('surname')}
+                value={values.surname}
+                onSubmitEditing={() => {
+                  // @ts-ignore
+                  if (nameFieldRef?.current?.focus) {
+                    // @ts-ignore
+                    nameFieldRef.current?.focus();
+                  }
+                }}
+                error={touched.surname ? errors.surname : null}
+                label={
+                  <FormattedMessage {...messages.surnameLabel} isFragment />
+                }
+              />
+            </View>
+            <View style={style.inputContainer}>
+              <Input
+                ref={nameFieldRef}
+                textContentType="name"
+                autoCompleteType="name"
+                keyboardType="default"
+                returnKeyType="next"
+                autoCapitalize="none"
+                onChangeText={handleChange('name')}
+                onBlur={handleBlur('name')}
+                value={values.name}
                 onSubmitEditing={() => {
                   // @ts-ignore
                   if (emailFieldRef?.current?.focus) {
@@ -93,10 +122,8 @@ const Form: React.FC<FormProps> = (props) => {
                     emailFieldRef.current?.focus();
                   }
                 }}
-                error={touched.username ? errors.username : null}
-                label={
-                  <FormattedMessage {...messages.usernameLabel} isFragment />
-                }
+                error={touched.name ? errors.name : null}
+                label={<FormattedMessage {...messages.nameLabel} isFragment />}
               />
             </View>
             <View style={style.inputContainer}>
@@ -151,9 +178,9 @@ const Form: React.FC<FormProps> = (props) => {
                 keyboardType="numbers-and-punctuation"
                 returnKeyType="next"
                 autoCapitalize="none"
-                onChangeText={handleChange('dob')}
-                onBlur={handleBlur('dob')}
-                value={values.dob}
+                onChangeText={handleChange('birthdate')}
+                onBlur={handleBlur('birthdate')}
+                value={values.birthdate}
                 onSubmitEditing={() => {
                   // @ts-ignore
                   if (passwordFieldRef?.current?.focus) {
@@ -161,8 +188,10 @@ const Form: React.FC<FormProps> = (props) => {
                     passwordFieldRef.current?.focus();
                   }
                 }}
-                error={touched.dob ? errors.dob : null}
-                label={<FormattedMessage {...messages.dobLabel} isFragment />}
+                error={touched.birthdate ? errors.birthdate : null}
+                label={
+                  <FormattedMessage {...messages.birthdateLabel} isFragment />
+                }
               />
             </View>
 

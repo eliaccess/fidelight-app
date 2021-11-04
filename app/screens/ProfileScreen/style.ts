@@ -8,7 +8,7 @@ import { StyleSheet } from 'react-native';
 
 import Colors from 'theme/Colors';
 import Dimensions from 'theme/Dimensions';
-// import elevation from 'theme/elevation';
+import elevation from 'theme/elevation';
 
 const style = StyleSheet.create({
   container: {
@@ -17,15 +17,17 @@ const style = StyleSheet.create({
     height: Dimensions.screenHeight,
     backgroundColor: Colors.bg1Color,
   },
-  editProfileIcon: {
-    fontSize: 22,
-    color: Colors.white,
-  },
+
   userInfoSection: {
     marginVertical: Dimensions.space2x,
     width: Dimensions.screenWidth,
     backgroundColor: Colors.white,
     padding: Dimensions.space3x,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  imageInfoWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
   },
@@ -46,6 +48,18 @@ const style = StyleSheet.create({
     fontSize: 14,
     color: Colors.textGrey,
     marginTop: Dimensions.space1x,
+  },
+  editProfileButtonWrapper: {
+    borderRadius: 25,
+    padding: Dimensions.space2x,
+    backgroundColor: Colors.white,
+    ...elevation(1),
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  editProfileIcon: {
+    fontSize: 22,
+    color: Colors.accent,
   },
   changePasswordWrapper: {
     marginVertical: Dimensions.space2x,
