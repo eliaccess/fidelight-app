@@ -19,6 +19,7 @@ export interface State {
   isAuthenticated: boolean;
   submitting: boolean;
   accountType: string;
+  message: string;
   user: {
     fetching: boolean;
     data?: IUser;
@@ -104,5 +105,9 @@ export interface FetchUserResponsePayload extends FetchUserAPIResponse {
 }
 
 export interface ErrorResponsePayload {
+  message: string;
+}
+
+export interface SignUpResponsePayload {
   message: string;
 }

@@ -57,7 +57,7 @@ export default {
   itunes: '#222',
   playStore: '#699e3f',
 
-  errorBackground: '#FF0000',
+  errorBackground: '#FF545A',
   errorForeground: '#FDFBFB',
 
   successBackground: '#006400',

@@ -13,8 +13,9 @@ import { Formik } from 'formik';
 import Button from 'theme/Button';
 import Input from 'theme/Input';
 import PasswordInput from 'theme/Input/PasswordInput';
-import FormattedMessage from 'theme/FormattedMessage';
+import FormattedMessage, { useFormattedMessage } from 'theme/FormattedMessage';
 import Radio from 'theme/Radio';
+import { useToastContext } from 'theme/Toast';
 
 import { email, password } from 'utils/validations';
 
@@ -59,13 +60,25 @@ const Form: React.FC<FormProps> = (props) => {
   const dobFieldRef = useRef();
   const passwordFieldRef = useRef();
   const [acceptPolicy, setAcceptPolicy] = useState(false);
-
+  const acceptPolicyMessage = useFormattedMessage(messages.acceptPolicyMessage);
+  const toast = useToastContext();
   return (
     <Animatable.View style={style.container} animation="fadeIn">
       <Formik
         initialValues={initialValue}
         validationSchema={schema}
-        onSubmit={props.onSubmit}
+        onSubmit={(values) => {
+          if (acceptPolicy) {
+            props.onSubmit(values);
+            return;
+          }
+          toast?.show({
+            message: acceptPolicyMessage,
+            delay: 3000,
+            // @ts-ignore
+            type: 'error',
+          });
+        }}
       >
         {({
           handleChange,

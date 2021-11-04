@@ -1,7 +1,3 @@
-import {
-  useToastContext,
-  ToastProvider,
-  ToastProps,
-} from '@asaeed14/react-native-toast';
-
-export { useToastContext, ToastProvider, ToastProps };
+import { ToastProvider, useToastContext } from 'components/Toast/ToastContext';
+import { IToastShow } from 'components/Toast/types';
+export { ToastProvider, useToastContext, IToastShow as ToastProps };

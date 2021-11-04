@@ -15,6 +15,7 @@ import {
   FetchUserAPIResponse,
   LoginActionPayload,
   SignUpActionPayload,
+  SignUpResponsePayload,
   UpdateUserInfoActionPayload,
   UpdateUserInfoAPIResponse,
 } from './types';
@@ -48,7 +49,7 @@ export async function fetchUserDetails(): Promise<
   FetchUserAPIResponse | Error
 > {
   const resp = await service({
-    method: 'POST',
+    method: 'GET',
     url: '/v1/user/profile/',
     parseError: true,
   });
@@ -79,7 +80,7 @@ export function updateUserInfo(
 
 export async function signUp(
   payload: SignUpActionPayload,
-): Promise<boolean | Error> {
+): Promise<SignUpResponsePayload | Error> {
   const body = {
     surname: payload.data.surname,
     name: payload.data.name,
@@ -100,8 +101,9 @@ export async function signUp(
     setAuthenticationTokens({
       accessToken: resp.data.accessToken,
       refreshToken: resp.data.refreshToken,
+      qrCode: resp.data.qrCode,
     });
-    return true;
+    return { message: resp.msg };
   }
   throw Error(resp?.msg);
 }
@@ -143,6 +145,7 @@ export async function login(
     setAuthenticationTokens({
       accessToken: resp.data.accessToken,
       refreshToken: resp.data.refreshToken,
+      qrCode: resp.data.qrCode,
     });
     return true;
   }

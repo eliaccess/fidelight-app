@@ -14,6 +14,7 @@ import {
   FetchUserAPIResponse,
   UpdateUserInfoActionProp,
   SignUpActionProps,
+  SignUpResponsePayload,
 } from './types';
 import { actions } from './slice';
 import * as api from './api';
@@ -65,16 +66,16 @@ export const loginSaga = function* login(action: LoginActionProps) {
 
 export const signUpSaga = function* signUp(action: SignUpActionProps) {
   try {
-    const data: boolean = yield call(api.signUp, action.payload);
-    if (data) {
-      yield put(actions.signUpSuccess());
+    const resp: SignUpResponsePayload = yield call(api.signUp, action.payload);
+    if (resp) {
+      yield put(actions.signUpSuccess({ ...resp }));
       yield put(actions.fetchUser());
     }
   } catch (error: any) {
     Warn(error);
     yield put(
       actions.signUpFailure({
-        message: error?.error?.msg || error.message,
+        message: error?.error?.msg,
       }),
     );
   }
@@ -85,6 +86,7 @@ export const fetchUserSaga = function* fetchUser() {
     const localData: FetchUserAPIResponse = yield call(
       api.fetchLocalUserDetails,
     );
+
     if (localData) {
       yield put(
         actions.fetchLocalUserSuccess({
@@ -93,6 +95,7 @@ export const fetchUserSaga = function* fetchUser() {
       );
     }
     const data: FetchUserAPIResponse = yield call(api.fetchUserDetails);
+
     yield call(api.setLocalUserDetails, data);
     onSignIn(data.data);
     yield put(

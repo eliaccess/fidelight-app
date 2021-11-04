@@ -41,4 +41,8 @@ export default defineMessages({
     id: `${scope}.submitLabel`,
     defaultMessage: 'Sign up',
   },
+  acceptPolicyMessage: {
+    id: `${scope}.acceptPolicyMessage`,
+    defaultMessage: 'Please accept the policy and terms.',
+  },
 });

@@ -8,6 +8,7 @@ import {
   UpdateUserInfoResponsePayload,
   SignUpActionPayload,
   ErrorResponsePayload,
+  SignUpResponsePayload,
 } from './types';
 export const initialState = {
   fetchingLocalToken: false,
@@ -17,6 +18,7 @@ export const initialState = {
   isAuthenticated: false,
   submitting: false,
   accountType: '',
+  message: '',
   user: {
     fetching: false,
     data: undefined,
@@ -64,9 +66,13 @@ const slice = createSlice({
     signUp(state: State, _action: PayloadAction<SignUpActionPayload>): void {
       state.submitting = true;
     },
-    signUpSuccess(state: State): void {
+    signUpSuccess(
+      state: State,
+      action: PayloadAction<SignUpResponsePayload>,
+    ): void {
       state.submitting = false;
       state.isAuthenticated = true;
+      state.message = action.payload.message;
     },
     signUpFailure(
       state: State,
@@ -102,7 +108,6 @@ const slice = createSlice({
       state.user.fetching = false;
       state.user.error = action.payload.error?.message;
     },
-
     updateUserInfo(
       state: State,
       _action: PayloadAction<UpdateUserInfoActionPayload>,

@@ -13,13 +13,16 @@ const defaultHeaders: {
 export function setAuthenticationTokens({
   accessToken,
   refreshToken,
+  qrCode,
 }: {
   accessToken: string;
   refreshToken: string;
+  qrCode: string;
 }) {
   if (accessToken && refreshToken) {
     LocalStorage.setItem(configs.AUTH_ACCESS_TOKEN_KEY, accessToken);
     LocalStorage.setItem(configs.AUTH_REFRESH_TOKEN_KEY, refreshToken);
+    LocalStorage.setItem(configs.AUTH_QR_CODE_KEY, qrCode);
     setAuthenticationHeader({ token: accessToken });
   }
 }
@@ -27,6 +30,7 @@ export function setAuthenticationTokens({
 export function removeAuthenticationTokens() {
   LocalStorage.removeItem(configs.AUTH_ACCESS_TOKEN_KEY);
   LocalStorage.removeItem(configs.AUTH_REFRESH_TOKEN_KEY);
+  LocalStorage.removeItem(configs.AUTH_QR_CODE_KEY);
   LocalStorage.removeItem(configs.USER_DETAIL_KEY);
   removeAuthenticationHeader();
 }
@@ -54,8 +58,9 @@ export async function updateToken() {
   const refreshToken = await LocalStorage.getItem(
     configs.AUTH_REFRESH_TOKEN_KEY,
   );
+  const qrCode = await LocalStorage.getItem(configs.AUTH_QR_CODE_KEY);
   const body = {
-    refresh_token: refreshToken,
+    refreshToken,
   };
   const props = {
     method: 'POST',
@@ -67,7 +72,11 @@ export async function updateToken() {
   if (resp.status >= 400) {
     const data = await resp.json();
     if (data.access_token) {
-      setAuthenticationTokens({ accessToken: data.access_token, refreshToken });
+      setAuthenticationTokens({
+        accessToken: data.access_token,
+        refreshToken,
+        qrCode,
+      });
     }
     return true;
   }

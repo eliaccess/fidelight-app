@@ -39,7 +39,7 @@ function LoginScreen(props: LoginScreenProps) {
   const heading = useFormattedMessage(messages.headingLabel);
 
   useEffect(() => {
-    if (authentication.user.data?.id) {
+    if (authentication.user.data?.name) {
       toast?.show({
         message: loginSuccessMessage,
         delay: 3000,

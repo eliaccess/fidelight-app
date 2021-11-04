@@ -11,6 +11,7 @@ const configs = {
   // API_DOMAIN: 'https://api.fidelight.fr',
   AUTH_ACCESS_TOKEN_KEY: 'AuthAccessToken',
   AUTH_REFRESH_TOKEN_KEY: 'AuthRefreshToken',
+  AUTH_QR_CODE_KEY: 'AuthQRCode',
   USER_DETAIL_KEY: 'Fidelight/UserDetails',
   FACEBOOK_PERMISSIONS: ['email', 'public_profile'],
   GOOGLE_WEB_CLIENT_ID:

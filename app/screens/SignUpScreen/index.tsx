@@ -15,6 +15,8 @@ import SocialLogin from 'theme/SocialLogin';
 import ScreenHeading from 'theme/ScreenHeading';
 import Separator from 'theme/Separator';
 import FullScreenLoader from 'theme/FullScreenLoader';
+import { useToastContext } from 'theme/Toast';
+
 import { BUSINESS_HOME, HOME, LOGIN } from 'router/routeNames';
 
 import EmailPasswordForm from './Form';
@@ -25,6 +27,7 @@ import { SignUpScreenProps } from './types';
 function SignUpScreen(props: SignUpScreenProps) {
   const [showLoader, setShowLoader] = useState(false);
   const authentication = useAuthentication();
+  const toast = useToastContext();
 
   useEffect(() => {
     authentication.reset();
@@ -34,9 +37,14 @@ function SignUpScreen(props: SignUpScreenProps) {
 
   useEffect(() => {
     const { user } = authentication;
-    if (!user.data?.id) {
+    if (!user.data?.name) {
       return;
     }
+    toast?.show({
+      message: authentication.message,
+      delay: 3000,
+      type: 'success',
+    });
 
     props.navigation.reset({
       index: 0,
@@ -47,12 +55,19 @@ function SignUpScreen(props: SignUpScreenProps) {
         },
       ],
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.navigation, authentication]);
 
   useEffect(() => {
     if (authentication.error) {
+      toast?.show({
+        message: authentication.message,
+        delay: 3000,
+        type: 'error',
+      });
       setShowLoader(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [authentication.error]);
 
   const heading = useFormattedMessage(messages.headingLabel);
