@@ -49,6 +49,7 @@ function FavoriteEntitiesScreen(props: FavoriteEntitiesScreenProps) {
                 }}
                 onWishListPress={() => {}}
                 isFavorite={true}
+                showWishList={true}
               />
             ))}
           </Animatable.View>

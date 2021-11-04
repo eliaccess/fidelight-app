@@ -25,9 +25,6 @@ function EntityHeader(props: EntityHeaderProps) {
         style={style.coverImage}
         resizeMode="cover"
       />
-      <View style={style.favoriteIconWrapper}>
-        <Icon name="heart" font="ionicons" style={style.favoriteIcon} />
-      </View>
       <View style={style.content}>
         <View style={style.logoWrapper}>
           <Image
@@ -38,7 +35,7 @@ function EntityHeader(props: EntityHeaderProps) {
         </View>
         <View style={style.userPointsWrapper}>
           <Icon name="star" style={style.pointIcon} />
-          <Text style={style.pointsLabel}> 9 Points</Text>
+          <Text style={style.pointsLabel}>{props.data.userPoints} Points</Text>
         </View>
       </View>
     </View>

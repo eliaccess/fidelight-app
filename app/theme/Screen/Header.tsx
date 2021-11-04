@@ -37,25 +37,25 @@ const Header: React.FC<HeaderProps> = (props) => {
     };
   });
 
-  const headerAnimation = useAnimatedStyle(() => {
-    const backgroundColor = interpolateColor(
-      props.visibleValue.value,
-      [0, 1],
-      [Colors.transparent, Colors.white],
-    );
-    const borderBottomColor = interpolateColor(
-      props.visibleValue.value,
-      [0, 1],
-      [Colors.transparent, Colors.white],
-    );
-    return {
-      backgroundColor,
-      borderBottomColor,
-    };
-  });
+  // const headerAnimation = useAnimatedStyle(() => {
+  //   const backgroundColor = interpolateColor(
+  //     props.visibleValue.value,
+  //     [0, 1],
+  //     [Colors.transparent, Colors.white],
+  //   );
+  //   const borderBottomColor = interpolateColor(
+  //     props.visibleValue.value,
+  //     [0, 1],
+  //     [Colors.transparent, Colors.white],
+  //   );
+  //   return {
+  //     backgroundColor,
+  //     borderBottomColor,
+  //   };
+  // });
 
   return (
-    <Animated.View style={[style.header, headerAnimation]} key="header">
+    <Animated.View style={[style.header]} key="header">
       {props.title ? (
         <LinearGradient {...buttonGradientProps()} style={style.backdrop} />
       ) : null}

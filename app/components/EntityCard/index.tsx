@@ -22,6 +22,7 @@ interface EntityCardProps {
   onPress: (...args: any[]) => any;
   onWishListPress: (...args: any) => any;
   isFavorite: boolean;
+  showWishList?: boolean;
 }
 
 function EntityCard({
@@ -29,6 +30,7 @@ function EntityCard({
   onPress,
   onWishListPress,
   isFavorite,
+  showWishList = false,
 }: EntityCardProps) {
   const style = useGetStyles();
 
@@ -52,7 +54,9 @@ function EntityCard({
               <Text style={style.distance}>{item.distance}</Text>
             </View> */}
       </View>
-      <WishlistButton active={isFavorite} onPress={onWishListPress} />
+      {showWishList ? (
+        <WishlistButton active={isFavorite} onPress={onWishListPress} />
+      ) : null}
     </TouchFeedback>
   );
 }

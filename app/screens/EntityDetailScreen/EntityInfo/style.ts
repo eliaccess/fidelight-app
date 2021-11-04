@@ -8,6 +8,7 @@ import { StyleSheet } from 'react-native';
 
 import Colors from 'theme/Colors';
 import Dimensions from 'theme/Dimensions';
+import elevation from 'theme/elevation';
 // import elevation from 'theme/elevation';
 
 const style = StyleSheet.create({
@@ -15,6 +16,23 @@ const style = StyleSheet.create({
     paddingTop: Dimensions.space6x,
     padding: Dimensions.space2x,
     backgroundColor: Colors.white,
+  },
+  entityInfoWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  favoriteIconWrapper: {
+    backgroundColor: Colors.white,
+    padding: Dimensions.space1x,
+    borderRadius: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
+    ...elevation(2),
+  },
+  favoriteIcon: {
+    fontSize: 22,
+    color: Colors.errorBackground,
   },
   name: {
     fontSize: 22,

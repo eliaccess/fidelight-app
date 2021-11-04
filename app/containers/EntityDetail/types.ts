@@ -18,6 +18,17 @@ export interface State {
   [key: string]: StateItem;
 }
 
+export interface ToggleFavoriteProps {
+  type: string;
+  payload: ToggleFavoriteActionPayload;
+}
+
+export interface ToggleFavoriteActionPayload {
+  key: string;
+  entityId: number;
+  isFavorite: boolean;
+}
+
 export interface FetchProps {
   type: string;
   payload: FetchPropsPayload;

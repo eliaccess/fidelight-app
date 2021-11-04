@@ -39,7 +39,14 @@ function EntityDetailScreen(props: EntityDetailScreenProps) {
         ) : (
           <>
             <EntityHeader data={entityDetail.data} />
-            <EntityInfo data={entityDetail.data} />
+            <EntityInfo
+              data={entityDetail.data}
+              onWishListPress={() => {
+                entityDetail.toggleFavorite({
+                  isFavorite: entityDetail?.data?.isFavorite || false,
+                });
+              }}
+            />
             <EntityTimings data={entityDetail.data} />
           </>
         )}

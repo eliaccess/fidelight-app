@@ -20,23 +20,7 @@ const style = StyleSheet.create({
     height: 230,
     backgroundColor: Colors.accent,
   },
-  favoriteIconWrapper: {
-    position: 'absolute',
-    top: '22%',
-    right: '2%',
-    backgroundColor: Colors.white,
-    padding: Dimensions.space1x,
-    borderRadius: 30,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderColor: Colors.accentDark,
-    borderWidth: 0.5,
-    ...elevation(2),
-  },
-  favoriteIcon: {
-    fontSize: 22,
-    color: Colors.errorBackground,
-  },
+
   content: {
     position: 'absolute',
     bottom: '-17%',
