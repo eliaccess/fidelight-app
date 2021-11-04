@@ -58,7 +58,7 @@ function TransactionSection(_props) {
               <Text style={style.title}>{item.companyName}</Text>
               <Text style={style.date}>{item.date}</Text>
             </View>
-            <Text style={style.points}>120 Points</Text>
+            <Text style={style.points}>{item.value} Points</Text>
           </View>
         ))}
       </Section>

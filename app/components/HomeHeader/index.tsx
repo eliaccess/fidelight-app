@@ -37,7 +37,7 @@ function HomeHeader(props: HomeHeader) {
         </TouchFeedback>
         <Image title="thumbLogo" style={style.logo} />
         <TouchFeedback onPress={props.onProfilePress} style={style.avatar}>
-          <Image title="avatar" style={style.avatarImage} resizeMode="cover" />
+          <Icon name="user" style={style.avatarIcon} />
         </TouchFeedback>
       </View>
       <View style={style.searchBarWrapper}>

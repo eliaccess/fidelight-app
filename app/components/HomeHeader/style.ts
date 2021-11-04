@@ -52,17 +52,18 @@ export const useGetStyles = () => {
       height: 'auto',
     },
     avatar: {
+      width: 45,
+      height: 45,
       backgroundColor: Colors.white,
       padding: Dimensions.space1x - 3,
       alignItems: 'center',
       justifyContent: 'center',
-      borderRadius: 30,
+      borderRadius: 25,
       ...elevation(2),
     },
-    avatarImage: {
-      width: 40,
-      height: 40,
-      borderRadius: 30,
+    avatarIcon: {
+      fontSize: 22,
+      color: Colors.accentDark,
     },
     searchBarWrapper: {
       position: 'absolute',

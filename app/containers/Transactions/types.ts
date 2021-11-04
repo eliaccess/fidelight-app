@@ -19,10 +19,12 @@ export interface FetchProps {
 
 export interface TransactionsAPIResponse {
   data?: {
-    transaction: number;
+    id: number;
     companyId: number;
     companyName: string;
-    discount: number;
+    companyLogoLink: string;
+    discountId: number;
+    discountName: string;
     value: number;
     date: string;
   }[];
