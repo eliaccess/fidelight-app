@@ -24,13 +24,13 @@ interface FormProps {
 }
 
 type FormState = {
-  oldPassword: string;
+  currentPassword: string;
   newPassword: string;
   confirmPassword: string;
 };
 
 const schema = yup.object().shape({
-  oldPassword: password.required('Required'),
+  currentPassword: password.required('Required'),
   newPassword: password.required('Required'),
   confirmPassword: password.oneOf(
     [yup.ref('newPassword')],
@@ -39,7 +39,7 @@ const schema = yup.object().shape({
 });
 
 const initialValue = {
-  oldPassword: '',
+  currentPassword: '',
   newPassword: '',
   confirmPassword: '',
 };
@@ -67,9 +67,9 @@ const Form: React.FC<FormProps> = (props) => {
           <>
             <View style={style.inputContainer}>
               <PasswordInput
-                onChangeText={handleChange('oldPassword')}
-                onBlur={handleBlur('oldPassword')}
-                value={values.oldPassword}
+                onChangeText={handleChange('currentPassword')}
+                onBlur={handleBlur('currentPassword')}
+                value={values.currentPassword}
                 returnKeyType="next"
                 onSubmitEditing={() => {
                   // @ts-ignore
@@ -78,9 +78,12 @@ const Form: React.FC<FormProps> = (props) => {
                     newPasswordFieldRef.current?.focus();
                   }
                 }}
-                error={touched.oldPassword ? errors.oldPassword : null}
+                error={touched.currentPassword ? errors.currentPassword : null}
                 label={
-                  <FormattedMessage {...messages.oldPasswordLabel} isFragment />
+                  <FormattedMessage
+                    {...messages.currentPasswordLabel}
+                    isFragment
+                  />
                 }
               />
             </View>

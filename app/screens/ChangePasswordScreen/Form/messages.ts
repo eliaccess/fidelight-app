@@ -13,9 +13,9 @@ export default defineMessages({
     id: `${scope}.usernameLabel`,
     defaultMessage: 'User Name',
   },
-  oldPasswordLabel: {
-    id: `${scope}.oldPasswordLabel`,
-    defaultMessage: 'Old Password',
+  currentPasswordLabel: {
+    id: `${scope}.currentPasswordLabel`,
+    defaultMessage: 'Current Password',
   },
   newPasswordLabel: {
     id: `${scope}.newPasswordLabel`,
