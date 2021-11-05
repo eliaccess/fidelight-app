@@ -47,10 +47,6 @@ export const useGetStyles = () => {
       fontSize: 22,
       color: Colors.accentDark,
     },
-    logo: {
-      width: 30,
-      height: 'auto',
-    },
     avatar: {
       width: 45,
       height: 45,
@@ -89,6 +85,20 @@ export const useGetStyles = () => {
     animation: {
       width: 300,
       height: 300,
+    },
+    cityNameWrapper: {
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
+    cityName: {
+      fontSize: 16,
+      color: Colors.white,
+      marginRight: Dimensions.space1x,
+      fontWeight: 'bold',
+    },
+    updateCityIcon: {
+      fontSize: 22,
+      color: Colors.white,
     },
   });
 

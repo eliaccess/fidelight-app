@@ -53,6 +53,7 @@ function SplashScreen({ navigation }: SplashProps) {
       });
       return;
     }
+
     if (authentication.isAuthenticated) {
       if (
         userLocation?.data?.cityName ||

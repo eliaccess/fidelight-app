@@ -13,8 +13,8 @@ const style = StyleSheet.create({
   },
   inputHolder: {
     alignItems: 'center',
+    position: 'relative',
     width: '100%',
-    backgroundColor: Colors.white,
   },
   input: {
     marginHorizontal: Dimensions.space2x,

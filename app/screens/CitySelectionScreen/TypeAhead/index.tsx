@@ -43,7 +43,7 @@ const CitiesTypeAhead: React.FC<{
           autoCapitalize="words"
           keyboardType="default"
           clearButtonMode="always"
-          // style={style.input}
+          autoFocus
         />
       </View>
       {query && query === citiesSearch.query ? (

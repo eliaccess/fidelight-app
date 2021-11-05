@@ -7,7 +7,7 @@ import HomeHeader from 'components/HomeHeader';
 import ExploreScreen from 'screens/ExploreScreen/Loadable';
 import FavoriteEntitiesScreen from 'screens/FavoriteEntitiesScreen/Loadable';
 import CommingSoonScreen from 'screens/CommingSoonScreen/Loadable';
-import { COMMING_SOON, PROFILE } from 'router/routeNames';
+import { CITY_SELECTION, COMMING_SOON, PROFILE } from 'router/routeNames';
 
 import TabBarButton from './TabBarButton';
 import { initialLayout, useGetStyles } from './style';
@@ -79,6 +79,9 @@ function HomeTabView(props) {
           props.navigation.navigate(PROFILE);
         }}
         onPressDrawer={props.onPressDrawer}
+        onCityPress={() => {
+          props.navigation.navigate(CITY_SELECTION);
+        }}
       />
       <TabView
         lazy

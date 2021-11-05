@@ -8,6 +8,7 @@ import React, { useEffect } from 'react';
 import { shallowEqual, useSelector, useDispatch } from 'react-redux';
 import { useInjectReducer, useInjectSaga } from 'redux-injectors';
 
+import { useUserLocation } from 'containers/UserLocation';
 import {
   AuthenticationProps,
   State,
@@ -23,7 +24,7 @@ import saga from './saga';
 export function useAuthentication(): UseAuthenticationReturn {
   useInjectReducer({ key: STORE_KEY, reducer });
   useInjectSaga({ key: STORE_KEY, saga });
-
+  useUserLocation();
   const dispatch = useDispatch();
   const store: State = useSelector(makeSelectAuthentication(), shallowEqual);
 

@@ -15,7 +15,7 @@ import Text from 'theme/Text';
 import FormattedMessage from 'theme/FormattedMessage';
 import Modal from 'theme/Modal';
 import Icon from 'theme/Icon';
-import { PREFERENCE, SUPPORT } from 'router/routeNames';
+import { ACCOUNT_SELECTION, PREFERENCE, SUPPORT } from 'router/routeNames';
 import { buttonGradientProps } from 'theme/utils';
 
 import style from './style';
@@ -74,6 +74,15 @@ function HomeScreen(props: HomeScreenProps) {
         <TouchFeedback
           onPress={() => {
             authentication.logout();
+            props.navigation.reset({
+              index: 0,
+              routes: [
+                {
+                  name: ACCOUNT_SELECTION,
+                  params: {},
+                },
+              ],
+            });
           }}
           style={style.authButtonHolder}
         >

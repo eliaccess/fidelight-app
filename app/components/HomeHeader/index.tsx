@@ -4,13 +4,15 @@
  *
  */
 
+import { useUserLocation } from 'containers/UserLocation';
 import React from 'react';
 import { View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
 import FormattedMessage from 'theme/FormattedMessage';
 import Icon from 'theme/Icon';
-import Image from 'theme/Image';
+
+import Text from 'theme/Text';
 import TouchFeedback from 'theme/TouchFeedback';
 import { buttonGradientProps } from 'theme/utils';
 
@@ -21,10 +23,12 @@ type HomeHeader = {
   title?: string;
   onPressDrawer: (...arg: any) => any;
   onProfilePress: () => void;
+  onCityPress: () => void;
 };
 
 function HomeHeader(props: HomeHeader) {
   const style = useGetStyles();
+  const userLocation = useUserLocation();
   return (
     <View style={style.container}>
       <LinearGradient {...buttonGradientProps()} style={style.backdrop} />
@@ -35,7 +39,13 @@ function HomeHeader(props: HomeHeader) {
         >
           <Icon name="menu" style={style.menuIcon} />
         </TouchFeedback>
-        <Image title="thumbLogo" style={style.logo} />
+        <TouchFeedback
+          onPress={props.onCityPress}
+          style={style.cityNameWrapper}
+        >
+          <Text style={style.cityName}>{userLocation.data.cityName}</Text>
+          <Icon name="chevron-down" style={style.updateCityIcon} />
+        </TouchFeedback>
         <TouchFeedback onPress={props.onProfilePress} style={style.avatar}>
           <Icon name="user" style={style.avatarIcon} />
         </TouchFeedback>
