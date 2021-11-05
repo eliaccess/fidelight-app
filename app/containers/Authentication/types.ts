@@ -14,7 +14,7 @@ export interface AuthenticationProps extends UseAuthenticationProps {
 export interface State {
   fetchingLocalToken: boolean;
   fetchingRemoteToken: boolean;
-  error?: string;
+  error?: boolean | string;
   localChecked: boolean;
   isAuthenticated: boolean;
   submitting: boolean;
@@ -66,7 +66,6 @@ export interface LoginActionPayload {
   medium?: 'platform-web' | 'platform-android' | 'platform-ios';
   providerUuid?: string;
   data: {
-    name?: string;
     email: string;
     password?: string;
   };
@@ -109,5 +108,9 @@ export interface ErrorResponsePayload {
 }
 
 export interface SignUpResponsePayload {
+  message: string;
+}
+
+export interface LoginResponsePayload {
   message: string;
 }

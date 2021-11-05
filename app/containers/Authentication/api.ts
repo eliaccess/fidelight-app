@@ -14,6 +14,7 @@ import service, {
 import {
   FetchUserAPIResponse,
   LoginActionPayload,
+  LoginResponsePayload,
   SignUpActionPayload,
   SignUpResponsePayload,
   UpdateUserInfoActionPayload,
@@ -97,7 +98,7 @@ export async function signUp(
     noAuth: true,
     parseError: true,
   });
-  if (resp?.data.id) {
+  if (resp?.data?.id) {
     setAuthenticationTokens({
       accessToken: resp.data.accessToken,
       refreshToken: resp.data.refreshToken,
@@ -110,46 +111,46 @@ export async function signUp(
 
 export async function login(
   payload: LoginActionPayload,
-): Promise<boolean | Error> {
+): Promise<LoginResponsePayload | Error> {
   let resp: any = null;
   if (payload?.provider === 'local') {
     const body = {
       email: payload.data.email,
       password: payload.data.password,
-      // medium: payload.medium,
     };
     resp = await service({
       method: 'POST',
-      url: '/v1/auth/local',
+      url: '/v1/user/login/',
       body,
       noAuth: true,
       parseError: true,
     });
-  } else {
-    const body = {
-      email: payload.data.email,
-      name: payload.data.name,
-      provider: payload.provider,
-      providerUuid: payload.providerUuid,
-      medium: payload.medium,
-    };
-
-    resp = await service({
-      method: 'POST',
-      url: '/v1/auth/social',
-      body,
-      noAuth: true,
-    });
   }
+  // else {
+  //   const body = {
+  //     email: payload.data.email,
+  //     name: payload.data.name,
+  //     provider: payload.provider,
+  //     providerUuid: payload.providerUuid,
+  //     medium: payload.medium,
+  //   };
+
+  //   resp = await service({
+  //     method: 'POST',
+  //     url: '/v1/auth/social',
+  //     body,
+  //     noAuth: true,
+  //   });
+  // }
   if (resp?.data?.id) {
     setAuthenticationTokens({
       accessToken: resp.data.accessToken,
       refreshToken: resp.data.refreshToken,
       qrCode: resp.data.qrCode,
     });
-    return true;
+    return { message: resp.msg };
   }
-  throw Error(resp?.msg || 'Something went wrong');
+  throw Error(resp?.msg);
 }
 
 export function logout() {

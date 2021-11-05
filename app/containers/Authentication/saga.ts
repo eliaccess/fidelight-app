@@ -15,6 +15,7 @@ import {
   UpdateUserInfoActionProp,
   SignUpActionProps,
   SignUpResponsePayload,
+  LoginResponsePayload,
 } from './types';
 import { actions } from './slice';
 import * as api from './api';
@@ -49,16 +50,16 @@ export const getAccountTypeSaga = function* getAccountType() {
 
 export const loginSaga = function* login(action: LoginActionProps) {
   try {
-    const data: boolean = yield call(api.login, action.payload);
-    if (data) {
-      yield put(actions.loginSuccess());
+    const resp: LoginResponsePayload = yield call(api.login, action.payload);
+    if (resp) {
+      yield put(actions.loginSuccess({ ...resp }));
       yield put(actions.fetchUser());
       yield put(actions.getAccountType());
     }
   } catch (error: any) {
     yield put(
       actions.loginFailure({
-        message: error?.error?.msg || 'Something went wrong',
+        message: error.message,
       }),
     );
   }
@@ -75,7 +76,7 @@ export const signUpSaga = function* signUp(action: SignUpActionProps) {
     Warn(error);
     yield put(
       actions.signUpFailure({
-        message: error?.error?.msg,
+        message: error.message,
       }),
     );
   }

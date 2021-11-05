@@ -33,31 +33,47 @@ import { LoginScreenProps } from './types';
 function LoginScreen(props: LoginScreenProps) {
   const [showLoader, setShowLoader] = useState(false);
   const toast = useToastContext();
-  const loginSuccessMessage = useFormattedMessage(messages.loginSuccessMessage);
 
   const authentication = useAuthentication();
   const heading = useFormattedMessage(messages.headingLabel);
 
   useEffect(() => {
-    if (authentication.user.data?.name) {
-      toast?.show({
-        message: loginSuccessMessage,
-        delay: 3000,
-        type: 'success',
-      });
-      props.navigation.reset({
-        index: 0,
-        routes: [
-          {
-            name:
-              authentication.accountType === 'business' ? BUSINESS_HOME : HOME,
-          },
-        ],
-      });
+    const { user } = authentication;
+    if (!user.data?.name) {
+      return;
     }
-  }, [authentication.user.data?.id, props.navigation]);
+    toast?.show({
+      message: authentication.message,
+      delay: 3000,
+      type: 'success',
+    });
 
-  useEffect(() => authentication.reset, []);
+    props.navigation.reset({
+      index: 0,
+      routes: [
+        {
+          name:
+            authentication.accountType === 'business' ? BUSINESS_HOME : HOME,
+        },
+      ],
+    });
+  }, [authentication]);
+
+  useEffect(() => {
+    if (authentication.error) {
+      toast?.show({
+        message: authentication.message,
+        delay: 3000,
+        type: 'error',
+      });
+      setShowLoader(false);
+    }
+  }, [authentication.error]);
+
+  useEffect(() => {
+    authentication.reset();
+    return authentication.reset;
+  }, []);
 
   return (
     <>

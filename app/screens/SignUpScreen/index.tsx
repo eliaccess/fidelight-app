@@ -56,7 +56,7 @@ function SignUpScreen(props: SignUpScreenProps) {
       ],
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.navigation, authentication]);
+  }, [authentication]);
 
   useEffect(() => {
     if (authentication.error) {

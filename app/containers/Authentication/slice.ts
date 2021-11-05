@@ -9,6 +9,7 @@ import {
   SignUpActionPayload,
   ErrorResponsePayload,
   SignUpResponsePayload,
+  LoginResponsePayload,
 } from './types';
 export const initialState = {
   fetchingLocalToken: false,
@@ -50,9 +51,13 @@ const slice = createSlice({
       state.fetchingRemoteToken = true;
       state.error = undefined;
     },
-    loginSuccess(state: State): void {
+    loginSuccess(
+      state: State,
+      action: PayloadAction<LoginResponsePayload>,
+    ): void {
       state.fetchingRemoteToken = false;
       state.isAuthenticated = true;
+      state.message = action.payload.message;
     },
     loginFailure(
       state: State,
@@ -60,7 +65,8 @@ const slice = createSlice({
     ): void {
       state.fetchingRemoteToken = false;
       state.isAuthenticated = false;
-      state.error = action.payload.message;
+      state.message = action.payload.message;
+      state.error = true;
     },
 
     signUp(state: State, _action: PayloadAction<SignUpActionPayload>): void {
@@ -80,7 +86,8 @@ const slice = createSlice({
     ): void {
       state.submitting = false;
       state.isAuthenticated = false;
-      state.error = action.payload.message;
+      state.message = action.payload.message;
+      state.error = true;
     },
 
     fetchUser(state: State): void {

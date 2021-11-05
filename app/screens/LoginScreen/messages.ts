@@ -29,10 +29,6 @@ export default defineMessages({
     id: `${scope}.signUpLabel`,
     defaultMessage: 'Create One',
   },
-  loginSuccessMessage: {
-    id: `${scope}.loginSuccessMessage`,
-    defaultMessage: 'Login Successfully',
-  },
   termsLable: {
     id: `${scope}.termsLable`,
     defaultMessage: 'Terms of use & Privecy Policy',
