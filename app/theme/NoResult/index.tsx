@@ -12,15 +12,14 @@ import elevation from 'theme/elevation';
 import Colors from 'theme/Colors';
 import Button from 'theme/Button';
 import Text from 'theme/Text';
+import Icon from 'theme/Icon';
+// import animations from 'animations';
 
 import messages from './messages';
 
 const style = StyleSheet.create({
   container: {
-    width: Dimensions.screenWidth - Dimensions.space8x,
-    margin: Dimensions.space4x,
-    padding: Dimensions.space4x,
-    flexDirection: 'column',
+    margin: Dimensions.space2x,
     alignItems: 'center',
     justifyContent: 'center',
     ...elevation(2),
@@ -28,9 +27,13 @@ const style = StyleSheet.create({
   messageLabel: {
     fontSize: 14,
     fontWeight: '600',
-    color: Colors.textBlack,
-    marginBottom: Dimensions.space4x,
+    color: Colors.textGrey,
     textAlign: 'center',
+  },
+  icon: {
+    fontSize: 26,
+    color: Colors.textGrey,
+    marginBottom: Dimensions.space2x,
   },
 });
 
@@ -46,6 +49,8 @@ const NoResult: React.FC<INoResult> = ({
   actionPress = null,
 }) => (
   <View style={style.container}>
+    <Icon name="file-text" style={style.icon} />
+
     <Text style={style.messageLabel}>{message}</Text>
     {actionPress ? <Button label={actionLabel} onPress={actionPress} /> : null}
   </View>

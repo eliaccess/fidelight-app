@@ -8,17 +8,22 @@ import { takeEvery, call, put } from 'redux-saga/effects';
 
 import { Warn } from 'platform/Logger';
 
-import { TransactionsAPIResponse, FetchProps } from './types';
+import { FetchProps } from './types';
 import { actions } from './slice';
 import * as api from './api';
 
 export const fetchSaga = function* fetch(_action: FetchProps) {
   try {
-    const data: TransactionsAPIResponse = yield call(api.fetch);
-    yield put(actions.fetchSuccess(data));
-  } catch (error) {
+    const resp: any = yield call(api.fetch);
+
+    yield put(actions.fetchSuccess({ data: resp?.data?.transactions }));
+  } catch (error: any) {
     Warn(error);
-    yield put(actions.fetchFailure());
+    yield put(
+      actions.fetchFailure({
+        message: error.error.msg,
+      }),
+    );
   }
 };
 

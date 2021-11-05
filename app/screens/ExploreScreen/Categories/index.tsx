@@ -28,7 +28,7 @@ type CategoriesWidgetProps = {
     id: number;
     name: string;
     description: string;
-    logoLink: string;
+    logoUrl: string;
   }[];
 };
 
@@ -60,7 +60,7 @@ function CategoriesWidget(props: CategoriesWidgetProps) {
                   />
                 ) : null}
                 <View style={style.itemIconHolder}>
-                  <Image uri={item.logoLink} style={style.itemImage} />
+                  <Image uri={item.logoUrl} style={style.itemImage} />
                 </View>
                 <Text
                   style={[style.itemTitle, active ? style.activeItem : null]}

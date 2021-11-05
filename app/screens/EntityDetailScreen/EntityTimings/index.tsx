@@ -33,42 +33,46 @@ function EntityTimings(props: EntityTimingsProps) {
               {item.dayName}
             </Text>
             <View style={style.dayTimingsWrapper}>
-              <View style={style.dayTimingItem}>
-                <Text
-                  style={[
-                    style.timingItemLabel,
-                    activeDay ? style.activeDay : null,
-                  ]}
-                >
-                  {item.openAM.slice(0, 5)}:AM{` - `}
-                </Text>
-                <Text
-                  style={[
-                    style.timingItemLabel,
-                    activeDay ? style.activeDay : null,
-                  ]}
-                >
-                  {item.closeAM.slice(0, 5)}:AM
-                </Text>
-              </View>
-              <View style={style.dayTimingItem}>
-                <Text
-                  style={[
-                    style.timingItemLabel,
-                    activeDay ? style.activeDay : null,
-                  ]}
-                >
-                  {item.openPM.slice(0, 5)}:PM{` - `}
-                </Text>
-                <Text
-                  style={[
-                    style.timingItemLabel,
-                    activeDay ? style.activeDay : null,
-                  ]}
-                >
-                  {item.closePm.slice(0, 5)}:PM
-                </Text>
-              </View>
+              {item.openAM && item.closeAM ? (
+                <View style={style.dayTimingItem}>
+                  <Text
+                    style={[
+                      style.timingItemLabel,
+                      activeDay ? style.activeDay : null,
+                    ]}
+                  >
+                    {item.openAM?.slice(0, 5)}:AM{` - `}
+                  </Text>
+                  <Text
+                    style={[
+                      style.timingItemLabel,
+                      activeDay ? style.activeDay : null,
+                    ]}
+                  >
+                    {item.closeAM?.slice(0, 5)}:AM
+                  </Text>
+                </View>
+              ) : null}
+              {item.openPM && item.closePm ? (
+                <View style={style.dayTimingItem}>
+                  <Text
+                    style={[
+                      style.timingItemLabel,
+                      activeDay ? style.activeDay : null,
+                    ]}
+                  >
+                    {item.openPM?.slice(0, 5)}:PM{` - `}
+                  </Text>
+                  <Text
+                    style={[
+                      style.timingItemLabel,
+                      activeDay ? style.activeDay : null,
+                    ]}
+                  >
+                    {item.closePm?.slice(0, 5)}:PM
+                  </Text>
+                </View>
+              ) : null}
             </View>
           </View>
         );

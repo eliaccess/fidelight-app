@@ -1,8 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { State, ResponsePayload, SubmitPropsPayload } from './types';
+import {
+  State,
+  FailureResponsePayload,
+  SubmitPropsPayload,
+  ChangePasswordAPIResponse,
+} from './types';
 
 export const initialState = {
-  error: undefined,
+  error: false,
   submitting: false,
   success: false,
 } as State;
@@ -15,18 +20,24 @@ const slice = createSlice({
     reset: (): State => initialState,
     submit(state: State, _action: PayloadAction<SubmitPropsPayload>): void {
       state.submitting = true;
-      state.error = undefined;
+      state.error = false;
     },
     submitSuccess(
       state: State,
-      _action: PayloadAction<SubmitPropsPayload>,
+      action: PayloadAction<ChangePasswordAPIResponse>,
     ): void {
       state.submitting = false;
       state.success = true;
+      state.message = action.payload.message;
     },
-    submitFailure(state: State, action: PayloadAction<ResponsePayload>): void {
+    submitFailure(
+      state: State,
+      action: PayloadAction<FailureResponsePayload>,
+    ): void {
       state.submitting = false;
-      state.error = action.payload.error;
+      state.message = action.payload.message;
+      state.error = true;
+      state.success = false;
     },
   },
 });

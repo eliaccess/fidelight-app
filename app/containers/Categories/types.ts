@@ -22,7 +22,7 @@ export interface CategoriesAPIResponse {
     id: number;
     name: string;
     description: string;
-    logoLink: string;
+    logoUrl: string;
   }[];
 }
 

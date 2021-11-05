@@ -14,8 +14,8 @@ import Button from 'theme/Button';
 import Input from 'theme/Input';
 
 import FormattedMessage from 'theme/FormattedMessage';
-import Image from 'theme/Image';
-import Icon from 'theme/Icon';
+// import Image from 'theme/Image';
+// import Icon from 'theme/Icon';
 
 import { email } from 'utils/validations';
 
@@ -73,14 +73,15 @@ const Form: React.FC<FormProps> = (props) => {
           errors,
           isValid,
           touched,
+          dirty,
         }) => (
           <>
-            <View style={style.profilePictureContainer}>
+            {/* <View style={style.profilePictureContainer}>
               <Image title="avatar" style={style.avatar} resizeMode="cover" />
               <View style={style.profileEditIcon}>
                 <Icon name="edit" style={style.editIcon} />
               </View>
-            </View>
+            </View> */}
             <View style={style.inputContainer}>
               <Input
                 textContentType="name"

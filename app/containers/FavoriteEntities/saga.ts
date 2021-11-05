@@ -14,11 +14,25 @@ import * as api from './api';
 
 export const fetchSaga = function* fetch() {
   try {
-    const data: FavoriteEntitiesAPIResponse = yield call(api.fetch);
-    yield put(actions.fetchSuccess(data));
-  } catch (error) {
+    const resp: FavoriteEntitiesAPIResponse = yield call(api.fetch);
+    // TODO need to correct this after api correct
+    if (resp?.data) {
+      yield put(actions.fetchSuccess(resp));
+    } else {
+      yield put(
+        actions.fetchFailure({
+          // @ts-ignore
+          message: resp.msg,
+        }),
+      );
+    }
+  } catch (error: any) {
     Warn(error);
-    yield put(actions.fetchFailure());
+    yield put(
+      actions.fetchFailure({
+        message: error.error.msg,
+      }),
+    );
   }
 };
 

@@ -1,10 +1,5 @@
 export interface UseHotDealsProps {
   city?: string;
-  country?: string;
-  limit?: number;
-  offset?: number;
-  collectionIds?: number[];
-  onMyCollections?: boolean;
 }
 
 export interface HotDealsProps extends UseHotDealsProps {
@@ -14,6 +9,7 @@ export interface HotDealsProps extends UseHotDealsProps {
 export interface StateItem {
   fetching: boolean;
   error: boolean;
+  message: string;
   data: ResponsePayload['data'];
 }
 
@@ -33,12 +29,19 @@ export interface FetchPropsPayload extends UseHotDealsProps {
 export interface HotDealsAPIResponse {
   data?: {
     id: number;
-    image: string;
-    title: string;
-    shortDescription: string;
+    timesUsed: number;
+    name: string;
+    description: string;
+    cost: number;
+    pictureLink: string;
   }[];
 }
 
 export interface ResponsePayload extends HotDealsAPIResponse {
   key: string;
+}
+
+export interface FailureResponsePayload {
+  key: string;
+  message: string;
 }

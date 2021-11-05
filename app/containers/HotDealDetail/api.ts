@@ -8,14 +8,14 @@ import service from 'services/fidelight';
 import { HotDealDetailAPIResponse, FetchPropsPayload } from './types';
 
 export async function fetch(
-  _payload: FetchPropsPayload,
+  payload: FetchPropsPayload,
 ): Promise<HotDealDetailAPIResponse | Error> {
-  // const { dealId } = payload;
+  const { dealId } = payload;
 
   const resp = await service({
     method: 'GET',
-    // url: `/v1/discount/${dealId}`,
-    url: '/v1/discount/hotDealDetail',
+    url: `/v1/discount/${dealId}`,
+    // url: '/v1/discount/hotDealDetail',
   });
 
   return resp;

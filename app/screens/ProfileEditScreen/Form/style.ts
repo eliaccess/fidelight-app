@@ -7,6 +7,8 @@ const style = StyleSheet.create({
     padding: Dimensions.space1x,
     width: '100%',
     backgroundColor: Colors.white,
+    height: Dimensions.screenHeight,
+    paddingTop: Dimensions.space3x,
   },
   profilePictureContainer: {
     width: 80,

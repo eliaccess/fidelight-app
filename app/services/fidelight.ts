@@ -115,7 +115,7 @@ export async function reTry({ fetchUrl, params, args }) {
 
 interface IAPIArgs {
   url: string;
-  method: 'GET' | 'POST' | 'DELETE';
+  method: 'GET' | 'POST' | 'DELETE' | 'PUT';
   body?: any;
   headers?: any;
   params?: any;
@@ -134,7 +134,7 @@ export default async function api(args: IAPIArgs, parsing: string = 'json') {
     params = null,
     baseDomain = configs.API_DOMAIN,
     bodyParsing = 'json',
-    parseError = false,
+    parseError = true,
     noAuth = false,
     ...extraProps
   } = args;

@@ -3,10 +3,9 @@ import { View, StatusBar } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Animated, {
   interpolate,
-  interpolateColor,
   useAnimatedStyle,
 } from 'react-native-reanimated';
-import Colors from 'theme/Colors';
+// import Colors from 'theme/Colors';
 
 import Text from 'theme/Text';
 import { buttonGradientProps } from 'theme/utils';

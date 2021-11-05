@@ -8,6 +8,7 @@ import React from 'react';
 import { View } from 'react-native';
 
 import { useHotDeals } from 'containers/HotDeals';
+import { useUserLocation } from 'containers/UserLocation';
 import useStateHandler from 'hooks/useStateHandler';
 
 import Screen from 'theme/Screen';
@@ -24,8 +25,10 @@ import { DealListingScreenProps } from './types';
 import DealListingLoader from './Loader';
 
 function DealListingScreen(props: DealListingScreenProps) {
+  const userLocation = useUserLocation();
+
   const hotDeals = useHotDeals({
-    city: 'Paris',
+    city: userLocation.data.cityName,
   });
 
   const showContent = useStateHandler({
@@ -51,11 +54,11 @@ function DealListingScreen(props: DealListingScreenProps) {
               }}
               style={style.item}
             >
-              <Image uri={item.image} style={style.image} />
+              <Image uri={item.pictureLink} style={style.image} />
               <View style={style.contentWrapper}>
-                <Text style={style.title}>{item.title}</Text>
+                <Text style={style.title}>{item.name}</Text>
                 <Text style={style.shortDescription} numberOfLines={1}>
-                  {item.shortDescription}
+                  {item.description}
                 </Text>
               </View>
             </TouchFeedback>

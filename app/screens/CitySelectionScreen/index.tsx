@@ -53,9 +53,8 @@ function CitySelectionScreen(props: CitySelectionScreenProps) {
       <Screen testID="locationsScreen" useScrollView={false}>
         <View style={style.container}>
           <FormattedMessage {...messages.pitch} style={style.pitch} />
-          <View style={style.typeAheadContainer}>
-            <TypeAhead onSelect={onSelect} />
-          </View>
+
+          <TypeAhead onSelect={onSelect} />
         </View>
       </Screen>
     </>

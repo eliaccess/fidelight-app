@@ -13,7 +13,5 @@ export async function fetch(): Promise<TransactionsAPIResponse | Error> {
     url: '/v1/transactions',
   });
 
-  return {
-    data: resp.data.transactions,
-  };
+  return resp;
 }

@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import {
+  FailureResponsePayload,
   FetchPropsPayload,
   ResponsePayload,
   State,
@@ -27,10 +28,14 @@ const slice = createSlice({
         data: action.payload.data,
       };
     },
-    fetchFailure(state: State, action: PayloadAction<ResponsePayload>): void {
+    fetchFailure(
+      state: State,
+      action: PayloadAction<FailureResponsePayload>,
+    ): void {
       state[action.payload.key] = {
         ...(state[action.payload.key] || {}),
         error: true,
+        message: action.payload.message,
         fetching: false,
       };
     },

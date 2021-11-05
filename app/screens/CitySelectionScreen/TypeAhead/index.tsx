@@ -5,15 +5,14 @@
  */
 
 import React, { useState } from 'react';
-import { View, FlatList } from 'react-native';
+import { View, FlatList, TextInput } from 'react-native';
 
 import { useDebouncedEffect } from 'hooks/useDebouncedEffect';
 
-import Input from 'theme/Input';
 import Loader from 'theme/Loader';
 import NoResult from 'theme/NoResult';
 import TouchFeedback from 'theme/TouchFeedback';
-
+import Icon from 'theme/Icon';
 import FormattedMessage, { useFormattedMessage } from 'theme/FormattedMessage';
 
 import { useCitiesSearch } from 'containers/CitiesSearch';
@@ -33,16 +32,16 @@ const CitiesTypeAhead: React.FC<{
   const { data, fetching } = citiesSearch;
 
   return (
-    <View style={style.container}>
+    <>
       <View style={style.inputHolder} key="input">
-        <Input
+        <Icon name="search" style={style.searchIcon} />
+        <TextInput
+          style={style.input}
           onChangeText={setQuery}
-          placeholder={placeholder}
           value={query}
-          autoCorrect={false}
-          autoCapitalize="words"
+          placeholder={placeholder}
           keyboardType="default"
-          clearButtonMode="always"
+          clearButtonMode="while-editing"
           autoFocus
         />
       </View>
@@ -72,7 +71,7 @@ const CitiesTypeAhead: React.FC<{
           ListEmptyComponent={!fetching && query ? <NoResult /> : null}
         />
       ) : null}
-    </View>
+    </>
   );
 };
 

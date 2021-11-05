@@ -43,7 +43,7 @@ function HomeHeader(props: HomeHeader) {
           onPress={props.onCityPress}
           style={style.cityNameWrapper}
         >
-          <Text style={style.cityName}>{userLocation.data.cityName}</Text>
+          <Text style={style.cityName}>{userLocation?.data?.cityName}</Text>
           <Icon name="chevron-down" style={style.updateCityIcon} />
         </TouchFeedback>
         <TouchFeedback onPress={props.onProfilePress} style={style.avatar}>

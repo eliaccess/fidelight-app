@@ -47,7 +47,9 @@ function EntityDetailScreen(props: EntityDetailScreenProps) {
                 });
               }}
             />
-            <EntityTimings data={entityDetail.data} />
+            {entityDetail.data?.schedule ? (
+              <EntityTimings data={entityDetail.data} />
+            ) : null}
           </>
         )}
 

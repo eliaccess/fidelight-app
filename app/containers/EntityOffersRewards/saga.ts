@@ -17,8 +17,13 @@ export const fetchSaga = function* fetch(action: FetchProps) {
       action.payload,
     );
     yield put(actions.fetchSuccess({ key: action.payload.key, ...data }));
-  } catch (error) {
-    yield put(actions.fetchFailure({ key: action.payload.key }));
+  } catch (error: any) {
+    yield put(
+      actions.fetchFailure({
+        key: action.payload.key,
+        message: error.error.msg,
+      }),
+    );
   }
 };
 

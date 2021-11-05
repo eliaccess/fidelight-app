@@ -23,7 +23,7 @@ interface UseEntitiesReturnProps extends StateItem {
 }
 
 function getKeyFromProps(props: UseEntitiesProps): string {
-  return generateDuxKey(props, ['city'], true);
+  return generateDuxKey(props, ['city', 'type'], true);
 }
 
 export function useEntities(props: UseEntitiesProps): UseEntitiesReturnProps {

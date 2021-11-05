@@ -13,6 +13,6 @@ interface useStateHandlerProps {
 const useStateHandler = ({
   state = {},
   stateIdentifier = 'data.length',
-}: useStateHandlerProps) => get(state, stateIdentifier, 0) && !state.fetching;
+}: useStateHandlerProps) => get(state, stateIdentifier, 0) || !state.fetching;
 
 export default useStateHandler;

@@ -11,6 +11,7 @@ export interface EntityOffersRewardsProps extends UseEntityOffersRewardsProps {
 export interface StateItem {
   fetching: boolean;
   error: boolean;
+  message: string;
   data: ResponsePayload['data'];
 }
 
@@ -36,4 +37,9 @@ export interface EntityOffersRewardsAPIResponse {
 
 export interface ResponsePayload extends EntityOffersRewardsAPIResponse {
   key: string;
+}
+
+export interface FailureResponsePayload {
+  key: string;
+  message: string;
 }

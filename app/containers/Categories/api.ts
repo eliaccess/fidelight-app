@@ -9,11 +9,9 @@ import { CategoriesAPIResponse } from './types';
 
 export async function fetch(): Promise<CategoriesAPIResponse | Error> {
   const resp = await service({
-    method: 'POST',
+    method: 'GET',
     url: '/v1/company/types',
   });
 
-  return {
-    data: resp.data,
-  };
+  return resp;
 }

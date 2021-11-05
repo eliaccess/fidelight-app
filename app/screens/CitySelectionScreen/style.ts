@@ -5,7 +5,7 @@ import Colors from 'theme/Colors';
 
 const style = StyleSheet.create({
   container: {
-    paddingTop: Dimensions.space6x,
+    // paddingTop: Dimensions.space6x,
     paddingHorizontal: Dimensions.space1x,
     backgroundColor: Colors.white,
     height: Dimensions.screenHeight,

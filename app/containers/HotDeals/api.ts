@@ -10,15 +10,12 @@ import { HotDealsAPIResponse, FetchPropsPayload } from './types';
 export async function fetch(
   payload: FetchPropsPayload,
 ): Promise<HotDealsAPIResponse | Error> {
-  // const { city } = payload;
+  const { city } = payload;
 
   const resp = await service({
     method: 'GET',
-    // url: `v1/discount/hotdeals/city=${city}`,
-    url: '/v1/discount/hotdeals',
+    url: `/v1/discount/hotdeals/${city}`,
   });
 
-  return {
-    data: resp,
-  };
+  return resp;
 }

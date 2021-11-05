@@ -3,7 +3,7 @@ import { EntityItemTypes } from 'types/EntityItemTypes';
 export interface UseEntitiesProps {
   city?: string;
   page?: number;
-  type?: number[];
+  type?: number;
 }
 
 export interface EntitiesProps extends UseEntitiesProps {
@@ -13,6 +13,7 @@ export interface EntitiesProps extends UseEntitiesProps {
 export interface StateItem {
   fetching: boolean;
   error: boolean;
+  message: string;
   data: ResponsePayload['data'];
 }
 
@@ -46,4 +47,9 @@ export interface ToggleFavoriteActionPayload {
   key: string;
   id: number;
   isFavorite: boolean;
+}
+
+export interface FailureResponsePayload {
+  key: string;
+  message: string;
 }

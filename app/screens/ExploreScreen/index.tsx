@@ -22,7 +22,7 @@ import messages from './messages';
 
 function ExploreScreen(props: ExploreScreenProps) {
   const style = useGetStyles();
-  const [activeCategoryId, setActiveCategoryId] = useState(0);
+  const [activeCategoryId, setActiveCategoryId] = useState(-1);
   const categories = useCategories();
 
   useEffect(() => {
@@ -41,7 +41,7 @@ function ExploreScreen(props: ExploreScreenProps) {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={style.contentContainerStyle}
       >
-        {showContent ? (
+        {showContent && activeCategoryId !== -1 ? (
           <>
             <View style={style.categoriesSectionWrapper}>
               <CategoriesWidget
@@ -51,7 +51,10 @@ function ExploreScreen(props: ExploreScreenProps) {
               />
             </View>
             <HottestDealsWidget navigation={props.navigation} />
-            <RestaurantsList navigation={props.navigation} />
+            <RestaurantsList
+              activeCategoryId={activeCategoryId}
+              navigation={props.navigation}
+            />
           </>
         ) : (
           <View style={style.categoriesSectionWrapper}>

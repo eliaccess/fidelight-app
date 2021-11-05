@@ -20,16 +20,16 @@ import { useGetStyles } from './style';
 interface EntityCardProps {
   entity: EntityItemTypes;
   onPress: (...args: any[]) => any;
-  onWishListPress: (...args: any) => any;
-  isFavorite: boolean;
+  onWishListPress?: (...args: any) => any;
+  isFavorite?: boolean;
   showWishList?: boolean;
 }
 
 function EntityCard({
   entity,
   onPress,
-  onWishListPress,
-  isFavorite,
+  onWishListPress = () => null,
+  isFavorite = false,
   showWishList = false,
 }: EntityCardProps) {
   const style = useGetStyles();
@@ -41,7 +41,7 @@ function EntityCard({
       </View>
 
       <View style={style.contentWrapper}>
-        <Text style={style.title}>{entity.companyName}</Text>
+        <Text style={style.title}>{entity.name}</Text>
         <Text style={style.shortDescription} numberOfLines={2}>
           {entity.description}
         </Text>

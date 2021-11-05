@@ -9,6 +9,7 @@ import { View } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 
 import { useHotDeals } from 'containers/HotDeals';
+import { useUserLocation } from 'containers/UserLocation';
 import useStateHandler from 'hooks/useStateHandler';
 
 import FormattedMessage from 'theme/FormattedMessage';
@@ -18,6 +19,7 @@ import Text from 'theme/Text';
 
 import TouchFeedback from 'theme/TouchFeedback';
 import HorizontalSlidingList from 'theme/HorizontalSlidingList';
+import NoResult from 'theme/NoResult';
 import { DEAL_DETAIL, DEAL_LISTING } from 'router/routeNames';
 
 import messages from './messages';
@@ -30,9 +32,10 @@ type HottestDealsProps = {
 
 function HottestDeals(props: HottestDealsProps) {
   const style = useGetStyles();
+  const userLocation = useUserLocation();
 
   const hotDeals = useHotDeals({
-    city: 'Paris',
+    city: userLocation.data.cityName,
   });
 
   const showContent = useStateHandler({
@@ -48,75 +51,100 @@ function HottestDeals(props: HottestDealsProps) {
     );
   }
 
-  if (!hotDeals.data) {
-    return null;
-  }
-  const { length } = hotDeals.data;
   return (
     <Animatable.View animation="fadeIn" duration={1500}>
       <Section
         heading={<FormattedMessage {...messages.dealsHeading} isFragment />}
         headerRight={
-          <TouchFeedback
-            onPress={() => props.navigation.navigate(DEAL_LISTING)}
-          >
-            <FormattedMessage
-              {...messages.seeAllLabel}
-              style={style.seeAllLabel}
-            />
-          </TouchFeedback>
+          hotDeals?.data ? (
+            <TouchFeedback
+              onPress={() => props.navigation.navigate(DEAL_LISTING)}
+            >
+              <FormattedMessage
+                {...messages.seeAllLabel}
+                style={style.seeAllLabel}
+              />
+            </TouchFeedback>
+          ) : null
         }
       >
-        <View style={style.container}>
-          <HorizontalSlidingList>
-            <View>
-              <View style={style.listWrapper}>
-                {hotDeals.data.slice(0, Math.ceil(length / 2)).map((item) => (
-                  <TouchFeedback
-                    key={item.id}
-                    onPress={() =>
-                      props.navigation.navigate(DEAL_DETAIL, {
-                        dealId: item.id,
-                      })
-                    }
-                    style={style.item}
-                  >
-                    <Image uri={item.image} style={style.image} />
-                    <View style={style.contentWrapper}>
-                      <Text style={style.title}>{item.title}</Text>
-                      <Text style={style.shortDescription} numberOfLines={1}>
-                        {item.shortDescription}
-                      </Text>
-                    </View>
-                  </TouchFeedback>
-                ))}
+        {hotDeals?.data ? (
+          <View style={style.container}>
+            <HorizontalSlidingList>
+              <View>
+                <View style={style.listWrapper}>
+                  {hotDeals.data
+                    .slice(0, Math.ceil(hotDeals.data.length / 2))
+                    .map((item) => (
+                      <TouchFeedback
+                        key={item.id}
+                        onPress={() =>
+                          props.navigation.navigate(DEAL_DETAIL, {
+                            dealId: item.id,
+                          })
+                        }
+                        style={style.item}
+                      >
+                        <Image
+                          uri={
+                            item.pictureLink ||
+                            'https://images.unsplash.com/photo-1544502779-9d192f5da63e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2045&q=80'
+                          }
+                          style={style.image}
+                        />
+                        <View style={style.contentWrapper}>
+                          <Text style={style.title}>{item.name}</Text>
+                          <Text
+                            style={style.shortDescription}
+                            numberOfLines={1}
+                          >
+                            {item.description}
+                          </Text>
+                        </View>
+                      </TouchFeedback>
+                    ))}
+                </View>
+                <View style={style.listWrapper}>
+                  {hotDeals.data
+                    .slice(
+                      Math.ceil(hotDeals.data.length / 2),
+                      hotDeals.data.length,
+                    )
+                    .map((item) => (
+                      <TouchFeedback
+                        key={item.id}
+                        onPress={() =>
+                          props.navigation.navigate(DEAL_DETAIL, {
+                            dealId: item.id,
+                          })
+                        }
+                        style={style.item}
+                      >
+                        <Image
+                          uri={
+                            item.pictureLink ||
+                            'https://images.unsplash.com/photo-1544502779-9d192f5da63e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2045&q=80'
+                          }
+                          style={style.image}
+                        />
+                        <View style={style.contentWrapper}>
+                          <Text style={style.title}>{item.name}</Text>
+                          <Text
+                            style={style.shortDescription}
+                            numberOfLines={1}
+                          >
+                            {item.description}
+                          </Text>
+                        </View>
+                      </TouchFeedback>
+                    ))}
+                </View>
               </View>
-              <View style={style.listWrapper}>
-                {hotDeals.data
-                  .slice(Math.ceil(length / 2), length)
-                  .map((item) => (
-                    <TouchFeedback
-                      key={item.id}
-                      onPress={() =>
-                        props.navigation.navigate(DEAL_DETAIL, {
-                          dealId: item.id,
-                        })
-                      }
-                      style={style.item}
-                    >
-                      <Image uri={item.image} style={style.image} />
-                      <View style={style.contentWrapper}>
-                        <Text style={style.title}>{item.title}</Text>
-                        <Text style={style.shortDescription} numberOfLines={1}>
-                          {item.shortDescription}
-                        </Text>
-                      </View>
-                    </TouchFeedback>
-                  ))}
-              </View>
-            </View>
-          </HorizontalSlidingList>
-        </View>
+            </HorizontalSlidingList>
+          </View>
+        ) : (
+          <NoResult message={hotDeals?.message} />
+        )}
       </Section>
     </Animatable.View>
   );

@@ -13,6 +13,7 @@ import { useFavoriteEntities } from 'containers/FavoriteEntities';
 import useStateHandler from 'hooks/useStateHandler';
 
 import EntityCard from 'components/EntityCard';
+import NoResult from 'theme/NoResult';
 
 import { ENTITY_DETAIL } from 'router/routeNames';
 
@@ -28,9 +29,6 @@ function FavoriteEntitiesScreen(props: FavoriteEntitiesScreenProps) {
     state: favoriteEntities,
   });
 
-  if (!favoriteEntities.data) {
-    return null;
-  }
   return (
     <>
       <ScrollView
@@ -41,17 +39,23 @@ function FavoriteEntitiesScreen(props: FavoriteEntitiesScreenProps) {
           <FavoriteEntitiesLoader numberOfItems={4} />
         ) : (
           <Animatable.View animation="fadeIn" duration={1500}>
-            {favoriteEntities.data.map((item) => (
-              <EntityCard
-                entity={item}
-                onPress={() => {
-                  props.navigation.navigate(ENTITY_DETAIL);
-                }}
-                onWishListPress={() => {}}
-                isFavorite={true}
-                showWishList={true}
-              />
-            ))}
+            {favoriteEntities?.data ? (
+              favoriteEntities.data.map((item) => (
+                <EntityCard
+                  entity={item}
+                  onPress={() => {
+                    props.navigation.navigate(ENTITY_DETAIL, {
+                      entityId: item.id,
+                    });
+                  }}
+                  onWishListPress={() => {}}
+                  isFavorite={true}
+                  showWishList={true}
+                />
+              ))
+            ) : (
+              <NoResult message={favoriteEntities?.message} />
+            )}
           </Animatable.View>
         )}
       </ScrollView>

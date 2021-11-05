@@ -12,8 +12,9 @@ export interface ChangePasswordProps extends UseChangePasswordProps {
 export interface State {
   submitting: boolean;
   success: boolean;
-  error?: string;
-  currentPassword?: string;
+  error: boolean;
+  message: string;
+  currentPassword: string;
   newPassword: string;
 }
 
@@ -36,9 +37,10 @@ export interface SubmitPropsPayload extends UseChangePasswordProps {
   newPassword: string;
 }
 
-export interface ResponsePayload {
-  msg?: string;
-  error?: string;
+export interface ChangePasswordAPIResponse {
+  message: string;
 }
 
-export interface ChangePasswordAPIResponse {}
+export interface FailureResponsePayload {
+  message: string;
+}

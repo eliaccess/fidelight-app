@@ -12,14 +12,13 @@ import {
 } from './types';
 
 export async function fetch(
-  _payload: FetchPropsPayload,
+  payload: FetchPropsPayload,
 ): Promise<EntitiesAPIResponse | Error> {
-  // const { type, city, page = 1 } = payload;
+  const { type, city, page = 1 } = payload;
 
   const resp = await service({
     method: 'GET',
-    url: '/v1/companies',
-    // url: `/v1/search/company/parameters?type=${type}&city=${city}&page=${page}`,
+    url: `/v1/search/company/parameters?type=${type}&city=${city}&page=${page}`,
   });
 
   return resp;

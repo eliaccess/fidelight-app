@@ -6,18 +6,22 @@
 
 import { takeEvery, call, put } from 'redux-saga/effects';
 
-import { SubmitProps } from './types';
+import { ChangePasswordAPIResponse, SubmitProps } from './types';
 import { actions } from './slice';
 import * as api from './api';
 
 export const submitSaga = function* submit(action: SubmitProps) {
   try {
-    yield call(api.submit, action.payload);
-    yield put(actions.submitSuccess(action.payload));
+    const resp: ChangePasswordAPIResponse = yield call(
+      api.submit,
+      action.payload,
+    );
+
+    yield put(actions.submitSuccess({ message: resp.message }));
   } catch (error: any) {
     yield put(
       actions.submitFailure({
-        error: error.message || error.msg || 'Something went wrong',
+        message: error.error.msg,
       }),
     );
   }

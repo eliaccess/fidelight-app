@@ -2,23 +2,26 @@ import { StyleSheet } from 'react-native';
 
 import Colors from 'theme/Colors';
 import Dimensions from 'theme/Dimensions';
-import elevation from 'theme/elevation';
+// import elevation from 'theme/elevation';
 
 const style = StyleSheet.create({
-  container: {
-    ...elevation(2),
-    zIndex: 100,
-    position: 'relative',
-    backgroundColor: Colors.white,
-  },
   inputHolder: {
+    marginHorizontal: Dimensions.space2x,
+    flexDirection: 'row',
+    borderRadius: Dimensions.borderRadius10x,
+    width: '90%',
     alignItems: 'center',
-    position: 'relative',
-    width: '100%',
+    // paddingVertical: Dimensions.space2x,
+    paddingHorizontal: Dimensions.space3x,
+    backgroundColor: Colors.itemBackgroundColor,
   },
   input: {
-    marginHorizontal: Dimensions.space2x,
-    width: Dimensions.screenWidth - Dimensions.space4x,
+    width: '90%',
+  },
+  searchIcon: {
+    fontSize: 22,
+    color: Colors.textGrey,
+    marginRight: Dimensions.space2x,
   },
   cancelButtonContainer: {
     position: 'absolute',
@@ -35,7 +38,7 @@ const style = StyleSheet.create({
     borderBottomWidth: 1,
     borderColor: Colors.primary,
     padding: Dimensions.space2x,
-    marginHorizontal: Dimensions.space2x,
+    marginHorizontal: Dimensions.horizontalSpace,
     zIndex: 100,
   },
   listItemIcon: {

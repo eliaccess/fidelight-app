@@ -13,7 +13,5 @@ export async function fetch(): Promise<FavoriteEntitiesAPIResponse | Error> {
     url: '/v1/user/like/',
   });
 
-  return {
-    data: resp.data || [],
-  };
+  return resp;
 }

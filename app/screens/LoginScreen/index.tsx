@@ -6,7 +6,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { Platform, View } from 'react-native';
+import { Keyboard, Platform, View } from 'react-native';
 
 import { useAuthentication } from 'containers/Authentication';
 import { useUserLocation } from 'containers/UserLocation';
@@ -34,6 +34,7 @@ import { LoginScreenProps } from './types';
 
 function LoginScreen(props: LoginScreenProps) {
   const [showLoader, setShowLoader] = useState(false);
+  const [showFooter, setShowFooter] = useState(true);
   const toast = useToastContext();
 
   const authentication = useAuthentication();
@@ -92,6 +93,20 @@ function LoginScreen(props: LoginScreenProps) {
     return authentication.reset;
   }, []);
 
+  useEffect(() => {
+    const listener = Keyboard.addListener('keyboardDidShow', () => {
+      setShowFooter(false);
+    });
+    return () => listener.remove();
+  }, []);
+
+  useEffect(() => {
+    const listener = Keyboard.addListener('keyboardDidHide', () => {
+      setShowFooter(true);
+    });
+    return () => listener.remove();
+  }, []);
+
   return (
     <>
       <Screen testID="loginScreen">
@@ -128,14 +143,19 @@ function LoginScreen(props: LoginScreenProps) {
           </View>
         </View>
       </Screen>
-      <View style={style.signUpContainer}>
-        <FormattedMessage {...messages.signUpPitch} style={style.signUpPitch} />
-        <FormattedMessage
-          {...messages.signUpLabel}
-          style={[style.signUpPitch, style.signUpLabel]}
-          onPress={() => props.navigation.navigate(SIGNUP, {})}
-        />
-      </View>
+      {showFooter ? (
+        <View style={style.signUpContainer}>
+          <FormattedMessage
+            {...messages.signUpPitch}
+            style={style.signUpPitch}
+          />
+          <FormattedMessage
+            {...messages.signUpLabel}
+            style={[style.signUpPitch, style.signUpLabel]}
+            onPress={() => props.navigation.navigate(SIGNUP, {})}
+          />
+        </View>
+      ) : null}
       {showLoader ||
       authentication.fetchingRemoteToken ||
       authentication.user.fetching ? (

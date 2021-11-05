@@ -59,7 +59,7 @@ export const loginSaga = function* login(action: LoginActionProps) {
   } catch (error: any) {
     yield put(
       actions.loginFailure({
-        message: error.message,
+        message: error.message || error?.error?.msg,
       }),
     );
   }
@@ -76,7 +76,7 @@ export const signUpSaga = function* signUp(action: SignUpActionProps) {
     Warn(error);
     yield put(
       actions.signUpFailure({
-        message: error.message,
+        message: error.message || error?.error?.msg,
       }),
     );
   }

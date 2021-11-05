@@ -6,7 +6,7 @@
 import service from 'services/fidelight';
 import { ChangePasswordAPIResponse, SubmitPropsPayload } from './types';
 
-export function submit(
+export async function submit(
   payload: SubmitPropsPayload,
 ): Promise<ChangePasswordAPIResponse | Error> {
   const body = {
@@ -14,9 +14,14 @@ export function submit(
     newPassword: payload.newPassword,
   };
 
-  return service({
-    method: 'POST',
+  const resp = await service({
+    method: 'PUT',
     url: '/v1/user/password/',
     body,
   });
+
+  return {
+    // @ts-ignore
+    message: resp.msg,
+  };
 }

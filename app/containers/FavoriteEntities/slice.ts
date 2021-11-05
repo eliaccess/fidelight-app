@@ -1,11 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ResponsePayload, State } from './types';
+import { FailureResponsePayload, ResponsePayload, State } from './types';
 
-export const initialState = {
-  fetching: false,
-  error: false,
-  data: [],
-} as State;
+export const initialState = {} as State;
 
 /* eslint-disable , no-param-reassign */
 const slice = createSlice({
@@ -21,9 +17,13 @@ const slice = createSlice({
       state.error = false;
       state.data = action.payload.data;
     },
-    fetchFailure(state: State): void {
+    fetchFailure(
+      state: State,
+      action: PayloadAction<FailureResponsePayload>,
+    ): void {
       state.fetching = false;
       state.error = true;
+      state.message = action.payload.message;
     },
   },
 });

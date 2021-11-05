@@ -5,7 +5,6 @@ export default {
 
   headerBackground: '#FDFBFB',
   footerBackground: '#FDFBFB',
-  itemBackgroundColor: '#F6F6F6',
 
   primary: '#F0F0F0',
   primaryDark: '#DEDEDE',
@@ -13,6 +12,7 @@ export default {
 
   bg1Color: '#F5FAFF',
   bg2Color: '#D4ECFB',
+  itemBackgroundColor: '#F6F6F6',
 
   accentLight: '#73C9A4',
   accent: '#55C595',
@@ -26,8 +26,8 @@ export default {
   tertiaryReverse: '#FFFFFF',
   tertiaryDisabled: '#C6DCD3',
 
-  textBlack: '#111',
-  textGrey: '#77869E',
+  textBlack: '#525071',
+  textGrey: '#8F8FA9',
 
   transparent: 'rgba(255, 255, 255, 0)',
   transparentBlack: 'rgba(0, 0, 0, 0)',
@@ -65,10 +65,11 @@ export default {
 
   background1: '#F5FAFF',
 
-  skeleton: '#55C595',
+  skeleton: '#E3EAEE',
 
   separator: '#DDD',
 
+  themeIconColor: '#FFFFFF',
   favorite: '#FF545A',
 };
 
@@ -131,7 +132,7 @@ export const lightTheme = {
   itunes: '#222',
   playStore: '#699e3f',
 
-  errorBackground: '#FF0000',
+  errorBackground: '#FF545A',
   errorForeground: '#FDFBFB',
 
   successBackground: '#006400',
@@ -139,11 +140,12 @@ export const lightTheme = {
 
   background1: '#F5FAFF',
 
-  skeleton: '#55C595',
+  skeleton: '#E3EAEE',
 
   separator: '#DDD',
 
   themeIconColor: '#FFFFFF',
+  favorite: '#FF545A',
 };
 
 export const darkTheme = {

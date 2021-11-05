@@ -7,6 +7,7 @@ export interface FavoriteEntitiesProps {
 export interface State {
   fetching: boolean;
   error: boolean;
+  message: string;
   data: ResponsePayload['data'];
 }
 
@@ -19,3 +20,7 @@ export interface FavoriteEntitiesAPIResponse {
 }
 
 export interface ResponsePayload extends FavoriteEntitiesAPIResponse {}
+
+export interface FailureResponsePayload {
+  message: string;
+}

@@ -21,6 +21,7 @@ import Image from 'theme/Image';
 import Section from 'theme/Section';
 import Text from 'theme/Text';
 import TouchFeedback from 'theme/TouchFeedback';
+import NoResult from 'theme/NoResult';
 
 import messages from '../messages';
 import style from './style';
@@ -58,7 +59,7 @@ function DealsSection(props: DealsSectionProps) {
       />
     );
   }
-  const deals = entityOffersRewards.data?.offers;
+  const deals = entityOffersRewards?.data?.offers;
 
   return (
     <Section
@@ -72,36 +73,40 @@ function DealsSection(props: DealsSectionProps) {
         </TouchFeedback>
       }
     >
-      <>
-        <AnimatedFlatList
-          data={deals}
-          decelerationRate="fast"
-          renderItem={({ item }: any) => (
-            <TouchFeedback
-              onPress={() => {
-                props.navigation.navigate(DEAL_DETAIL, {
-                  dealId: item.id,
-                });
-              }}
-              style={style.itemWrapper}
-            >
-              <View style={style.ellipse} />
-              <View style={style.innerEllipse} />
+      {deals ? (
+        <>
+          <AnimatedFlatList
+            data={deals}
+            decelerationRate="fast"
+            renderItem={({ item }: any) => (
+              <TouchFeedback
+                onPress={() => {
+                  props.navigation.navigate(DEAL_DETAIL, {
+                    dealId: item.id,
+                  });
+                }}
+                style={style.itemWrapper}
+              >
+                <View style={style.ellipse} />
+                <View style={style.innerEllipse} />
 
-              <View style={style.itemContent}>
-                <Text style={style.title}>{item.name}</Text>
-                <Text style={style.shortDescription}>{item.description}</Text>
-              </View>
-              <Image title="dealImage" style={style.dealImage} />
-            </TouchFeedback>
-          )}
-          pagingEnabled
-          showsHorizontalScrollIndicator={false}
-          horizontal
-          onScroll={scrollHandler}
-        />
-        <Pagination length={deals ? deals.length : 3} scrollX={scrollX} />
-      </>
+                <View style={style.itemContent}>
+                  <Text style={style.title}>{item.name}</Text>
+                  <Text style={style.shortDescription}>{item.description}</Text>
+                </View>
+                <Image title="dealImage" style={style.dealImage} />
+              </TouchFeedback>
+            )}
+            pagingEnabled
+            showsHorizontalScrollIndicator={false}
+            horizontal
+            onScroll={scrollHandler}
+          />
+          <Pagination length={deals ? deals.length : 3} scrollX={scrollX} />
+        </>
+      ) : (
+        <NoResult message={entityOffersRewards?.message} />
+      )}
     </Section>
   );
 }

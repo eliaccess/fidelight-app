@@ -16,7 +16,6 @@ export const fetchSaga = function* fetch(action: FetchProps) {
       api.fetchCities,
       action.payload,
     );
-    console.group('dataSaga', data);
     yield put(actions.fetchSuccess(data));
   } catch (error) {
     yield put(actions.fetchFailure());
