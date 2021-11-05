@@ -4,6 +4,9 @@ const routeConfigs = {
   [routeNames.SPLASH]: {
     path: '/',
   },
+  [routeNames.CITY_SELECTION]: {
+    path: '/city-selection',
+  },
   [routeNames.HOME]: {
     path: '/',
   },

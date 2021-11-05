@@ -1,4 +1,5 @@
 import SplashScreen from 'screens/SplashScreen';
+import CitySelectionScreen from 'screens/CitySelectionScreen/Loadable';
 import HomeScreen from 'screens/HomeScreen/Loadable';
 import AccountSelectionScreen from 'screens/AccountSelectionScreen/Loadable';
 import LoginScreen from 'screens/LoginScreen/Loadable';
@@ -27,6 +28,10 @@ const routes = {
   [routeNames.SPLASH]: {
     ...routeConfigs[routeNames.SPLASH],
     screen: SplashScreen,
+  },
+  [routeNames.CITY_SELECTION]: {
+    ...routeConfigs[routeNames.CITY_SELECTION],
+    screen: CitySelectionScreen,
   },
   [routeNames.HOME]: {
     ...routeConfigs[routeNames.HOME],

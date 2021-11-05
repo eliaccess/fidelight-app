@@ -23,6 +23,7 @@ const configs = {
   CONTACT_EMAIL: '',
   DOWNLOAD_URL: '',
   SEARCH_LIMIT: 5,
+  USER_LOCATION: 'fideLight/user/location',
 };
 
 export default configs;

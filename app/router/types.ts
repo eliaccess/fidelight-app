@@ -2,6 +2,7 @@
 
 export type RootStackParamList = {
   Splash: {};
+  CitySelection: {};
   Home: {};
   AccountSelection: {};
   Login?: {};

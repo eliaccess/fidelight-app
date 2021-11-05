@@ -35,9 +35,9 @@ const style = StyleSheet.create({
 });
 
 interface INoResult {
-  message: string | React.ReactNode;
-  actionLabel: string | React.ReactNode;
-  actionPress: () => void;
+  message?: string | React.ReactNode;
+  actionLabel?: string | React.ReactNode;
+  actionPress?: () => void;
 }
 
 const NoResult: React.FC<INoResult> = ({

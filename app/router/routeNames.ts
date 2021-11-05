@@ -1,4 +1,5 @@
 export const SPLASH = 'Splash';
+export const CITY_SELECTION = 'CitySelection';
 export const HOME = 'Home';
 export const ACCOUNT_SELECTION = 'AccountSelection';
 export const LOGIN = 'Login';

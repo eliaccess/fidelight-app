@@ -9,6 +9,7 @@ import React, { useState, useEffect } from 'react';
 import { Platform, View } from 'react-native';
 
 import { useAuthentication } from 'containers/Authentication';
+import { useUserLocation } from 'containers/UserLocation';
 
 import Screen from 'theme/Screen';
 import FormattedMessage, { useFormattedMessage } from 'theme/FormattedMessage';
@@ -20,6 +21,7 @@ import FullScreenLoader from 'theme/FullScreenLoader';
 import { useToastContext } from 'theme/Toast';
 import {
   BUSINESS_HOME,
+  CITY_SELECTION,
   FORGET_PASSWORD,
   HOME,
   SIGNUP,
@@ -35,6 +37,7 @@ function LoginScreen(props: LoginScreenProps) {
   const toast = useToastContext();
 
   const authentication = useAuthentication();
+  const userLocation = useUserLocation();
   const heading = useFormattedMessage(messages.headingLabel);
 
   useEffect(() => {
@@ -48,12 +51,26 @@ function LoginScreen(props: LoginScreenProps) {
       type: 'success',
     });
 
+    if (
+      userLocation?.data?.cityName ||
+      authentication.accountType === 'business'
+    ) {
+      props.navigation.reset({
+        index: 0,
+        routes: [
+          {
+            name:
+              authentication.accountType === 'business' ? BUSINESS_HOME : HOME,
+          },
+        ],
+      });
+      return;
+    }
     props.navigation.reset({
       index: 0,
       routes: [
         {
-          name:
-            authentication.accountType === 'business' ? BUSINESS_HOME : HOME,
+          name: CITY_SELECTION,
         },
       ],
     });

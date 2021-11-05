@@ -8,6 +8,7 @@ import React, { useEffect, useState } from 'react';
 import { Platform, View } from 'react-native';
 
 import { useAuthentication } from 'containers/Authentication';
+import { useUserLocation } from 'containers/UserLocation';
 
 import Screen from 'theme/Screen';
 import FormattedMessage, { useFormattedMessage } from 'theme/FormattedMessage';
@@ -17,7 +18,7 @@ import Separator from 'theme/Separator';
 import FullScreenLoader from 'theme/FullScreenLoader';
 import { useToastContext } from 'theme/Toast';
 
-import { BUSINESS_HOME, HOME, LOGIN } from 'router/routeNames';
+import { BUSINESS_HOME, CITY_SELECTION, HOME, LOGIN } from 'router/routeNames';
 
 import EmailPasswordForm from './Form';
 import messages from './messages';
@@ -27,6 +28,7 @@ import { SignUpScreenProps } from './types';
 function SignUpScreen(props: SignUpScreenProps) {
   const [showLoader, setShowLoader] = useState(false);
   const authentication = useAuthentication();
+  const userLocation = useUserLocation();
   const toast = useToastContext();
 
   useEffect(() => {
@@ -46,12 +48,26 @@ function SignUpScreen(props: SignUpScreenProps) {
       type: 'success',
     });
 
+    if (
+      userLocation?.data?.cityName ||
+      authentication.accountType === 'business'
+    ) {
+      props.navigation.reset({
+        index: 0,
+        routes: [
+          {
+            name:
+              authentication.accountType === 'business' ? BUSINESS_HOME : HOME,
+          },
+        ],
+      });
+      return;
+    }
     props.navigation.reset({
       index: 0,
       routes: [
         {
-          name:
-            authentication.accountType === 'business' ? BUSINESS_HOME : HOME,
+          name: CITY_SELECTION,
         },
       ],
     });

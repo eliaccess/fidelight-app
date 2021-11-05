@@ -15,8 +15,14 @@ import { Log } from 'platform/Logger';
 import { deepLinkingHandler } from 'router/utils';
 
 import { useAuthentication } from 'containers/Authentication';
+import { useUserLocation } from 'containers/UserLocation';
 import Image from 'theme/Image';
-import { ACCOUNT_SELECTION, BUSINESS_HOME, HOME } from 'router/routeNames';
+import {
+  ACCOUNT_SELECTION,
+  BUSINESS_HOME,
+  CITY_SELECTION,
+  HOME,
+} from 'router/routeNames';
 
 // import messages from './messages';
 import style from './style';
@@ -25,6 +31,7 @@ import { SplashProps } from './types';
 function SplashScreen({ navigation }: SplashProps) {
   // const [showOnboarding, setShowOnboarding] = useState(false);
   const authentication = useAuthentication();
+  const userLocation = useUserLocation();
   const isFocused = useIsFocused();
 
   const onLoad = async () => {
@@ -47,18 +54,30 @@ function SplashScreen({ navigation }: SplashProps) {
       return;
     }
     if (authentication.isAuthenticated) {
-      if (authentication.accountType === 'business') {
+      if (
+        userLocation?.data?.cityName ||
+        authentication.accountType === 'business'
+      ) {
         navigation.reset({
           index: 0,
-          // @ts-ignore
-          routes: [{ name: BUSINESS_HOME }],
+          routes: [
+            {
+              name:
+                authentication.accountType === 'business'
+                  ? BUSINESS_HOME
+                  : HOME,
+            },
+          ],
         });
         return;
       }
       navigation.reset({
         index: 0,
-        // @ts-ignore
-        routes: [{ name: HOME }],
+        routes: [
+          {
+            name: CITY_SELECTION,
+          },
+        ],
       });
       return;
     }
