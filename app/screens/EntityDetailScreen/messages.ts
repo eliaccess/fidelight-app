@@ -20,6 +20,10 @@ export default defineMessages({
     id: `${scope}.closesLabel`,
     defaultMessage: 'Closes  ',
   },
+  closedLabel: {
+    id: `${scope}.closedLabel`,
+    defaultMessage: 'Closed',
+  },
   weeksDealHeading: {
     id: `${scope}.weeksDealHeading`,
     defaultMessage: "Week's Deal",

@@ -14,8 +14,7 @@ export const useGetStyles = () => {
 
   const style = StyleSheet.create({
     container: {
-      flexDirection: 'row',
-      flexWrap: 'wrap',
+      marginTop: Dimensions.space1x,
     },
     seeAllLabel: {
       fontSize: 12,
@@ -25,9 +24,13 @@ export const useGetStyles = () => {
     listWrapper: {
       flexDirection: 'row',
     },
+    secondListWrapper: {
+      flexDirection: 'row',
+      marginTop: Dimensions.space2x,
+    },
     item: {
       flexDirection: 'row',
-      marginVertical: Dimensions.space2x,
+      marginTop: Dimensions.space1x,
       width: Dimensions.screenWidth / 2,
       marginRight: Dimensions.space8x,
     },
@@ -43,7 +46,7 @@ export const useGetStyles = () => {
     },
     title: {
       fontSize: 14,
-      fontWeight: 'bold',
+      fontWeight: '500',
       color: Colors.textBlack,
       marginBottom: Dimensions.space2x,
     },

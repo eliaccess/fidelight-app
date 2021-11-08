@@ -13,7 +13,7 @@ import { getFontFamily } from 'theme/utils';
 
 const defaultStyle = StyleSheet.create({
   fontFamily: {
-    fontFamily: 'Gilroy-Regular',
+    fontFamily: 'Gilroy',
     backgroundColor: Colors.transparent,
   },
 });

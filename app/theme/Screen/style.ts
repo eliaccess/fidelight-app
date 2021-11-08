@@ -32,7 +32,7 @@ const style = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'center',
-    height: Dimensions.headerContentHeight + Dimensions.space2x,
+    height: Dimensions.headerContentHeight,
     paddingHorizontal: 35,
   },
   backButton: {
@@ -41,13 +41,13 @@ const style = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
+    zIndex: 100000,
   },
   backButtonDark: {
     backgroundColor: Colors.transparent,
   },
   backButtonIcon: {
-    fontSize: 30,
-    fontWeight: '900',
+    fontSize: 26,
     color: Colors.white,
   },
   title: {
@@ -105,8 +105,10 @@ const style = StyleSheet.create({
     fontSize: 10,
   },
   backLabel: {
-    marginLeft: -Dimensions.space1x,
-    fontWeight: '600',
+    fontSize: 14,
+    lineHeight: 14,
+    marginLeft: -Dimensions.space1x / 2,
+    fontWeight: '500',
     color: Colors.white,
   },
   darkStyle: {

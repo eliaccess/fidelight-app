@@ -4,10 +4,18 @@
  *
  */
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { View } from 'react-native';
-import Icon from 'theme/Icon';
 
+import {
+  Easing,
+  interpolate,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated';
+
+import Icon from 'theme/Icon';
 import Image from 'theme/Image';
 import Text from 'theme/Text';
 import { EntityDetailItemTypes } from 'types/EntityItemTypes';
@@ -18,13 +26,37 @@ type EntityHeaderProps = {
 };
 
 function EntityHeader(props: EntityHeaderProps) {
+  const animation = useRef(useSharedValue(0)).current;
+  useEffect(() => {
+    animation.value = withTiming(1, {
+      duration: 3000,
+      easing: Easing.ease,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const animatedStyle = useAnimatedStyle(() => {
+    const scale = interpolate(animation.value, [0, 1], [1.2, 1]);
+
+    return {
+      transform: [
+        {
+          scale,
+        },
+      ],
+    };
+  });
   return (
     <View style={style.container}>
-      <Image
-        uri={props.data.backgroundPicture}
-        style={style.coverImage}
-        resizeMode="cover"
-      />
+      <View style={style.coverImageWrapper}>
+        <Image
+          animated
+          uri={props.data.backgroundPicture}
+          style={[style.coverImage, animatedStyle]}
+          resizeMode="cover"
+        />
+      </View>
+
       <View style={style.content}>
         <View style={style.logoWrapper}>
           <Image

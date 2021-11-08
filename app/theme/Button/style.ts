@@ -81,7 +81,7 @@ const style = StyleSheet.create({
   label: {
     fontSize: 14,
     color: Colors.textBlack,
-    fontWeight: '700',
+    fontWeight: '600',
     marginHorizontal: Dimensions.space1x,
     textAlign: 'center',
   },

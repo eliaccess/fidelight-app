@@ -65,7 +65,7 @@ const style = StyleSheet.create({
     fontWeight: '600',
   },
   modalContent: {
-    padding: Dimensions.space2x,
+    padding: Dimensions.space3x,
   },
   terms: {
     marginVertical: Dimensions.space2x,

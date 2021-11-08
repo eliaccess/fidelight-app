@@ -24,7 +24,9 @@ export const useGetStyles = () => {
       borderTopColor: Colors.white,
       ...Platform.select({
         ios: { paddingBottom: Dimensions.bottomSpacing },
-        android: { paddingBottom: Dimensions.bottomSpacing },
+        android: {
+          paddingBottom: Dimensions.bottomSpacing + Dimensions.space1x,
+        },
       }),
       backgroundColor: Colors.white,
       ...elevation(2, Colors.black),

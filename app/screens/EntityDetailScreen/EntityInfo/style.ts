@@ -21,6 +21,25 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    marginTop: Dimensions.space2x,
+  },
+  favoriteIcon: {
+    fontSize: 22,
+    color: Colors.errorBackground,
+  },
+  nameDescriptionWrapper: {
+    width: '85%',
+  },
+  name: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: Colors.textBlack,
+  },
+  description: {
+    fontSize: 14,
+    color: Colors.textGrey,
+    marginRight: Dimensions.space2x,
+    marginTop: Dimensions.space2x,
   },
   favoriteIconWrapper: {
     backgroundColor: Colors.white,
@@ -29,26 +48,6 @@ const style = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     ...elevation(2),
-  },
-  favoriteIcon: {
-    fontSize: 22,
-    color: Colors.errorBackground,
-  },
-  name: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    color: Colors.textBlack,
-  },
-  facilitiesWrapper: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    marginTop: Dimensions.space2x,
-  },
-  facilityIem: {
-    fontSize: 16,
-    color: Colors.textGrey,
-    marginRight: Dimensions.space2x,
-    marginTop: Dimensions.space1x,
   },
   tagsWrapper: {
     flexDirection: 'row',
@@ -100,7 +99,7 @@ const style = StyleSheet.create({
     color: Colors.accent,
   },
   contactInfoItemLabel: {
-    fontSize: 16,
+    fontSize: 14,
     color: Colors.textGrey,
     marginLeft: Dimensions.space2x,
   },

@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 
 import Colors from 'theme/Colors';
 import Dimensions from 'theme/Dimensions';
@@ -11,7 +11,11 @@ const style = StyleSheet.create({
     borderRadius: Dimensions.borderRadius10x,
     width: '90%',
     alignItems: 'center',
-    // paddingVertical: Dimensions.space2x,
+    ...Platform.select({
+      ios: {
+        paddingVertical: Dimensions.space2x,
+      },
+    }),
     paddingHorizontal: Dimensions.space3x,
     backgroundColor: Colors.itemBackgroundColor,
   },
@@ -48,7 +52,7 @@ const style = StyleSheet.create({
   },
   listItemText: {
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: '500',
     color: Colors.textBlack,
   },
 });

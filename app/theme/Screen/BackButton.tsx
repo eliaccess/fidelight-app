@@ -50,7 +50,7 @@ const BackButton: React.FC<BackButtonProps> = (props) => {
   };
 
   return (
-    <TouchFeedback style={style.backButton} onPress={() => handleBackPress()}>
+    <TouchFeedback style={style.backButton} onPress={handleBackPress}>
       <Icon
         name="chevron-left"
         style={[style.backButtonIcon, props.dark ? style.darkStyle : null]}

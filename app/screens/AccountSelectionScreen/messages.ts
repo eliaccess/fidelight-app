@@ -14,10 +14,10 @@ export default defineMessages({
   },
   asUserLabel: {
     id: `${scope}.asUserLabel`,
-    defaultMessage: 'Continue as User',
+    defaultMessage: 'Continue as user',
   },
   asBusinessLabel: {
     id: `${scope}.asBusinessLabel`,
-    defaultMessage: 'Continue as Bussiness',
+    defaultMessage: 'Continue as business',
   },
 });

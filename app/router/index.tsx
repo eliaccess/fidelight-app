@@ -1,43 +1,42 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import SplashScreen from 'react-native-splash-screen';
-import Animated, {
-  Easing,
-  useSharedValue,
-  withTiming,
-} from 'react-native-reanimated';
+// import SplashScreen from 'react-native-splash-screen';
+// import Animated, {
+//   Easing,
+//   useSharedValue,
+//   withTiming,
+// } from 'react-native-reanimated';
 import configs from 'configs';
 
-import { ThemeContext } from 'theme/ThemeManager';
+// import { ThemeContext } from 'theme/ThemeManager';
 // import ThemeSwitch from 'theme/ThemeSwitch';
 
 import routes from './routes';
 import { SPLASH } from './routeNames';
-import { useGetStyles } from './style';
-import { useOverlay } from './animations';
+// import { useGetStyles } from './style';
+// import { useOverlay } from './animations';
 
 const Stack = createStackNavigator();
 
 function Router({ onStateChange }) {
-  SplashScreen.hide();
-  const style = useGetStyles();
-  // @ts-ignore
-  const { theme } = React.useContext(ThemeContext);
-  const overLayAnimation = useRef(useSharedValue(0)).current;
+  // const style = useGetStyles();
+  // // @ts-ignore
+  // const { theme } = React.useContext(ThemeContext);
+  // const overLayAnimation = useRef(useSharedValue(0)).current;
 
-  useEffect(() => {
-    overLayAnimation.value = withTiming(theme === 'dark' ? 1 : 0, {
-      duration: 400,
-      easing: Easing.inOut(Easing.ease),
-    });
-  }, [overLayAnimation, theme]);
+  // useEffect(() => {
+  //   overLayAnimation.value = withTiming(theme === 'dark' ? 1 : 0, {
+  //     duration: 400,
+  //     easing: Easing.inOut(Easing.ease),
+  //   });
+  // }, [overLayAnimation, theme]);
 
-  const animatedStyle = useOverlay(overLayAnimation);
+  // const animatedStyle = useOverlay(overLayAnimation);
   return (
     <NavigationContainer onStateChange={onStateChange}>
-      <Animated.View style={[style.container, animatedStyle]} />
+      {/* <Animated.View style={[style.container, animatedStyle]} /> */}
       {/* <ThemeSwitch /> */}
       <Stack.Navigator
         initialRouteName={SPLASH}
@@ -46,6 +45,21 @@ function Router({ onStateChange }) {
         screenOptions={{
           headerShown: false,
           cardOverlayEnabled: false,
+          // cardStyleInterpolator: ({ current: { progress } }) => ({
+          //   cardStyle: {
+          //     opacity: progress.interpolate({
+          //       inputRange: [0, 0.5, 0.9, 1],
+          //       outputRange: [0, 0.25, 0.7, 1],
+          //     }),
+          //   },
+          //   overlayStyle: {
+          //     opacity: progress.interpolate({
+          //       inputRange: [0, 1],
+          //       outputRange: [0, 1],
+          //       extrapolate: 'clamp',
+          //     }),
+          //   },
+          // }),
         }}
       >
         {Object.keys(routes).map((routeKey) => (

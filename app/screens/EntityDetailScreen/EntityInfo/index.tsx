@@ -23,11 +23,9 @@ function EntityInfo(props: EntityInfoProps) {
   return (
     <View style={style.infoContainer}>
       <View style={style.entityInfoWrapper}>
-        <View>
+        <View style={style.nameDescriptionWrapper}>
           <Text style={style.name}>{props.data.name} </Text>
-          <View style={style.facilitiesWrapper}>
-            <Text style={style.facilityIem}>{props.data.description}</Text>
-          </View>
+          <Text style={style.description}>{props.data.description}</Text>
         </View>
         <View style={style.favoriteIconWrapper}>
           <WishlistButton

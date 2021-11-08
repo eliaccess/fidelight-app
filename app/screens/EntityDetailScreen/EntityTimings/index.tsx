@@ -10,9 +10,11 @@ import { View } from 'react-native';
 import Icon from 'theme/Icon';
 import Text from 'theme/Text';
 import TouchFeedback from 'theme/TouchFeedback';
+import FormattedMessage from 'theme/FormattedMessage';
 import { EntityDetailItemTypes } from 'types/EntityItemTypes';
 
 import style from './style';
+import messages from '../messages';
 
 type EntityTimingsProps = {
   data: EntityDetailItemTypes;
@@ -72,7 +74,12 @@ function EntityTimings(props: EntityTimingsProps) {
                     {item.closePm?.slice(0, 5)}:PM
                   </Text>
                 </View>
-              ) : null}
+              ) : (
+                <FormattedMessage
+                  {...messages.closedLabel}
+                  style={style.closedLabel}
+                />
+              )}
             </View>
           </View>
         );

@@ -15,7 +15,6 @@ const style = StyleSheet.create({
   container: {
     backgroundColor: Colors.bg1Color,
   },
-
   sectionWrapper: {
     backgroundColor: Colors.white,
     ...Platform.select({
@@ -24,6 +23,7 @@ const style = StyleSheet.create({
     }),
   },
   loaderHeader: {
+    marginTop: -120,
     width: Dimensions.screenWidth,
     height: 230,
     backgroundColor: Colors.skeleton,

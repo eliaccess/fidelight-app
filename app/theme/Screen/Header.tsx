@@ -3,8 +3,10 @@ import { View, StatusBar } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Animated, {
   interpolate,
+  interpolateColor,
   useAnimatedStyle,
 } from 'react-native-reanimated';
+import Colors from 'theme/Colors';
 // import Colors from 'theme/Colors';
 
 import Text from 'theme/Text';
@@ -36,25 +38,25 @@ const Header: React.FC<HeaderProps> = (props) => {
     };
   });
 
-  // const headerAnimation = useAnimatedStyle(() => {
-  //   const backgroundColor = interpolateColor(
-  //     props.visibleValue.value,
-  //     [0, 1],
-  //     [Colors.transparent, Colors.white],
-  //   );
-  //   const borderBottomColor = interpolateColor(
-  //     props.visibleValue.value,
-  //     [0, 1],
-  //     [Colors.transparent, Colors.white],
-  //   );
-  //   return {
-  //     backgroundColor,
-  //     borderBottomColor,
-  //   };
-  // });
+  const headerAnimation = useAnimatedStyle(() => {
+    const backgroundColor = interpolateColor(
+      props.visibleValue.value,
+      [0, 1],
+      [Colors.transparent, Colors.white],
+    );
+    const borderBottomColor = interpolateColor(
+      props.visibleValue.value,
+      [0, 1],
+      [Colors.transparent, Colors.primary],
+    );
+    return {
+      backgroundColor,
+      borderBottomColor,
+    };
+  });
 
   return (
-    <Animated.View style={[style.header]} key="header">
+    <Animated.View style={[style.header, headerAnimation]} key="header">
       {props.title ? (
         <LinearGradient {...buttonGradientProps()} style={style.backdrop} />
       ) : null}

@@ -52,7 +52,11 @@ function HottestDeals(props: HottestDealsProps) {
   }
 
   return (
-    <Animatable.View animation="fadeIn" duration={1500}>
+    <Animatable.View
+      style={style.container}
+      animation="fadeInDown"
+      duration={1500}
+    >
       <Section
         heading={<FormattedMessage {...messages.dealsHeading} isFragment />}
         headerRight={
@@ -69,7 +73,7 @@ function HottestDeals(props: HottestDealsProps) {
         }
       >
         {hotDeals?.data ? (
-          <View style={style.container}>
+          <View>
             <HorizontalSlidingList>
               <View>
                 <View style={style.listWrapper}>
@@ -104,7 +108,7 @@ function HottestDeals(props: HottestDealsProps) {
                       </TouchFeedback>
                     ))}
                 </View>
-                <View style={style.listWrapper}>
+                <View style={style.secondListWrapper}>
                   {hotDeals.data
                     .slice(
                       Math.ceil(hotDeals.data.length / 2),

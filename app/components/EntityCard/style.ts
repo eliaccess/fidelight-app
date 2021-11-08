@@ -16,11 +16,12 @@ export const useGetStyles = () => {
   const style = StyleSheet.create({
     item: {
       flexDirection: 'row',
-      backgroundColor: Colors.itemBackgroundColor,
       paddingHorizontal: Dimensions.space1x,
       paddingVertical: Dimensions.space2x,
       borderRadius: Dimensions.borderRadius2x,
       marginBottom: Dimensions.space2x,
+      borderBottomWidth: 1,
+      borderBottomColor: Colors.primaryDark,
     },
     imageWrapper: {
       width: 80,
@@ -33,12 +34,12 @@ export const useGetStyles = () => {
       borderRadius: Dimensions.borderRadius3x,
     },
     contentWrapper: {
-      width: '62%',
+      width: '60%',
       marginHorizontal: Dimensions.space2x,
     },
     title: {
       fontSize: 16,
-      fontWeight: 'bold',
+      fontWeight: '500',
       color: Colors.textBlack,
       marginBottom: Dimensions.space2x,
     },

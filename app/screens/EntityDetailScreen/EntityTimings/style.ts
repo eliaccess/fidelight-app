@@ -8,16 +8,14 @@ import { StyleSheet } from 'react-native';
 
 import Colors from 'theme/Colors';
 import Dimensions from 'theme/Dimensions';
-import elevation from 'theme/elevation';
 export const DOT_SIZE = 40;
 export const ITEM_WIDTH = Dimensions.screenWidth - Dimensions.screenWidth / 6;
 const style = StyleSheet.create({
   timingsContainer: {
     backgroundColor: Colors.white,
-    borderRadius: Dimensions.borderRadius2x,
+
     padding: Dimensions.space1x,
     marginVertical: Dimensions.space2x,
-    ...elevation(1),
   },
   timeItem: {
     flexDirection: 'row',
@@ -27,7 +25,7 @@ const style = StyleSheet.create({
   dayName: {
     fontSize: 14,
     color: Colors.textBlack,
-    fontWeight: '600',
+    fontWeight: 'bold',
     alignSelf: 'center',
     width: 100,
   },
@@ -50,10 +48,15 @@ const style = StyleSheet.create({
   },
   timingIcon: {
     fontSize: 22,
-    color: Colors.black,
+    color: Colors.textGrey,
   },
   activeDay: {
     color: Colors.accentDark,
+  },
+  closedLabel: {
+    fontSize: 14,
+    color: Colors.favorite,
+    alignSelf: 'center',
   },
 });
 

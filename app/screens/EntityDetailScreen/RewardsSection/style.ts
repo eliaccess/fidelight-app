@@ -42,7 +42,7 @@ const style = StyleSheet.create({
   title: {
     fontSize: 18,
     color: Colors.textBlack,
-    fontWeight: 'bold',
+    fontWeight: '600',
   },
   shortDescription: {
     fontSize: 14,

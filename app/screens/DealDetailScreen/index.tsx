@@ -45,6 +45,8 @@ function DealDetailScreen(props: DealDetailScreenProps) {
             <View style={style.modalHeader}>
               <Text style={style.dealTitle}>{dealDetail?.data?.name}</Text>
               <Text style={style.dealProduct}>{dealDetail?.data?.product}</Text>
+              <View style={style.ellipse} />
+              <View style={style.innerEllipse} />
               <Image title="dealImage" style={style.dealImage} />
             </View>
             <View style={style.modalContent}>

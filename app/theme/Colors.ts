@@ -26,7 +26,7 @@ export default {
   tertiaryReverse: '#FFFFFF',
   tertiaryDisabled: '#C6DCD3',
 
-  textBlack: '#525071',
+  textBlack: '#000000',
   textGrey: '#8F8FA9',
 
   transparent: 'rgba(255, 255, 255, 0)',
@@ -46,7 +46,7 @@ export default {
   translucentWhite: 'rgba(255, 255, 255, 0.95)',
 
   ripple: '#e3e1e1',
-  statusBar: 'rgba(0, 0, 0, 0.2)',
+  statusBar: 'rgba(0, 0, 0, 0)',
 
   facebook: '#3C66C4',
   whatsapp: '#00b300',
@@ -87,7 +87,7 @@ export const lightTheme = {
 
   bg1Color: '#F5FAFF',
   bg2Color: '#D4ECFB',
-  itemBackgroundColor: '#F6F6F6',
+  itemBackgroundColor: '#F4F6F8',
 
   accentLight: '#73C9A4',
   accent: '#55C595',
@@ -101,7 +101,7 @@ export const lightTheme = {
   tertiaryReverse: '#FFFFFF',
   tertiaryDisabled: '#C6DCD3',
 
-  textBlack: '#525071',
+  textBlack: '#000000',
   textGrey: '#8F8FA9',
 
   transparent: 'rgba(255, 255, 255, 0)',

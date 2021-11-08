@@ -6,17 +6,15 @@
  */
 
 import React, { useEffect } from 'react';
-import { View } from 'react-native';
 import RNSplashScreen from 'react-native-splash-screen';
 import { useIsFocused } from '@react-navigation/native';
 
 import { Log } from 'platform/Logger';
-
 import { deepLinkingHandler } from 'router/utils';
 
 import { useAuthentication } from 'containers/Authentication';
 import { useUserLocation } from 'containers/UserLocation';
-import Image from 'theme/Image';
+
 import {
   ACCOUNT_SELECTION,
   BUSINESS_HOME,
@@ -24,8 +22,6 @@ import {
   HOME,
 } from 'router/routeNames';
 
-// import messages from './messages';
-import style from './style';
 import { SplashProps } from './types';
 
 function SplashScreen({ navigation }: SplashProps) {
@@ -37,13 +33,14 @@ function SplashScreen({ navigation }: SplashProps) {
   const onLoad = async () => {
     const deepLink = await deepLinkingHandler();
     Log(JSON.stringify(deepLink));
-    RNSplashScreen.hide();
+
     if (!isFocused) {
       return;
     }
 
     if (deepLink) {
       const { initialRoute } = deepLink;
+      RNSplashScreen.hide();
       navigation.reset({
         index: 0,
         routes: [
@@ -59,6 +56,7 @@ function SplashScreen({ navigation }: SplashProps) {
         userLocation?.data?.cityName ||
         authentication.accountType === 'business'
       ) {
+        RNSplashScreen.hide();
         navigation.reset({
           index: 0,
           routes: [
@@ -72,6 +70,7 @@ function SplashScreen({ navigation }: SplashProps) {
         });
         return;
       }
+      RNSplashScreen.hide();
       navigation.reset({
         index: 0,
         routes: [
@@ -82,6 +81,7 @@ function SplashScreen({ navigation }: SplashProps) {
       });
       return;
     }
+    RNSplashScreen.hide();
     // setShowOnboarding(true);
     navigation.reset({
       index: 0,
@@ -96,13 +96,7 @@ function SplashScreen({ navigation }: SplashProps) {
     // Linking.addEventListener('url', (e) => onLoad(e.url));
   }, [authentication.localChecked]);
 
-  return (
-    <View style={style.flexContainer} testID="splash">
-      <View style={style.logoContainer}>
-        <Image title="bgImage" resizeMode="cover" style={style.logo} />
-      </View>
-    </View>
-  );
+  return null;
 }
 
 export default React.memo(SplashScreen);

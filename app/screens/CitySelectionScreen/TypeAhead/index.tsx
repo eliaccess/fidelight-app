@@ -42,7 +42,6 @@ const CitiesTypeAhead: React.FC<{
           placeholder={placeholder}
           keyboardType="default"
           clearButtonMode="while-editing"
-          autoFocus
         />
       </View>
       {query && query === citiesSearch.query ? (

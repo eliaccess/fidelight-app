@@ -14,11 +14,17 @@ const style = StyleSheet.create({
   container: {
     marginTop: -120,
     zIndex: 1000,
+    backgroundColor: Colors.white,
   },
-  coverImage: {
+  coverImageWrapper: {
     width: Dimensions.screenWidth,
     height: 230,
-    backgroundColor: Colors.accent,
+    overflow: 'hidden',
+  },
+  coverImage: {
+    width: '100%',
+    height: '100%',
+    backgroundColor: Colors.primary,
   },
 
   content: {

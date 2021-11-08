@@ -65,12 +65,16 @@ function DealsSection(props: DealsSectionProps) {
     <Section
       heading={<FormattedMessage {...messages.weeksDealHeading} isFragment />}
       headerRight={
-        <TouchFeedback onPress={() => props.navigation.navigate(DEAL_LISTING)}>
-          <FormattedMessage
-            {...messages.seeAllLabel}
-            style={style.seeAllLabel}
-          />
-        </TouchFeedback>
+        deals ? (
+          <TouchFeedback
+            onPress={() => props.navigation.navigate(DEAL_LISTING)}
+          >
+            <FormattedMessage
+              {...messages.seeAllLabel}
+              style={style.seeAllLabel}
+            />
+          </TouchFeedback>
+        ) : null
       }
     >
       {deals ? (

@@ -33,11 +33,11 @@ const style = StyleSheet.create({
   title: {
     fontSize: 22,
     color: Colors.textBlack,
-    fontWeight: 'bold',
+    fontWeight: '600',
   },
   shortDescription: {
-    fontSize: 16,
-    color: Colors.textBlack,
+    fontSize: 14,
+    color: Colors.textGrey,
     marginTop: Dimensions.space2x,
   },
   dealImage: {
