@@ -8,6 +8,7 @@ import configs from 'configs';
 import LocalStorage from 'platform/LocalStorage';
 import React from 'react';
 import { View } from 'react-native';
+import * as Animatable from 'react-native-animatable';
 import { BUSINESS_LOGIN, LOGIN } from 'router/routeNames';
 import Button from 'theme/Button';
 import FormattedMessage from 'theme/FormattedMessage';
@@ -20,7 +21,9 @@ import { AccountSelectionScreenProps } from './types';
 function AccountSelectionScreen(props: AccountSelectionScreenProps) {
   return (
     <View style={style.container}>
-      <Image title="bgImage" style={style.imageBackground} resizeMode="cover" />
+      <Animatable.View animation="fadeIn" duration={1500}>
+        <Image title="splash" style={style.imageBackground} />
+      </Animatable.View>
       <View style={style.content}>
         <FormattedMessage
           style={style.chooseOptionHeading}

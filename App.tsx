@@ -6,6 +6,11 @@
 
 import React from 'react';
 import { Provider } from 'react-redux';
+// import { Log } from './app/platform/Logger';
+import { initPerformance } from './app/platform/performance';
+import { initCrashlytics } from './app/platform/crashlytics';
+import { initAnalytics } from './app/platform/analytics';
+// import { getFCMToken, initNotifications } from './app/platform/Notifications';
 
 import LanguageProvider from './app/containers/LanguageProvider';
 import AppContainer from './app/containers/App';
@@ -17,6 +22,17 @@ import { ThemeProvider } from './app/theme/ThemeManager';
 
 const initialState = {};
 const store = configureStore(initialState);
+
+setTimeout(() => {
+  initAnalytics();
+  initCrashlytics();
+  initPerformance();
+  // initNotifications().then(() => {
+  //   getFCMToken().then((token) => {
+  //     Log({ token });
+  //   });
+  // });
+}, 2000);
 
 const toastTheme = {
   position: 'bottom',

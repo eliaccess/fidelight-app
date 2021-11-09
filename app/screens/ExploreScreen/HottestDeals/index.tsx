@@ -52,11 +52,7 @@ function HottestDeals(props: HottestDealsProps) {
   }
 
   return (
-    <Animatable.View
-      style={style.container}
-      animation="fadeInDown"
-      duration={1500}
-    >
+    <Animatable.View style={style.container} animation="fadeIn" duration={1500}>
       <Section
         heading={<FormattedMessage {...messages.dealsHeading} isFragment />}
         headerRight={

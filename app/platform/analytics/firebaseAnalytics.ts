@@ -13,22 +13,8 @@ function log(...args: any[]) {
   }
 }
 
-function setUser({
-  id,
-  name,
-  email,
-  ...params
-}: {
-  id: string;
-  name: string;
-  email: string;
-  [x: string]: any;
-}): void {
-  if (!id) {
-    return;
-  }
+function setUser({ id, ...params }: { [x: string]: any }): void {
   analytics().setUserId(id.toString());
-  analytics().setUserProperty(name, email);
   Object.keys(params).forEach((key) => {
     analytics().setUserProperty(key, `${params[key]}`);
   });
@@ -41,7 +27,6 @@ function setUserId(id: string) {
 function logScreen(routeName: string, params: any) {
   log('LOGGING SCREEN:', routeName, params);
   analytics().logScreenView({ screen_name: routeName });
-  // analytics().logEvent(routeName, params);
   logEvent(routeName, params);
 }
 

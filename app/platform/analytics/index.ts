@@ -3,8 +3,8 @@ import configs from 'configs';
 
 import firebaseAnalytics from './firebaseAnalytics';
 
-// const DEBUG = __DEV__;
-const DEBUG = false;
+const DEBUG = __DEV__;
+// const DEBUG = false;
 
 function log(...args) {
   if (configs.LOG_ANALYTICS) {

@@ -36,7 +36,7 @@ function CategoriesWidget(props: CategoriesWidgetProps) {
   const style = useGetStyles();
 
   return (
-    <Animatable.View animation="fadeInDown" duration={1500}>
+    <Animatable.View animation="fadeIn" duration={1500}>
       <Section
         heading={
           <FormattedMessage {...messages.categoriesHeading} isFragment />

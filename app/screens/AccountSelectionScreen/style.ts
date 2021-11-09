@@ -15,10 +15,15 @@ const style = StyleSheet.create({
     flex: 1,
   },
   imageBackground: {
-    width: Dimensions.screenWidth,
-    height: Dimensions.screenHeight - Dimensions.screenWidth / 2,
+    alignSelf: 'center',
+    marginTop: '47%',
+    width: 110,
+    height: 145,
   },
   content: {
+    position: 'absolute',
+    bottom: Dimensions.bottomSpacing,
+    alignSelf: 'center',
     marginTop: -Dimensions.space8x,
   },
   chooseOptionHeading: {
