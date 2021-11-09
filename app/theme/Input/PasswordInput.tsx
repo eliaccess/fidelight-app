@@ -22,7 +22,6 @@ const PasswordInput = React.forwardRef(
         <Input
           clearButtonMode="never"
           {...props}
-          autoCompleteType="password"
           secureTextEntry={!show}
           textContentType="password"
           importantForAutofill="yes"

@@ -69,7 +69,6 @@ const GeneralInfoForm: React.FC<GeneralInfoFormProps> = (props) => {
             <View style={style.inputContainer}>
               <Input
                 textContentType="givenName"
-                autoCompleteType="name"
                 keyboardType="default"
                 returnKeyType="next"
                 autoCapitalize="none"
@@ -93,7 +92,6 @@ const GeneralInfoForm: React.FC<GeneralInfoFormProps> = (props) => {
               <Input
                 ref={addressFieldRef}
                 textContentType="addressCity"
-                autoCompleteType="street-address"
                 keyboardType="default"
                 returnKeyType="next"
                 autoCapitalize="none"
@@ -117,7 +115,6 @@ const GeneralInfoForm: React.FC<GeneralInfoFormProps> = (props) => {
               <Input
                 ref={phoneFieldRef}
                 textContentType="telephoneNumber"
-                autoCompleteType="cc-number"
                 keyboardType="numbers-and-punctuation"
                 returnKeyType="next"
                 autoCapitalize="none"
@@ -139,7 +136,6 @@ const GeneralInfoForm: React.FC<GeneralInfoFormProps> = (props) => {
               <Input
                 ref={websiteFieldRef}
                 textContentType="URL"
-                autoCompleteType="name"
                 keyboardType="default"
                 returnKeyType="next"
                 autoCapitalize="none"
@@ -163,7 +159,6 @@ const GeneralInfoForm: React.FC<GeneralInfoFormProps> = (props) => {
               <Input
                 ref={infoFieldRef}
                 textContentType="name"
-                autoCompleteType="name"
                 keyboardType="default"
                 returnKeyType="next"
                 autoCapitalize="none"

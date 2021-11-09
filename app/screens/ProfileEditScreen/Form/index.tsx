@@ -85,7 +85,6 @@ const Form: React.FC<FormProps> = (props) => {
             <View style={style.inputContainer}>
               <Input
                 textContentType="name"
-                autoCompleteType="name"
                 keyboardType="default"
                 returnKeyType="next"
                 autoCapitalize="none"
@@ -109,7 +108,6 @@ const Form: React.FC<FormProps> = (props) => {
               <Input
                 ref={nameFieldRef}
                 textContentType="name"
-                autoCompleteType="name"
                 keyboardType="default"
                 returnKeyType="next"
                 autoCapitalize="none"
@@ -131,7 +129,6 @@ const Form: React.FC<FormProps> = (props) => {
               <Input
                 ref={emailFieldRef}
                 textContentType="emailAddress"
-                autoCompleteType="email"
                 keyboardType="email-address"
                 returnKeyType="next"
                 autoCapitalize="none"
@@ -153,7 +150,6 @@ const Form: React.FC<FormProps> = (props) => {
               <Input
                 ref={phoneFieldRef}
                 textContentType="telephoneNumber"
-                autoCompleteType="cc-number"
                 keyboardType="numbers-and-punctuation"
                 returnKeyType="next"
                 autoCapitalize="none"
@@ -175,7 +171,6 @@ const Form: React.FC<FormProps> = (props) => {
               <Input
                 ref={dobFieldRef}
                 textContentType="telephoneNumber"
-                autoCompleteType="cc-number"
                 keyboardType="numbers-and-punctuation"
                 returnKeyType="next"
                 autoCapitalize="none"

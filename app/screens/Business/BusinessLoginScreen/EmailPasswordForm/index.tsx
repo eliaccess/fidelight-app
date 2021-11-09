@@ -65,7 +65,6 @@ const EmailPasswordForm: React.FC<EmailPasswordFormProps> = (props) => {
             <View style={style.inputContainer}>
               <Input
                 textContentType="emailAddress"
-                autoCompleteType="email"
                 keyboardType="email-address"
                 returnKeyType="next"
                 autoCapitalize="none"

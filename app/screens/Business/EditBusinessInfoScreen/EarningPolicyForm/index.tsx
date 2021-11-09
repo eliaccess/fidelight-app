@@ -87,7 +87,6 @@ const GeneralInfoForm: React.FC<GeneralInfoFormProps> = (props) => {
             <View style={style.inputContainer}>
               <Input
                 textContentType="none"
-                autoCompleteType="cc-number"
                 keyboardType="numeric"
                 returnKeyType="next"
                 autoCapitalize="none"
@@ -114,7 +113,6 @@ const GeneralInfoForm: React.FC<GeneralInfoFormProps> = (props) => {
               <Input
                 ref={rewardsFieldRef}
                 textContentType="none"
-                autoCompleteType="cc-number"
                 keyboardType="numeric"
                 returnKeyType="done"
                 autoCapitalize="none"

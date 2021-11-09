@@ -59,7 +59,6 @@ const Form: React.FC<FormProps> = (props) => {
             <View style={style.inputContainer}>
               <Input
                 textContentType="name"
-                autoCompleteType="name"
                 keyboardType="default"
                 returnKeyType="next"
                 autoCapitalize="none"
@@ -87,7 +86,6 @@ const Form: React.FC<FormProps> = (props) => {
               <Input
                 ref={scanQrCodeFieldRef}
                 textContentType="name"
-                autoCompleteType="name"
                 keyboardType="default"
                 returnKeyType="next"
                 autoCapitalize="none"

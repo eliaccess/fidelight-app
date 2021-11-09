@@ -108,7 +108,6 @@ const Form: React.FC<FormProps> = (props) => {
                 <View style={style.inputContainer}>
                   <Input
                     textContentType="organizationName"
-                    autoCompleteType="name"
                     keyboardType="default"
                     returnKeyType="next"
                     autoCapitalize="none"
@@ -135,7 +134,6 @@ const Form: React.FC<FormProps> = (props) => {
                   <Input
                     ref={emailFieldRef}
                     textContentType="emailAddress"
-                    autoCompleteType="email"
                     keyboardType="email-address"
                     returnKeyType="next"
                     autoCapitalize="none"
@@ -159,7 +157,6 @@ const Form: React.FC<FormProps> = (props) => {
                   <Input
                     ref={phoneFieldRef}
                     textContentType="telephoneNumber"
-                    autoCompleteType="cc-number"
                     keyboardType="numbers-and-punctuation"
                     returnKeyType="next"
                     autoCapitalize="none"
@@ -238,7 +235,6 @@ const Form: React.FC<FormProps> = (props) => {
                   <Input
                     ref={addressFieldRef}
                     textContentType="addressCity"
-                    autoCompleteType="street-address"
                     keyboardType="default"
                     returnKeyType="next"
                     autoCapitalize="none"
@@ -262,7 +258,6 @@ const Form: React.FC<FormProps> = (props) => {
                   <Input
                     ref={roadNumberFieldRef}
                     textContentType="addressCity"
-                    autoCompleteType="street-address"
                     keyboardType="default"
                     returnKeyType="next"
                     autoCapitalize="none"
@@ -289,7 +284,6 @@ const Form: React.FC<FormProps> = (props) => {
                   <Input
                     ref={postalFieldRef}
                     textContentType="postalCode"
-                    autoCompleteType="postal-code"
                     keyboardType="default"
                     returnKeyType="next"
                     autoCapitalize="none"
@@ -313,7 +307,6 @@ const Form: React.FC<FormProps> = (props) => {
                   <Input
                     ref={cityFieldRef}
                     textContentType="addressCity"
-                    autoCompleteType="street-address"
                     keyboardType="default"
                     returnKeyType="next"
                     autoCapitalize="none"
@@ -337,7 +330,6 @@ const Form: React.FC<FormProps> = (props) => {
                   <Input
                     ref={countryFieldRef}
                     textContentType="countryName"
-                    autoCompleteType="street-address"
                     keyboardType="default"
                     returnKeyType="next"
                     autoCapitalize="none"
@@ -361,7 +353,6 @@ const Form: React.FC<FormProps> = (props) => {
                   <Input
                     ref={companyTypeFieldRef}
                     textContentType="organizationName"
-                    autoCompleteType="name"
                     keyboardType="default"
                     returnKeyType="done"
                     autoCapitalize="none"

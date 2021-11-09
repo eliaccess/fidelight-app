@@ -18,7 +18,6 @@ const MaskedInput = React.forwardRef((props: MaskedInput, ref: any) => (
     {props.label ? <Text style={style.label}>{props.label}</Text> : null}
     <TextInputMask
       clearButtonMode="never"
-      autoCompleteType="password"
       textContentType="password"
       importantForAutofill="yes"
       options={props.options}

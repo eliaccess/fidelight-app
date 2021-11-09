@@ -71,7 +71,6 @@ const Form: React.FC<FormProps> = (props) => {
             <View style={style.inputContainer}>
               <Input
                 textContentType="name"
-                autoCompleteType="name"
                 keyboardType="default"
                 returnKeyType="next"
                 autoCapitalize="none"
@@ -96,7 +95,6 @@ const Form: React.FC<FormProps> = (props) => {
               <Input
                 ref={discountDescriptionFieldRef}
                 textContentType="name"
-                autoCompleteType="name"
                 keyboardType="default"
                 returnKeyType="next"
                 autoCapitalize="none"
@@ -127,7 +125,6 @@ const Form: React.FC<FormProps> = (props) => {
               <Input
                 ref={offerDurationFieldRef}
                 textContentType="name"
-                autoCompleteType="name"
                 keyboardType="default"
                 returnKeyType="next"
                 autoCapitalize="none"
@@ -154,7 +151,6 @@ const Form: React.FC<FormProps> = (props) => {
               <Input
                 ref={startDateFieldRef}
                 textContentType="name"
-                autoCompleteType="name"
                 keyboardType="default"
                 returnKeyType="next"
                 autoCapitalize="none"
@@ -178,7 +174,6 @@ const Form: React.FC<FormProps> = (props) => {
               <Input
                 ref={endDateFieldRef}
                 textContentType="name"
-                autoCompleteType="name"
                 keyboardType="default"
                 returnKeyType="next"
                 autoCapitalize="none"
