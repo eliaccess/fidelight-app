@@ -74,7 +74,7 @@ const Form: React.FC<FormProps> = (props) => {
           }
           toast?.show({
             message: acceptPolicyMessage,
-            delay: 3000,
+            delay: 500,
             // @ts-ignore
             type: 'error',
           });

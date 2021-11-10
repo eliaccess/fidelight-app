@@ -3,16 +3,19 @@ import { View } from 'react-native';
 import { TabView } from 'react-native-tab-view';
 import { Easing, useSharedValue, withTiming } from 'react-native-reanimated';
 
+import { useUser } from 'containers/Authentication';
+
 import HomeHeader from 'components/HomeHeader';
 import ExploreScreen from 'screens/ExploreScreen/Loadable';
 import FavoriteEntitiesScreen from 'screens/FavoriteEntitiesScreen/Loadable';
-import CommingSoonScreen from 'screens/CommingSoonScreen/Loadable';
-import { CITY_SELECTION, COMMING_SOON, PROFILE } from 'router/routeNames';
+
+import { CITY_SELECTION, PROFILE, QR_CODE } from 'router/routeNames';
 
 import TabBarButton from './TabBarButton';
 import { initialLayout, useGetStyles } from './style';
 
 function HomeTabView(props) {
+  const user = useUser();
   const style = useGetStyles();
   const [routeIndex, setRouteIndex] = useState(0);
   const tabBarAnimation = useSharedValue(0);
@@ -39,7 +42,9 @@ function HomeTabView(props) {
           key={route.key}
           onPress={() => {
             if (route.major) {
-              props.navigation.navigate(COMMING_SOON, {});
+              props.navigation.navigate(QR_CODE, {
+                qrValue: `${user.data?.qrCode}.${user?.data?.id}`,
+              });
               return;
             }
             tabBarProps.jumpTo(route.key);
@@ -56,9 +61,6 @@ function HomeTabView(props) {
         return (
           <ExploreScreen navigation={props.navigation} route={props.route} />
         );
-      case 'award':
-        // @ts-ignore
-        return <CommingSoonScreen />;
       case 'favorites':
         return (
           <FavoriteEntitiesScreen

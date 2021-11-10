@@ -1,7 +1,7 @@
 import { DealItemTypes } from 'types/DealItemTypes';
 
 export interface UseHotDealDetailProps {
-  dealId: string;
+  dealId: number;
 }
 
 export interface HotDealDetailProps extends UseHotDealDetailProps {

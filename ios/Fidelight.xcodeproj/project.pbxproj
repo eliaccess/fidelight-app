@@ -229,7 +229,6 @@
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
 				03EF7E012BE6CE87AB443512 /* [CP] Copy Pods Resources */,
-				629E9EFBE962E8F237FF1F1D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -254,7 +253,6 @@
 				354A7F4FFCC73E661956200F /* [CP] Copy Pods Resources */,
 				D49E1B30025679F44B51FA40 /* [CP-User] [RNFB] Core Configuration */,
 				F0685621A28F7F445E3E2346 /* [CP-User] [RNFB] Crashlytics Configuration */,
-				C4D347EDC3447475B055EA4C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -552,42 +550,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		629E9EFBE962E8F237FF1F1D /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Fidelight-FidelightTests/Pods-Fidelight-FidelightTests-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL-Universal/OpenSSL.framework/OpenSSL",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OpenSSL.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Fidelight-FidelightTests/Pods-Fidelight-FidelightTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C4D347EDC3447475B055EA4C /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Fidelight/Pods-Fidelight-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL-Universal/OpenSSL.framework/OpenSSL",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OpenSSL.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Fidelight/Pods-Fidelight-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D49E1B30025679F44B51FA40 /* [CP-User] [RNFB] Core Configuration */ = {

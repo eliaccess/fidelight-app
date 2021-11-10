@@ -48,7 +48,7 @@ function LoginScreen(props: LoginScreenProps) {
     }
     toast?.show({
       message: authentication.message,
-      delay: 3000,
+      delay: 500,
       type: 'success',
     });
 
@@ -81,7 +81,7 @@ function LoginScreen(props: LoginScreenProps) {
     if (authentication.error) {
       toast?.show({
         message: authentication.message,
-        delay: 3000,
+        delay: 500,
         type: 'error',
       });
       setShowLoader(false);

@@ -30,7 +30,7 @@ export function useHotDealDetail(props: UseHotDealDetailProps): StateItem {
   );
 
   useEffect(() => {
-    if (store?.fetching || store?.data?.id) {
+    if (store?.fetching || store?.data?.id || props.dealId === -1) {
       return;
     }
     dispatch(

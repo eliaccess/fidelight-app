@@ -5,6 +5,7 @@ export declare global {
     contactNumber: string;
     name: string;
     id: number;
+    qrCode: string;
     preferences: any;
     profilePicture?: string;
     transactionCount?: number;

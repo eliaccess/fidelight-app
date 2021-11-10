@@ -53,6 +53,10 @@ const routeConfigs = {
     path: '/deal-detail',
     options: { presentation: 'transparentModal' },
   },
+  [routeNames.QR_CODE]: {
+    path: '/qr-code',
+    options: { presentation: 'transparentModal' },
+  },
   [routeNames.BUSINESS_LOGIN]: {
     path: '/business-login',
   },

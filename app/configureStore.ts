@@ -16,10 +16,6 @@ export default function configureAppStore(initialState = {}) {
 
   // sagaMiddleware: Makes redux-sagas work
   const middlewares = [sagaMiddleware];
-  if (__DEV__) {
-    const createDebugger = require('redux-flipper').default;
-    middlewares.push(createDebugger());
-  }
 
   const enhancers = [
     createInjectorsEnhancer({

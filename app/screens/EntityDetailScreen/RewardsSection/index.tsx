@@ -8,6 +8,7 @@ import React from 'react';
 import { View } from 'react-native';
 
 import { useEntityOffersRewards } from 'containers/EntityOffersRewards';
+import { useUser } from 'containers/Authentication';
 import useStateHandler from 'hooks/useStateHandler';
 
 import FormattedMessage from 'theme/FormattedMessage';
@@ -16,6 +17,8 @@ import Image from 'theme/Image';
 import Section from 'theme/Section';
 import Text from 'theme/Text';
 import NoResult from 'theme/NoResult';
+import TouchFeedback from 'theme/TouchFeedback';
+import { QR_CODE } from 'router/routeNames';
 
 import style from './style';
 import messages from '../messages';
@@ -26,6 +29,7 @@ type RewardsSectionProps = {
   navigation: any;
 };
 function RewardsSection(props: RewardsSectionProps) {
+  const user = useUser();
   const entityOffersRewards = useEntityOffersRewards({
     entityId: props.entityId,
   });
@@ -54,7 +58,15 @@ function RewardsSection(props: RewardsSectionProps) {
               100
             ).toString()}%`;
             return (
-              <View style={style.itemWrapper}>
+              <TouchFeedback
+                onPress={() =>
+                  props.navigation.navigate(QR_CODE, {
+                    rewardId: item.id,
+                    qrValue: `${user.data?.qrCode}.${user?.data?.id}.${item.id}`,
+                  })
+                }
+                style={style.itemWrapper}
+              >
                 <View style={style.logoWrapper}>
                   <Image title="badge" style={style.logo} />
                 </View>
@@ -77,7 +89,7 @@ function RewardsSection(props: RewardsSectionProps) {
                     </View>
                   </View>
                 </View>
-              </View>
+              </TouchFeedback>
             );
           })
         ) : (

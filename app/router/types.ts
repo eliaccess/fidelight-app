@@ -29,4 +29,8 @@ export type RootStackParamList = {
   DealDetail: {
     dealId: string;
   };
+  QRCode: {
+    rewardId?: number;
+    qrValue: string;
+  };
 };

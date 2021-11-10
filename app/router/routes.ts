@@ -21,6 +21,7 @@ import BusinessHomeScreen from 'screens/Business/BusinessHomeScreen/Loadable';
 import BusinessExploreScreen from 'screens/Business/BusinessExploreScreen/Loadable';
 import BusinessTransactionsScreen from 'screens/Business/BusinessTransactionsScreen/Loadable';
 import EditBusinessInfoScreen from 'screens/Business/EditBusinessInfoScreen/Loadable';
+import QRCodeScreen from 'screens/QRCodeScreen/Loadable';
 import routeConfigs from './routeConfigs';
 import * as routeNames from './routeNames';
 
@@ -116,6 +117,10 @@ const routes = {
   [routeNames.DEAL_DETAIL]: {
     ...routeConfigs[routeNames.DEAL_DETAIL],
     screen: DealDetailScreen,
+  },
+  [routeNames.QR_CODE]: {
+    ...routeConfigs[routeNames.QR_CODE],
+    screen: QRCodeScreen,
   },
 
   // [routeNames.FORGET_PASSWORD]: {

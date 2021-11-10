@@ -27,7 +27,7 @@ function ChangePasswordScreen(props: ChangePasswordScreenProps) {
     if (changePassword.success) {
       toast?.show({
         message: changePassword.message,
-        delay: 3000,
+        delay: 500,
         type: 'success',
       });
       changePassword.reset();
@@ -40,7 +40,7 @@ function ChangePasswordScreen(props: ChangePasswordScreenProps) {
     if (changePassword.error) {
       toast?.show({
         message: changePassword.message,
-        delay: 3000,
+        delay: 500,
         type: 'error',
       });
       changePassword.reset();
