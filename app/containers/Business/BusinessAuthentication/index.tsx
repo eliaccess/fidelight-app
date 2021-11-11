@@ -14,7 +14,6 @@ import {
   State,
   LoginActionPayload,
   UseBusinessAuthenticationReturn,
-  UpdateUserInfoActionPayload,
   SignUpActionPayload,
 } from './types';
 import makeSelectBusinessAuthentication from './selectors';
@@ -44,10 +43,9 @@ export function useBusinessAuthentication(): UseBusinessAuthenticationReturn {
   const login = (payload: LoginActionPayload) =>
     dispatch(actions.login(payload));
   const logout = () => dispatch(actions.logout());
-  const updateUserInfo = (payload: UpdateUserInfoActionPayload) =>
-    dispatch(actions.updateUserInfo(payload));
+
   const reset = () => dispatch(actions.reset());
-  return { ...store, signUp, login, logout, updateUserInfo, reset };
+  return { ...store, signUp, login, logout, reset };
 }
 
 export function useUser() {

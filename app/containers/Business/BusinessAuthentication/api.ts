@@ -17,8 +17,6 @@ import {
   LoginResponsePayload,
   SignUpActionPayload,
   SignUpResponsePayload,
-  UpdateUserInfoActionPayload,
-  UpdateUserInfoAPIResponse,
 } from './types';
 
 export async function fetchLocalToken(): Promise<boolean> {
@@ -51,58 +49,41 @@ export async function fetchUserDetails(): Promise<
 > {
   const resp = await service({
     method: 'GET',
-    url: '/v1/user/profile/',
+    url: '/v1/company/profile/me',
     parseError: true,
   });
 
   return resp;
 }
 
-export function updateUserInfo(
-  payload: UpdateUserInfoActionPayload,
-): Promise<UpdateUserInfoAPIResponse | Error> {
-  const body: {
-    googleId?: string;
-    facebookId?: string;
-    email?: string;
-    name?: string;
-    contactNumber?: string;
-  } = {
-    ...payload.data,
-  };
-
-  return service({
-    method: 'POST',
-    url: '/api/v1.1/user/profile/update',
-    body,
-    parseError: true,
-  });
-}
-
 export async function signUp(
   payload: SignUpActionPayload,
 ): Promise<SignUpResponsePayload | Error> {
   const body = {
-    surname: payload.data.surname,
     name: payload.data.name,
-    email: payload.data.email,
-    phone: payload.data.phone,
-    birthdate: payload.data.birthdate,
     password: payload.data.password,
+    email: payload.data.email,
+    description: payload.data.description || '',
+    phone: payload.data.phone,
+    companyType: payload.data.companyType,
+    country: payload.data.country,
+    city: payload.data.city,
+    streetName: payload.data.streetName,
+    streetNumber: payload.data.streetNumber,
   };
 
   const resp = await service({
     method: 'POST',
-    url: '/v1/user/register',
+    url: '/v1/company/register',
     body,
     noAuth: true,
     parseError: true,
   });
-  if (resp?.data?.id) {
+  if (resp?.data?.login) {
     setAuthenticationTokens({
       accessToken: resp.data.accessToken,
       refreshToken: resp.data.refreshToken,
-      qrCode: resp.data.qrCode,
+      qrCode: '',
     });
     return { message: resp.msg };
   }
@@ -120,7 +101,7 @@ export async function login(
     };
     resp = await service({
       method: 'POST',
-      url: '/v1/user/login/',
+      url: '/v1/company/login',
       body,
       noAuth: true,
       parseError: true,
@@ -146,7 +127,7 @@ export async function login(
     setAuthenticationTokens({
       accessToken: resp.data.accessToken,
       refreshToken: resp.data.refreshToken,
-      qrCode: resp.data.qrCode,
+      qrCode: '',
     });
     return { message: resp.msg };
   }

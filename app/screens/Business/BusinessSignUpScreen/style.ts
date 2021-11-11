@@ -4,7 +4,7 @@ import Dimensions from 'theme/Dimensions';
 
 const style = StyleSheet.create({
   container: {
-    paddingHorizontal: Dimensions.space4x,
+    paddingHorizontal: Dimensions.horizontalSpace,
   },
   formContainer: {
     justifyContent: 'flex-start',

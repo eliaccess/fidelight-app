@@ -4,8 +4,6 @@ import {
   LoginActionPayload,
   FetchUserResponsePayload,
   State,
-  UpdateUserInfoActionPayload,
-  UpdateUserInfoResponsePayload,
   SignUpActionPayload,
   ErrorResponsePayload,
   SignUpResponsePayload,
@@ -113,32 +111,6 @@ const slice = createSlice({
       action: PayloadAction<FetchUserResponsePayload>,
     ): void {
       state.user.fetching = false;
-      state.user.error = action.payload.error?.message;
-    },
-    updateUserInfo(
-      state: State,
-      _action: PayloadAction<UpdateUserInfoActionPayload>,
-    ): void {
-      state.user.updating = true;
-    },
-    updateUserInfoSuccess(
-      state: State,
-      action: PayloadAction<UpdateUserInfoResponsePayload>,
-    ): void {
-      state.user.updating = false;
-      if (action.payload.data) {
-        state.user.data = {
-          ...(state.user?.data || {}),
-          ...action.payload.data,
-        };
-        state.user.updated = true;
-      }
-    },
-    updateUserInfoFailure(
-      state: State,
-      action: PayloadAction<UpdateUserInfoResponsePayload>,
-    ): void {
-      state.user.updating = false;
       state.user.error = action.payload.error?.message;
     },
     logout(state: State): void {

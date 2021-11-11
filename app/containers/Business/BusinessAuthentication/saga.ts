@@ -12,7 +12,6 @@ import * as eventsListeners from 'platform/eventsListeners';
 import {
   LoginActionProps,
   FetchUserAPIResponse,
-  UpdateUserInfoActionProp,
   SignUpActionProps,
   SignUpResponsePayload,
   LoginResponsePayload,
@@ -53,7 +52,7 @@ export const loginSaga = function* login(action: LoginActionProps) {
     if (resp) {
       yield put(actions.loginSuccess({ ...resp }));
       yield put(actions.fetchUser());
-      yield put(actions.getAccountType());
+      // yield put(actions.getAccountType());
     }
   } catch (error: any) {
     yield put(
@@ -117,38 +116,6 @@ export const fetchUserSaga = function* fetchUser() {
   }
 };
 
-export const updateUserInfoSaga = function* updateUserInfo(
-  action: UpdateUserInfoActionProp,
-) {
-  try {
-    const localData = yield call(api.fetchLocalUserDetails);
-    if (localData) {
-      if (!action.payload.avoidApiRequest) {
-        yield call(api.updateUserInfo, action.payload);
-      }
-      yield call(api.setLocalUserDetails, {
-        data: {
-          ...localData,
-          ...action.payload.data,
-        },
-      });
-      yield put(
-        actions.updateUserInfoSuccess({
-          data: { ...localData, ...action.payload.data },
-        }),
-      );
-    }
-  } catch (error: any) {
-    yield put(
-      actions.updateUserInfoFailure({
-        error: {
-          message: error?.error?.msg || 'Something went wrong',
-        },
-      }),
-    );
-  }
-};
-
 export const logoutSaga = function* logout() {
   try {
     yield call(api.logout);
@@ -165,5 +132,4 @@ export default function* businessAuthenticationSaga() {
   yield takeLatest(actions.signUp.type, signUpSaga);
   yield takeLatest(actions.fetchUser.type, fetchUserSaga);
   yield takeLatest(actions.logout.type, logoutSaga);
-  yield takeLatest(actions.updateUserInfo.type, updateUserInfoSaga);
 }

@@ -41,13 +41,17 @@ export default defineMessages({
     id: `${scope}.nextLabel`,
     defaultMessage: 'Next',
   },
-  addressLabel: {
-    id: `${scope}.addressLabel`,
-    defaultMessage: 'Address',
+  descriptionLabel: {
+    id: `${scope}.descriptionLabel`,
+    defaultMessage: 'Description',
   },
-  roadNumberLabel: {
-    id: `${scope}.roadNumberLabel`,
-    defaultMessage: 'Road number',
+  streetNameLabel: {
+    id: `${scope}.streetNameLabel`,
+    defaultMessage: 'Street Name',
+  },
+  streetNumberLabel: {
+    id: `${scope}.streetNumberLabel`,
+    defaultMessage: 'Street number',
   },
   postalLabel: {
     id: `${scope}.postalLabel`,

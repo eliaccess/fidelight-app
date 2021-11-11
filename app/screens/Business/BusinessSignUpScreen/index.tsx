@@ -4,14 +4,18 @@
  *
  */
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 
 import Screen from 'theme/Screen';
 import FormattedMessage, { useFormattedMessage } from 'theme/FormattedMessage';
 import ScreenHeading from 'theme/ScreenHeading';
 
-import { HOME, LOGIN } from 'router/routeNames';
+import { BUSINESS_HOME, CITY_SELECTION, LOGIN } from 'router/routeNames';
+import { useBusinessAuthentication } from 'containers/Business/BusinessAuthentication';
+import { useUserLocation } from 'containers/UserLocation';
+import { useToastContext } from 'theme/Toast';
+import FullScreenLoader from 'theme/FullScreenLoader';
 
 import Form from './Form';
 import messages from './messages';
@@ -19,8 +23,67 @@ import style from './style';
 import { BusinessSignUpScreenProps } from './types';
 
 function BusinessSignUpScreen(props: BusinessSignUpScreenProps) {
-  const heading = useFormattedMessage(messages.headingLabel);
   const [activeStep, setActiveStep] = useState(1);
+  const [showLoader, setShowLoader] = useState(false);
+  const businessAuthentication = useBusinessAuthentication();
+  const userLocation = useUserLocation();
+  const toast = useToastContext();
+
+  useEffect(() => {
+    businessAuthentication.reset();
+    return businessAuthentication.reset;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    const { user } = businessAuthentication;
+    if (!user.data?.name) {
+      return;
+    }
+    toast?.show({
+      message: businessAuthentication.message,
+      delay: 500,
+      type: 'success',
+    });
+
+    if (
+      userLocation?.data?.cityName ||
+      businessAuthentication.accountType === 'business'
+    ) {
+      props.navigation.reset({
+        index: 0,
+        routes: [
+          {
+            name: BUSINESS_HOME,
+          },
+        ],
+      });
+      return;
+    }
+    props.navigation.reset({
+      index: 0,
+      routes: [
+        {
+          name: CITY_SELECTION,
+        },
+      ],
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [businessAuthentication]);
+
+  useEffect(() => {
+    if (businessAuthentication.error) {
+      toast?.show({
+        message: businessAuthentication.message,
+        delay: 500,
+        type: 'error',
+      });
+      setShowLoader(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [businessAuthentication.error]);
+
+  const heading = useFormattedMessage(messages.headingLabel);
   return (
     <>
       <Screen
@@ -44,7 +107,23 @@ function BusinessSignUpScreen(props: BusinessSignUpScreenProps) {
             <Form
               onStepChange={(stp) => setActiveStep(stp)}
               activeStep={activeStep}
-              onSubmit={() => props.navigation.navigate(HOME, {})}
+              onSubmit={(data) => {
+                businessAuthentication.signUp({
+                  provider: 'local',
+                  data: {
+                    name: data.companyName,
+                    password: data.password,
+                    email: data.email,
+                    description: data.description,
+                    phone: data.phone,
+                    companyType: data.companyType,
+                    country: data.country,
+                    city: data.city,
+                    streetName: data.streetName,
+                    streetNumber: data.streetNumber,
+                  },
+                });
+              }}
             />
           </View>
         </View>
@@ -60,6 +139,12 @@ function BusinessSignUpScreen(props: BusinessSignUpScreenProps) {
           />
         </View>
       </Screen>
+      {showLoader ||
+      businessAuthentication.submitting ||
+      businessAuthentication.fetchingRemoteToken ||
+      businessAuthentication.user.fetching ? (
+        <FullScreenLoader />
+      ) : null}
     </>
   );
 }

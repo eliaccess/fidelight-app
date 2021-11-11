@@ -11,4 +11,25 @@ export declare global {
     transactionCount?: number;
     accountType: 'business' | 'user';
   }
+  interface IBusinessUser {
+    name: string;
+    description: string;
+    phone: string;
+    companyType: 5;
+    country: string;
+    city: string;
+    streetName: string;
+    streetNumber: 357;
+    logoUrl: string;
+    backgroundPicture: string;
+    websiteUrl: string | null;
+    schedule: {
+      day: number;
+      dayName: string;
+      openAM: string;
+      closeAM: string;
+      openPM: string;
+      closePm: string;
+    }[];
+  }
 }

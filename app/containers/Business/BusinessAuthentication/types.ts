@@ -2,7 +2,6 @@ export type UseBusinessAuthenticationProps = {};
 export interface UseBusinessAuthenticationReturn extends State {
   login: (payload: LoginActionPayload) => void;
   signUp: (payload: SignUpActionPayload) => void;
-  updateUserInfo: (payload: UpdateUserInfoActionPayload) => void;
   logout: () => void;
   reset: () => void;
 }
@@ -23,34 +22,12 @@ export interface State {
   message: string;
   user: {
     fetching: boolean;
-    data?: IUser;
+    data?: IBusinessUser;
     error?: string;
     updating?: boolean;
     updated?: boolean;
   };
 }
-
-export interface UpdateUserInfoActionProp {
-  type: string;
-  payload: UpdateUserInfoActionPayload;
-}
-export interface UpdateUserInfoActionPayload {
-  data: {
-    email?: IUser['email'];
-    name?: IUser['name'];
-    contactNo?: IUser['contactNumber'];
-  };
-  avoidApiRequest?: boolean;
-}
-export interface UpdateUserInfoAPIResponse {
-  data?: IUser;
-  error?: {
-    message: string;
-  };
-}
-
-export interface UpdateUserInfoResponsePayload
-  extends UpdateUserInfoAPIResponse {}
 
 export interface LoginActionProps {
   type: string;
@@ -75,13 +52,16 @@ export interface LoginActionPayload {
 export interface SignUpActionPayload {
   provider: 'facebook' | 'google' | 'local';
   data: {
-    surname: string;
     name: string;
-    email: string;
-    phone: string;
-    birthdate: string;
     password: string;
-    medium: string;
+    email: string;
+    description: string;
+    phone: string;
+    companyType: string;
+    country: string;
+    city: string;
+    streetName: string;
+    streetNumber: string;
   };
 }
 
@@ -91,7 +71,7 @@ export interface FailureResponsePayload {
 }
 
 export interface FetchUserAPIResponse {
-  data?: IUser;
+  data?: IBusinessUser;
 }
 
 export interface FetchTokenResponse {

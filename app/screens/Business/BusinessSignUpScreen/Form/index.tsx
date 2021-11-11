@@ -33,9 +33,9 @@ type FormState = {
   phone: string;
   password: string;
   confirmPassword: string;
-  address: string;
-  roadNumber: string;
-  postal: string;
+  streetName: string;
+  streetNumber: string;
+  description: string;
   city: string;
   country: string;
   companyType: string;
@@ -50,9 +50,9 @@ const schema = yup.object().shape({
     [yup.ref('password')],
     'Password does not matched',
   ),
-  address: yup.string().required('Required'),
-  roadNumber: yup.string().required('Required'),
-  postal: yup.string().required('Required'),
+  streetName: yup.string().required('Required'),
+  streetNumber: yup.string().required('Required'),
+  description: yup.string().required('Required'),
   city: yup.string().required('Required'),
   country: yup.string().required('Required'),
   companyType: yup.string().required('Required'),
@@ -64,9 +64,9 @@ const initialValue = {
   phone: '',
   password: '',
   confirmPassword: '',
-  address: '',
-  roadNumber: '',
-  postal: '',
+  streetName: '',
+  streetNumber: '',
+  description: '',
   city: '',
   country: '',
   companyType: '',
@@ -78,9 +78,9 @@ const Form: React.FC<FormProps> = (props) => {
   const dobFieldRef = useRef();
   const passwordFieldRef = useRef();
   const confirmPasswordFieldRef = useRef();
-  const addressFieldRef = useRef();
-  const roadNumberFieldRef = useRef();
-  const postalFieldRef = useRef();
+  const streetNameFieldRef = useRef();
+  const streetNumberFieldRef = useRef();
+  const descriptionFieldRef = useRef();
   const cityFieldRef = useRef();
   const countryFieldRef = useRef();
   const companyTypeFieldRef = useRef();
@@ -233,48 +233,51 @@ const Form: React.FC<FormProps> = (props) => {
               <>
                 <View style={style.inputContainer}>
                   <Input
-                    ref={addressFieldRef}
-                    textContentType="addressCity"
+                    ref={descriptionFieldRef}
                     keyboardType="default"
                     returnKeyType="next"
                     autoCapitalize="none"
-                    onChangeText={handleChange('address')}
-                    onBlur={handleBlur('address')}
-                    value={values.address}
+                    onChangeText={handleChange('description')}
+                    onBlur={handleBlur('description')}
+                    value={values.description}
                     onSubmitEditing={() => {
                       // @ts-ignore
-                      if (roadNumberFieldRef?.current?.focus) {
+                      if (streetNameFieldRef?.current?.focus) {
                         // @ts-ignore
-                        roadNumberFieldRef.current?.focus();
+                        streetNameFieldRef.current?.focus();
                       }
                     }}
-                    error={touched.address ? errors.address : null}
+                    error={touched.description ? errors.description : null}
                     label={
-                      <FormattedMessage {...messages.addressLabel} isFragment />
+                      <FormattedMessage
+                        {...messages.descriptionLabel}
+                        isFragment
+                      />
                     }
+                    multiline
                   />
                 </View>
                 <View style={style.inputContainer}>
                   <Input
-                    ref={roadNumberFieldRef}
+                    ref={streetNameFieldRef}
                     textContentType="addressCity"
                     keyboardType="default"
                     returnKeyType="next"
                     autoCapitalize="none"
-                    onChangeText={handleChange('roadNumber')}
-                    onBlur={handleBlur('roadNumber')}
-                    value={values.roadNumber}
+                    onChangeText={handleChange('streetName')}
+                    onBlur={handleBlur('streetName')}
+                    value={values.streetName}
                     onSubmitEditing={() => {
                       // @ts-ignore
-                      if (postalFieldRef?.current?.focus) {
+                      if (streetNumberFieldRef?.current?.focus) {
                         // @ts-ignore
-                        postalFieldRef.current?.focus();
+                        streetNumberFieldRef.current?.focus();
                       }
                     }}
-                    error={touched.roadNumber ? errors.roadNumber : null}
+                    error={touched.streetName ? errors.streetName : null}
                     label={
                       <FormattedMessage
-                        {...messages.roadNumberLabel}
+                        {...messages.streetNameLabel}
                         isFragment
                       />
                     }
@@ -282,14 +285,14 @@ const Form: React.FC<FormProps> = (props) => {
                 </View>
                 <View style={style.inputContainer}>
                   <Input
-                    ref={postalFieldRef}
-                    textContentType="postalCode"
+                    ref={streetNumberFieldRef}
+                    textContentType="addressCity"
                     keyboardType="default"
                     returnKeyType="next"
                     autoCapitalize="none"
-                    onChangeText={handleChange('postal')}
-                    onBlur={handleBlur('postal')}
-                    value={values.postal}
+                    onChangeText={handleChange('streetNumber')}
+                    onBlur={handleBlur('streetNumber')}
+                    value={values.streetNumber}
                     onSubmitEditing={() => {
                       // @ts-ignore
                       if (cityFieldRef?.current?.focus) {
@@ -297,12 +300,16 @@ const Form: React.FC<FormProps> = (props) => {
                         cityFieldRef.current?.focus();
                       }
                     }}
-                    error={touched.postal ? errors.postal : null}
+                    error={touched.streetNumber ? errors.streetNumber : null}
                     label={
-                      <FormattedMessage {...messages.postalLabel} isFragment />
+                      <FormattedMessage
+                        {...messages.streetNumberLabel}
+                        isFragment
+                      />
                     }
                   />
                 </View>
+
                 <View style={style.inputContainer}>
                   <Input
                     ref={cityFieldRef}
@@ -338,9 +345,9 @@ const Form: React.FC<FormProps> = (props) => {
                     value={values.country}
                     onSubmitEditing={() => {
                       // @ts-ignore
-                      if (emailFieldRef?.current?.focus) {
+                      if (companyTypeFieldRef?.current?.focus) {
                         // @ts-ignore
-                        emailFieldRef.current?.focus();
+                        companyTypeFieldRef.current?.focus();
                       }
                     }}
                     error={touched.country ? errors.country : null}

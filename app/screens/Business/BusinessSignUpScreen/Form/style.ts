@@ -10,9 +10,6 @@ const style = StyleSheet.create({
     flex: 1,
   },
   inputContainer: {
-    alignItems: 'center',
-    position: 'relative',
-    width: '100%',
     marginBottom: Dimensions.space1x,
   },
   policyWrapper: {
