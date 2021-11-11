@@ -104,7 +104,6 @@ export const fetchUserSaga = function* fetchUser() {
       }),
     );
   } catch (error: any) {
-    console.log('error', error);
     yield put(
       actions.fetchUserFailure({
         error: {

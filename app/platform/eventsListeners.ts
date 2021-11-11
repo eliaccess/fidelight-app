@@ -6,7 +6,7 @@ import { Log } from 'platform/Logger';
 import { setUserProperties as crashlyticsSetUser } from './crashlytics';
 import { setUser as analyticsSetUser } from './analytics';
 
-const PROPERTIES_BLACKLIST = ['password'];
+const PROPERTIES_BLACKLIST = ['password', 'qrCode'];
 
 const onUserUpdate = (params) => {
   Log('Setting Analytics User', params);

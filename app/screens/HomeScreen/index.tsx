@@ -37,9 +37,10 @@ function HomeScreen(props: HomeScreenProps) {
   useEffect(() => {
     animation.value = withTiming(isVisible ? 1 : 0, {
       duration: 400,
-      easing: Easing.cubic,
+      easing: Easing.inOut(Easing.linear),
     });
-  }, [animation, isVisible]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isVisible]);
 
   return (
     <View style={style.container}>
