@@ -5,97 +5,40 @@
  *
  */
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import RNSplashScreen from 'react-native-splash-screen';
-import { useIsFocused } from '@react-navigation/native';
 
-import { Log } from 'platform/Logger';
-import { deepLinkingHandler } from 'router/utils';
-
-import { useAuthentication } from 'containers/Authentication';
-import { useUserLocation } from 'containers/UserLocation';
-
-import {
-  ACCOUNT_SELECTION,
-  BUSINESS_HOME,
-  CITY_SELECTION,
-  HOME,
-} from 'router/routeNames';
+import { ACCOUNT_SELECTION } from 'router/routeNames';
+import LocalStorage from 'platform/LocalStorage';
+import configs from 'configs';
 
 import { SplashProps } from './types';
+import UserAccount from './UserAccount';
+import BusinessAccount from './BusinessAccount';
 
 function SplashScreen({ navigation }: SplashProps) {
-  // const [showOnboarding, setShowOnboarding] = useState(false);
-  const authentication = useAuthentication();
-  const userLocation = useUserLocation();
-  const isFocused = useIsFocused();
+  const [accountType, setAccountType] = useState('');
 
-  const onLoad = async () => {
-    const deepLink = await deepLinkingHandler();
-    Log(JSON.stringify(deepLink));
-
-    if (!isFocused) {
-      return;
-    }
-
-    if (deepLink) {
-      const { initialRoute } = deepLink;
-      RNSplashScreen.hide();
-      navigation.reset({
-        index: 0,
-        routes: [
-          // @ts-ignore
-          { name: initialRoute.routeName, params: initialRoute.params },
-        ],
-      });
-      return;
-    }
-
-    if (authentication.isAuthenticated) {
-      if (
-        userLocation?.data?.cityName ||
-        authentication.accountType === 'business'
-      ) {
-        RNSplashScreen.hide();
-        navigation.reset({
-          index: 0,
-          routes: [
-            {
-              name:
-                authentication.accountType === 'business'
-                  ? BUSINESS_HOME
-                  : HOME,
-            },
-          ],
-        });
-        return;
-      }
-      RNSplashScreen.hide();
-      navigation.reset({
-        index: 0,
-        routes: [
-          {
-            name: CITY_SELECTION,
-          },
-        ],
-      });
+  // @ts-ignore
+  useEffect(async () => {
+    const type = await LocalStorage.getItem(configs.ACCOUNT_TYPE);
+    if (type) {
+      setAccountType(type);
       return;
     }
     RNSplashScreen.hide();
-    // setShowOnboarding(true);
     navigation.reset({
       index: 0,
       routes: [{ name: ACCOUNT_SELECTION }],
     });
-  };
+  }, []);
 
-  useEffect(() => {
-    if (authentication.localChecked) {
-      onLoad();
-    }
-    // Linking.addEventListener('url', (e) => onLoad(e.url));
-  }, [authentication.localChecked]);
-
+  if (accountType === 'user') {
+    return <UserAccount navigation={navigation} />;
+  }
+  if (accountType === 'business') {
+    return <BusinessAccount navigation={navigation} />;
+  }
   return null;
 }
 
