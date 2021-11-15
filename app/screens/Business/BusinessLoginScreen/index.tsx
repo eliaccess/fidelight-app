@@ -14,10 +14,8 @@ import {
   BUSINESS_HOME,
   FORGET_PASSWORD,
   BUSINESS_SIGNUP,
-  CITY_SELECTION,
 } from 'router/routeNames';
 
-import { useUserLocation } from 'containers/UserLocation';
 import { useBusinessAuthentication } from 'containers/Business/BusinessAuthentication';
 import { useToastContext } from 'theme/Toast';
 import FullScreenLoader from 'theme/FullScreenLoader';
@@ -33,7 +31,7 @@ function BusinessLoginScreen(props: BusinessLoginScreenProps) {
   const toast = useToastContext();
 
   const businessAuthentication = useBusinessAuthentication();
-  const userLocation = useUserLocation();
+
   const heading = useFormattedMessage(messages.headingLabel);
 
   useEffect(() => {
@@ -47,28 +45,15 @@ function BusinessLoginScreen(props: BusinessLoginScreenProps) {
       type: 'success',
     });
 
-    if (
-      userLocation?.data?.cityName ||
-      businessAuthentication.accountType === 'business'
-    ) {
-      props.navigation.reset({
-        index: 0,
-        routes: [
-          {
-            name: BUSINESS_HOME,
-          },
-        ],
-      });
-      return;
-    }
     props.navigation.reset({
       index: 0,
       routes: [
         {
-          name: CITY_SELECTION,
+          name: BUSINESS_HOME,
         },
       ],
     });
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [businessAuthentication]);
 

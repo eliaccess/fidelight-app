@@ -2,16 +2,11 @@ import React, { useEffect } from 'react';
 import { useIsFocused } from '@react-navigation/core';
 import RNSplashScreen from 'react-native-splash-screen';
 import { useBusinessAuthentication } from 'containers/Business/BusinessAuthentication';
-import { useUserLocation } from 'containers/UserLocation';
 
 import { Log } from 'platform/Logger';
 
 import { deepLinkingHandler } from 'router/utils';
-import {
-  ACCOUNT_SELECTION,
-  BUSINESS_HOME,
-  CITY_SELECTION,
-} from 'router/routeNames';
+import { ACCOUNT_SELECTION, BUSINESS_HOME } from 'router/routeNames';
 
 interface IBusinessAccountProps {
   navigation: any;
@@ -19,7 +14,7 @@ interface IBusinessAccountProps {
 
 const BusinessAccount = ({ navigation }: IBusinessAccountProps) => {
   const businessAuthentication = useBusinessAuthentication();
-  const userLocation = useUserLocation();
+
   const isFocused = useIsFocused();
 
   const onLoad = async () => {
@@ -44,27 +39,16 @@ const BusinessAccount = ({ navigation }: IBusinessAccountProps) => {
     }
 
     if (businessAuthentication.isAuthenticated) {
-      if (userLocation?.data?.cityName) {
-        RNSplashScreen.hide();
-        navigation.reset({
-          index: 0,
-          routes: [
-            {
-              name: BUSINESS_HOME,
-            },
-          ],
-        });
-        return;
-      }
       RNSplashScreen.hide();
       navigation.reset({
         index: 0,
         routes: [
           {
-            name: CITY_SELECTION,
+            name: BUSINESS_HOME,
           },
         ],
       });
+      return;
     }
     RNSplashScreen.hide();
     navigation.reset({

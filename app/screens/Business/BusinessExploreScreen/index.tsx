@@ -8,6 +8,8 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
+import { useUser } from 'containers/Business/BusinessAuthentication';
+
 import FormattedMessage from 'theme/FormattedMessage';
 import Text from 'theme/Text';
 import Icon from 'theme/Icon';
@@ -28,6 +30,7 @@ function BusinessExploreScreen(_props: BusinessExploreScreenProps) {
   const [activeTabIndex, setActiveTabIndex] = useState(0);
   const [showCreateOffers, setShowCreateOffers] = useState(false);
   const [showCreateReward, setShowCreateReward] = useState(false);
+  const user = useUser();
   return (
     <>
       <View style={style.container}>
@@ -36,7 +39,7 @@ function BusinessExploreScreen(_props: BusinessExploreScreenProps) {
           <TouchFeedback onPress={() => null} style={style.menuIconWrapper}>
             <Icon name="menu" style={style.menuIcon} />
           </TouchFeedback>
-          <Text style={style.entityName}>Alfredo poistano coffee</Text>
+          <Text style={style.entityName}>{user?.data?.name}</Text>
           <View />
         </View>
         <View style={style.tabContainer}>
