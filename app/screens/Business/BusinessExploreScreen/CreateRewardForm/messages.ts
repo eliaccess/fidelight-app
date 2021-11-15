@@ -17,17 +17,13 @@ export default defineMessages({
     id: `${scope}.rewardDescriptionLabel`,
     defaultMessage: 'Discount description',
   },
+  rewardTypeLabel: {
+    id: `${scope}.rewardTypeLabel`,
+    defaultMessage: 'Reward Type',
+  },
   rewardsPointsLabel: {
     id: `${scope}.rewardsPointsLabel`,
     defaultMessage: 'Points to collected to avail offer',
-  },
-  startDateLabel: {
-    id: `${scope}.startDateLabel`,
-    defaultMessage: 'Start date',
-  },
-  endDateLabel: {
-    id: `${scope}.endDateLabel`,
-    defaultMessage: 'End date',
   },
   addLabel: {
     id: `${scope}.addLabel`,

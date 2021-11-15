@@ -1,8 +1,8 @@
 import React from 'react';
 import TouchFeedback from 'theme/TouchFeedback';
 import Text from 'theme/Text';
-import Image, { IImageProps } from 'theme/Image';
-import Icon from 'theme/Icon';
+import { IImageProps } from 'theme/Image';
+// import Icon from 'theme/Icon';
 import style from './style';
 import { DataProps } from './types';
 
@@ -25,7 +25,7 @@ const ListItem: React.FC<ListItemProps> = (props) => {
       ]}
       onPress={() => props.onSelect(props)}
     >
-      {props.data.image ? (
+      {/* {props.data.image ? (
         <Image
           {...props.data.image}
           style={style.listItemImage}
@@ -34,9 +34,9 @@ const ListItem: React.FC<ListItemProps> = (props) => {
       ) : null}
       {props.data.icon ? (
         <Icon name={props.data.icon} style={style.listItemIcon} />
-      ) : null}
+      ) : null} */}
 
-      <Text style={style.listItemName}>{props.data.label}</Text>
+      <Text style={style.listItemName}>{props.data.name}</Text>
     </TouchFeedback>
   );
 };

@@ -17,9 +17,9 @@ export default defineMessages({
     id: `${scope}.discountDescriptionLabel`,
     defaultMessage: 'Discount description',
   },
-  offerDurationLabel: {
-    id: `${scope}.offerDurationLabel`,
-    defaultMessage: 'Offer duration',
+  offerTypeLabel: {
+    id: `${scope}.offerTypeLabel`,
+    defaultMessage: 'Offer type',
   },
   startDateLabel: {
     id: `${scope}.startDateLabel`,
@@ -32,5 +32,9 @@ export default defineMessages({
   addLabel: {
     id: `${scope}.addLabel`,
     defaultMessage: 'Add',
+  },
+  daySelectionLabel: {
+    id: `${scope}.daySelectionLabel`,
+    defaultMessage: 'Select Offers Active days',
   },
 });

@@ -105,13 +105,13 @@ const style = StyleSheet.create({
     padding: Dimensions.space2x,
     paddingTop: Dimensions.space3x,
     width: Dimensions.screenWidth - Dimensions.screenWidth / 6,
-    height: 450,
+    height: 570,
   },
   rewardModalContent: {
     padding: Dimensions.space2x,
     paddingTop: Dimensions.space3x,
     width: Dimensions.screenWidth - Dimensions.screenWidth / 6,
-    height: 320,
+    height: 430,
   },
 });
 

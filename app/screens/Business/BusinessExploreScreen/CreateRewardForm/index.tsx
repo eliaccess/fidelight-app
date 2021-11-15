@@ -9,7 +9,9 @@ import { View } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import * as yup from 'yup';
 import { Formik } from 'formik';
+import { useDiscountTypes } from 'containers/Business/DiscountTypes';
 
+import InputDropDown from 'theme/InputDropDown';
 import Button from 'theme/Button';
 import FormattedMessage from 'theme/FormattedMessage';
 import Input from 'theme/Input';
@@ -24,29 +26,43 @@ interface FormProps {
 type FormState = {
   offerName: string;
   rewardDescription: string;
+  rewardType: {
+    id: number;
+    name: string;
+  };
   rewardsPoints: string;
 };
 
 const schema = yup.object().shape({
   offerName: yup.string().required('Required'),
   rewardDescription: yup.string().required('Required'),
+  rewardType: yup.object().shape({
+    id: yup.number().required('Required'),
+    name: yup.string().required('Required'),
+  }),
   rewardsPoints: yup.string().required('Required'),
 });
 
 const initialValue = {
   offerName: '',
   rewardDescription: '',
+  rewardType: '',
   rewardsPoints: '',
 };
 
 const Form: React.FC<FormProps> = (props) => {
   const rewardDescriptionFieldRef = useRef();
   const rewardsPointsFieldRef = useRef();
+  const discountTypes = useDiscountTypes();
+
+  if (!discountTypes?.data?.length) {
+    return null;
+  }
 
   return (
     <Animatable.View style={style.container} animation="fadeIn">
       <Formik
-        initialValues={initialValue}
+        initialValues={{ ...initialValue, rewardType: discountTypes.data[0] }}
         validationSchema={schema}
         onSubmit={props.onSubmit}
       >
@@ -54,6 +70,8 @@ const Form: React.FC<FormProps> = (props) => {
           handleChange,
           handleBlur,
           handleSubmit,
+          setFieldValue,
+          setFieldTouched,
           values,
           errors,
           isValid,
@@ -112,6 +130,23 @@ const Form: React.FC<FormProps> = (props) => {
               />
             </View>
             <View style={style.inputContainer}>
+              <InputDropDown
+                label={
+                  <FormattedMessage isFragment {...messages.rewardTypeLabel} />
+                }
+                data={discountTypes.data || []}
+                title={
+                  <FormattedMessage isFragment {...messages.rewardTypeLabel} />
+                }
+                selectedValue={values.rewardType?.name}
+                onSelect={(item) => {
+                  setFieldValue('rewardType', item);
+                  setFieldTouched('rewardType');
+                }}
+                error={errors.rewardType ? 'Required' : null}
+              />
+            </View>
+            <View style={style.inputContainer}>
               <Input
                 ref={rewardsPointsFieldRef}
                 textContentType="name"
@@ -136,7 +171,7 @@ const Form: React.FC<FormProps> = (props) => {
                 flex
                 disabled={!isValid}
                 label={<FormattedMessage {...messages.addLabel} isFragment />}
-                onPress={() => null}
+                onPress={handleSubmit}
               />
             </View>
           </>

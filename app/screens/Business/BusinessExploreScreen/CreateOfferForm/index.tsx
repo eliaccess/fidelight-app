@@ -4,18 +4,23 @@
  *
  */
 
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { View } from 'react-native';
 import * as Animatable from 'react-native-animatable';
+
 import * as yup from 'yup';
 import { Formik } from 'formik';
 
 import Button from 'theme/Button';
 import FormattedMessage from 'theme/FormattedMessage';
 import Input from 'theme/Input';
+import InputDropDown from 'theme/InputDropDown';
+import { useDiscountTypes } from 'containers/Business/DiscountTypes';
 
 import style from './style';
 import messages from './messages';
+import DaySelector from './DaySelector';
+import DateSelector from './DateSelector';
 
 interface FormProps {
   onSubmit: (data: FormState) => void;
@@ -24,7 +29,10 @@ interface FormProps {
 type FormState = {
   offerName: string;
   discountDescription: string;
-  offerDuration: string;
+  offerType: {
+    id: number;
+    name: string;
+  };
   startDate: string;
   endDate: string;
 };
@@ -32,7 +40,10 @@ type FormState = {
 const schema = yup.object().shape({
   offerName: yup.string().required('Required'),
   discountDescription: yup.string().required('Required'),
-  offerDuration: yup.string().required('Required'),
+  offerType: yup.object().shape({
+    id: yup.number().required('Required'),
+    name: yup.string().required('Required'),
+  }),
   startDate: yup.string().required('Required'),
   endDate: yup.string().required('Required'),
 });
@@ -40,7 +51,7 @@ const schema = yup.object().shape({
 const initialValue = {
   offerName: '',
   discountDescription: '',
-  offerDuration: '',
+  offerType: '',
   startDate: '',
   endDate: '',
 };
@@ -48,20 +59,37 @@ const initialValue = {
 const Form: React.FC<FormProps> = (props) => {
   const discountDescriptionFieldRef = useRef();
   const offerDurationFieldRef = useRef();
-  const startDateFieldRef = useRef();
-  const endDateFieldRef = useRef();
+  const [perDay, setPerDay] = useState({
+    monday: 0,
+    tuesday: 0,
+    wednesday: 0,
+    thursday: 0,
+    friday: 0,
+    saturday: 0,
+    sunday: 0,
+  });
+  const discountTypes = useDiscountTypes();
+
+  if (!discountTypes?.data?.length) {
+    return null;
+  }
 
   return (
     <Animatable.View style={style.container} animation="fadeIn">
       <Formik
-        initialValues={initialValue}
+        initialValues={{ ...initialValue, offerType: discountTypes.data[0] }}
         validationSchema={schema}
-        onSubmit={props.onSubmit}
+        onSubmit={(values) => {
+          // @ts-ignore
+          props.onSubmit({ ...values, perDay });
+        }}
       >
         {({
           handleChange,
           handleBlur,
           handleSubmit,
+          setFieldValue,
+          setFieldTouched,
           values,
           errors,
           isValid,
@@ -122,84 +150,58 @@ const Form: React.FC<FormProps> = (props) => {
               />
             </View>
             <View style={style.inputContainer}>
-              <Input
-                ref={offerDurationFieldRef}
-                textContentType="name"
-                keyboardType="default"
-                returnKeyType="next"
-                autoCapitalize="none"
-                onChangeText={handleChange('offerDuration')}
-                onBlur={handleBlur('offerDuration')}
-                value={values.offerDuration}
-                onSubmitEditing={() => {
-                  // @ts-ignore
-                  if (startDateFieldRef?.current?.focus) {
-                    // @ts-ignore
-                    startDateFieldRef.current?.focus();
-                  }
-                }}
-                error={touched.offerDuration ? errors.offerDuration : null}
+              <InputDropDown
                 label={
-                  <FormattedMessage
-                    {...messages.offerDurationLabel}
-                    isFragment
-                  />
+                  <FormattedMessage isFragment {...messages.offerTypeLabel} />
                 }
+                data={discountTypes.data || []}
+                title={
+                  <FormattedMessage isFragment {...messages.offerTypeLabel} />
+                }
+                selectedValue={values.offerType?.name}
+                onSelect={(item) => {
+                  setFieldValue('offerType', item);
+                  setFieldTouched('offerType');
+                }}
+                error={errors.offerType ? 'Required' : null}
               />
             </View>
-            <View style={style.inputContainer}>
-              <Input
-                ref={startDateFieldRef}
-                textContentType="name"
-                keyboardType="default"
-                returnKeyType="next"
-                autoCapitalize="none"
-                onChangeText={handleChange('startDate')}
-                onBlur={handleBlur('startDate')}
-                value={values.startDate}
-                onSubmitEditing={() => {
-                  // @ts-ignore
-                  if (endDateFieldRef?.current?.focus) {
-                    // @ts-ignore
-                    endDateFieldRef.current?.focus();
-                  }
-                }}
-                error={touched.startDate ? errors.startDate : null}
-                label={
-                  <FormattedMessage {...messages.startDateLabel} isFragment />
-                }
-              />
+
+            <View style={style.dateSelectorsWrapper}>
+              <View style={style.dateSelectorWrapper}>
+                <DateSelector
+                  onSelect={(value) => {
+                    setFieldValue('startDate', value);
+                    setFieldTouched('startDate');
+                  }}
+                  label="Start date"
+                  error={errors.startDate ? 'Required' : null}
+                />
+              </View>
+              <View style={style.dateSelectorWrapper}>
+                <DateSelector
+                  onSelect={(value) => {
+                    setFieldValue('endDate', value);
+                    setFieldTouched('endDate');
+                  }}
+                  label="End date"
+                  error={errors.endDate ? 'Required' : null}
+                />
+              </View>
             </View>
-            <View style={style.inputContainer}>
-              <Input
-                ref={endDateFieldRef}
-                textContentType="name"
-                keyboardType="default"
-                returnKeyType="next"
-                autoCapitalize="none"
-                onChangeText={handleChange('endDate')}
-                onBlur={handleBlur('endDate')}
-                value={values.endDate}
-                onSubmitEditing={() => {
-                  // @ts-ignore
-                  if (passwordFieldRef?.current?.focus) {
-                    // @ts-ignore
-                    passwordFieldRef.current?.focus();
-                  }
-                }}
-                error={touched.endDate ? errors.endDate : null}
-                label={
-                  <FormattedMessage {...messages.endDateLabel} isFragment />
-                }
-              />
-            </View>
+            <DaySelector
+              onSelect={(key, value) => {
+                perDay[key] = value;
+                setPerDay(perDay);
+              }}
+            />
 
             <View style={style.buttonContainer}>
               <Button
                 flex
                 disabled={!isValid}
                 label={<FormattedMessage {...messages.addLabel} isFragment />}
-                onPress={() => null}
+                onPress={handleSubmit}
               />
             </View>
           </>

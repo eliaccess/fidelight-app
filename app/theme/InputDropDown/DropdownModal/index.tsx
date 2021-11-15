@@ -49,13 +49,13 @@ const DropdownModal: React.FC<DropdownModalProps> = ({
           <Text style={style.header}>{props.title}</Text>
           {props.data.map((item) => (
             <Radio
-              key={item.key || item.label}
+              key={item.id}
               onPress={() => {
                 onRequestClose();
                 onSelect(item);
               }}
               active={selectedValue === item[selectionProperty]}
-              label={item.label || item.title}
+              label={item.name}
             />
           ))}
         </ScrollView>

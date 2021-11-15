@@ -1,0 +1,57 @@
+/*
+ *
+ * DateSelector
+ *
+ */
+
+import React, { useState } from 'react';
+
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
+import Text from 'theme/Text';
+
+import TouchFeedback from 'theme/TouchFeedback';
+import Icon from 'theme/Icon';
+import style from './style';
+
+type DateSelectorProps = {
+  onSelect: (...args: any) => any;
+  label: string;
+  error: string | null;
+};
+
+function DateSelector(props: DateSelectorProps) {
+  const [value, setValue] = useState('');
+
+  const [openDatePicker, setOpenDatePicker] = useState(false);
+
+  return (
+    <>
+      <TouchFeedback
+        onPress={() => setOpenDatePicker(true)}
+        style={style.container}
+      >
+        {value ? (
+          <Text stye={style.value}>{value}</Text>
+        ) : (
+          <Text style={style.label}>{props.label}</Text>
+        )}
+        <Icon name="calendar" style={style.icon} />
+      </TouchFeedback>
+      <DateTimePickerModal
+        isVisible={openDatePicker}
+        mode="date"
+        onConfirm={(date) => {
+          setOpenDatePicker(false);
+          setValue(date.toLocaleDateString());
+          props.onSelect(date.toLocaleDateString());
+        }}
+        onCancel={() => {
+          setOpenDatePicker(false);
+        }}
+      />
+      {props.error ? <Text style={style.error}>{props.error}</Text> : null}
+    </>
+  );
+}
+
+export default React.memo(DateSelector);

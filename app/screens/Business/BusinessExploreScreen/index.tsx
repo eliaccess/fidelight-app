@@ -100,7 +100,7 @@ function BusinessExploreScreen(_props: BusinessExploreScreenProps) {
             {...messages.createOfferHeading}
             style={style.modalHeading}
           />
-          <CreateOfferForm onSubmit={() => null} />
+          <CreateOfferForm onSubmit={(values) => setShowCreateOffers(false)} />
         </View>
       </Modal>
       <Modal
@@ -112,7 +112,7 @@ function BusinessExploreScreen(_props: BusinessExploreScreenProps) {
             {...messages.createRewardHeading}
             style={style.modalHeading}
           />
-          <CreateRewardForm onSubmit={() => null} />
+          <CreateRewardForm onSubmit={() => setShowCreateReward(false)} />
         </View>
       </Modal>
     </>

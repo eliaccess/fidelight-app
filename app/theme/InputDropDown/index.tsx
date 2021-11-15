@@ -32,7 +32,7 @@ type InputDropDownProps = {
 
 const InputDropDown: React.FC<InputDropDownProps> = ({
   onChangeState = () => {},
-  limit = 10,
+  limit = 1,
   ...props
 }) => {
   const [showList, setShowList] = useState(false);
@@ -102,8 +102,6 @@ const InputDropDown: React.FC<InputDropDownProps> = ({
                   <ListItem
                     data={{
                       ...v,
-                      image: v.image,
-                      label: v.label,
                     }}
                     isLast={
                       !props?.data?.length || index === props.data.length - 1
