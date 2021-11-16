@@ -48,8 +48,9 @@ const style = StyleSheet.create({
     marginRight: Dimensions.space2x,
   },
   logo: {
-    width: 20,
-    height: 20,
+    width: 44,
+    height: 44,
+    borderRadius: 22,
   },
   contentWrapper: {
     width: '70%',

@@ -11,7 +11,8 @@ export interface EntityOffersRewardsProps extends UseEntityOffersRewardsProps {
 export interface StateItem {
   fetching: boolean;
   error: boolean;
-  message: string;
+  message?: string;
+  submitting: boolean;
   data: ResponsePayload['data'];
 }
 
@@ -42,4 +43,50 @@ export interface ResponsePayload extends EntityOffersRewardsAPIResponse {
 export interface FailureResponsePayload {
   key: string;
   message: string;
+}
+
+export interface SubmitPayload {
+  data: {
+    company: number;
+    discountType: number;
+    cost: number;
+    name: string;
+    description: string;
+    startDate?: string;
+    expirationDate?: string;
+    perDay: {
+      monday: number;
+      tuesday: number;
+      wednesday: number;
+      thursday: number;
+      friday: number;
+      saturday: number;
+      sunday: number;
+    };
+    value: number;
+  };
+}
+
+export interface SubmitProps {
+  type: string;
+  payload: SubmitPropsPayload;
+}
+export interface SubmitPropsPayload extends SubmitPayload {
+  key: string;
+}
+
+export interface SubmitResponsePayload
+  extends SubmitPropsPayload,
+    SubmitAPIResponse {}
+
+export interface SubmitAPIResponse {
+  message: string;
+}
+
+export interface SubmitFailureResponsePayload extends SubmitAPIResponse {
+  key: string;
+}
+
+export interface ResetPropsPayload {
+  key: string;
 }

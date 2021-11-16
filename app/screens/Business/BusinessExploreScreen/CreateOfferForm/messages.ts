@@ -33,8 +33,8 @@ export default defineMessages({
     id: `${scope}.addLabel`,
     defaultMessage: 'Add',
   },
-  daySelectionLabel: {
-    id: `${scope}.daySelectionLabel`,
-    defaultMessage: 'Select Offers Active days',
+  discountValueLabel: {
+    id: `${scope}.discountValueLabel`,
+    defaultMessage: 'Add Discount',
   },
 });

@@ -84,7 +84,7 @@ function DaySelector(props: DaySelectorProps) {
               {active ? (
                 <LinearGradient
                   {...buttonGradientProps()}
-                  style={style.backdrop}
+                  style={style.daySelectorBackdrop}
                 />
               ) : null}
               <Text

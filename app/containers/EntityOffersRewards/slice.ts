@@ -2,8 +2,12 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import {
   FailureResponsePayload,
   FetchPropsPayload,
+  ResetPropsPayload,
   ResponsePayload,
   State,
+  SubmitFailureResponsePayload,
+  SubmitPropsPayload,
+  SubmitResponsePayload,
 } from './types';
 
 export const initialState = {} as State;
@@ -13,6 +17,15 @@ const slice = createSlice({
   name: 'app/EntityOffersRewards',
   initialState,
   reducers: {
+    reset(state: State, action: PayloadAction<ResetPropsPayload>): void {
+      state[action.payload.key] = {
+        ...(state[action.payload.key] || {}),
+        error: false,
+        fetching: false,
+        submitting: false,
+        message: undefined,
+      };
+    },
     fetch(state: State, action: PayloadAction<FetchPropsPayload>): void {
       state[action.payload.key] = {
         ...(state[action.payload.key] || {}),
@@ -36,6 +49,34 @@ const slice = createSlice({
         error: true,
         fetching: false,
         message: action.payload.message,
+      };
+    },
+    submit(state: State, action: PayloadAction<SubmitPropsPayload>): void {
+      state[action.payload.key] = {
+        ...(state[action.payload.key] || {}),
+        submitting: true,
+      };
+    },
+    submitSuccess(
+      state: State,
+      action: PayloadAction<SubmitResponsePayload>,
+    ): void {
+      state[action.payload.key] = {
+        ...(state[action.payload.key] || {}),
+        submitting: false,
+        // data: action.payload.data,
+        message: action.payload.message,
+      };
+    },
+    submitFailure(
+      state: State,
+      action: PayloadAction<SubmitFailureResponsePayload>,
+    ): void {
+      state[action.payload.key] = {
+        ...(state[action.payload.key] || {}),
+        error: true,
+        message: action.payload.message,
+        submitting: false,
       };
     },
   },

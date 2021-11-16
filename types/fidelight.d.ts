@@ -12,6 +12,7 @@ export declare global {
     accountType: 'business' | 'user';
   }
   interface IBusinessUser {
+    id: number;
     name: string;
     description: string;
     phone: string;

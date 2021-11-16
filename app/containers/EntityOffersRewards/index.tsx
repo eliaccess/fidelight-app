@@ -4,7 +4,7 @@
  *
  */
 
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { shallowEqual, useSelector, useDispatch } from 'react-redux';
 import { useInjectReducer, useInjectSaga } from 'redux-injectors';
 import { generateDuxKey } from 'fs-frontend-commons';
@@ -13,6 +13,7 @@ import {
   EntityOffersRewardsProps,
   UseEntityOffersRewardsProps,
   StateItem,
+  SubmitPayload,
 } from './types';
 import { selectEntityOffersRewardsByKey } from './selectors';
 import { actions, reducer, name as STORE_KEY } from './slice';
@@ -22,9 +23,14 @@ function getKeyFromProps(props: UseEntityOffersRewardsProps): string {
   return generateDuxKey(props, ['entityId'], true);
 }
 
+interface EntityOffersRewardsReturn extends StateItem {
+  submit: (args: SubmitPayload) => void;
+  reset: (...args: any) => void;
+}
+
 export function useEntityOffersRewards(
   props: UseEntityOffersRewardsProps,
-): StateItem {
+): EntityOffersRewardsReturn {
   useInjectReducer({ key: STORE_KEY, reducer });
   useInjectSaga({ key: STORE_KEY, saga });
 
@@ -36,7 +42,7 @@ export function useEntityOffersRewards(
   );
 
   useEffect(() => {
-    if (store?.fetching || store?.data?.rewards) {
+    if (store?.fetching || store?.data?.rewards || props.entityId === -1) {
       return;
     }
     dispatch(
@@ -48,7 +54,27 @@ export function useEntityOffersRewards(
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [key]);
 
-  return store;
+  const submit = useCallback(
+    (args: SubmitPayload) => {
+      dispatch(
+        actions.submit({
+          ...args,
+          key,
+        }),
+      );
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [key],
+  );
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const reset = useCallback(() => dispatch(actions.reset({ key })), [key]);
+
+  return {
+    ...store,
+    submit,
+    reset,
+  };
 }
 
 export function EntityOffersRewards({

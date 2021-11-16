@@ -19,8 +19,8 @@ import { useDiscountTypes } from 'containers/Business/DiscountTypes';
 
 import style from './style';
 import messages from './messages';
-import DaySelector from './DaySelector';
 import DateSelector from './DateSelector';
+import DaySelector from '../DaySelector';
 
 interface FormProps {
   onSubmit: (data: FormState) => void;
@@ -35,6 +35,7 @@ type FormState = {
   };
   startDate: string;
   endDate: string;
+  discountValue: number;
 };
 
 const schema = yup.object().shape({
@@ -46,14 +47,16 @@ const schema = yup.object().shape({
   }),
   startDate: yup.string().required('Required'),
   endDate: yup.string().required('Required'),
+  discountValue: yup.number().required('Required'),
 });
 
 const initialValue = {
-  offerName: '',
-  discountDescription: '',
+  offerName: 'Buy one coffee get one free coffee',
+  discountDescription: 'This this offer desctiption',
   offerType: '',
-  startDate: '',
-  endDate: '',
+  startDate: '11/11/2021',
+  endDate: '24/11/2021',
+  discountValue: 2.3,
 };
 
 const Form: React.FC<FormProps> = (props) => {
@@ -164,6 +167,25 @@ const Form: React.FC<FormProps> = (props) => {
                   setFieldTouched('offerType');
                 }}
                 error={errors.offerType ? 'Required' : null}
+              />
+            </View>
+            <View style={style.inputContainer}>
+              <Input
+                textContentType="name"
+                keyboardType="numeric"
+                returnKeyType="done"
+                autoCapitalize="none"
+                onChangeText={handleChange('discountValue')}
+                onBlur={handleBlur('discountValue')}
+                // @ts-ignore
+                value={values.discountValue}
+                error={touched.discountValue ? errors.discountValue : null}
+                label={
+                  <FormattedMessage
+                    {...messages.discountValueLabel}
+                    isFragment
+                  />
+                }
               />
             </View>
 

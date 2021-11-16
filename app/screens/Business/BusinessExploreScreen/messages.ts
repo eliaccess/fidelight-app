@@ -40,4 +40,12 @@ export default defineMessages({
     id: `${scope}.createRewardHeading`,
     defaultMessage: 'Create New Reward',
   },
+  noRewardsFound: {
+    id: `${scope}.noRewardsFound`,
+    defaultMessage: 'No Rewards Found',
+  },
+  daySelectionLabel: {
+    id: `${scope}.daySelectionLabel`,
+    defaultMessage: 'Select days',
+  },
 });

@@ -42,8 +42,8 @@ function DateSelector(props: DateSelectorProps) {
         mode="date"
         onConfirm={(date) => {
           setOpenDatePicker(false);
-          setValue(date.toLocaleDateString());
-          props.onSelect(date.toLocaleDateString());
+          setValue(date.toISOString().split('T')[0]);
+          props.onSelect(date.toISOString().split('T')[0]);
         }}
         onCancel={() => {
           setOpenDatePicker(false);

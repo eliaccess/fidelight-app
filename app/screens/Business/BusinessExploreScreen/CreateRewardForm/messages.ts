@@ -29,4 +29,8 @@ export default defineMessages({
     id: `${scope}.addLabel`,
     defaultMessage: 'Add',
   },
+  discountValueLabel: {
+    id: `${scope}.discountValueLabel`,
+    defaultMessage: 'Add Discount',
+  },
 });

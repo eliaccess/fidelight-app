@@ -5,7 +5,12 @@
  */
 
 import service from 'services/fidelight';
-import { EntityOffersRewardsAPIResponse, FetchPropsPayload } from './types';
+import {
+  EntityOffersRewardsAPIResponse,
+  FetchPropsPayload,
+  SubmitAPIResponse,
+  SubmitPropsPayload,
+} from './types';
 
 export async function fetch(
   payload: FetchPropsPayload,
@@ -19,4 +24,19 @@ export async function fetch(
   });
 
   return resp;
+}
+
+export async function submit(
+  payload: SubmitPropsPayload,
+): Promise<SubmitAPIResponse | Error> {
+  const body = payload.data;
+  const resp = await service({
+    method: 'POST',
+    url: '/v1/discount/',
+    body,
+  });
+
+  return {
+    message: resp.msg,
+  };
 }

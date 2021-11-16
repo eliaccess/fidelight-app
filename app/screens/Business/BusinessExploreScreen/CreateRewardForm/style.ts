@@ -13,7 +13,7 @@ const style = StyleSheet.create({
     alignItems: 'center',
     position: 'relative',
     width: '100%',
-    marginBottom: Dimensions.space1x,
+    marginBottom: Dimensions.space2x,
   },
   policyWrapper: {
     flexDirection: 'row',

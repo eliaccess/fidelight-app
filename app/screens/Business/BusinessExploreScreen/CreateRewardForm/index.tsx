@@ -4,7 +4,7 @@
  *
  */
 
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { View } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import * as yup from 'yup';
@@ -18,6 +18,7 @@ import Input from 'theme/Input';
 
 import style from './style';
 import messages from './messages';
+import DaySelector from '../DaySelector';
 
 interface FormProps {
   onSubmit: (data: FormState) => void;
@@ -30,7 +31,8 @@ type FormState = {
     id: number;
     name: string;
   };
-  rewardsPoints: string;
+  rewardsPoints: number;
+  discountValue: number;
 };
 
 const schema = yup.object().shape({
@@ -40,20 +42,31 @@ const schema = yup.object().shape({
     id: yup.number().required('Required'),
     name: yup.string().required('Required'),
   }),
-  rewardsPoints: yup.string().required('Required'),
+  rewardsPoints: yup.number().required('Required'),
+  discountValue: yup.number().required('Required'),
 });
 
 const initialValue = {
-  offerName: '',
-  rewardDescription: '',
+  offerName: 'Free small coffee on 12 points',
+  rewardDescription: 'This is reward description',
   rewardType: '',
-  rewardsPoints: '',
+  rewardsPoints: 15,
+  discountValue: 2.3,
 };
 
 const Form: React.FC<FormProps> = (props) => {
   const rewardDescriptionFieldRef = useRef();
   const rewardsPointsFieldRef = useRef();
   const discountTypes = useDiscountTypes();
+  const [perDay, setPerDay] = useState({
+    monday: 0,
+    tuesday: 0,
+    wednesday: 0,
+    thursday: 0,
+    friday: 0,
+    saturday: 0,
+    sunday: 0,
+  });
 
   if (!discountTypes?.data?.length) {
     return null;
@@ -64,7 +77,10 @@ const Form: React.FC<FormProps> = (props) => {
       <Formik
         initialValues={{ ...initialValue, rewardType: discountTypes.data[0] }}
         validationSchema={schema}
-        onSubmit={props.onSubmit}
+        onSubmit={(values) => {
+          // @ts-ignore
+          props.onSubmit({ ...values, perDay });
+        }}
       >
         {({
           handleChange,
@@ -148,13 +164,33 @@ const Form: React.FC<FormProps> = (props) => {
             </View>
             <View style={style.inputContainer}>
               <Input
+                textContentType="name"
+                keyboardType="numeric"
+                returnKeyType="done"
+                autoCapitalize="none"
+                onChangeText={handleChange('discountValue')}
+                onBlur={handleBlur('discountValue')}
+                // @ts-ignore
+                value={values.discountValue}
+                error={touched.discountValue ? errors.discountValue : null}
+                label={
+                  <FormattedMessage
+                    {...messages.discountValueLabel}
+                    isFragment
+                  />
+                }
+              />
+            </View>
+            <View style={style.inputContainer}>
+              <Input
                 ref={rewardsPointsFieldRef}
                 textContentType="name"
-                keyboardType="default"
-                returnKeyType="next"
+                keyboardType="numeric"
+                returnKeyType="done"
                 autoCapitalize="none"
                 onChangeText={handleChange('rewardsPoints')}
                 onBlur={handleBlur('rewardsPoints')}
+                // @ts-ignore
                 value={values.rewardsPoints}
                 error={touched.rewardsPoints ? errors.rewardsPoints : null}
                 label={
@@ -165,6 +201,12 @@ const Form: React.FC<FormProps> = (props) => {
                 }
               />
             </View>
+            <DaySelector
+              onSelect={(key, value) => {
+                perDay[key] = value;
+                setPerDay(perDay);
+              }}
+            />
 
             <View style={style.buttonContainer}>
               <Button
