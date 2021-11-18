@@ -47,11 +47,11 @@ const schema = yup.object().shape({
 });
 
 const initialValue = {
-  offerName: 'Free small coffee on 12 points',
-  rewardDescription: 'This is reward description',
+  offerName: '',
+  rewardDescription: '',
   rewardType: '',
-  rewardsPoints: 15,
-  discountValue: 2.3,
+  rewardsPoints: '',
+  discountValue: '',
 };
 
 const Form: React.FC<FormProps> = (props) => {

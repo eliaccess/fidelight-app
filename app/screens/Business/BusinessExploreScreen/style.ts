@@ -101,18 +101,6 @@ const style = StyleSheet.create({
     color: Colors.textBlack,
     fontWeight: '600',
   },
-  modalContent: {
-    padding: Dimensions.space2x,
-    paddingTop: Dimensions.space3x,
-    width: Dimensions.screenWidth - Dimensions.screenWidth / 6,
-    height: 600,
-  },
-  rewardModalContent: {
-    padding: Dimensions.space2x,
-    paddingTop: Dimensions.space3x,
-    width: Dimensions.screenWidth - Dimensions.screenWidth / 6,
-    height: 610,
-  },
   daySelectorWrapper: {
     flexDirection: 'row',
     padding: Dimensions.space1x,

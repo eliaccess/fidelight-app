@@ -10,6 +10,8 @@ import {
   FetchPropsPayload,
   SubmitAPIResponse,
   SubmitPropsPayload,
+  UpdateAPIResponse,
+  UpdatePropsPayload,
 } from './types';
 
 export async function fetch(
@@ -33,6 +35,21 @@ export async function submit(
   const resp = await service({
     method: 'POST',
     url: '/v1/discount/',
+    body,
+  });
+
+  return {
+    message: resp.msg,
+  };
+}
+
+export async function update(
+  payload: UpdatePropsPayload,
+): Promise<UpdateAPIResponse | Error> {
+  const body = payload.data;
+  const resp = await service({
+    method: 'PUT',
+    url: `/v1/discount/${payload.discountId}`,
     body,
   });
 

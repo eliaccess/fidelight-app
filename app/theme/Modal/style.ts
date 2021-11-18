@@ -11,6 +11,21 @@ import Dimensions from 'theme/Dimensions';
 import elevation from 'theme/elevation';
 
 const style = StyleSheet.create({
+  modal: {
+    paddingVertical: Dimensions.headerHeight,
+    flexDirection: 'row',
+    width: Dimensions.screenWidth,
+    height: '100%',
+    backgroundColor: Colors.translucentBlackMinor,
+    padding: Dimensions.space3x,
+  },
+  modalContent: {
+    width: '100%',
+    backgroundColor: Colors.white,
+    paddingHorizontal: Dimensions.space3x,
+    paddingTop: Dimensions.space4x,
+    borderRadius: Dimensions.borderRadius3x,
+  },
   container: {
     position: 'absolute',
     top: 0,

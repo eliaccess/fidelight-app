@@ -13,6 +13,7 @@ export interface StateItem {
   error: boolean;
   message?: string;
   submitting: boolean;
+  updating: boolean;
   data: ResponsePayload['data'];
 }
 
@@ -75,9 +76,9 @@ export interface SubmitPropsPayload extends SubmitPayload {
   key: string;
 }
 
-export interface SubmitResponsePayload
-  extends SubmitPropsPayload,
-    SubmitAPIResponse {}
+export interface SubmitResponsePayload extends SubmitAPIResponse {
+  key: string;
+}
 
 export interface SubmitAPIResponse {
   message: string;
@@ -88,5 +89,48 @@ export interface SubmitFailureResponsePayload extends SubmitAPIResponse {
 }
 
 export interface ResetPropsPayload {
+  key: string;
+}
+
+export interface UpdatePayload {
+  data: {
+    discountType: number;
+    cost: number;
+    name: string;
+    description: string;
+    startDate?: string;
+    expirationDate?: string;
+    perDay: {
+      monday: number;
+      tuesday: number;
+      wednesday: number;
+      thursday: number;
+      friday: number;
+      saturday: number;
+      sunday: number;
+    };
+    value: number;
+  };
+  discountId: number;
+  entityId: number;
+}
+
+export interface UpdateProps {
+  type: string;
+  payload: UpdatePropsPayload;
+}
+export interface UpdatePropsPayload extends UpdatePayload {
+  key: string;
+}
+
+export interface UpdateResponsePayload extends UpdateAPIResponse {
+  key: string;
+}
+
+export interface UpdateAPIResponse {
+  message: string;
+}
+
+export interface UpdateFailureResponsePayload extends UpdateAPIResponse {
   key: string;
 }

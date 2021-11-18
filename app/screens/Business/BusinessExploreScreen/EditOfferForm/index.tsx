@@ -16,14 +16,15 @@ import FormattedMessage from 'theme/FormattedMessage';
 import Input from 'theme/Input';
 import InputDropDown from 'theme/InputDropDown';
 import { useDiscountTypes } from 'containers/Business/DiscountTypes';
-
+import { DealItemTypes } from 'types/DealItemTypes';
 import style from './style';
 import messages from './messages';
 import DateSelector from './DateSelector';
 import DaySelector from '../DaySelector';
 
-interface FormProps {
+interface EditOfferFormProps {
   onSubmit: (data: FormState) => void;
+  data: DealItemTypes;
 }
 
 type FormState = {
@@ -50,41 +51,37 @@ const schema = yup.object().shape({
   discountValue: yup.number().required('Required'),
 });
 
-const initialValue = {
-  offerName: '',
-  discountDescription: '',
-  offerType: '',
-  startDate: '',
-  endDate: '',
-  discountValue: '',
-};
-
-const Form: React.FC<FormProps> = (props) => {
+const EditOfferForm: React.FC<EditOfferFormProps> = (props) => {
   const discountDescriptionFieldRef = useRef();
   const offerDurationFieldRef = useRef();
-  const [perDay, setPerDay] = useState({
-    monday: 0,
-    tuesday: 0,
-    wednesday: 0,
-    thursday: 0,
-    friday: 0,
-    saturday: 0,
-    sunday: 0,
-  });
+  const [perDay, setPerDay] = useState({ ...props.data.perDay });
   const discountTypes = useDiscountTypes();
 
   if (!discountTypes?.data?.length) {
     return null;
   }
+  const { data } = props;
+  const initialValues = {
+    offerName: data?.name,
+    discountDescription: data?.description,
+    offerType: data?.discountType,
+    startDate: data?.startDate?.split('T')[0],
+    endDate: data?.expirationDate?.split('T')[0],
+    discountValue: data?.value,
+    perDay: data?.perDay,
+  };
 
   return (
     <Animatable.View style={style.container} animation="fadeIn">
       <Formik
-        initialValues={{ ...initialValue, offerType: discountTypes.data[0] }}
+        initialValues={{
+          ...initialValues,
+          offerType: discountTypes.data[0],
+        }}
         validationSchema={schema}
         onSubmit={(values) => {
           // @ts-ignore
-          props.onSubmit({ ...values, perDay });
+          props.onSubmit({ ...values, perDay, discountId: data.id });
         }}
       >
         {({
@@ -178,7 +175,7 @@ const Form: React.FC<FormProps> = (props) => {
                 onChangeText={handleChange('discountValue')}
                 onBlur={handleBlur('discountValue')}
                 // @ts-ignore
-                value={values.discountValue}
+                value={values.discountValue.toString()}
                 error={touched.discountValue ? errors.discountValue : null}
                 label={
                   <FormattedMessage
@@ -192,6 +189,7 @@ const Form: React.FC<FormProps> = (props) => {
             <View style={style.dateSelectorsWrapper}>
               <View style={style.dateSelectorWrapper}>
                 <DateSelector
+                  value={values.startDate}
                   onSelect={(value) => {
                     setFieldValue('startDate', value);
                     setFieldTouched('startDate');
@@ -202,6 +200,7 @@ const Form: React.FC<FormProps> = (props) => {
               </View>
               <View style={style.dateSelectorWrapper}>
                 <DateSelector
+                  value={values.endDate || ''}
                   onSelect={(value) => {
                     setFieldValue('endDate', value);
                     setFieldTouched('endDate');
@@ -213,9 +212,13 @@ const Form: React.FC<FormProps> = (props) => {
             </View>
             <DaySelector
               onSelect={(key, value) => {
-                perDay[key] = value;
-                setPerDay(perDay);
+                const updateDay = perDay;
+                updateDay[key] = value;
+                setPerDay(updateDay);
               }}
+              activeDays={Object.keys(initialValues.perDay).filter(
+                (key) => initialValues.perDay[key] === 1,
+              )}
             />
 
             <View style={style.buttonContainer}>
@@ -233,4 +236,4 @@ const Form: React.FC<FormProps> = (props) => {
   );
 };
 
-export default Form;
+export default EditOfferForm;

@@ -14,6 +14,7 @@ import {
   UseEntityOffersRewardsProps,
   StateItem,
   SubmitPayload,
+  UpdatePayload,
 } from './types';
 import { selectEntityOffersRewardsByKey } from './selectors';
 import { actions, reducer, name as STORE_KEY } from './slice';
@@ -25,6 +26,7 @@ function getKeyFromProps(props: UseEntityOffersRewardsProps): string {
 
 interface EntityOffersRewardsReturn extends StateItem {
   submit: (args: SubmitPayload) => void;
+  update: (args: UpdatePayload) => void;
   reset: (...args: any) => void;
 }
 
@@ -67,12 +69,26 @@ export function useEntityOffersRewards(
     [key],
   );
 
+  const update = useCallback(
+    (args: UpdatePayload) => {
+      dispatch(
+        actions.update({
+          ...args,
+          key,
+        }),
+      );
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [key],
+  );
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const reset = useCallback(() => dispatch(actions.reset({ key })), [key]);
 
   return {
     ...store,
     submit,
+    update,
     reset,
   };
 }

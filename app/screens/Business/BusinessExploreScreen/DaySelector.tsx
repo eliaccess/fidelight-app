@@ -49,10 +49,11 @@ const days = [
 
 type DaySelectorProps = {
   onSelect: (...args: any) => any;
+  activeDays?: string[];
 };
 
 function DaySelector(props: DaySelectorProps) {
-  const [activeDays, setActiveDays] = useState([]);
+  const [activeDays, setActiveDays] = useState(props?.activeDays || []);
   return (
     <>
       <FormattedMessage

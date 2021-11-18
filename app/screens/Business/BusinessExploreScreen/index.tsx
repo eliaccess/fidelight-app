@@ -120,7 +120,7 @@ function BusinessExploreScreen(props: BusinessExploreScreenProps) {
         visible={showCreateOffers}
         onRequestClose={() => setShowCreateOffers(false)}
       >
-        <View style={style.modalContent}>
+        <>
           <FormattedMessage
             {...messages.createOfferHeading}
             style={style.modalHeading}
@@ -144,14 +144,14 @@ function BusinessExploreScreen(props: BusinessExploreScreenProps) {
               setShowCreateOffers(false);
             }}
           />
-        </View>
+        </>
       </Modal>
 
       <Modal
         visible={showCreateReward}
         onRequestClose={() => setShowCreateReward(false)}
       >
-        <View style={style.rewardModalContent}>
+        <>
           <FormattedMessage
             {...messages.createRewardHeading}
             style={style.modalHeading}
@@ -173,7 +173,7 @@ function BusinessExploreScreen(props: BusinessExploreScreenProps) {
               setShowCreateReward(false);
             }}
           />
-        </View>
+        </>
       </Modal>
     </>
   );

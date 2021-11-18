@@ -8,6 +8,9 @@ import {
   SubmitFailureResponsePayload,
   SubmitPropsPayload,
   SubmitResponsePayload,
+  UpdateFailureResponsePayload,
+  UpdatePropsPayload,
+  UpdateResponsePayload,
 } from './types';
 
 export const initialState = {} as State;
@@ -77,6 +80,33 @@ const slice = createSlice({
         error: true,
         message: action.payload.message,
         submitting: false,
+      };
+    },
+    update(state: State, action: PayloadAction<UpdatePropsPayload>): void {
+      state[action.payload.key] = {
+        ...(state[action.payload.key] || {}),
+        updating: true,
+      };
+    },
+    updateSuccess(
+      state: State,
+      action: PayloadAction<UpdateResponsePayload>,
+    ): void {
+      state[action.payload.key] = {
+        ...(state[action.payload.key] || {}),
+        updating: false,
+        message: action.payload.message,
+      };
+    },
+    updateFailure(
+      state: State,
+      action: PayloadAction<UpdateFailureResponsePayload>,
+    ): void {
+      state[action.payload.key] = {
+        ...(state[action.payload.key] || {}),
+        error: true,
+        message: action.payload.message,
+        updating: false,
       };
     },
   },

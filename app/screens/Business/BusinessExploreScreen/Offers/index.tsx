@@ -4,7 +4,7 @@
  *
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import { View } from 'react-native';
 
 import { useEntityOffersRewards } from 'containers/EntityOffersRewards';
@@ -14,17 +14,23 @@ import Text from 'theme/Text';
 import Icon from 'theme/Icon';
 import Image from 'theme/Image';
 import NoResult from 'theme/NoResult';
+import TouchFeedback from 'theme/TouchFeedback';
+import Modal from 'theme/Modal';
 
 import style from './style';
 import messages from '../messages';
 
 import BusinessOffersRewardsLoaderProps from '../Loader';
 
+import EditOfferForm from '../EditOfferForm';
+
 type BusinessExploreOffersProps = {
   entityId: number;
 };
 
 function BusinessExploreOffers(props: BusinessExploreOffersProps) {
+  const [initialData, setInitialData] = useState<any>();
+  const [showEditOfferForm, setShowEditOfferForm] = useState(false);
   const entityOffersRewards = useEntityOffersRewards({
     entityId: props.entityId,
   });
@@ -71,9 +77,15 @@ function BusinessExploreOffers(props: BusinessExploreOffersProps) {
                       {item.description}
                     </Text>
                   </View>
-                  <View style={style.editIconHolder}>
+                  <TouchFeedback
+                    onPress={() => {
+                      setInitialData(item);
+                      setShowEditOfferForm(true);
+                    }}
+                    style={style.editIconHolder}
+                  >
                     <Icon name="edit" font="fidelight" style={style.editIcon} />
-                  </View>
+                  </TouchFeedback>
                 </View>
               ))
             ) : (
@@ -81,6 +93,40 @@ function BusinessExploreOffers(props: BusinessExploreOffersProps) {
             )}
           </>
         )}
+
+        <Modal
+          visible={showEditOfferForm}
+          onRequestClose={() => setShowEditOfferForm(false)}
+        >
+          <>
+            <FormattedMessage
+              {...messages.editOfferHeading}
+              style={style.modalHeading}
+            />
+            <EditOfferForm
+              onSubmit={(values) => {
+                entityOffersRewards.update({
+                  data: {
+                    name: values.offerName,
+                    description: values.discountDescription,
+                    discountType: values.offerType.id,
+                    startDate: values.startDate,
+                    expirationDate: values.endDate,
+                    // @ts-ignore
+                    perDay: values.perDay,
+                    cost: 0,
+                    value: values.discountValue,
+                  },
+                  entityId: props.entityId,
+                  // @ts-ignore
+                  discountId: values.discountId,
+                });
+                setShowEditOfferForm(false);
+              }}
+              data={initialData}
+            />
+          </>
+        </Modal>
       </View>
     </>
   );

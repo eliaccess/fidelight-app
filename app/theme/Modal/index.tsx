@@ -3,58 +3,41 @@
  * Modal
  *
  */
-import React, { useEffect, useRef } from 'react';
-import { View } from 'react-native';
-import Animated, {
-  Easing,
-  useSharedValue,
-  withTiming,
-} from 'react-native-reanimated';
-
-// import Icon from 'theme/Icon';
-// import TouchFeedback from 'theme/TouchFeedback';
+import React from 'react';
+import { View, Modal } from 'react-native';
 import Button from 'theme/Button';
 import FormattedMessage from 'theme/FormattedMessage';
+import messages from './messages';
 
 import style from './style';
-import { UseModalAnimation } from './animation';
 
-import messages from './messages';
 interface ModalProps {
   visible: boolean;
   onRequestClose: (...args: any[]) => any;
   children: React.ReactNode;
 }
 
-function Modal(props: ModalProps) {
-  const animation = useRef(useSharedValue(0)).current;
-  useEffect(() => {
-    animation.value = withTiming(props.visible ? 1 : 0, {
-      duration: 400,
-      easing: Easing.inOut(Easing.ease),
-    });
-  }, [animation, props.visible]);
-  const modalAnimation = UseModalAnimation(animation);
-
+function ModalComponent({ visible, onRequestClose, ...props }: ModalProps) {
   return (
-    <Animated.View style={[style.container, modalAnimation]}>
-      {/* <TouchFeedback
-        onPress={props.onRequestClose}
-        style={style.closeButtonHolder}
-      >
-        <Icon name="x" style={style.closeIcon} />
-      </TouchFeedback> */}
-      <View style={style.content}>
-        {props.children}
-        <View style={style.closeButtonHolder}>
-          <Button
-            type="linear"
-            onPress={props.onRequestClose}
-            label={<FormattedMessage {...messages.close} isFragment />}
-          />
+    <Modal
+      animationType="slide"
+      transparent
+      visible={visible}
+      onRequestClose={onRequestClose}
+    >
+      <View style={style.modal}>
+        <View style={style.modalContent}>
+          {props.children}
+          <View style={style.closeButtonHolder}>
+            <Button
+              type="linear"
+              onPress={onRequestClose}
+              label={<FormattedMessage {...messages.close} isFragment />}
+            />
+          </View>
         </View>
       </View>
-    </Animated.View>
+    </Modal>
   );
 }
-export default Modal;
+export default ModalComponent;

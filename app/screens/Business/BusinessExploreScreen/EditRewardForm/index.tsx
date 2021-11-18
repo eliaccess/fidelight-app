@@ -7,84 +7,74 @@
 import React, { useRef, useState } from 'react';
 import { View } from 'react-native';
 import * as Animatable from 'react-native-animatable';
-
 import * as yup from 'yup';
 import { Formik } from 'formik';
+import { useDiscountTypes } from 'containers/Business/DiscountTypes';
 
+import InputDropDown from 'theme/InputDropDown';
 import Button from 'theme/Button';
 import FormattedMessage from 'theme/FormattedMessage';
 import Input from 'theme/Input';
-import InputDropDown from 'theme/InputDropDown';
-import { useDiscountTypes } from 'containers/Business/DiscountTypes';
+import { DealItemTypes } from 'types/DealItemTypes';
 
 import style from './style';
 import messages from './messages';
-import DateSelector from './DateSelector';
 import DaySelector from '../DaySelector';
 
-interface FormProps {
+interface EditRewardFormProps {
   onSubmit: (data: FormState) => void;
+  data: DealItemTypes;
 }
 
 type FormState = {
   offerName: string;
-  discountDescription: string;
-  offerType: {
+  rewardDescription: string;
+  rewardType: {
     id: number;
     name: string;
   };
-  startDate: string;
-  endDate: string;
+  rewardsPoints: number;
   discountValue: number;
 };
 
 const schema = yup.object().shape({
   offerName: yup.string().required('Required'),
-  discountDescription: yup.string().required('Required'),
-  offerType: yup.object().shape({
+  rewardDescription: yup.string().required('Required'),
+  rewardType: yup.object().shape({
     id: yup.number().required('Required'),
     name: yup.string().required('Required'),
   }),
-  startDate: yup.string().required('Required'),
-  endDate: yup.string().required('Required'),
+  rewardsPoints: yup.number().required('Required'),
   discountValue: yup.number().required('Required'),
 });
 
-const initialValue = {
-  offerName: '',
-  discountDescription: '',
-  offerType: '',
-  startDate: '',
-  endDate: '',
-  discountValue: '',
-};
-
-const Form: React.FC<FormProps> = (props) => {
-  const discountDescriptionFieldRef = useRef();
-  const offerDurationFieldRef = useRef();
-  const [perDay, setPerDay] = useState({
-    monday: 0,
-    tuesday: 0,
-    wednesday: 0,
-    thursday: 0,
-    friday: 0,
-    saturday: 0,
-    sunday: 0,
-  });
+const EditRewardForm: React.FC<EditRewardFormProps> = (props) => {
+  const rewardDescriptionFieldRef = useRef();
+  const rewardsPointsFieldRef = useRef();
   const discountTypes = useDiscountTypes();
+  const [perDay, setPerDay] = useState({ ...props.data.perDay });
 
   if (!discountTypes?.data?.length) {
     return null;
   }
+  const { data } = props;
+  const initialValues = {
+    offerName: data?.name,
+    rewardDescription: data?.description,
+    rewardType: data?.discountType,
+    rewardsPoints: data?.cost,
+    discountValue: data?.value,
+    perDay: data?.perDay,
+  };
 
   return (
     <Animatable.View style={style.container} animation="fadeIn">
       <Formik
-        initialValues={{ ...initialValue, offerType: discountTypes.data[0] }}
+        initialValues={{ ...initialValues, rewardType: discountTypes.data[0] }}
         validationSchema={schema}
         onSubmit={(values) => {
           // @ts-ignore
-          props.onSubmit({ ...values, perDay });
+          props.onSubmit({ ...values, perDay, discountId: data.id });
         }}
       >
         {({
@@ -110,9 +100,9 @@ const Form: React.FC<FormProps> = (props) => {
                 value={values.offerName}
                 onSubmitEditing={() => {
                   // @ts-ignore
-                  if (discountDescriptionFieldRef?.current?.focus) {
+                  if (rewardDescriptionFieldRef?.current?.focus) {
                     // @ts-ignore
-                    discountDescriptionFieldRef.current?.focus();
+                    rewardDescriptionFieldRef.current?.focus();
                   }
                 }}
                 error={touched.offerName ? errors.offerName : null}
@@ -124,29 +114,27 @@ const Form: React.FC<FormProps> = (props) => {
 
             <View style={style.inputContainer}>
               <Input
-                ref={discountDescriptionFieldRef}
+                ref={rewardDescriptionFieldRef}
                 textContentType="name"
                 keyboardType="default"
                 returnKeyType="next"
                 autoCapitalize="none"
-                onChangeText={handleChange('discountDescription')}
-                onBlur={handleBlur('discountDescription')}
-                value={values.discountDescription}
+                onChangeText={handleChange('rewardDescription')}
+                onBlur={handleBlur('rewardDescription')}
+                value={values.rewardDescription}
                 onSubmitEditing={() => {
                   // @ts-ignore
-                  if (offerDurationFieldRef?.current?.focus) {
+                  if (rewardsPointsFieldRef?.current?.focus) {
                     // @ts-ignore
-                    offerDurationFieldRef.current?.focus();
+                    rewardsPointsFieldRef.current?.focus();
                   }
                 }}
                 error={
-                  touched.discountDescription
-                    ? errors.discountDescription
-                    : null
+                  touched.rewardDescription ? errors.rewardDescription : null
                 }
                 label={
                   <FormattedMessage
-                    {...messages.discountDescriptionLabel}
+                    {...messages.rewardDescriptionLabel}
                     isFragment
                   />
                 }
@@ -155,18 +143,18 @@ const Form: React.FC<FormProps> = (props) => {
             <View style={style.inputContainer}>
               <InputDropDown
                 label={
-                  <FormattedMessage isFragment {...messages.offerTypeLabel} />
+                  <FormattedMessage isFragment {...messages.rewardTypeLabel} />
                 }
                 data={discountTypes.data || []}
                 title={
-                  <FormattedMessage isFragment {...messages.offerTypeLabel} />
+                  <FormattedMessage isFragment {...messages.rewardTypeLabel} />
                 }
-                selectedValue={values.offerType?.name}
+                selectedValue={values.rewardType?.name}
                 onSelect={(item) => {
-                  setFieldValue('offerType', item);
-                  setFieldTouched('offerType');
+                  setFieldValue('rewardType', item);
+                  setFieldTouched('rewardType');
                 }}
-                error={errors.offerType ? 'Required' : null}
+                error={errors.rewardType ? 'Required' : null}
               />
             </View>
             <View style={style.inputContainer}>
@@ -178,7 +166,7 @@ const Form: React.FC<FormProps> = (props) => {
                 onChangeText={handleChange('discountValue')}
                 onBlur={handleBlur('discountValue')}
                 // @ts-ignore
-                value={values.discountValue}
+                value={values.discountValue.toString()}
                 error={touched.discountValue ? errors.discountValue : null}
                 label={
                   <FormattedMessage
@@ -188,34 +176,35 @@ const Form: React.FC<FormProps> = (props) => {
                 }
               />
             </View>
-
-            <View style={style.dateSelectorsWrapper}>
-              <View style={style.dateSelectorWrapper}>
-                <DateSelector
-                  onSelect={(value) => {
-                    setFieldValue('startDate', value);
-                    setFieldTouched('startDate');
-                  }}
-                  label="Start date"
-                  error={errors.startDate ? 'Required' : null}
-                />
-              </View>
-              <View style={style.dateSelectorWrapper}>
-                <DateSelector
-                  onSelect={(value) => {
-                    setFieldValue('endDate', value);
-                    setFieldTouched('endDate');
-                  }}
-                  label="End date"
-                  error={errors.endDate ? 'Required' : null}
-                />
-              </View>
+            <View style={style.inputContainer}>
+              <Input
+                ref={rewardsPointsFieldRef}
+                textContentType="name"
+                keyboardType="numeric"
+                returnKeyType="done"
+                autoCapitalize="none"
+                onChangeText={handleChange('rewardsPoints')}
+                onBlur={handleBlur('rewardsPoints')}
+                // @ts-ignore
+                value={values.rewardsPoints.toString()}
+                error={touched.rewardsPoints ? errors.rewardsPoints : null}
+                label={
+                  <FormattedMessage
+                    {...messages.rewardsPointsLabel}
+                    isFragment
+                  />
+                }
+              />
             </View>
             <DaySelector
               onSelect={(key, value) => {
-                perDay[key] = value;
-                setPerDay(perDay);
+                const updateDay = perDay;
+                updateDay[key] = value;
+                setPerDay(updateDay);
               }}
+              activeDays={Object.keys(initialValues.perDay).filter(
+                (key) => initialValues.perDay[key] === 1,
+              )}
             />
 
             <View style={style.buttonContainer}>
@@ -233,4 +222,4 @@ const Form: React.FC<FormProps> = (props) => {
   );
 };
 
-export default Form;
+export default EditRewardForm;

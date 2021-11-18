@@ -7,13 +7,14 @@ const style = StyleSheet.create({
     alignItems: 'center',
     paddingTop: Dimensions.space2x,
     width: '100%',
+    marginBottom: 60,
     flex: 1,
   },
   inputContainer: {
     alignItems: 'center',
     position: 'relative',
     width: '105%',
-    marginBottom: Dimensions.space2x,
+    marginBottom: Dimensions.space1x,
   },
   policyWrapper: {
     flexDirection: 'row',
@@ -28,11 +29,15 @@ const style = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
     position: 'relative',
-    width: '90%',
-    marginBottom: Dimensions.space2x,
     padding: Dimensions.space1x,
+  },
+  dateSelectorsWrapper: {
+    flexDirection: 'row',
+  },
+  dateSelectorWrapper: {
+    width: '45%',
+    marginRight: Dimensions.space3x,
   },
 });
 

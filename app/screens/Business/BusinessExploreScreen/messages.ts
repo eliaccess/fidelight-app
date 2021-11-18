@@ -48,4 +48,12 @@ export default defineMessages({
     id: `${scope}.daySelectionLabel`,
     defaultMessage: 'Select days',
   },
+  editOfferHeading: {
+    id: `${scope}.editOfferHeading`,
+    defaultMessage: 'Edit Offer',
+  },
+  editRewardHeading: {
+    id: `${scope}.editRewardHeading`,
+    defaultMessage: 'Edit Reward',
+  },
 });

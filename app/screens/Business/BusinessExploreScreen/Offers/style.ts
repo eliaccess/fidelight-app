@@ -76,6 +76,11 @@ const style = StyleSheet.create({
     color: Colors.accent,
     fontWeight: '600',
   },
+  modalHeading: {
+    fontSize: 14,
+    color: Colors.textBlack,
+    fontWeight: '600',
+  },
 });
 
 export default style;
