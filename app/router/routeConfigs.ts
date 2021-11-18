@@ -75,6 +75,9 @@ const routeConfigs = {
   [routeNames.EDIT_BUSINESS_INFO]: {
     path: '/edit-business-info',
   },
+  [routeNames.BUSINESS_PROFILE]: {
+    path: '/business-profile',
+  },
 };
 
 export default routeConfigs;

@@ -25,3 +25,4 @@ export const BUSINESS_HOME = 'BusinessHome';
 export const BUSINESS_EXPLORE = 'BuisnessExplore';
 export const BUSINESS_TRANSACTIONS = 'BusinessTransactions';
 export const EDIT_BUSINESS_INFO = 'EditBusinessInfo';
+export const BUSINESS_PROFILE = 'BusinessProfile';

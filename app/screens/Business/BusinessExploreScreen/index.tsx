@@ -21,6 +21,7 @@ import { buttonGradientProps } from 'theme/utils';
 import TouchFeedback from 'theme/TouchFeedback';
 import Modal from 'theme/Modal';
 import { useToastContext } from 'theme/Toast';
+import { BUSINESS_PROFILE } from 'router/routeNames';
 
 import { BusinessExploreScreenProps } from './types';
 import style from './style';
@@ -61,7 +62,11 @@ function BusinessExploreScreen(props: BusinessExploreScreenProps) {
           <TouchFeedback onPress={() => null} style={style.menuIconWrapper}>
             <Icon name="menu" style={style.menuIcon} />
           </TouchFeedback>
-          <Text style={style.entityName}>{user?.data?.name}</Text>
+          <TouchFeedback
+            onPress={() => props.navigation.navigate(BUSINESS_PROFILE, {})}
+          >
+            <Text style={style.entityName}>{user?.data?.name}</Text>
+          </TouchFeedback>
           <View />
         </View>
         <View style={style.tabContainer}>

@@ -33,4 +33,5 @@ export type RootStackParamList = {
     rewardId?: number;
     qrValue: string;
   };
+  BusinessProfile: {};
 };
