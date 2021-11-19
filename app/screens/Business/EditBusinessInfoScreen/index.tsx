@@ -7,82 +7,62 @@
 import React from 'react';
 import { View } from 'react-native';
 
+import { useBusinessProfile } from 'containers/Business/BusinessProfile';
+import { useEarningPolicyTypes } from 'containers/EarningPolicyTypes';
+
 import Screen from 'theme/Screen';
 import FormattedMessage from 'theme/FormattedMessage';
-import Icon from 'theme/Icon';
-import Button from 'theme/Button';
 
 import style from './style';
 import { EditBusinessInfoScreenProps } from './types';
 import messages from './messages';
 import GeneralInfoForm from './GeneralInfoForm';
 import EarningPolicyForm from './EarningPolicyForm';
+import BusinessImages from './BusinessImages';
 
 function EditBusinessInfoScreen(_props: EditBusinessInfoScreenProps) {
+  const businessProfile = useBusinessProfile();
+  const earningPolicyTypes = useEarningPolicyTypes();
   return (
     <Screen
       testID="EditBusinessInfoScreen"
       headerTitle={<FormattedMessage {...messages.title} isFragment />}
     >
       <View style={style.container}>
-        <View style={style.sectionContainer}>
-          <FormattedMessage
-            {...messages.businessImageHeading}
-            style={style.sectionHeading}
-          />
-          <View style={style.businessImageContainer}>
-            <View style={style.addWrapper}>
-              <FormattedMessage
-                {...messages.addLogoLabel}
-                style={style.addLabel}
-              />
-              <View style={style.addImageWrapper}>
-                <Icon name="upload" style={style.uploadIcon} />
-                <FormattedMessage
-                  {...messages.addLogoLabel}
-                  style={style.uploadLabel}
-                />
-              </View>
-            </View>
-            <View style={style.addWrapper}>
-              <FormattedMessage
-                {...messages.addBusinessImage}
-                style={style.addLabel}
-              />
-              <View style={style.addImageWrapper}>
-                <Icon name="upload" style={style.uploadIcon} />
-                <FormattedMessage
-                  {...messages.addBusinessImageLabel}
-                  style={style.uploadLabel}
-                />
-              </View>
-            </View>
-          </View>
-        </View>
-        <View style={style.sectionContainer}>
-          <FormattedMessage
-            {...messages.generalInformationHeading}
-            style={style.sectionHeading}
-          />
+        {businessProfile?.data?.id ? (
+          <>
+            <BusinessImages />
 
-          <GeneralInfoForm onSubmit={() => null} />
-        </View>
-        <View style={style.sectionContainer}>
-          <FormattedMessage
-            {...messages.earningPolicyHeading}
-            style={style.sectionHeading}
-          />
+            <View style={style.sectionContainer}>
+              <FormattedMessage
+                {...messages.generalInformationHeading}
+                style={style.sectionHeading}
+              />
 
-          <EarningPolicyForm onSubmit={() => null} />
-        </View>
-        <View style={style.saveButtonContainer}>
-          <Button
-            large
-            flex
-            label={<FormattedMessage {...messages.saveLabel} isFragment />}
-            onPress={() => null}
-          />
-        </View>
+              <GeneralInfoForm
+                onSubmit={(data) => {
+                  businessProfile.update({
+                    data: { ...data, companyType: data.companyType.id },
+                  });
+                }}
+                initialValues={businessProfile.data}
+              />
+            </View>
+
+            <View style={style.sectionContainer}>
+              <FormattedMessage
+                {...messages.earningPolicyHeading}
+                style={style.sectionHeading}
+              />
+
+              <EarningPolicyForm
+                onSubmit={() => null}
+                data={earningPolicyTypes.data || []}
+                entityId={businessProfile.data.id}
+              />
+            </View>
+          </>
+        ) : null}
       </View>
     </Screen>
   );

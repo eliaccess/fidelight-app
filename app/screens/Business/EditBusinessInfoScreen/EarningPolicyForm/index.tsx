@@ -1,51 +1,69 @@
 /**
  *
- * GeneralInfoForm
+ * EarningPolicyForm
  *
  */
 
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { View } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import * as yup from 'yup';
 import { Formik } from 'formik';
-
+import { EarningPolicyTypeItem } from 'containers/EarningPolicyTypes/types';
+import { useBusinessEarningPolicies } from 'containers/Business/BusinessEarningPolicies';
 import Input from 'theme/Input';
 import FormattedMessage from 'theme/FormattedMessage';
 import Radio from 'theme/Radio';
+import Text from 'theme/Text';
+import Button from 'theme/Button';
 
 import style from './style';
 import messages from './messages';
 
-interface GeneralInfoFormProps {
-  onSubmit: (data: GeneralInfoFormState) => void;
+interface EarningPolicyFormProps {
+  onSubmit: (data: EarningPolicyFormState) => void;
+  data: EarningPolicyTypeItem[];
+  entityId: number;
 }
 
-type GeneralInfoFormState = {
-  minimumAmount: string;
-  rewards: string;
+type EarningPolicyFormState = {
+  rewardPoints: string;
 };
 
 const schema = yup.object().shape({
-  minimumAmount: yup.string().required('Required'),
-  rewards: yup.string().required('Required'),
+  rewardPoints: yup.string().required('Required'),
 });
 
 const initialValue = {
-  minimumAmount: '',
-  rewards: '',
+  rewardPoints: '',
 };
 
-const GeneralInfoForm: React.FC<GeneralInfoFormProps> = (props) => {
-  const rewardsFieldRef = useRef();
-  const [activeTypeIndex, setActiveTypeIndex] = useState(0);
+const EarningPolicyForm: React.FC<EarningPolicyFormProps> = (props) => {
+  const rewardPointsFieldRef = useRef();
+  const [activeTypeId, setActiveTypeId] = useState(0);
+  const businessEarningPolicies = useBusinessEarningPolicies({
+    entityId: props.entityId,
+  });
+
+  useEffect(() => {
+    if (businessEarningPolicies?.data?.type) {
+      setActiveTypeId(businessEarningPolicies.data.type);
+    }
+  }, [businessEarningPolicies.data]);
 
   return (
-    <Animatable.View style={[style.container]} animation="fadeIn">
+    <Animatable.View style={style.container} animation="fadeIn">
       <Formik
         initialValues={initialValue}
         validationSchema={schema}
-        onSubmit={props.onSubmit}
+        onSubmit={(values) => {
+          businessEarningPolicies.submit({
+            data: {
+              type: activeTypeId,
+              value: parseInt(values.rewardPoints, 10),
+            },
+          });
+        }}
       >
         {({
           handleChange,
@@ -57,72 +75,47 @@ const GeneralInfoForm: React.FC<GeneralInfoFormProps> = (props) => {
         }) => (
           <>
             <View style={style.typeContainer}>
-              <View style={style.typeWrapper}>
-                <Radio
-                  type="checkbox"
-                  active={activeTypeIndex === 0}
-                  onPress={() => {
-                    setActiveTypeIndex(0);
-                  }}
-                />
-                <FormattedMessage
-                  {...messages.spentTypeLabel}
-                  style={style.typeLabel}
-                />
-              </View>
-              <View style={style.typeWrapper}>
-                <Radio
-                  type="checkbox"
-                  active={activeTypeIndex === 1}
-                  onPress={() => {
-                    setActiveTypeIndex(1);
-                  }}
-                />
-                <FormattedMessage
-                  {...messages.pointBaseTypeLabel}
-                  style={style.typeLabel}
-                />
-              </View>
+              {props.data.map((type) => (
+                <View style={style.typeWrapper}>
+                  <Radio
+                    type="checkbox"
+                    active={activeTypeId === type.id}
+                    onPress={() => {
+                      setActiveTypeId(type.id);
+                    }}
+                  />
+                  <Text style={style.typeLabel}>{type.title}</Text>
+                </View>
+              ))}
             </View>
+
             <View style={style.inputContainer}>
               <Input
+                ref={rewardPointsFieldRef}
                 textContentType="none"
                 keyboardType="numeric"
-                returnKeyType="next"
+                returnKeyType="done"
                 autoCapitalize="none"
-                onChangeText={handleChange('minimumAmount')}
-                onBlur={handleBlur('minimumAmount')}
-                value={values.minimumAmount}
-                onSubmitEditing={() => {
-                  // @ts-ignore
-                  if (rewardsFieldRef?.current?.focus) {
-                    // @ts-ignore
-                    rewardsFieldRef.current?.focus();
-                  }
-                }}
-                error={touched.minimumAmount ? errors.minimumAmount : null}
+                onChangeText={handleChange('rewardPoints')}
+                onBlur={handleBlur('rewardPoints')}
+                value={values.rewardPoints}
+                error={touched.rewardPoints ? errors.rewardPoints : null}
                 label={
                   <FormattedMessage
-                    {...messages.minimumAmountLabel}
+                    {...messages.rewardPointsLabel}
                     isFragment
                   />
                 }
               />
             </View>
-            <View style={style.inputContainer}>
-              <Input
-                ref={rewardsFieldRef}
-                textContentType="none"
-                keyboardType="numeric"
-                returnKeyType="done"
-                autoCapitalize="none"
-                onChangeText={handleChange('rewards')}
-                onBlur={handleBlur('rewards')}
-                value={values.rewards}
-                error={touched.rewards ? errors.rewards : null}
+            <View style={style.submitButtonContainer}>
+              <Button
+                large
+                flex
                 label={
-                  <FormattedMessage {...messages.rewardsLabel} isFragment />
+                  <FormattedMessage {...messages.submitLabel} isFragment />
                 }
+                onPress={handleSubmit}
               />
             </View>
           </>
@@ -132,4 +125,4 @@ const GeneralInfoForm: React.FC<GeneralInfoFormProps> = (props) => {
   );
 };
 
-export default GeneralInfoForm;
+export default EarningPolicyForm;

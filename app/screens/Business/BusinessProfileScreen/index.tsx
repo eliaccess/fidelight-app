@@ -7,7 +7,7 @@
 import React from 'react';
 import { View } from 'react-native';
 
-import { useUser } from 'containers/Business/BusinessAuthentication';
+import { useBusinessProfile } from 'containers/Business/BusinessProfile';
 
 import Screen from 'theme/Screen';
 import { EDIT_BUSINESS_INFO } from 'router/routeNames';
@@ -16,13 +16,13 @@ import DealsSection from './DealsSection';
 import EntityInfo from './EntityInfo';
 import EntityTimings from './EntityTimings';
 import EntityHeader from './Header';
-import RewardsSection from './RewardsSection';
+
 import style from './style';
 
 import { BusinessProfileScreenProps } from './types';
 
 function BusinessProfileScreen(props: BusinessProfileScreenProps) {
-  const entityDetail = useUser();
+  const entityDetail = useBusinessProfile();
 
   return (
     <Screen testID="BusinessProfileScreen" headerVisibilityThreshold={80}>
@@ -46,10 +46,6 @@ function BusinessProfileScreen(props: BusinessProfileScreenProps) {
                 navigation={props.navigation}
               />
             </View>
-            <RewardsSection
-              navigation={props.navigation}
-              entityId={entityDetail.data.id}
-            />
           </>
         ) : null}
       </View>

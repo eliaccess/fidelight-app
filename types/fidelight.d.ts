@@ -14,17 +14,18 @@ export declare global {
   interface IBusinessUser {
     id: number;
     name: string;
+    email: string;
     description: string;
     phone: string;
-    companyType: 5;
+    companyType: string;
     country: string;
     city: string;
     streetName: string;
-    streetNumber: 357;
+    streetNumber: string;
     logoUrl: string;
     backgroundPicture: string;
-    websiteUrl: string | null;
-    schedule: {
+    websiteUrl: string;
+    schedule?: {
       day: number;
       dayName: string;
       openAM: string;

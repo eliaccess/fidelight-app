@@ -52,13 +52,36 @@ const style = StyleSheet.create({
     justifyContent: 'center',
   },
   uploadIcon: {
-    fontSize: 22,
+    fontSize: 20,
     color: Colors.accent,
   },
   uploadLabel: {
-    fontSize: 12,
+    fontSize: 10,
     color: Colors.accent,
     marginTop: Dimensions.space1x,
+  },
+  saveButtonContainer: {
+    width: '90%',
+    alignSelf: 'center',
+  },
+  logo: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+  },
+  editImageIconWrapper: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    padding: Dimensions.space1x,
+    alignSelf: 'center',
+    justifyContent: 'center',
+    backgroundColor: Colors.accent,
+    borderRadius: 20,
+  },
+  editImageIcon: {
+    fontSize: 18,
+    color: Colors.white,
   },
 });
 

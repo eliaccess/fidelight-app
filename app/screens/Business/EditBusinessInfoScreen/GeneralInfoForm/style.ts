@@ -45,6 +45,10 @@ const style = StyleSheet.create({
     marginBottom: Dimensions.space2x,
     padding: Dimensions.space1x,
   },
+  updateButtonContainer: {
+    width: '90%',
+    alignSelf: 'center',
+  },
 });
 
 export default style;

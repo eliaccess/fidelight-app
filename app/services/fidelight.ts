@@ -119,7 +119,7 @@ interface IAPIArgs {
   body?: any;
   headers?: any;
   params?: any;
-  bodyParsing?: boolean;
+  bodyParsing?: string;
   parseError?: boolean;
   noAuth?: boolean;
   [key: string]: any;

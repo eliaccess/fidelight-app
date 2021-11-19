@@ -3,8 +3,15 @@
  * Button
  *
  */
-import React, { useRef } from 'react';
-import Animated from 'react-native-reanimated';
+import React, { useEffect, useRef } from 'react';
+import Animated, {
+  Easing,
+  Extrapolate,
+  interpolate,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated';
 import LinearGradient from 'react-native-linear-gradient';
 
 import { buttonGradientProps } from 'theme/utils';
@@ -52,16 +59,24 @@ const Button: React.FC<ButtonProps> = ({
   onPress,
   ...props
 }) => {
-  const animatedValue = useRef(new Animated.Value(disabled ? 0.5 : 1)).current;
-
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const _animation = useRef(useSharedValue(disabled ? 0.5 : 1)).current;
   // useEffect(() => {
-  //   Animated.timing(animatedValue, {
-  //     toValue: disabled ? 0.5 : 1,
-  //     duration: 300,
+  //   animation.value = withTiming(disabled ? 0.5 : 1, {
+  //     duration: 400,
   //     easing: Easing.inOut(Easing.ease),
-  //     // useNativeDriver: true,
-  //   }).start();
-  // }, [animatedValue, disabled]);
+  //   });
+  // }, [animation, disabled]);
+
+  // const animatedStyle = useAnimatedStyle(() => {
+  //   const opacity = interpolate(
+  //     animation.value,
+  //     [0, 1],
+  //     [0, 1],
+  //     Extrapolate.CLAMP,
+  //   );
+  //   return { opacity };
+  // });
 
   return (
     <TouchFeedback
@@ -71,8 +86,7 @@ const Button: React.FC<ButtonProps> = ({
         props.large ? style.large : {},
         props.flex ? style.flex : {},
         {
-          // @ts-ignore
-          opacity: animatedValue,
+          // ...animatedStyle,
           ...typeBackground[type],
         },
       ]}

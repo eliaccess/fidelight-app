@@ -4,58 +4,99 @@
  *
  */
 
+import { omit } from 'lodash';
 import React, { useRef } from 'react';
 import { View } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import * as yup from 'yup';
 import { Formik } from 'formik';
+import { email } from 'utils/validations';
 
 import Input from 'theme/Input';
 import FormattedMessage from 'theme/FormattedMessage';
+import Button from 'theme/Button';
+import InputDropDown from 'theme/InputDropDown';
+import { useCategories } from 'containers/Categories';
 
 import style from './style';
 import messages from './messages';
 
 interface GeneralInfoFormProps {
   onSubmit: (data: GeneralInfoFormState) => void;
+  initialValues: IBusinessUser;
 }
 
 type GeneralInfoFormState = {
-  storeName: string;
-  address: string;
+  email: string;
   phone: string;
-  website: string;
-  info: string;
+  streetName: string;
+  streetNumber: string;
+  description: string;
+  city: string;
+  country: string;
+  companyType: {
+    id: number;
+    name: string;
+  };
+  websiteUrl: string;
 };
 
 const schema = yup.object().shape({
-  storeName: yup.string().required('Required'),
-  address: yup.string().required('Required'),
-  phone: yup.string().required('Required'),
-  website: yup.string(),
-  info: yup.string().required('Required'),
+  email,
+  phone: yup.string(),
+  streetName: yup.string(),
+  streetNumber: yup.string(),
+  city: yup.string(),
+  country: yup.string(),
+  companyType: yup.object().shape({
+    id: yup.number().required('Required'),
+    name: yup.string().required('Required'),
+  }),
+  websiteUrl: yup.string(),
+  description: yup.string(),
 });
 
-const initialValue = {
-  storeName: '',
-  address: '',
-  phone: '',
-  website: '',
-  info: '',
-};
-
 const GeneralInfoForm: React.FC<GeneralInfoFormProps> = (props) => {
-  const addressFieldRef = useRef();
+  const emailFieldRef = useRef();
+  const companyTypeFieldRef = useRef();
+  const streetNameFieldRef = useRef();
+  const streetNumberFieldRef = useRef();
+  const cityFieldRef = useRef();
+  const countryFieldRef = useRef();
   const phoneFieldRef = useRef();
   const websiteFieldRef = useRef();
-  const infoFieldRef = useRef();
+  const descriptionFieldRef = useRef();
+
+  const companyTypes = useCategories();
+
+  if (!companyTypes?.data?.length) {
+    return null;
+  }
 
   return (
-    <Animatable.View style={[style.container]} animation="fadeIn">
+    <Animatable.View
+      style={[style.container]}
+      animation="fadeInUp"
+      duration={1000}
+    >
       <Formik
-        initialValues={initialValue}
+        initialValues={{
+          ...props.initialValues,
+          companyType: companyTypes?.data[0],
+        }}
         validationSchema={schema}
-        onSubmit={props.onSubmit}
+        onSubmit={(values) => {
+          // @ts-ignore
+          props.onSubmit({
+            ...omit(values, [
+              'id',
+              'registrationDate',
+              'logoUrl',
+              'backgroundPicture',
+              'name',
+            ]),
+          });
+        }}
       >
         {({
           handleChange,
@@ -64,50 +105,141 @@ const GeneralInfoForm: React.FC<GeneralInfoFormProps> = (props) => {
           values,
           errors,
           touched,
+          isValid,
+          setFieldValue,
+          setFieldTouched,
         }) => (
           <>
             <View style={style.inputContainer}>
               <Input
-                textContentType="givenName"
+                ref={emailFieldRef}
+                textContentType="emailAddress"
+                keyboardType="email-address"
+                returnKeyType="next"
+                autoCapitalize="none"
+                onChangeText={handleChange('email')}
+                onBlur={handleBlur('email')}
+                value={values.email}
+                onSubmitEditing={() => {
+                  // @ts-ignore
+                  if (companyTypeFieldRef?.current?.focus) {
+                    // @ts-ignore
+                    companyTypeFieldRef.current?.focus();
+                  }
+                }}
+                error={touched.email ? errors.email : null}
+                label={<FormattedMessage {...messages.emailLabel} isFragment />}
+              />
+            </View>
+
+            <View style={style.inputContainer}>
+              <InputDropDown
+                label={
+                  <FormattedMessage isFragment {...messages.companyTypeLabel} />
+                }
+                data={companyTypes.data || []}
+                title={
+                  <FormattedMessage isFragment {...messages.companyTypeLabel} />
+                }
+                // @ts-ignore
+                selectedValue={values.companyType?.name}
+                onSelect={(item) => {
+                  setFieldValue('companyType', item);
+                  setFieldTouched('companyType');
+                }}
+                error={errors.companyType ? 'Required' : null}
+              />
+            </View>
+            <View style={style.inputContainer}>
+              <Input
+                ref={streetNameFieldRef}
+                textContentType="addressCity"
                 keyboardType="default"
                 returnKeyType="next"
                 autoCapitalize="none"
-                onChangeText={handleChange('storeName')}
-                onBlur={handleBlur('storeName')}
-                value={values.storeName}
+                onChangeText={handleChange('streetName')}
+                onBlur={handleBlur('streetName')}
+                value={values.streetName}
                 onSubmitEditing={() => {
                   // @ts-ignore
-                  if (addressFieldRef?.current?.focus) {
+                  if (streetNumberFieldRef?.current?.focus) {
                     // @ts-ignore
-                    addressFieldRef.current?.focus();
+                    streetNumberFieldRef.current?.focus();
                   }
                 }}
-                error={touched.storeName ? errors.storeName : null}
+                error={touched.streetName ? errors.streetName : null}
                 label={
-                  <FormattedMessage {...messages.storeNameLabel} isFragment />
+                  <FormattedMessage {...messages.streetNameLabel} isFragment />
                 }
               />
             </View>
             <View style={style.inputContainer}>
               <Input
-                ref={addressFieldRef}
+                ref={streetNumberFieldRef}
                 textContentType="addressCity"
                 keyboardType="default"
                 returnKeyType="next"
                 autoCapitalize="none"
-                onChangeText={handleChange('address')}
-                onBlur={handleBlur('address')}
-                value={values.address}
+                onChangeText={handleChange('streetNumber')}
+                onBlur={handleBlur('streetNumber')}
+                value={values.streetNumber}
                 onSubmitEditing={() => {
                   // @ts-ignore
-                  if (phoneFieldRef?.current?.focus) {
+                  if (cityFieldRef?.current?.focus) {
                     // @ts-ignore
-                    phoneFieldRef.current?.focus();
+                    cityFieldRef.current?.focus();
                   }
                 }}
-                error={touched.address ? errors.address : null}
+                error={touched.streetNumber ? errors.streetNumber : null}
                 label={
-                  <FormattedMessage {...messages.addressLabel} isFragment />
+                  <FormattedMessage
+                    {...messages.streetNumberLabel}
+                    isFragment
+                  />
+                }
+              />
+            </View>
+            <View style={style.inputContainer}>
+              <Input
+                ref={cityFieldRef}
+                textContentType="addressCity"
+                keyboardType="default"
+                returnKeyType="next"
+                autoCapitalize="none"
+                onChangeText={handleChange('city')}
+                onBlur={handleBlur('city')}
+                value={values.city}
+                onSubmitEditing={() => {
+                  // @ts-ignore
+                  if (countryFieldRef?.current?.focus) {
+                    // @ts-ignore
+                    countryFieldRef.current?.focus();
+                  }
+                }}
+                error={touched.city ? errors.city : null}
+                label={<FormattedMessage {...messages.cityLabel} isFragment />}
+              />
+            </View>
+            <View style={style.inputContainer}>
+              <Input
+                ref={countryFieldRef}
+                textContentType="countryName"
+                keyboardType="default"
+                returnKeyType="next"
+                autoCapitalize="none"
+                onChangeText={handleChange('country')}
+                onBlur={handleBlur('country')}
+                value={values.country}
+                onSubmitEditing={() => {
+                  // @ts-ignore
+                  if (companyTypeFieldRef?.current?.focus) {
+                    // @ts-ignore
+                    companyTypeFieldRef.current?.focus();
+                  }
+                }}
+                error={touched.country ? errors.country : null}
+                label={
+                  <FormattedMessage {...messages.countryLabel} isFragment />
                 }
               />
             </View>
@@ -139,17 +271,17 @@ const GeneralInfoForm: React.FC<GeneralInfoFormProps> = (props) => {
                 keyboardType="default"
                 returnKeyType="next"
                 autoCapitalize="none"
-                onChangeText={handleChange('website')}
-                onBlur={handleBlur('website')}
-                value={values.website}
+                onChangeText={handleChange('websiteUrl')}
+                onBlur={handleBlur('websiteUrl')}
+                value={values.websiteUrl}
                 onSubmitEditing={() => {
                   // @ts-ignore
-                  if (infoFieldRef?.current?.focus) {
+                  if (descriptionFieldRef?.current?.focus) {
                     // @ts-ignore
-                    infoFieldRef.current?.focus();
+                    descriptionFieldRef.current?.focus();
                   }
                 }}
-                error={touched.website ? errors.website : null}
+                error={touched.websiteUrl ? errors.websiteUrl : null}
                 label={
                   <FormattedMessage {...messages.websiteLabel} isFragment />
                 }
@@ -157,17 +289,29 @@ const GeneralInfoForm: React.FC<GeneralInfoFormProps> = (props) => {
             </View>
             <View style={style.inputContainer}>
               <Input
-                ref={infoFieldRef}
-                textContentType="name"
+                ref={descriptionFieldRef}
                 keyboardType="default"
                 returnKeyType="next"
                 autoCapitalize="none"
-                onChangeText={handleChange('info')}
-                onBlur={handleBlur('info')}
-                value={values.info}
-                error={touched.info ? errors.info : null}
-                label={<FormattedMessage {...messages.infoLabel} isFragment />}
+                onChangeText={handleChange('description')}
+                onBlur={handleBlur('description')}
+                value={values.description}
+                error={touched.description ? errors.description : null}
+                label={
+                  <FormattedMessage {...messages.descriptionLabel} isFragment />
+                }
                 multiline
+              />
+            </View>
+            <View style={style.updateButtonContainer}>
+              <Button
+                large
+                flex
+                disabled={!isValid}
+                label={
+                  <FormattedMessage {...messages.updateLabel} isFragment />
+                }
+                onPress={handleSubmit}
               />
             </View>
           </>

@@ -9,13 +9,33 @@ import { defineMessages } from 'react-intl';
 export const scope = 'app.screens.EditBusinessInfoScreen.GeneralInfoForm';
 
 export default defineMessages({
-  storeNameLabel: {
-    id: `${scope}.storeNameLabel`,
+  nameLabel: {
+    id: `${scope}.nameLabel`,
     defaultMessage: 'Store name',
   },
-  addressLabel: {
-    id: `${scope}.addressLabel`,
-    defaultMessage: 'Address',
+  emailLabel: {
+    id: `${scope}.emailLabel`,
+    defaultMessage: 'Store Email',
+  },
+  companyTypeLabel: {
+    id: `${scope}.companyTypeLabel`,
+    defaultMessage: 'Company Type',
+  },
+  streetNameLabel: {
+    id: `${scope}.streetNameLabel`,
+    defaultMessage: 'Street Name',
+  },
+  streetNumberLabel: {
+    id: `${scope}.streetNumberLabel`,
+    defaultMessage: 'Street Number',
+  },
+  cityLabel: {
+    id: `${scope}.cityLabel`,
+    defaultMessage: 'City',
+  },
+  countryLabel: {
+    id: `${scope}.countryLabel`,
+    defaultMessage: 'Country',
   },
   phoneLabel: {
     id: `${scope}.phoneLabel`,
@@ -25,8 +45,12 @@ export default defineMessages({
     id: `${scope}.websiteLabel`,
     defaultMessage: 'Website',
   },
-  infoLabel: {
-    id: `${scope}.infoLabel`,
-    defaultMessage: 'Info',
+  descriptionLabel: {
+    id: `${scope}.descriptionLabel`,
+    defaultMessage: 'Description',
+  },
+  updateLabel: {
+    id: `${scope}.updateLabel`,
+    defaultMessage: 'Update General Info',
   },
 });

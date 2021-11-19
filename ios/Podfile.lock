@@ -400,6 +400,8 @@ PODS:
   - react-native-fbsdk/Share (2.0.0):
     - FBSDKShareKit (~> 7.0)
     - React
+  - react-native-image-picker (4.3.0):
+    - React-Core
   - react-native-pager-view (5.4.7):
     - React-Core
   - react-native-safe-area-context (3.3.2):
@@ -581,6 +583,7 @@ DEPENDENCIES:
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - react-native-fbsdk (from `../node_modules/react-native-fbsdk`)
+  - react-native-image-picker (from `../node_modules/react-native-image-picker`)
   - react-native-pager-view (from `../node_modules/react-native-pager-view`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-splash-screen (from `../node_modules/react-native-splash-screen`)
@@ -688,6 +691,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
   react-native-fbsdk:
     :path: "../node_modules/react-native-fbsdk"
+  react-native-image-picker:
+    :path: "../node_modules/react-native-image-picker"
   react-native-pager-view:
     :path: "../node_modules/react-native-pager-view"
   react-native-safe-area-context:
@@ -805,6 +810,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: 124e8f99992490d0d13e0649d950d3e1aae06fe9
   React-jsinspector: 500a59626037be5b3b3d89c5151bc3baa9abf1a9
   react-native-fbsdk: 00c15d138bba6d4efa628670886fc58cec858c19
+  react-native-image-picker: 869530859570f2af86ae57bc48886a5e2367a825
   react-native-pager-view: 741e7606ee2f6e399fc7da777f5519454a4b38c5
   react-native-safe-area-context: 584dc04881deb49474363f3be89e4ca0e854c057
   react-native-splash-screen: 200d11d188e2e78cea3ad319964f6142b6384865

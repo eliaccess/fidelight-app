@@ -75,7 +75,6 @@ const initialValue = {
 const Form: React.FC<FormProps> = (props) => {
   const emailFieldRef = useRef();
   const phoneFieldRef = useRef();
-  const dobFieldRef = useRef();
   const passwordFieldRef = useRef();
   const confirmPasswordFieldRef = useRef();
   const streetNameFieldRef = useRef();
@@ -165,9 +164,9 @@ const Form: React.FC<FormProps> = (props) => {
                     value={values.phone}
                     onSubmitEditing={() => {
                       // @ts-ignore
-                      if (dobFieldRef?.current?.focus) {
+                      if (passwordFieldRef?.current?.focus) {
                         // @ts-ignore
-                        dobFieldRef.current?.focus();
+                        passwordFieldRef.current?.focus();
                       }
                     }}
                     error={touched.phone ? errors.phone : null}
