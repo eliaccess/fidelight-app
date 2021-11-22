@@ -8,14 +8,6 @@
 import { defineMessages } from 'react-intl';
 const scope = 'app.screens.BusinessExploreScreen';
 export default defineMessages({
-  offersLabel: {
-    id: `${scope}.offersLabel`,
-    defaultMessage: 'Offers',
-  },
-  rewardsLabel: {
-    id: `${scope}.rewardsLabel`,
-    defaultMessage: 'Rewards',
-  },
   activateOfferLabel: {
     id: `${scope}.activateOfferLabel`,
     defaultMessage: 'Activate Offers',

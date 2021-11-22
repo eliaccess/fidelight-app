@@ -51,6 +51,13 @@ const style = StyleSheet.create({
     padding: Dimensions.space1x,
     marginVertical: Dimensions.space3x,
   },
+  dateSelectorWrapper: {
+    alignItems: 'center',
+    alignSelf: 'center',
+    position: 'relative',
+    width: '95%',
+    marginBottom: Dimensions.space1x,
+  },
 });
 
 export default style;

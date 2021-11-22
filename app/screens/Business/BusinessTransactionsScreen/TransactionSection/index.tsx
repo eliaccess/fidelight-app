@@ -7,40 +7,61 @@
 import React from 'react';
 import { View } from 'react-native';
 
-import FormattedMessage from 'theme/FormattedMessage';
+import { useTransactions } from 'containers/Transactions';
+import useStateHandler from 'hooks/useStateHandler';
 
+import FormattedMessage from 'theme/FormattedMessage';
+import NoResult from 'theme/NoResult';
+
+import Image from 'theme/Image';
 import Section from 'theme/Section';
 import Text from 'theme/Text';
 
 import style from './style';
 import messages from '../messages';
+import TransactionsWidgetLoader from './Loader';
 
 function TransactionSection(_props) {
+  const transactions = useTransactions();
+
+  const showContent = useStateHandler({
+    state: transactions,
+  });
+
+  if (!showContent) {
+    return (
+      <TransactionsWidgetLoader
+        heading={
+          <FormattedMessage {...messages.transactionHeading} isFragment />
+        }
+        numberOfItems={2}
+      />
+    );
+  }
+
   return (
-    <View style={style.container}>
+    <View style={style.rewardSectionContainer}>
       <Section
         heading={
           <FormattedMessage {...messages.transactionHeading} isFragment />
         }
       >
-        <View style={style.itemWrapper}>
-          <View style={style.contentWrapper}>
-            <Text style={style.title}>Coffee from Retro bistro</Text>
-            <Text style={style.date}>Feb 21, 2021</Text>
-          </View>
-          <View style={style.pointsWrapper}>
-            <Text style={style.points}>120 Points given</Text>
-          </View>
-        </View>
-        <View style={style.itemWrapper}>
-          <View style={style.contentWrapper}>
-            <Text style={style.title}>Large size pizza from do...</Text>
-            <Text style={style.date}>Feb 21, 2021</Text>
-          </View>
-          <View style={style.pointsWrapper}>
-            <Text style={style.points}>240 Points given</Text>
-          </View>
-        </View>
+        {transactions?.data ? (
+          transactions.data.map((item) => (
+            <View key={item.companyId} style={style.itemWrapper}>
+              <View style={style.logoWrapper}>
+                <Image title="transactionIcon" style={style.logo} />
+              </View>
+              <View style={style.contentWrapper}>
+                <Text style={style.title}>{item.companyName}</Text>
+                <Text style={style.date}>{item.date}</Text>
+              </View>
+              <Text style={style.points}>{item.value} Points</Text>
+            </View>
+          ))
+        ) : (
+          <NoResult message={transactions?.message} />
+        )}
       </Section>
     </View>
   );

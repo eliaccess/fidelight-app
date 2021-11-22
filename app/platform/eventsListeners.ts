@@ -6,12 +6,18 @@ import { Log } from 'platform/Logger';
 import { setUserProperties as crashlyticsSetUser } from './crashlytics';
 import { setUser as analyticsSetUser } from './analytics';
 
-const PROPERTIES_BLACKLIST = ['password', 'qrCode'];
+const PROPERTIES_BLACKLIST = ['password', 'qrCode', 'companyType'];
 
 const onUserUpdate = (params) => {
   Log('Setting Analytics User', params);
-  analyticsSetUser(params);
-  crashlyticsSetUser(params);
+  const user: any = omit(
+    {
+      ...params,
+    },
+    PROPERTIES_BLACKLIST,
+  );
+  analyticsSetUser(user);
+  crashlyticsSetUser(user);
 };
 
 /**

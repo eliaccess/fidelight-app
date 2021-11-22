@@ -11,17 +11,13 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { useUser } from 'containers/Business/BusinessAuthentication';
 
 import FormattedMessage from 'theme/FormattedMessage';
-import Text from 'theme/Text';
 import Icon from 'theme/Icon';
-import LinearGradient from 'react-native-linear-gradient';
 
 import { useEntityOffersRewards } from 'containers/EntityOffersRewards';
 
-import { buttonGradientProps } from 'theme/utils';
 import TouchFeedback from 'theme/TouchFeedback';
 import Modal from 'theme/Modal';
 import { useToastContext } from 'theme/Toast';
-import { BUSINESS_PROFILE } from 'router/routeNames';
 
 import { BusinessExploreScreenProps } from './types';
 import style from './style';
@@ -32,7 +28,6 @@ import CreateOfferForm from './CreateOfferForm';
 import CreateRewardForm from './CreateRewardForm';
 
 function BusinessExploreScreen(props: BusinessExploreScreenProps) {
-  const [activeTabIndex, setActiveTabIndex] = useState(0);
   const [showCreateOffers, setShowCreateOffers] = useState(false);
   const [showCreateReward, setShowCreateReward] = useState(false);
   const user = useUser();
@@ -41,6 +36,9 @@ function BusinessExploreScreen(props: BusinessExploreScreenProps) {
   const entityOffersRewards = useEntityOffersRewards({
     entityId: user?.data?.id || -1,
   });
+
+  // @ts-ignore
+  const { activeTabIndex } = props;
 
   useEffect(() => {
     if (entityOffersRewards?.message) {
@@ -56,46 +54,6 @@ function BusinessExploreScreen(props: BusinessExploreScreenProps) {
 
   return (
     <>
-      <View style={style.container}>
-        <LinearGradient {...buttonGradientProps()} style={style.backdrop} />
-        <View style={style.iconsWrapper}>
-          <TouchFeedback onPress={() => null} style={style.menuIconWrapper}>
-            <Icon name="menu" style={style.menuIcon} />
-          </TouchFeedback>
-          <TouchFeedback
-            onPress={() => props.navigation.navigate(BUSINESS_PROFILE, {})}
-          >
-            <Text style={style.entityName}>{user?.data?.name}</Text>
-          </TouchFeedback>
-          <View />
-        </View>
-        <View style={style.tabContainer}>
-          <TouchFeedback
-            onPress={() => setActiveTabIndex(0)}
-            style={[style.tab, activeTabIndex === 0 ? style.activeTab : null]}
-          >
-            <FormattedMessage
-              {...messages.offersLabel}
-              style={[
-                style.tabLabel,
-                activeTabIndex === 0 ? style.activeTab : null,
-              ]}
-            />
-          </TouchFeedback>
-          <TouchFeedback
-            onPress={() => setActiveTabIndex(1)}
-            style={[style.tab, activeTabIndex === 1 ? style.activeTab : null]}
-          >
-            <FormattedMessage
-              {...messages.rewardsLabel}
-              style={[
-                style.tabLabel,
-                activeTabIndex === 1 ? style.activeTab : null,
-              ]}
-            />
-          </TouchFeedback>
-        </View>
-      </View>
       {user?.data?.id ? (
         <ScrollView
           showsVerticalScrollIndicator={false}
@@ -125,7 +83,7 @@ function BusinessExploreScreen(props: BusinessExploreScreenProps) {
         visible={showCreateOffers}
         onRequestClose={() => setShowCreateOffers(false)}
       >
-        <>
+        <View style={style.OfferContainer}>
           <FormattedMessage
             {...messages.createOfferHeading}
             style={style.modalHeading}
@@ -149,14 +107,14 @@ function BusinessExploreScreen(props: BusinessExploreScreenProps) {
               setShowCreateOffers(false);
             }}
           />
-        </>
+        </View>
       </Modal>
 
       <Modal
         visible={showCreateReward}
         onRequestClose={() => setShowCreateReward(false)}
       >
-        <>
+        <View style={style.rewardContainer}>
           <FormattedMessage
             {...messages.createRewardHeading}
             style={style.modalHeading}
@@ -178,7 +136,7 @@ function BusinessExploreScreen(props: BusinessExploreScreenProps) {
               setShowCreateReward(false);
             }}
           />
-        </>
+        </View>
       </Modal>
     </>
   );

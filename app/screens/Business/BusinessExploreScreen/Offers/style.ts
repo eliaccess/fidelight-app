@@ -51,7 +51,9 @@ const style = StyleSheet.create({
     width: 20,
     height: 20,
   },
-  contentWrapper: {},
+  contentWrapper: {
+    width: '70%',
+  },
   title: {
     fontSize: 16,
     color: Colors.textBlack,
@@ -80,6 +82,9 @@ const style = StyleSheet.create({
     fontSize: 14,
     color: Colors.textBlack,
     fontWeight: '600',
+  },
+  OfferContainer: {
+    minHeight: 560,
   },
 });
 

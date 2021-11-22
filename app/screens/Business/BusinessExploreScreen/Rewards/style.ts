@@ -85,6 +85,9 @@ const style = StyleSheet.create({
     color: Colors.textBlack,
     fontWeight: '600',
   },
+  rewardContainer: {
+    height: 600,
+  },
 });
 
 export default style;

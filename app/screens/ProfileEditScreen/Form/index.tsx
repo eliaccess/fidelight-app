@@ -14,8 +14,7 @@ import Button from 'theme/Button';
 import Input from 'theme/Input';
 
 import FormattedMessage from 'theme/FormattedMessage';
-// import Image from 'theme/Image';
-// import Icon from 'theme/Icon';
+import DateSelector from 'components/DateSelector';
 
 import { email } from 'utils/validations';
 
@@ -56,7 +55,6 @@ const Form: React.FC<FormProps> = (props) => {
   const emailFieldRef = useRef();
   const phoneFieldRef = useRef();
   const dobFieldRef = useRef();
-  const passwordFieldRef = useRef();
 
   return (
     <Animatable.View style={style.container} animation="fadeIn">
@@ -73,7 +71,8 @@ const Form: React.FC<FormProps> = (props) => {
           errors,
           isValid,
           touched,
-          dirty,
+          setFieldTouched,
+          setFieldValue,
         }) => (
           <>
             {/* <View style={style.profilePictureContainer}>
@@ -167,30 +166,20 @@ const Form: React.FC<FormProps> = (props) => {
                 label={<FormattedMessage {...messages.phoneLabel} isFragment />}
               />
             </View>
-            <View style={style.inputContainer}>
-              <Input
-                ref={dobFieldRef}
-                textContentType="telephoneNumber"
-                keyboardType="numbers-and-punctuation"
-                returnKeyType="next"
-                autoCapitalize="none"
-                onChangeText={handleChange('birthdate')}
-                onBlur={handleBlur('birthdate')}
+
+            <View style={style.dateSelectorWrapper}>
+              <DateSelector
                 value={values.birthdate}
-                onSubmitEditing={() => {
-                  // @ts-ignore
-                  if (passwordFieldRef?.current?.focus) {
-                    // @ts-ignore
-                    passwordFieldRef.current?.focus();
-                  }
+                onSelect={(value) => {
+                  setFieldTouched('dob');
+                  setFieldValue('dob', value);
                 }}
-                error={touched.birthdate ? errors.birthdate : null}
                 label={
                   <FormattedMessage {...messages.birthdateLabel} isFragment />
                 }
+                error={touched.birthdate ? errors.birthdate : null}
               />
             </View>
-
             <View style={style.buttonContainer}>
               <Button
                 flex

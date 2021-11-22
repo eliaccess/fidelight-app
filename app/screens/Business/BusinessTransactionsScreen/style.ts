@@ -14,6 +14,7 @@ const style = StyleSheet.create({
   contentContainerStyle: {
     width: Dimensions.screenWidth,
     height: 'auto',
+    paddingTop: '45%',
     paddingBottom: Dimensions.bottomSpacing,
     backgroundColor: Colors.bg1Color,
   },
@@ -77,10 +78,8 @@ const style = StyleSheet.create({
     fontWeight: '600',
   },
   modalContent: {
-    padding: Dimensions.space2x,
-    paddingTop: Dimensions.space3x,
-    width: Dimensions.screenWidth - Dimensions.screenWidth / 6,
-    height: 250,
+    paddingTop: Dimensions.space1x,
+    height: 220,
   },
 });
 

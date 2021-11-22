@@ -4,7 +4,7 @@
  *
  */
 
-import React, { useRef } from 'react';
+import React, { useState } from 'react';
 import { View } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import * as yup from 'yup';
@@ -13,6 +13,8 @@ import { Formik } from 'formik';
 import Button from 'theme/Button';
 import FormattedMessage from 'theme/FormattedMessage';
 import Input from 'theme/Input';
+import Icon from 'theme/Icon';
+import TouchFeedback from 'theme/TouchFeedback';
 
 import style from './style';
 import messages from './messages';
@@ -23,22 +25,18 @@ interface FormProps {
 
 type FormState = {
   numberOfPoints: string;
-  scanQrCode: string;
 };
 
 const schema = yup.object().shape({
   numberOfPoints: yup.string().required('Required'),
-  scanQrCode: yup.string().required('Required'),
 });
 
 const initialValue = {
   numberOfPoints: '',
-  scanQrCode: '',
 };
 
 const Form: React.FC<FormProps> = (props) => {
-  const scanQrCodeFieldRef = useRef();
-
+  const [qrCode, setQrCode] = useState('');
   return (
     <Animatable.View style={style.container} animation="fadeIn">
       <Formik
@@ -82,22 +80,17 @@ const Form: React.FC<FormProps> = (props) => {
               />
             </View>
 
-            <View style={style.inputContainer}>
-              <Input
-                ref={scanQrCodeFieldRef}
-                textContentType="name"
-                keyboardType="default"
-                returnKeyType="next"
-                autoCapitalize="none"
-                onChangeText={handleChange('scanQrCode')}
-                onBlur={handleBlur('scanQrCode')}
-                value={values.scanQrCode}
-                error={touched.scanQrCode ? errors.scanQrCode : null}
-                label={
-                  <FormattedMessage {...messages.scanQrCodeLabel} isFragment />
-                }
+            <TouchFeedback style={style.scanQRInput}>
+              <FormattedMessage
+                {...messages.scanQrCodeLabel}
+                style={style.scanQrCodeLabel}
               />
-            </View>
+              <Icon
+                name="qr-code-sharp"
+                font="ionicons"
+                style={style.scanQRIcon}
+              />
+            </TouchFeedback>
 
             <View style={style.buttonContainer}>
               <Button

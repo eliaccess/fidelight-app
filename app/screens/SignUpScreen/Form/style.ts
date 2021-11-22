@@ -33,6 +33,12 @@ const style = StyleSheet.create({
     marginBottom: Dimensions.space2x,
     padding: Dimensions.space1x,
   },
+  dateSelectorWrapper: {
+    alignItems: 'center',
+    position: 'relative',
+    width: '94%',
+    marginBottom: Dimensions.space1x,
+  },
 });
 
 export default style;

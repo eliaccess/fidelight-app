@@ -101,7 +101,7 @@ function BusinessExploreRewards(props: BusinessExploreRewardsProps) {
           visible={showEditRewardForm}
           onRequestClose={() => setShowEditRewardForm(false)}
         >
-          <>
+          <View style={style.rewardContainer}>
             <FormattedMessage
               {...messages.editRewardHeading}
               style={style.modalHeading}
@@ -126,7 +126,7 @@ function BusinessExploreRewards(props: BusinessExploreRewardsProps) {
               }}
               data={initialData}
             />
-          </>
+          </View>
         </Modal>
       </View>
     </>

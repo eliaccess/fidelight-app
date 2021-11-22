@@ -30,8 +30,28 @@ const style = StyleSheet.create({
     alignItems: 'center',
     position: 'relative',
     width: '50%',
-    marginBottom: Dimensions.space2x,
+    marginTop: Dimensions.space3x,
     padding: Dimensions.space1x,
+  },
+  scanQRInput: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    fontFamily: 'Poppins-Regular',
+    height: 30,
+    width: '92%',
+    borderRadius: Dimensions.borderRadius,
+    borderBottomWidth: 1,
+    borderBottomColor: Colors.inputBorder,
+    color: Colors.textBlack,
+    alignItems: 'flex-start',
+  },
+  scanQrCodeLabel: {
+    fontSize: 14,
+    color: Colors.textGrey,
+  },
+  scanQRIcon: {
+    fontSize: 22,
+    color: Colors.accent,
   },
 });
 

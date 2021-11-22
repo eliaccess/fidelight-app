@@ -16,6 +16,7 @@ import PasswordInput from 'theme/Input/PasswordInput';
 import FormattedMessage, { useFormattedMessage } from 'theme/FormattedMessage';
 import Radio from 'theme/Radio';
 import { useToastContext } from 'theme/Toast';
+import DateSelector from 'components/DateSelector';
 
 import { email, password } from 'utils/validations';
 
@@ -88,6 +89,8 @@ const Form: React.FC<FormProps> = (props) => {
           errors,
           isValid,
           touched,
+          setFieldValue,
+          setFieldTouched,
         }) => (
           <>
             <View style={style.inputContainer}>
@@ -175,25 +178,14 @@ const Form: React.FC<FormProps> = (props) => {
                 label={<FormattedMessage {...messages.phoneLabel} isFragment />}
               />
             </View>
-            <View style={style.inputContainer}>
-              <Input
-                ref={dobFieldRef}
-                textContentType="telephoneNumber"
-                keyboardType="numbers-and-punctuation"
-                returnKeyType="next"
-                autoCapitalize="none"
-                onChangeText={handleChange('dob')}
-                onBlur={handleBlur('dob')}
-                value={values.dob}
-                onSubmitEditing={() => {
-                  // @ts-ignore
-                  if (passwordFieldRef?.current?.focus) {
-                    // @ts-ignore
-                    passwordFieldRef.current?.focus();
-                  }
+            <View style={style.dateSelectorWrapper}>
+              <DateSelector
+                onSelect={(value) => {
+                  setFieldTouched('dob');
+                  setFieldValue('dob', value);
                 }}
-                error={touched.dob ? errors.dob : null}
                 label={<FormattedMessage {...messages.dobLabel} isFragment />}
+                error={touched.dob ? errors.dob : null}
               />
             </View>
             <View style={style.inputContainer}>
@@ -231,7 +223,7 @@ const Form: React.FC<FormProps> = (props) => {
             <View style={style.buttonContainer}>
               <Button
                 flex
-                disabled={!isValid}
+                // disabled={!isValid}
                 label={
                   <FormattedMessage {...messages.submitLabel} isFragment />
                 }

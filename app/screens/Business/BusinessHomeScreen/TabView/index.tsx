@@ -3,16 +3,22 @@ import { View } from 'react-native';
 import { TabView } from 'react-native-tab-view';
 import { Easing, useSharedValue, withTiming } from 'react-native-reanimated';
 
+import { useUser } from 'containers/Authentication';
+
 import BusinessExploreScreen from 'screens/Business/BusinessExploreScreen/Loadable';
 import BusinessTransactionsScreen from 'screens/Business/BusinessTransactionsScreen/Loadable';
-// import FavoriteEntitiesScreen from 'screens/FavoriteEntitiesScreen/Loadable';
-import CommingSoonScreen from 'screens/CommingSoonScreen/Loadable';
-import { COMMING_SOON } from 'router/routeNames';
+
+import { QR_CODE, BUSINESS_PROFILE } from 'router/routeNames';
 
 import TabBarButton from './TabBarButton';
 import style, { initialLayout } from './style';
 
+import BusinessHomeHeader from '../BusinessHomeHeader';
+
 function HomeTabView(props) {
+  const [activeExploreTabIndex, setActiveExploreTabIndex] = useState(0);
+  const user = useUser();
+
   const [routeIndex, setRouteIndex] = useState(0);
   const tabBarAnimation = useSharedValue(0);
 
@@ -38,7 +44,9 @@ function HomeTabView(props) {
           key={route.key}
           onPress={() => {
             if (route.major) {
-              props.navigation.navigate(COMMING_SOON, {});
+              props.navigation.navigate(QR_CODE, {
+                qrValue: `${user.data?.qrCode}.${user?.data?.id}`,
+              });
               return;
             }
             tabBarProps.jumpTo(route.key);
@@ -56,14 +64,16 @@ function HomeTabView(props) {
           <BusinessExploreScreen
             navigation={props.navigation}
             route={props.route}
+            activeTabIndex={activeExploreTabIndex}
           />
         );
-      case 'award':
-        // @ts-ignore
-        return <CommingSoonScreen />;
       case 'favorites':
-        // @ts-ignore
-        return <BusinessTransactionsScreen />;
+        return (
+          <BusinessTransactionsScreen
+            navigation={props.navigation}
+            route={props.route}
+          />
+        );
 
       default:
         return null;
@@ -72,6 +82,14 @@ function HomeTabView(props) {
 
   return (
     <>
+      <BusinessHomeHeader
+        onPressDrawer={props.onPressDrawer}
+        onCompanyPress={() => {
+          props.navigation.navigate(BUSINESS_PROFILE);
+        }}
+        onExploreTabPress={(index) => setActiveExploreTabIndex(index)}
+        activeExploreTabIndex={activeExploreTabIndex}
+      />
       <TabView
         lazy
         style={style.container}
@@ -82,7 +100,6 @@ function HomeTabView(props) {
         onIndexChange={setRouteIndex}
         tabBarPosition="bottom"
         swipeEnabled={false}
-        // timingConfig={{ duration: 10 }}
       />
     </>
   );

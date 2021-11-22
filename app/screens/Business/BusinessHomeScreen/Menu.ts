@@ -1,4 +1,4 @@
-import { PREFERENCE } from 'router/routeNames';
+import { PREFERENCE, SUPPORT } from 'router/routeNames';
 
 export default [
   {
@@ -9,12 +9,12 @@ export default [
   {
     id: 2,
     name: 'Contact Us',
-    routeName: '',
+    routeName: 'Contactus',
   },
   {
     id: 3,
     name: 'Terms of use',
-    routeName: 'Privacy',
+    routeName: 'Terms',
   },
   {
     id: 4,
@@ -23,7 +23,7 @@ export default [
   },
   {
     id: 5,
-    name: 'Support',
-    routeName: '',
+    name: SUPPORT,
+    routeName: SUPPORT,
   },
 ];

@@ -1,6 +1,6 @@
 /**
  *
- * Asynchronously loads the component for HomeScreen
+ * Asynchronously loads the component for BusinessHomeScreen
  *
  */
 

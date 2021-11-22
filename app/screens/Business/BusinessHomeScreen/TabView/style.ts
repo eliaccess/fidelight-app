@@ -6,13 +6,11 @@ import elevation from 'theme/elevation';
 
 const style = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
     backgroundColor: Colors.white,
     width: Dimensions.screenWidth,
     height: Dimensions.screenHeight,
-    top: 0,
-    left: 0,
-    position: 'absolute',
+
     borderRadius: Dimensions.borderRadius10x,
   },
   tabBarContainer: {
@@ -23,7 +21,9 @@ const style = StyleSheet.create({
     borderTopColor: Colors.white,
     ...Platform.select({
       ios: { paddingBottom: Dimensions.bottomSpacing },
-      android: { paddingBottom: Dimensions.space2x },
+      android: {
+        paddingBottom: Dimensions.bottomSpacing + Dimensions.space1x,
+      },
     }),
     backgroundColor: Colors.white,
     ...elevation(5),

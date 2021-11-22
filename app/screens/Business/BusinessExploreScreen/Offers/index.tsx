@@ -98,7 +98,7 @@ function BusinessExploreOffers(props: BusinessExploreOffersProps) {
           visible={showEditOfferForm}
           onRequestClose={() => setShowEditOfferForm(false)}
         >
-          <>
+          <View style={style.OfferContainer}>
             <FormattedMessage
               {...messages.editOfferHeading}
               style={style.modalHeading}
@@ -125,7 +125,7 @@ function BusinessExploreOffers(props: BusinessExploreOffersProps) {
               }}
               data={initialData}
             />
-          </>
+          </View>
         </Modal>
       </View>
     </>

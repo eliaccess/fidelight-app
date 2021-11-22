@@ -2,11 +2,17 @@ import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from 'router/types';
 
-type HomeScreenRouteProp = RouteProp<RootStackParamList, 'Home'>;
+type BusinessHomeScreenRouteProp = RouteProp<
+  RootStackParamList,
+  'BusinessHome'
+>;
 
-type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
+type BusinessHomeScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  'BusinessHome'
+>;
 
-export type HomeScreenProps = {
-  route: HomeScreenRouteProp;
-  navigation: HomeScreenNavigationProp;
+export type BusinessHomeScreenProps = {
+  route: BusinessHomeScreenRouteProp;
+  navigation: BusinessHomeScreenNavigationProp;
 };
