@@ -1,6 +1,6 @@
 # Get company types
 
-**URL** : `https://api.fidelight.fr/v1/company/type`
+**URL** : `https://api.fidelight.fr/v1/company/types`
 
 **Method** : `GET`
 
@@ -14,20 +14,20 @@
 
 ```json
 {
-  "data":{
-      "0":{
+  "data":[
+      {
         "id": 1,
         "title": "Bakery",
         "description": "A place that sells some nice bread.",
         "logoUrl": "https://storage.fidelight.com/bakery.png"
       },
-      "1":{
+      {
         "id": 2,
         "title": "Restaurant",
         "description": "A shop where food is cooked and sold to feast.",
         "logoUrl": "https://storage.fidelight.com/bakery.png"
       }
-  },
+  ],
   "msg": "success"
 }
 ```
@@ -311,6 +311,7 @@ Puth the file in a form, with "backgroundPicture" as key.
 **Auth required** : YES, as a user or as a company.
 
 **Details** : to get the private profile of a company, put "me" as the company id in the URL (adds the email).
+If a user gets the profile, then "isFavorite" is given too to know if the user liked this company.
 
 ## Success Response
 
@@ -321,16 +322,20 @@ Puth the file in a form, with "backgroundPicture" as key.
 ```json
 {
   "data":{
+    "id": 51,
     "name": "Coffee Shop Petunia",
     "description": "Perfect Coffee is your coffee shop since 1989 ...",
     "phone": "0605040302",
+    "websiteUrl": "https://www.coffee-shop-petunia.com",
     "companyType": 5,
     "country": "France",
     "city": "Paris",
     "streetName": "Rue du Paprika",
     "streetNumber": 357,
+    "address": "357 Rue du Paprika, Paris",
     "logoUrl": "https://storage.google.com/company/cofee_shop_petunia_16515.jpg",
     "backgroundPicture": "https://storage.google.com/company/cofee_shop_petunia_16514.jpg",
+    "isFavorite": false,
     "schedule":[
       {
         "day": 1,
@@ -369,6 +374,7 @@ Puth the file in a form, with "backgroundPicture" as key.
 {
   "email": "jeff.dos-santos@gmail.com",
   "description": "Perfect Coffee is your coffee shop since 1989 ...",
+  "websiteUrl": null,
   "phone": "0605040302",
   "companyType": 5,
   "country": "France",
@@ -498,7 +504,42 @@ Puth the file in a form, with "backgroundPicture" as key.
 ```
 
 
-# Give points to a user
+# Give gift points to a user
+
+**URL** : `https://api.fidelight.fr/v1/company/points/gift/`
+
+**Method** : `POST`
+
+**Auth required** : YES
+
+## Request Format
+
+**Content example**
+
+```json
+{
+  "user": "aLFO1AlBdL.2", //Scanned from User's QR code
+  "points": 100
+}
+```
+
+## Success Response
+
+**Code** : `200 OK`
+
+**Content example**
+
+```json
+{
+  "data":{
+    "transaction": 56464
+  },
+  "msg": "success"
+}
+```
+
+
+# Give points to a user using the earning policy
 
 **URL** : `https://api.fidelight.fr/v1/company/points/use/`
 
@@ -513,7 +554,7 @@ Puth the file in a form, with "backgroundPicture" as key.
 ```json
 {
   "user": "aLFO1AlBdL.2", //Scanned from User's QR code
-  "points": 100
+  "value": 254.22
 }
 ```
 

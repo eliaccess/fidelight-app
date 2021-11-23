@@ -14,20 +14,18 @@
 
 ```json
 {
-  "data":{
-    "types": [
-      {
-        "id": 1,
-        "title": "Free ticket",
-        "description": "The custommer will have a free prestation next time he will be visiting your shop!"
-      },
-      {
-        "id": 2,
-        "title": "Percentage of the price",
-        "description": "The custommer will have a discount that values a percent (that your can define) of the price."
-      }
-    ]
-  },
+  "data":[
+    {
+      "id": 1,
+      "title": "Free ticket",
+      "description": "The custommer will have a free prestation next time he will be visiting your shop!"
+    },
+    {
+      "id": 2,
+      "title": "Percentage of the price",
+      "description": "The custommer will have a discount that values a percent (that your can define) of the price."
+    }
+  ],
   "msg": "success"
 }
 ```
@@ -151,6 +149,63 @@
 ```
 
 
+# Add / Edit the picture of a discount
+
+**URL** : `https://api.fidelight.fr/v1/discount/picture`
+
+**Method** : `POST`
+
+**Auth required** : YES
+
+## Request Format
+
+Put the file in a form, with "picture" as key.
+
+**Content example**
+
+```json
+{
+  "discount": 7
+}
+```
+
+## Success Response
+
+**Code** : `200 OK`
+
+**Content example**
+
+```json
+{
+  "msg": "Picture successfully added!",
+  "data":{
+    "pictureUrl": "https://storage.googleapis.com/fidelight-api/discount/kebab44_picture.jpeg"
+  }
+}
+```
+
+
+# Delete the logo of a discount
+
+**URL** : `https://api.fidelight.fr/v1/discount/picture`
+
+**Method** : `DELETE`
+
+**Auth required** : YES
+
+## Success Response
+
+**Code** : `200 OK`
+
+**Content example**
+
+```json
+{
+  "msg": "Picture successfully deleted!"
+}
+```
+
+
 # List all offers or discounts of a company
 
 **URL** : `https://api.fidelight.fr/v1/discount/company/$company.id`
@@ -174,7 +229,15 @@
         "discountType": 3,
         "cost": 250,
         "name": "-4€ on the tacos",
-        "perDay": ["monday", "tuesday", "thursday"],
+        "perDay": {
+          "monday": 0,
+          "tuesday": 1,
+          "wednesday": 1,
+          "thursday": 0,
+          "friday": 0,
+          "saturday": 1,
+          "sunday": 0
+        },
         "value": 5.1
       },
       {
@@ -182,6 +245,15 @@
         "discountType": 2,
         "cost": 50,
         "name": "-50% on the tea",
+        "perDay": {
+          "monday": 1,
+          "tuesday": 1,
+          "wednesday": 1,
+          "thursday": 1,
+          "friday": 1,
+          "saturday": 1,
+          "sunday": 0
+        },
         "value": 25
       }
     ],
@@ -191,7 +263,15 @@
         "discountType": 3,
         "cost": 0,
         "name": "40% off on the kebab sandwich",
-        "perDay": ["monday", "tuesday", "thursday"],
+        "perDay": {
+          "monday": 1,
+          "tuesday": 1,
+          "wednesday": 0,
+          "thursday": 0,
+          "friday": 0,
+          "saturday": 1,
+          "sunday": 0
+        },
         "value": 2.5
       },
       {
@@ -199,6 +279,15 @@
         "discountType": 2,
         "cost": 0,
         "name": "-10% on the tea",
+        "perDay": {
+          "monday": 0,
+          "tuesday": 0,
+          "wednesday": 1,
+          "thursday": 0,
+          "friday": 0,
+          "saturday": 1,
+          "sunday": 1
+        },
         "value": 5
       }
     ]
