@@ -22,6 +22,7 @@ import BusinessExploreScreen from 'screens/Business/BusinessExploreScreen/Loadab
 import BusinessTransactionsScreen from 'screens/Business/BusinessTransactionsScreen/Loadable';
 import EditBusinessInfoScreen from 'screens/Business/EditBusinessInfoScreen/Loadable';
 import BusinessProfileScreen from 'screens/Business/BusinessProfileScreen/Loadable';
+import BusinessQRCodeScreen from 'screens/Business/BusinessQRCodeScreen/Loadable';
 import QRCodeScreen from 'screens/QRCodeScreen/Loadable';
 import routeConfigs from './routeConfigs';
 import * as routeNames from './routeNames';
@@ -126,6 +127,10 @@ const routes = {
   [routeNames.BUSINESS_PROFILE]: {
     ...routeConfigs[routeNames.BUSINESS_PROFILE],
     screen: BusinessProfileScreen,
+  },
+  [routeNames.BUSINESS_QR_CODE]: {
+    ...routeConfigs[routeNames.BUSINESS_QR_CODE],
+    screen: BusinessQRCodeScreen,
   },
 
   // [routeNames.FORGET_PASSWORD]: {

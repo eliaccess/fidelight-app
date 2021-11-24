@@ -33,6 +33,7 @@ function BusinessHomeScreen(props: BusinessHomeScreenProps) {
   const drawerMenuAnimation = UseDrawerMenuAnimation(animation);
   const [showTerms, setShowTerms] = useState(false);
   const [showContactInfo, setShowContactInfo] = useState(false);
+
   useEffect(() => {
     animation.value = withTiming(isVisible ? 1 : 0, {
       duration: 400,

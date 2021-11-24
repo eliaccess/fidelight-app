@@ -18,7 +18,6 @@ export const useGetStyles = () => {
       position: 'absolute',
       top: 0,
       width: Dimensions.screenWidth,
-      height: 150,
       alignItems: 'center',
       zIndex: 10,
       borderRadius: Dimensions.borderRadius10x,
@@ -28,6 +27,9 @@ export const useGetStyles = () => {
       position: 'absolute',
       height: 150,
       width: '100%',
+    },
+    lessHeight: {
+      height: 120,
     },
     iconsWrapper: {
       width: Dimensions.screenWidth,

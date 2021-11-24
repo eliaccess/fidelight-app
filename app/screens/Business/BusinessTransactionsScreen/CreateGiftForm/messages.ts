@@ -17,8 +17,24 @@ export default defineMessages({
     id: `${scope}.scanQrCodeLabel`,
     defaultMessage: 'Scan Qr code',
   },
-  addLabel: {
-    id: `${scope}.addLabel`,
-    defaultMessage: 'Add',
+  submitLabel: {
+    id: `${scope}.submitLabel`,
+    defaultMessage: 'Submit',
+  },
+  scannerHeading: {
+    id: `${scope}.scannerHeading`,
+    defaultMessage: 'Scan qr code to pay!',
+  },
+  scannerButtonLabel: {
+    id: `${scope}.scannerButtonLabel`,
+    defaultMessage: 'Close',
+  },
+  qrCodeValue: {
+    id: `${scope}.qrCodeValue`,
+    defaultMessage: 'QR code => xxxxxxx',
+  },
+  formError: {
+    id: `${scope}.formError`,
+    defaultMessage: 'Please scan QR code or add points',
   },
 });

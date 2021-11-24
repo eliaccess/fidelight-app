@@ -20,11 +20,11 @@ export async function update(
   payload: UpdatePropsPayload,
 ): Promise<UserProfileAPIResponse | Error> {
   const body = {
-    ...payload,
+    ...payload.data,
   };
 
   const resp = await service({
-    method: 'GET',
+    method: 'PUT',
     url: '/v1/user/profile/',
     body,
   });

@@ -38,7 +38,9 @@ function ProfileEditScreen(props: ProfileEditScreenProps) {
           <View style={style.formContainer}>
             <Form
               onSubmit={(values) => {
-                userProfile.update({ data: values });
+                userProfile.update({
+                  data: { ...userProfile.data, ...values },
+                });
               }}
               initialValues={userProfile.data}
             />

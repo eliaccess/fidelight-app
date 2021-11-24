@@ -78,6 +78,9 @@ const routeConfigs = {
   [routeNames.BUSINESS_PROFILE]: {
     path: '/business-profile',
   },
+  [routeNames.BUSINESS_QR_CODE]: {
+    path: '/business-qr-code',
+  },
 };
 
 export default routeConfigs;

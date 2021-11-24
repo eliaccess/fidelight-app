@@ -42,6 +42,7 @@ function BusinessExploreRewards(props: BusinessExploreRewardsProps) {
   });
 
   const rewards = entityOffersRewards?.data?.rewards;
+
   return (
     <>
       <View style={style.headingContainer}>

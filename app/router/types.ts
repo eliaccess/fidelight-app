@@ -34,4 +34,5 @@ export type RootStackParamList = {
     qrValue: string;
   };
   BusinessProfile: {};
+  BusinessQRCode: {};
 };

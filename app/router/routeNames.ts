@@ -26,3 +26,4 @@ export const BUSINESS_EXPLORE = 'BuisnessExplore';
 export const BUSINESS_TRANSACTIONS = 'BusinessTransactions';
 export const EDIT_BUSINESS_INFO = 'EditBusinessInfo';
 export const BUSINESS_PROFILE = 'BusinessProfile';
+export const BUSINESS_QR_CODE = 'BusinessQRCode';

@@ -20,4 +20,8 @@ export default defineMessages({
     id: `${scope}.createGiftHeading`,
     defaultMessage: 'Create New gift point',
   },
+  pointsGivenLabel: {
+    id: `${scope}.pointsGivenLabel`,
+    defaultMessage: '{points} Points Given',
+  },
 });

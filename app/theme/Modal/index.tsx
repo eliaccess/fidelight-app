@@ -15,6 +15,7 @@ interface ModalProps {
   visible: boolean;
   onRequestClose: (...args: any[]) => any;
   children: React.ReactNode;
+  modalContentStyle?: object;
 }
 
 function ModalComponent({ visible, onRequestClose, ...props }: ModalProps) {
@@ -26,7 +27,12 @@ function ModalComponent({ visible, onRequestClose, ...props }: ModalProps) {
       onRequestClose={onRequestClose}
     >
       <View style={style.modal}>
-        <View style={style.modalContent}>
+        <View
+          style={[
+            style.modalContent,
+            props.modalContentStyle ? props.modalContentStyle : null,
+          ]}
+        >
           {props.children}
           <View style={style.closeButtonHolder}>
             <Button

@@ -14,7 +14,7 @@ const style = StyleSheet.create({
   contentContainerStyle: {
     width: Dimensions.screenWidth,
     height: 'auto',
-    paddingTop: '45%',
+    paddingTop: '30%',
     paddingBottom: Dimensions.bottomSpacing,
     backgroundColor: Colors.bg1Color,
   },

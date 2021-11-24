@@ -37,6 +37,7 @@ function DealDetailScreen(props: DealDetailScreenProps) {
           props.navigation.goBack();
         }}
         visible={true}
+        modalContentStyle={style.modalContentStyle}
       >
         {!showContent ? (
           <DealDetailLoader />

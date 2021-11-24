@@ -25,6 +25,7 @@ type BusinessHomeHeader = {
   onCompanyPress: () => void;
   activeExploreTabIndex: number;
   onExploreTabPress: (activeTabIndex: number) => void;
+  routeIndex: number;
 };
 
 function BusinessHomeHeader(props: BusinessHomeHeader) {
@@ -32,8 +33,19 @@ function BusinessHomeHeader(props: BusinessHomeHeader) {
   const user = useUser();
 
   return (
-    <View style={style.container}>
-      <LinearGradient {...buttonGradientProps()} style={style.backdrop} />
+    <View
+      style={[
+        style.container,
+        props.routeIndex === 1 ? style.lessHeight : null,
+      ]}
+    >
+      <LinearGradient
+        {...buttonGradientProps()}
+        style={[
+          style.backdrop,
+          props.routeIndex === 2 ? style.lessHeight : null,
+        ]}
+      />
       <View style={style.iconsWrapper}>
         <TouchFeedback
           onPress={props.onPressDrawer}
@@ -51,38 +63,40 @@ function BusinessHomeHeader(props: BusinessHomeHeader) {
         <View />
       </View>
 
-      <View style={style.tabContainer}>
-        <TouchFeedback
-          onPress={() => props.onExploreTabPress(0)}
-          style={[
-            style.tab,
-            props.activeExploreTabIndex === 0 ? style.activeTab : null,
-          ]}
-        >
-          <FormattedMessage
-            {...messages.offersLabel}
+      {props.routeIndex === 0 ? (
+        <View style={style.tabContainer}>
+          <TouchFeedback
+            onPress={() => props.onExploreTabPress(0)}
             style={[
-              style.tabLabel,
+              style.tab,
               props.activeExploreTabIndex === 0 ? style.activeTab : null,
             ]}
-          />
-        </TouchFeedback>
-        <TouchFeedback
-          onPress={() => props.onExploreTabPress(1)}
-          style={[
-            style.tab,
-            props.activeExploreTabIndex === 1 ? style.activeTab : null,
-          ]}
-        >
-          <FormattedMessage
-            {...messages.rewardsLabel}
+          >
+            <FormattedMessage
+              {...messages.offersLabel}
+              style={[
+                style.tabLabel,
+                props.activeExploreTabIndex === 0 ? style.activeTab : null,
+              ]}
+            />
+          </TouchFeedback>
+          <TouchFeedback
+            onPress={() => props.onExploreTabPress(1)}
             style={[
-              style.tabLabel,
+              style.tab,
               props.activeExploreTabIndex === 1 ? style.activeTab : null,
             ]}
-          />
-        </TouchFeedback>
-      </View>
+          >
+            <FormattedMessage
+              {...messages.rewardsLabel}
+              style={[
+                style.tabLabel,
+                props.activeExploreTabIndex === 1 ? style.activeTab : null,
+              ]}
+            />
+          </TouchFeedback>
+        </View>
+      ) : null}
     </View>
   );
 }

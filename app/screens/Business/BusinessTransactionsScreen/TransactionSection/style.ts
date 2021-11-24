@@ -18,27 +18,13 @@ const style = StyleSheet.create({
   itemWrapper: {
     flexDirection: 'row',
     paddingVertical: Dimensions.space2x,
+    margin: Dimensions.space1x,
     alignItems: 'center',
     borderBottomWidth: 1,
     borderBottomColor: Colors.primaryDark,
   },
-  logoWrapper: {
-    padding: Dimensions.space2x,
-    width: 60,
-    height: 60,
-    borderRadius: 30,
-    borderWidth: 1,
-    borderColor: Colors.primaryDark,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  logo: {
-    width: 35,
-    height: 35,
-  },
-  contentWrapper: {
-    marginLeft: Dimensions.space2x,
-  },
+
+  contentWrapper: {},
   title: {
     fontSize: 18,
     color: Colors.textBlack,
@@ -49,12 +35,17 @@ const style = StyleSheet.create({
     color: Colors.textGrey,
     marginTop: Dimensions.space1x,
   },
-  points: {
-    fontSize: 16,
-    color: Colors.accent,
-    fontWeight: '600',
+  pointsWrapper: {
+    backgroundColor: Colors.bg1Color,
     position: 'absolute',
     right: 0,
+    padding: Dimensions.space2x - 3,
+    borderRadius: Dimensions.borderRadius10x,
+  },
+  points: {
+    fontSize: 10,
+    color: Colors.accent,
+    fontWeight: 'bold',
   },
   logoLoader: {
     width: 60,

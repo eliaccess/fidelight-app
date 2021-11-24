@@ -15,6 +15,10 @@ const style = StyleSheet.create({
   container: {
     flex: 1,
   },
+  modalContentStyle: {
+    paddingHorizontal: 0,
+    paddingTop: 0,
+  },
   modalHeader: {
     backgroundColor: Colors.bg2Color,
     padding: Dimensions.space4x,
@@ -45,9 +49,9 @@ const style = StyleSheet.create({
     opacity: 0.4,
   },
   dealTitle: {
-    fontSize: 30,
+    fontSize: 18,
     color: Colors.textBlack,
-    fontWeight: 'bold',
+    fontWeight: '600',
   },
   dealProduct: {
     fontSize: 14,

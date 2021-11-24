@@ -3,12 +3,10 @@ import { View } from 'react-native';
 import { TabView } from 'react-native-tab-view';
 import { Easing, useSharedValue, withTiming } from 'react-native-reanimated';
 
-import { useUser } from 'containers/Authentication';
-
 import BusinessExploreScreen from 'screens/Business/BusinessExploreScreen/Loadable';
 import BusinessTransactionsScreen from 'screens/Business/BusinessTransactionsScreen/Loadable';
 
-import { QR_CODE, BUSINESS_PROFILE } from 'router/routeNames';
+import { BUSINESS_PROFILE, BUSINESS_QR_CODE } from 'router/routeNames';
 
 import TabBarButton from './TabBarButton';
 import style, { initialLayout } from './style';
@@ -17,7 +15,6 @@ import BusinessHomeHeader from '../BusinessHomeHeader';
 
 function HomeTabView(props) {
   const [activeExploreTabIndex, setActiveExploreTabIndex] = useState(0);
-  const user = useUser();
 
   const [routeIndex, setRouteIndex] = useState(0);
   const tabBarAnimation = useSharedValue(0);
@@ -44,9 +41,7 @@ function HomeTabView(props) {
           key={route.key}
           onPress={() => {
             if (route.major) {
-              props.navigation.navigate(QR_CODE, {
-                qrValue: `${user.data?.qrCode}.${user?.data?.id}`,
-              });
+              props.navigation.navigate(BUSINESS_QR_CODE);
               return;
             }
             tabBarProps.jumpTo(route.key);
@@ -89,6 +84,7 @@ function HomeTabView(props) {
         }}
         onExploreTabPress={(index) => setActiveExploreTabIndex(index)}
         activeExploreTabIndex={activeExploreTabIndex}
+        routeIndex={routeIndex}
       />
       <TabView
         lazy

@@ -45,7 +45,10 @@ function BusinessTransactionsScreen(_props: BusinessTransactionsScreenProps) {
             {...messages.createGiftHeading}
             style={style.modalHeading}
           />
-          <CreateGiftForm onSubmit={() => null} />
+          <CreateGiftForm
+            onSubmit={() => null}
+            onRequestClose={() => setShowCreateGift(false)}
+          />
         </View>
       </Modal>
     </>

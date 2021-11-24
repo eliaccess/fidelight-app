@@ -171,8 +171,8 @@ const Form: React.FC<FormProps> = (props) => {
               <DateSelector
                 value={values.birthdate}
                 onSelect={(value) => {
-                  setFieldTouched('dob');
-                  setFieldValue('dob', value);
+                  setFieldValue('birthdate', value);
+                  setFieldTouched('birthdate');
                 }}
                 label={
                   <FormattedMessage {...messages.birthdateLabel} isFragment />
@@ -183,7 +183,7 @@ const Form: React.FC<FormProps> = (props) => {
             <View style={style.buttonContainer}>
               <Button
                 flex
-                disabled={!isValid}
+                // disabled={!isValid}
                 label={
                   <FormattedMessage {...messages.submitLabel} isFragment />
                 }

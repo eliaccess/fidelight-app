@@ -23,17 +23,19 @@ const TransactionsWidgetLoader: React.FC<TransactionsWidgetLoaderProps> = ({
   const animatedStyle = useLoaderAnimation();
 
   return (
-    <Section heading={props.heading} isLoading>
-      {Array.from(Array(numberOfItems), (_a, i) => (
-        <Animated.View key={i} style={[style.itemWrapper, animatedStyle]}>
-          <Animated.View style={style.logoLoader} />
-          <View style={style.contentWrapper}>
-            <Animated.View style={style.titleLoader} />
-            <Animated.View style={style.dateLoader} />
-          </View>
-        </Animated.View>
-      ))}
-    </Section>
+    <View style={style.rewardSectionContainer}>
+      <Section heading={props.heading} isLoading>
+        {Array.from(Array(numberOfItems), (_a, i) => (
+          <Animated.View key={i} style={[style.itemWrapper, animatedStyle]}>
+            <Animated.View style={style.logoLoader} />
+            <View style={style.contentWrapper}>
+              <Animated.View style={style.titleLoader} />
+              <Animated.View style={style.dateLoader} />
+            </View>
+          </Animated.View>
+        ))}
+      </Section>
+    </View>
   );
 };
 

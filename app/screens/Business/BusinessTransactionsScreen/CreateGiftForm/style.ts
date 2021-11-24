@@ -53,6 +53,53 @@ const style = StyleSheet.create({
     fontSize: 22,
     color: Colors.accent,
   },
+  qrCodeValue: {
+    fontSize: 14,
+    color: Colors.textBlack,
+  },
+  modalContentStyle: {
+    backgroundColor: Colors.transparent,
+  },
+  scannerWrapper: {
+    top: '10%',
+    left: '-12.5%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '125%',
+    height: Dimensions.screenHeight,
+    backgroundColor: Colors.black,
+    zIndex: 10000,
+    borderTopLeftRadius: 40,
+    borderTopRightRadius: 40,
+  },
+  scannerContainer: {
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 60,
+  },
+  scannerHeading: {
+    fontSize: 12,
+    padding: Dimensions.space3x,
+    color: Colors.white,
+  },
+  closeButtonWrapper: {
+    position: 'absolute',
+    top: '2%',
+    right: '5%',
+    width: 40,
+    height: 40,
+    borderRadius: 25,
+
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: Colors.white,
+    marginBottom: Dimensions.space1x,
+  },
+  closeButtonIcon: {
+    fontSize: 22,
+    color: Colors.textBlack,
+  },
 });
 
 export default style;
