@@ -24,8 +24,7 @@ const OPTION = {
   title: 'Select Image',
   options: {
     saveToPhotos: false,
-    mediaType: 'photo',
-    includeBase64: true,
+    mediaType: 'image',
   },
 };
 
@@ -61,8 +60,12 @@ function BusinessImages(_props) {
   const onAddLogoPress = () => {
     // @ts-ignore
     launchImageLibrary(OPTION, (resp: any) => {
+      if (resp?.didCancel) {
+        return;
+      }
+
       businessProfile.addLogo({
-        data: resp.assets[0],
+        data: resp?.assets[0],
       });
     });
   };
@@ -70,6 +73,9 @@ function BusinessImages(_props) {
   const onAddBackgroundImagePress = () => {
     // @ts-ignore
     launchImageLibrary(OPTION, (resp: any) => {
+      if (resp?.didCancel) {
+        return;
+      }
       businessProfile.addBackgroundImage({
         data: resp.assets[0],
       });

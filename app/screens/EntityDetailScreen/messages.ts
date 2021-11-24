@@ -40,4 +40,8 @@ export default defineMessages({
     id: `${scope}.offerDetailLabel`,
     defaultMessage: 'Offer Detail',
   },
+  makePointsLabel: {
+    id: `${scope}.makePointsLabel`,
+    defaultMessage: '{points} points left to avail the offer',
+  },
 });

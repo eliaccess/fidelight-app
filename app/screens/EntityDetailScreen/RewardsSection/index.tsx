@@ -18,6 +18,7 @@ import Section from 'theme/Section';
 import Text from 'theme/Text';
 import NoResult from 'theme/NoResult';
 import TouchFeedback from 'theme/TouchFeedback';
+import { useToastContext } from 'theme/Toast';
 import { QR_CODE } from 'router/routeNames';
 
 import style from './style';
@@ -30,6 +31,7 @@ type RewardsSectionProps = {
 };
 function RewardsSection(props: RewardsSectionProps) {
   const user = useUser();
+  const toast = useToastContext();
   const entityOffersRewards = useEntityOffersRewards({
     entityId: props.entityId,
   });
@@ -38,6 +40,7 @@ function RewardsSection(props: RewardsSectionProps) {
     state: entityOffersRewards,
     stateIdentifier: 'data.rewards.length',
   });
+
   if (!showContent) {
     return (
       <RewardsSectionLoader
@@ -53,18 +56,36 @@ function RewardsSection(props: RewardsSectionProps) {
       >
         {rewards ? (
           rewards?.map((item) => {
-            const activeProgress = `${(
+            let activeProgress = `${(
               (item.value / item.cost) *
               100
             ).toString()}%`;
+            if (activeProgress === '100%') {
+              activeProgress = '80%';
+            }
             return (
               <TouchFeedback
-                onPress={() =>
-                  props.navigation.navigate(QR_CODE, {
-                    rewardId: item.id,
-                    qrValue: `${user.data?.qrCode}.${user?.data?.id}.${item.id}`,
-                  })
-                }
+                onPress={() => {
+                  if (item.value === item.cost) {
+                    props.navigation.navigate(QR_CODE, {
+                      rewardId: item.id,
+                      qrValue: `${user.data?.qrCode}.${user?.data?.id}.${item.id}`,
+                    });
+                    return;
+                  }
+                  toast?.show({
+                    // @ts-ignore
+                    message: (
+                      <FormattedMessage
+                        {...messages.makePointsLabel}
+                        values={{ points: item.cost - item.value }}
+                        isFragment
+                      />
+                    ),
+                    delay: 2000,
+                    type: 'error',
+                  });
+                }}
                 style={style.itemWrapper}
               >
                 <View style={style.logoWrapper}>

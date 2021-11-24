@@ -51,10 +51,7 @@ function EntityHeader(props: EntityHeaderProps) {
       <View style={style.coverImageWrapper}>
         <Image
           animated
-          uri={
-            // props.data.backgroundPicture ||
-            'https://storage.googleapis.com/fidelight-api/company/logo/tacosTcy8KuxkHN_logo.jpeg'
-          }
+          uri={props.data.backgroundPicture}
           style={[style.coverImage, animatedStyle]}
           resizeMode="cover"
         />
@@ -63,10 +60,7 @@ function EntityHeader(props: EntityHeaderProps) {
       <View style={style.content}>
         <View style={style.logoWrapper}>
           <Image
-            uri={
-              // props.data.logoUrl ||
-              'https://storage.googleapis.com/fidelight-api/company/background_picture/tacosTcy8KuxkHN_background_picture.jpeg'
-            }
+            uri={props.data.logoUrl}
             style={style.logo}
             resizeMode="cover"
           />

@@ -59,6 +59,9 @@ export async function addLogo(
     url: '/v1/company/logo',
     body: form,
     bodyParsing: 'form',
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
   });
 
   return {

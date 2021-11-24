@@ -69,6 +69,8 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Fidelight will access your camera to scan QR codes</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Fidelight will access your photos only when you want to upload photos for your business.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
