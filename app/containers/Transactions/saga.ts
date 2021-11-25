@@ -16,7 +16,7 @@ export const fetchSaga = function* fetch(_action: FetchProps) {
   try {
     const resp: any = yield call(api.fetch);
 
-    yield put(actions.fetchSuccess({ data: resp?.data?.transactions }));
+    yield put(actions.fetchSuccess(resp));
   } catch (error: any) {
     Warn(error);
     yield put(

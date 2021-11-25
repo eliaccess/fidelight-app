@@ -11,10 +11,10 @@ import Dimensions from 'theme/Dimensions';
 import elevation from 'theme/elevation';
 
 const style = StyleSheet.create({
+  contentContainerStyle: {
+    paddingBottom: Dimensions.space3x,
+  },
   container: {
-    marginTop: -Dimensions.space2x,
-    width: Dimensions.screenWidth,
-    height: Dimensions.screenHeight,
     backgroundColor: Colors.bg1Color,
   },
 

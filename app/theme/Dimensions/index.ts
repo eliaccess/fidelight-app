@@ -11,7 +11,7 @@ const statusBarHeight =
   Platform.OS === 'ios'
     ? getStatusBarHeight(true)
     : ExtraDimensions.getStatusBarHeight();
-const headerHeight = statusBarHeight + headerContentHeight + 12;
+const headerHeight = statusBarHeight + headerContentHeight;
 
 const screenHeight = window.height;
 let bottomSpacing =

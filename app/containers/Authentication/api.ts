@@ -82,22 +82,39 @@ export function updateUserInfo(
 export async function signUp(
   payload: SignUpActionPayload,
 ): Promise<SignUpResponsePayload | Error> {
-  const body = {
-    surname: payload.data.surname,
-    name: payload.data.name,
-    email: payload.data.email,
-    phone: payload.data.phone,
-    birthdate: payload.data.birthdate,
-    password: payload.data.password,
-  };
+  let resp: any = null;
+  if (payload?.provider === 'local') {
+    const body = {
+      surname: payload.data.surname,
+      name: payload.data.name,
+      email: payload.data.email,
+      phone: payload.data.phone,
+      birthdate: payload.data.birthdate,
+      password: payload.data.password,
+    };
+    resp = await service({
+      method: 'POST',
+      url: '/v1/user/register',
+      body,
+      noAuth: true,
+      parseError: true,
+    });
+  } else {
+    // const body = {
+    //   email: payload.data.email,
+    //   name: payload.data.name,
+    //   provider: payload.provider,
+    //   userId: payload.userId,
+    // };
+    // console.log('body', payload);
+    // resp = await service({
+    //   method: 'POST',
+    //   url: '/v1/auth/social',
+    //   body,
+    //   noAuth: true,
+    // });
+  }
 
-  const resp = await service({
-    method: 'POST',
-    url: '/v1/user/register',
-    body,
-    noAuth: true,
-    parseError: true,
-  });
   if (resp?.data?.id) {
     setAuthenticationTokens({
       accessToken: resp.data.accessToken,
@@ -125,23 +142,21 @@ export async function login(
       noAuth: true,
       parseError: true,
     });
+  } else {
+    // const body = {
+    //   email: payload.data.email,
+    //   name: payload.data.name,
+    //   provider: payload.provider,
+    //   userId: payload.userId,
+    // };
+    // console.log('body', body);
+    // resp = await service({
+    //   method: 'POST',
+    //   url: '/v1/auth/social',
+    //   body,
+    //   noAuth: true,
+    // });
   }
-  // else {
-  //   const body = {
-  //     email: payload.data.email,
-  //     name: payload.data.name,
-  //     provider: payload.provider,
-  //     providerUuid: payload.providerUuid,
-  //     medium: payload.medium,
-  //   };
-
-  //   resp = await service({
-  //     method: 'POST',
-  //     url: '/v1/auth/social',
-  //     body,
-  //     noAuth: true,
-  //   });
-  // }
   if (resp?.data?.id) {
     setAuthenticationTokens({
       accessToken: resp.data.accessToken,

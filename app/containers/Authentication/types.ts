@@ -63,16 +63,17 @@ export interface SignUpActionProps {
 
 export interface LoginActionPayload {
   provider: 'facebook' | 'google' | 'local' | 'apple';
-  medium?: 'platform-web' | 'platform-android' | 'platform-ios';
-  providerUuid?: string;
+  userId?: string;
   data: {
     email: string;
     password?: string;
+    name?: string;
   };
 }
 
 export interface SignUpActionPayload {
-  provider: 'facebook' | 'google' | 'local';
+  provider: 'facebook' | 'google' | 'local' | 'apple';
+  userId?: string;
   data: {
     surname: string;
     name: string;
@@ -80,7 +81,6 @@ export interface SignUpActionPayload {
     phone: string;
     birthdate: string;
     password: string;
-    medium: string;
   };
 }
 

@@ -71,7 +71,7 @@ const style = StyleSheet.create({
     flex: 1,
   },
   scrollContentContainer: {
-    paddingTop: Dimensions.headerHeight + Dimensions.space2x,
+    paddingTop: Dimensions.headerHeight,
     paddingBottom: Dimensions.bottomSpacing,
   },
   screenTitle: {

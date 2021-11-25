@@ -10,7 +10,7 @@ import {
 } from 'platform/Authentication';
 import { Warn } from 'platform/Logger';
 import React from 'react';
-import { Platform, View } from 'react-native';
+import { View } from 'react-native';
 
 import Button from 'theme/Button';
 import FormattedMessage from 'theme/FormattedMessage';
@@ -22,8 +22,7 @@ interface SocialLoginProps {
   setShowLoader: (val: boolean) => void;
   onSuccess: (props: {
     provider: 'google' | 'facebook' | 'apple';
-    providerUuid: string;
-    medium: 'platform-ios' | 'platform-android';
+    userId: string;
     data: {
       email: string;
       name: string;
@@ -40,12 +39,10 @@ function SocialLogin({ setShowLoader, onSuccess }: SocialLoginProps) {
       const resp = await googleAuthentication();
       onSuccess({
         provider: 'google',
-        providerUuid: resp.data?.providerUuid || resp.data?.userId || 'N/A',
-        medium: Platform.OS === 'ios' ? 'platform-ios' : 'platform-android',
+        userId: resp.data?.providerUuid || resp.data?.userId || 'N/A',
         data: {
-          email: resp.data?.email || 'user@google.com',
-          name: resp.data?.name || 'Name',
-          ...resp.data,
+          email: resp.data?.email || '',
+          name: resp.data?.name || '',
         },
       });
     } catch (e) {
@@ -62,8 +59,7 @@ function SocialLogin({ setShowLoader, onSuccess }: SocialLoginProps) {
       if (fbUser) {
         onSuccess({
           provider: 'facebook',
-          providerUuid: fbUser.userId,
-          medium: Platform.OS === 'ios' ? 'platform-ios' : 'platform-android',
+          userId: fbUser.userId,
           data: {
             email: `${fbUser.userId}@facebook.com`,
             name: fbUser.name || 'Name',

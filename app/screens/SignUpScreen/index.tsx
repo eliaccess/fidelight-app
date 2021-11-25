@@ -5,7 +5,7 @@
  */
 
 import React, { useEffect, useState } from 'react';
-import { Platform, View } from 'react-native';
+import { View } from 'react-native';
 
 import { useAuthentication } from 'containers/Authentication';
 import { useUserLocation } from 'containers/UserLocation';
@@ -105,10 +105,6 @@ function SignUpScreen(props: SignUpScreenProps) {
                     password: data.password,
                     phone: data.phone,
                     birthdate: data.dob,
-                    medium:
-                      Platform.OS === 'ios'
-                        ? 'platform-ios'
-                        : 'platform-android',
                   },
                 });
               }}
@@ -117,8 +113,19 @@ function SignUpScreen(props: SignUpScreenProps) {
           <View style={style.buttonContainer}>
             <Separator />
             <SocialLogin
-              setShowLoader={() => null}
-              onSuccess={() => null}
+              setShowLoader={setShowLoader}
+              onSuccess={(resp) =>
+                authentication.signUp({
+                  ...resp,
+                  data: {
+                    ...resp.data,
+                    surname: '',
+                    phone: '',
+                    birthdate: '',
+                    password: '',
+                  },
+                })
+              }
               onFailure={() => {}}
             />
           </View>

@@ -6,7 +6,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { Keyboard, Platform, View } from 'react-native';
+import { Keyboard, View } from 'react-native';
 
 import { useAuthentication } from 'containers/Authentication';
 import { useUserLocation } from 'containers/UserLocation';
@@ -120,8 +120,6 @@ function LoginScreen(props: LoginScreenProps) {
               onSubmit={(value) => {
                 authentication.login({
                   provider: 'local',
-                  medium:
-                    Platform.OS === 'ios' ? 'platform-ios' : 'platform-android',
                   data: {
                     email: value.email,
                     password: value.password,

@@ -31,6 +31,7 @@ function ProfileScreen(props: ProfileScreenProps) {
     <Screen
       testID="ProfileScreen"
       headerTitle={<FormattedMessage {...messages.title} isFragment />}
+      contentContainerStyle={style.contentContainerStyle}
     >
       <View style={style.container}>
         {userProfile.fetching ? (
