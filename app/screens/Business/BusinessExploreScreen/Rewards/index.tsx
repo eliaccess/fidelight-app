@@ -4,8 +4,9 @@
  *
  */
 
-import React, { useState } from 'react';
-import { View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Alert, View } from 'react-native';
+import { launchImageLibrary } from 'react-native-image-picker';
 
 import { useEntityOffersRewards } from 'containers/EntityOffersRewards';
 import useStateHandler from 'hooks/useStateHandler';
@@ -18,12 +19,21 @@ import Image from 'theme/Image';
 import NoResult from 'theme/NoResult';
 import TouchFeedback from 'theme/TouchFeedback';
 import Modal from 'theme/Modal';
+import { useToastContext } from 'theme/Toast';
 
 import style from './style';
 import messages from '../messages';
 import BusinessOffersRewardsLoaderProps from '../Loader';
 
 import EditRewardForm from '../EditRewardForm';
+
+const OPTION = {
+  title: 'Select Image',
+  options: {
+    saveToPhotos: false,
+    mediaType: 'image',
+  },
+};
 
 type BusinessExploreRewardsProps = {
   entityId: number;
@@ -35,13 +45,41 @@ function BusinessExploreRewards(props: BusinessExploreRewardsProps) {
   const entityOffersRewards = useEntityOffersRewards({
     entityId: props.entityId,
   });
+  const toast = useToastContext();
 
   const showContent = useStateHandler({
     state: entityOffersRewards,
     stateIdentifier: 'data.rewards.length',
   });
+  useEffect(() => {
+    if (entityOffersRewards?.message) {
+      toast?.show({
+        message: entityOffersRewards?.message,
+        delay: 1000,
+        type: 'success',
+      });
+      entityOffersRewards.reset();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [entityOffersRewards?.message]);
 
   const rewards = entityOffersRewards?.data?.rewards;
+
+  const onAddLogoPress = (rewardId) => {
+    // @ts-ignore
+    launchImageLibrary(OPTION, (resp: any) => {
+      if (resp?.didCancel) {
+        return;
+      }
+
+      entityOffersRewards.addLogo({
+        data: resp?.assets[0],
+        entityId: props.entityId,
+        // @ts-ignore
+        discountId: rewardId,
+      });
+    });
+  };
 
   return (
     <>
@@ -65,11 +103,9 @@ function BusinessExploreRewards(props: BusinessExploreRewardsProps) {
                 <View key={item.id} style={style.itemWrapper}>
                   <View style={style.logoWrapper}>
                     <Image
-                      uri={
-                        item.pictureLink ||
-                        'https://images.unsplash.com/photo-1544502779-9d192f5da63e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2045&q=80'
-                      }
+                      uri={item.pictureLink}
                       style={style.logo}
+                      resizeMode="cover"
                     />
                   </View>
                   <View style={style.contentWrapper}>
@@ -78,15 +114,66 @@ function BusinessExploreRewards(props: BusinessExploreRewardsProps) {
                       {item.description}
                     </Text>
                   </View>
-                  <TouchFeedback
-                    onPress={() => {
-                      setInitialData(item);
-                      setShowEditRewardForm(true);
-                    }}
-                    style={style.editIconHolder}
-                  >
-                    <Icon name="edit" font="fidelight" style={style.editIcon} />
-                  </TouchFeedback>
+                  <View style={style.actionsWrapper}>
+                    <TouchFeedback
+                      onPress={() => {
+                        setInitialData(item);
+                        setShowEditRewardForm(true);
+                      }}
+                      style={style.actionIconHolder}
+                    >
+                      <Icon
+                        name="edit"
+                        font="fidelight"
+                        style={style.editIcon}
+                      />
+                    </TouchFeedback>
+                    <TouchFeedback
+                      onPress={() => {
+                        Alert.alert(
+                          'Delete Reward',
+                          'Are you sure to delete this reward?',
+                          [
+                            {
+                              text: 'No',
+                              onPress: () => null,
+                              style: 'cancel',
+                            },
+                            {
+                              text: 'Yes',
+                              onPress: () => {
+                                entityOffersRewards.remove({
+                                  entityId: props.entityId,
+                                  // @ts-ignore
+                                  discountId: item.id,
+                                });
+                              },
+                            },
+                          ],
+                          { cancelable: true },
+                        );
+                      }}
+                      style={style.actionIconHolder}
+                    >
+                      <Icon
+                        name="trash"
+                        font="fidelight"
+                        style={style.deleteIcon}
+                      />
+                    </TouchFeedback>
+                    <TouchFeedback
+                      onPress={() => {
+                        onAddLogoPress(item.id);
+                      }}
+                      style={style.actionIconHolder}
+                    >
+                      <Icon
+                        name="picture"
+                        font="fidelight"
+                        style={style.photoIcon}
+                      />
+                    </TouchFeedback>
+                  </View>
                 </View>
               ))
             ) : (

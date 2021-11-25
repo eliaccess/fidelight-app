@@ -4,8 +4,9 @@
  *
  */
 
-import React, { useState } from 'react';
-import { View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Alert, View } from 'react-native';
+import { launchImageLibrary } from 'react-native-image-picker';
 
 import { useEntityOffersRewards } from 'containers/EntityOffersRewards';
 import useStateHandler from 'hooks/useStateHandler';
@@ -16,6 +17,7 @@ import Image from 'theme/Image';
 import NoResult from 'theme/NoResult';
 import TouchFeedback from 'theme/TouchFeedback';
 import Modal from 'theme/Modal';
+import { useToastContext } from 'theme/Toast';
 
 import style from './style';
 import messages from '../messages';
@@ -24,6 +26,14 @@ import BusinessOffersRewardsLoaderProps from '../Loader';
 
 import EditOfferForm from '../EditOfferForm';
 
+const OPTION = {
+  title: 'Select Image',
+  options: {
+    saveToPhotos: false,
+    mediaType: 'image',
+  },
+};
+
 type BusinessExploreOffersProps = {
   entityId: number;
 };
@@ -31,6 +41,7 @@ type BusinessExploreOffersProps = {
 function BusinessExploreOffers(props: BusinessExploreOffersProps) {
   const [initialData, setInitialData] = useState<any>();
   const [showEditOfferForm, setShowEditOfferForm] = useState(false);
+  const toast = useToastContext();
   const entityOffersRewards = useEntityOffersRewards({
     entityId: props.entityId,
   });
@@ -40,7 +51,35 @@ function BusinessExploreOffers(props: BusinessExploreOffersProps) {
     stateIdentifier: 'data.offers.length',
   });
 
+  useEffect(() => {
+    if (entityOffersRewards?.message) {
+      toast?.show({
+        message: entityOffersRewards?.message,
+        delay: 1000,
+        type: 'success',
+      });
+      entityOffersRewards.reset();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [entityOffersRewards?.message]);
+
   const offers = entityOffersRewards?.data?.offers;
+
+  const onAddLogoPress = (offerId) => {
+    // @ts-ignore
+    launchImageLibrary(OPTION, (resp: any) => {
+      if (resp?.didCancel) {
+        return;
+      }
+
+      entityOffersRewards.addLogo({
+        data: resp?.assets[0],
+        entityId: props.entityId,
+        // @ts-ignore
+        discountId: offerId,
+      });
+    });
+  };
 
   return (
     <>
@@ -64,11 +103,9 @@ function BusinessExploreOffers(props: BusinessExploreOffersProps) {
                 <View key={item.id} style={style.itemWrapper}>
                   <View style={style.logoWrapper}>
                     <Image
-                      title={
-                        item.pictureLink ||
-                        'https://images.unsplash.com/photo-1544502779-9d192f5da63e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2045&q=80'
-                      }
+                      uri={item.pictureLink}
                       style={style.logo}
+                      resizeMode="cover"
                     />
                   </View>
                   <View style={style.contentWrapper}>
@@ -77,15 +114,66 @@ function BusinessExploreOffers(props: BusinessExploreOffersProps) {
                       {item.description}
                     </Text>
                   </View>
-                  <TouchFeedback
-                    onPress={() => {
-                      setInitialData(item);
-                      setShowEditOfferForm(true);
-                    }}
-                    style={style.editIconHolder}
-                  >
-                    <Icon name="edit" font="fidelight" style={style.editIcon} />
-                  </TouchFeedback>
+                  <View style={style.actionsWrapper}>
+                    <TouchFeedback
+                      onPress={() => {
+                        setInitialData(item);
+                        setShowEditOfferForm(true);
+                      }}
+                      style={style.actionIconHolder}
+                    >
+                      <Icon
+                        name="edit"
+                        font="fidelight"
+                        style={style.editIcon}
+                      />
+                    </TouchFeedback>
+                    <TouchFeedback
+                      onPress={() => {
+                        Alert.alert(
+                          'Delete Offer',
+                          'Are you sure to delete this offer?',
+                          [
+                            {
+                              text: 'No',
+                              onPress: () => null,
+                              style: 'cancel',
+                            },
+                            {
+                              text: 'Yes',
+                              onPress: () => {
+                                entityOffersRewards.remove({
+                                  entityId: props.entityId,
+                                  // @ts-ignore
+                                  discountId: item.id,
+                                });
+                              },
+                            },
+                          ],
+                          { cancelable: true },
+                        );
+                      }}
+                      style={style.actionIconHolder}
+                    >
+                      <Icon
+                        name="trash"
+                        font="fidelight"
+                        style={style.deleteIcon}
+                      />
+                    </TouchFeedback>
+                    <TouchFeedback
+                      onPress={() => {
+                        onAddLogoPress(item.id);
+                      }}
+                      style={style.actionIconHolder}
+                    >
+                      <Icon
+                        name="picture"
+                        font="fidelight"
+                        style={style.photoIcon}
+                      />
+                    </TouchFeedback>
+                  </View>
                 </View>
               ))
             ) : (

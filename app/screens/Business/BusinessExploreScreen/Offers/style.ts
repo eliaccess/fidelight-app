@@ -31,10 +31,10 @@ const style = StyleSheet.create({
   },
   itemWrapper: {
     flexDirection: 'row',
-    paddingVertical: Dimensions.space4x,
-    alignItems: 'center',
+    paddingTop: Dimensions.space4x,
     borderBottomWidth: 1,
     borderBottomColor: Colors.primaryDark,
+    marginBottom: Dimensions.space2x,
   },
   logoWrapper: {
     padding: Dimensions.space2x,
@@ -48,11 +48,12 @@ const style = StyleSheet.create({
     marginRight: Dimensions.space2x,
   },
   logo: {
-    width: 20,
-    height: 20,
+    width: 45,
+    height: 45,
+    borderRadius: 25,
   },
   contentWrapper: {
-    width: '70%',
+    width: '75%',
   },
   title: {
     fontSize: 16,
@@ -64,16 +65,26 @@ const style = StyleSheet.create({
     color: Colors.textGrey,
     marginTop: Dimensions.space1x,
   },
-  editIconHolder: {
-    position: 'absolute',
-    right: 10,
+  actionsWrapper: {},
+  actionIconHolder: {
     backgroundColor: Colors.white,
     padding: Dimensions.space1x,
     borderRadius: Dimensions.borderRadius10x,
     alignItems: 'center',
+    marginBottom: Dimensions.space2x,
     ...elevation(1),
   },
   editIcon: {
+    fontSize: 16,
+    color: Colors.accent,
+    fontWeight: '600',
+  },
+  deleteIcon: {
+    fontSize: 16,
+    color: Colors.errorBackground,
+    fontWeight: '600',
+  },
+  photoIcon: {
     fontSize: 16,
     color: Colors.accent,
     fontWeight: '600',

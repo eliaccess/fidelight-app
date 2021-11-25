@@ -44,7 +44,7 @@ function BusinessExploreScreen(props: BusinessExploreScreenProps) {
     if (entityOffersRewards?.message) {
       toast?.show({
         message: entityOffersRewards?.message,
-        delay: 500,
+        delay: 1000,
         type: 'success',
       });
       entityOffersRewards.reset();

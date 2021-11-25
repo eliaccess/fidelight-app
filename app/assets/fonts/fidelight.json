@@ -151,6 +151,18 @@
       "search": [
         "gift"
       ]
+    },
+    {
+      "uid": "2626e3a1bbcd90e45849af3b58a1d594",
+      "css": "trash",
+      "code": 59403,
+      "src": "entypo"
+    },
+    {
+      "uid": "3def559c3c39b8500882e02892b7daa8",
+      "css": "picture",
+      "code": 59404,
+      "src": "entypo"
     }
   ]
 }

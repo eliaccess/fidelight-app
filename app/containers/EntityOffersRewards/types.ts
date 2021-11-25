@@ -98,6 +98,7 @@ export interface UpdatePayload {
     cost: number;
     name: string;
     description: string;
+    pictureLink?: string;
     startDate?: string;
     expirationDate?: string;
     perDay: {
@@ -132,5 +133,63 @@ export interface UpdateAPIResponse {
 }
 
 export interface UpdateFailureResponsePayload extends UpdateAPIResponse {
+  key: string;
+}
+
+export interface RemovePayload {
+  discountId: number;
+  entityId: number;
+}
+
+export interface RemoveProps {
+  type: string;
+  payload: RemovePropsPayload;
+}
+export interface RemovePropsPayload extends RemovePayload {
+  key: string;
+}
+
+export interface RemoveResponsePayload extends RemoveAPIResponse {
+  key: string;
+}
+
+export interface RemoveAPIResponse {
+  message: string;
+}
+
+export interface RemoveFailureResponsePayload extends RemoveAPIResponse {
+  key: string;
+}
+
+export interface AddLogoPayload {
+  data: {
+    fileName: string;
+    fileSize: number;
+    height: number;
+    type: 'string';
+    uri: 'string';
+    width: number;
+  };
+  entityId: number;
+  discountId: number;
+}
+
+export interface AddLogoProps {
+  type: string;
+  payload: AddLogoPropsPayload;
+}
+export interface AddLogoPropsPayload extends AddLogoPayload {
+  key: string;
+}
+
+export interface AddLogoResponsePayload extends AddLogoAPIResponse {
+  key: string;
+}
+
+export interface AddLogoAPIResponse {
+  message: string;
+}
+
+export interface AddLogoFailureResponsePayload extends AddLogoAPIResponse {
   key: string;
 }

@@ -4,10 +4,15 @@
  *
  */
 
+import { Platform } from 'react-native';
 import service from 'services/fidelight';
 import {
+  AddLogoAPIResponse,
+  AddLogoPropsPayload,
   EntityOffersRewardsAPIResponse,
   FetchPropsPayload,
+  RemoveAPIResponse,
+  RemovePropsPayload,
   SubmitAPIResponse,
   SubmitPropsPayload,
   UpdateAPIResponse,
@@ -51,6 +56,48 @@ export async function update(
     method: 'PUT',
     url: `/v1/discount/${payload.discountId}`,
     body,
+  });
+
+  return {
+    message: resp.msg,
+  };
+}
+
+export async function remove(
+  payload: RemovePropsPayload,
+): Promise<RemoveAPIResponse | Error> {
+  const resp = await service({
+    method: 'DELETE',
+    url: `/v1/discount/${payload.discountId}`,
+  });
+
+  return {
+    message: resp.msg,
+  };
+}
+
+export async function addLogo(
+  payload: AddLogoPropsPayload,
+): Promise<AddLogoAPIResponse | Error> {
+  const form = new FormData();
+  const photo = {
+    uri:
+      Platform.OS === 'android'
+        ? payload.data.uri
+        : payload.data.uri.replace('file://', ''),
+    type: payload.data.type,
+    name: payload.data.fileName,
+  };
+  form.append('picture', photo);
+
+  const resp = await service({
+    method: 'POST',
+    url: `/v1/discount/picture/${payload.discountId}`,
+    body: form,
+    bodyParsing: 'form',
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
   });
 
   return {

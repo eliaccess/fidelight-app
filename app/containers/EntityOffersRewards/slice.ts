@@ -1,7 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
 import {
+  AddLogoFailureResponsePayload,
+  AddLogoPropsPayload,
+  AddLogoResponsePayload,
   FailureResponsePayload,
   FetchPropsPayload,
+  RemoveFailureResponsePayload,
+  RemovePropsPayload,
+  RemoveResponsePayload,
   ResetPropsPayload,
   ResponsePayload,
   State,
@@ -26,6 +33,7 @@ const slice = createSlice({
         error: false,
         fetching: false,
         submitting: false,
+        updating: false,
         message: undefined,
       };
     },
@@ -107,6 +115,60 @@ const slice = createSlice({
         error: true,
         message: action.payload.message,
         updating: false,
+      };
+    },
+    remove(state: State, action: PayloadAction<RemovePropsPayload>): void {
+      state[action.payload.key] = {
+        ...(state[action.payload.key] || {}),
+        updating: true,
+      };
+    },
+    removeSuccess(
+      state: State,
+      action: PayloadAction<RemoveResponsePayload>,
+    ): void {
+      state[action.payload.key] = {
+        ...(state[action.payload.key] || {}),
+        updating: false,
+        message: action.payload.message,
+      };
+    },
+    removeFailure(
+      state: State,
+      action: PayloadAction<RemoveFailureResponsePayload>,
+    ): void {
+      state[action.payload.key] = {
+        ...(state[action.payload.key] || {}),
+        error: true,
+        message: action.payload.message,
+        updating: false,
+      };
+    },
+    addLogo(state: State, action: PayloadAction<AddLogoPropsPayload>): void {
+      state[action.payload.key] = {
+        ...(state[action.payload.key] || {}),
+        submitting: true,
+      };
+    },
+    addLogoSuccess(
+      state: State,
+      action: PayloadAction<AddLogoResponsePayload>,
+    ): void {
+      state[action.payload.key] = {
+        ...(state[action.payload.key] || {}),
+        submitting: false,
+        message: action.payload.message,
+      };
+    },
+    addLogoFailure(
+      state: State,
+      action: PayloadAction<AddLogoFailureResponsePayload>,
+    ): void {
+      state[action.payload.key] = {
+        ...(state[action.payload.key] || {}),
+        error: true,
+        message: action.payload.message,
+        submitting: false,
       };
     },
   },
