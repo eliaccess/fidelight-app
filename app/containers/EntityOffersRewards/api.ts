@@ -12,6 +12,8 @@ import {
   EntityOffersRewardsAPIResponse,
   FetchPropsPayload,
   RemoveAPIResponse,
+  RemoveLogoAPIResponse,
+  RemoveLogoPropsPayload,
   RemovePropsPayload,
   SubmitAPIResponse,
   SubmitPropsPayload,
@@ -98,6 +100,19 @@ export async function addLogo(
     headers: {
       'Content-Type': 'multipart/form-data',
     },
+  });
+
+  return {
+    message: resp.msg,
+  };
+}
+
+export async function removeLogo(
+  payload: RemoveLogoPropsPayload,
+): Promise<RemoveLogoAPIResponse | Error> {
+  const resp = await service({
+    method: 'DELETE',
+    url: `/v1/discount/picture/${payload.discountId}`,
   });
 
   return {

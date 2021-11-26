@@ -20,7 +20,7 @@ import NoResult from 'theme/NoResult';
 import TouchFeedback from 'theme/TouchFeedback';
 import Modal from 'theme/Modal';
 import { useToastContext } from 'theme/Toast';
-
+import FullScreenLoader from 'theme/FullScreenLoader';
 import style from './style';
 import messages from '../messages';
 import BusinessOffersRewardsLoaderProps from '../Loader';
@@ -102,11 +102,48 @@ function BusinessExploreRewards(props: BusinessExploreRewardsProps) {
               rewards?.map((item) => (
                 <View key={item.id} style={style.itemWrapper}>
                   <View style={style.logoWrapper}>
-                    <Image
-                      uri={item.pictureLink}
-                      style={style.logo}
-                      resizeMode="cover"
-                    />
+                    {item.pictureLink ? (
+                      <>
+                        <Image
+                          uri={item.pictureLink || ''}
+                          style={style.logo}
+                          resizeMode="cover"
+                        />
+                        <TouchFeedback
+                          onPress={() => {
+                            Alert.alert(
+                              'Delete Reward Image',
+                              'Are you sure to delete reward image?',
+                              [
+                                {
+                                  text: 'No',
+                                  onPress: () => null,
+                                  style: 'cancel',
+                                },
+                                {
+                                  text: 'Yes',
+                                  onPress: () => {
+                                    entityOffersRewards.removeLogo({
+                                      entityId: props.entityId,
+                                      // @ts-ignore
+                                      discountId: item.id,
+                                    });
+                                  },
+                                },
+                              ],
+                              { cancelable: true },
+                            );
+                          }}
+                          style={style.deleteLogoWrapper}
+                        >
+                          <Icon
+                            name="trash"
+                            font="fidelight"
+                            style={style.deleteIcon}
+                          />
+                        </TouchFeedback>
+                      </>
+                    ) : null}
                   </View>
                   <View style={style.contentWrapper}>
                     <Text style={style.title}>{item.name}</Text>
@@ -216,6 +253,11 @@ function BusinessExploreRewards(props: BusinessExploreRewardsProps) {
             />
           </View>
         </Modal>
+        {entityOffersRewards.submitting ||
+        entityOffersRewards.updating ||
+        entityOffersRewards.removing ? (
+          <FullScreenLoader />
+        ) : null}
       </View>
     </>
   );

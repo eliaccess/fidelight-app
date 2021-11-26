@@ -52,6 +52,17 @@ const style = StyleSheet.create({
     height: 45,
     borderRadius: 25,
   },
+  deleteLogoWrapper: {
+    position: 'absolute',
+    bottom: -15,
+    right: -7,
+    backgroundColor: Colors.white,
+    padding: Dimensions.space1x,
+    borderRadius: Dimensions.borderRadius10x,
+    alignItems: 'center',
+    marginBottom: Dimensions.space2x,
+    ...elevation(2),
+  },
   contentWrapper: {
     width: '75%',
   },

@@ -48,9 +48,20 @@ const style = StyleSheet.create({
     marginRight: Dimensions.space2x,
   },
   logo: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
+    width: 45,
+    height: 45,
+    borderRadius: 25,
+  },
+  deleteLogoWrapper: {
+    position: 'absolute',
+    bottom: -15,
+    right: -7,
+    backgroundColor: Colors.white,
+    padding: Dimensions.space1x,
+    borderRadius: Dimensions.borderRadius10x,
+    alignItems: 'center',
+    marginBottom: Dimensions.space2x,
+    ...elevation(2),
   },
   contentWrapper: {
     width: '75%',

@@ -17,6 +17,7 @@ import {
   UpdatePayload,
   RemovePayload,
   AddLogoPayload,
+  RemoveLogoPayload,
 } from './types';
 import { selectEntityOffersRewardsByKey } from './selectors';
 import { actions, reducer, name as STORE_KEY } from './slice';
@@ -31,6 +32,7 @@ interface EntityOffersRewardsReturn extends StateItem {
   update: (args: UpdatePayload) => void;
   remove: (args: RemovePayload) => void;
   addLogo: (args: AddLogoPayload) => void;
+  removeLogo: (args: RemoveLogoPayload) => void;
   reset: (...args: any) => void;
 }
 
@@ -112,6 +114,19 @@ export function useEntityOffersRewards(
     [key],
   );
 
+  const removeLogo = useCallback(
+    (args: RemoveLogoPayload) => {
+      dispatch(
+        actions.removeLogo({
+          ...args,
+          key,
+        }),
+      );
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [key],
+  );
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const reset = useCallback(() => dispatch(actions.reset({ key })), [key]);
 
@@ -121,6 +136,7 @@ export function useEntityOffersRewards(
     update,
     remove,
     addLogo,
+    removeLogo,
     reset,
   };
 }

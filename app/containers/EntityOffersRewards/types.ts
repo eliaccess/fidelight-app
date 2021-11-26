@@ -14,6 +14,7 @@ export interface StateItem {
   message?: string;
   submitting: boolean;
   updating: boolean;
+  removing: boolean;
   data: ResponsePayload['data'];
 }
 
@@ -191,5 +192,31 @@ export interface AddLogoAPIResponse {
 }
 
 export interface AddLogoFailureResponsePayload extends AddLogoAPIResponse {
+  key: string;
+}
+
+export interface RemoveLogoPayload {
+  discountId: number;
+  entityId: number;
+}
+
+export interface RemoveLogoProps {
+  type: string;
+  payload: RemoveLogoPropsPayload;
+}
+export interface RemoveLogoPropsPayload extends RemoveLogoPayload {
+  key: string;
+}
+
+export interface RemoveLogoResponsePayload extends RemoveLogoAPIResponse {
+  key: string;
+}
+
+export interface RemoveLogoAPIResponse {
+  message: string;
+}
+
+export interface RemoveLogoFailureResponsePayload
+  extends RemoveLogoAPIResponse {
   key: string;
 }

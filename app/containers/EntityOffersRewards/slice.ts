@@ -7,6 +7,9 @@ import {
   FailureResponsePayload,
   FetchPropsPayload,
   RemoveFailureResponsePayload,
+  RemoveLogoFailureResponsePayload,
+  RemoveLogoPropsPayload,
+  RemoveLogoResponsePayload,
   RemovePropsPayload,
   RemoveResponsePayload,
   ResetPropsPayload,
@@ -34,6 +37,7 @@ const slice = createSlice({
         fetching: false,
         submitting: false,
         updating: false,
+        removing: false,
         message: undefined,
       };
     },
@@ -120,7 +124,7 @@ const slice = createSlice({
     remove(state: State, action: PayloadAction<RemovePropsPayload>): void {
       state[action.payload.key] = {
         ...(state[action.payload.key] || {}),
-        updating: true,
+        removing: true,
       };
     },
     removeSuccess(
@@ -129,7 +133,7 @@ const slice = createSlice({
     ): void {
       state[action.payload.key] = {
         ...(state[action.payload.key] || {}),
-        updating: false,
+        removing: false,
         message: action.payload.message,
       };
     },
@@ -141,7 +145,7 @@ const slice = createSlice({
         ...(state[action.payload.key] || {}),
         error: true,
         message: action.payload.message,
-        updating: false,
+        removing: false,
       };
     },
     addLogo(state: State, action: PayloadAction<AddLogoPropsPayload>): void {
@@ -169,6 +173,36 @@ const slice = createSlice({
         error: true,
         message: action.payload.message,
         submitting: false,
+      };
+    },
+    removeLogo(
+      state: State,
+      action: PayloadAction<RemoveLogoPropsPayload>,
+    ): void {
+      state[action.payload.key] = {
+        ...(state[action.payload.key] || {}),
+        removing: true,
+      };
+    },
+    removeLogoSuccess(
+      state: State,
+      action: PayloadAction<RemoveLogoResponsePayload>,
+    ): void {
+      state[action.payload.key] = {
+        ...(state[action.payload.key] || {}),
+        removing: false,
+        message: action.payload.message,
+      };
+    },
+    removeLogoFailure(
+      state: State,
+      action: PayloadAction<RemoveLogoFailureResponsePayload>,
+    ): void {
+      state[action.payload.key] = {
+        ...(state[action.payload.key] || {}),
+        error: true,
+        message: action.payload.message,
+        removing: false,
       };
     },
   },
