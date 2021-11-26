@@ -5,8 +5,9 @@
  */
 
 import { useEntityDetail } from 'containers/EntityDetail';
+import { useRecentViewedEntities } from 'containers/RecentViewedEntities';
 import useStateHandler from 'hooks/useStateHandler';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View } from 'react-native';
 
 import Screen from 'theme/Screen';
@@ -26,10 +27,23 @@ function EntityDetailScreen(props: EntityDetailScreenProps) {
     entityId: props.route.params.entityId,
   });
 
+  const recentViewedEntities = useRecentViewedEntities();
+
   const showContent = useStateHandler({
     state: entityDetail,
     stateIdentifier: 'data.name',
   });
+
+  useEffect(() => {
+    if (entityDetail?.data?.id) {
+      if (recentViewedEntities) {
+        recentViewedEntities.submit({
+          data: entityDetail.data,
+        });
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [entityDetail?.data?.id]);
 
   return (
     <Screen testID="EntityDetailScreen" headerVisibilityThreshold={80}>

@@ -15,6 +15,7 @@ import PreferenceScreen from 'screens/PreferenceScreen/Loadable';
 import ProfileScreen from 'screens/ProfileScreen/Loadable';
 import ProfileEditScreen from 'screens/ProfileEditScreen/Loadable';
 import DealDetailScreen from 'screens/DealDetailScreen/Loadable';
+import EntitySearchScreen from 'screens/EntitySearchScreen/Loadable';
 import BusinessLoginScreen from 'screens/Business/BusinessLoginScreen/Loadable';
 import BusinessSignUpScreen from 'screens/Business/BusinessSignUpScreen/Loadable';
 import BusinessHomeScreen from 'screens/Business/BusinessHomeScreen/Loadable';
@@ -131,6 +132,10 @@ const routes = {
   [routeNames.BUSINESS_QR_CODE]: {
     ...routeConfigs[routeNames.BUSINESS_QR_CODE],
     screen: BusinessQRCodeScreen,
+  },
+  [routeNames.ENTITY_SEARCH]: {
+    ...routeConfigs[routeNames.ENTITY_SEARCH],
+    screen: EntitySearchScreen,
   },
 
   // [routeNames.FORGET_PASSWORD]: {

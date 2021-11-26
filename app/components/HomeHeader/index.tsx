@@ -24,6 +24,7 @@ type HomeHeader = {
   onPressDrawer: (...arg: any) => any;
   onProfilePress: () => void;
   onCityPress: () => void;
+  onSearchPress: () => void;
 };
 
 function HomeHeader(props: HomeHeader) {
@@ -50,13 +51,16 @@ function HomeHeader(props: HomeHeader) {
           <Icon name="user" style={style.avatarIcon} />
         </TouchFeedback>
       </View>
-      <View style={style.searchBarWrapper}>
+      <TouchFeedback
+        onPress={props.onSearchPress}
+        style={style.searchBarWrapper}
+      >
         <Icon name="search" style={style.searchIcon} />
         <FormattedMessage
           {...messages.searchPlaceHolder}
           style={style.searchPlaceHolder}
         />
-      </View>
+      </TouchFeedback>
     </View>
   );
 }

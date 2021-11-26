@@ -25,6 +25,27 @@ const style = StyleSheet.create({
     marginBottom: Dimensions.space4x,
     color: Colors.textBlack,
   },
+  recentSelectedCitiesLabel: {
+    color: Colors.textBlack,
+    fontSize: 16,
+    fontWeight: '700',
+  },
+  recentSelectedCitiesList: {
+    flexDirection: 'row',
+    marginTop: Dimensions.space2x,
+    marginLeft: Dimensions.horizontalSpace,
+  },
+  tagName: {
+    alignSelf: 'center',
+    color: Colors.textBlack,
+    fontSize: 16,
+  },
+  tagStyle: {
+    padding: Dimensions.space1x,
+    paddingHorizontal: Dimensions.space2x,
+    backgroundColor: Colors.primary,
+    borderRadius: Dimensions.borderRadius2x,
+  },
 });
 
 export default style;

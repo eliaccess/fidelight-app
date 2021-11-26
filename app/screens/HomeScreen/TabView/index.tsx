@@ -9,7 +9,12 @@ import HomeHeader from 'components/HomeHeader';
 import ExploreScreen from 'screens/ExploreScreen/Loadable';
 import FavoriteEntitiesScreen from 'screens/FavoriteEntitiesScreen/Loadable';
 
-import { CITY_SELECTION, PROFILE, QR_CODE } from 'router/routeNames';
+import {
+  CITY_SELECTION,
+  ENTITY_SEARCH,
+  PROFILE,
+  QR_CODE,
+} from 'router/routeNames';
 
 import TabBarButton from './TabBarButton';
 import { initialLayout, useGetStyles } from './style';
@@ -84,6 +89,7 @@ function HomeTabView(props) {
         onCityPress={() => {
           props.navigation.navigate(CITY_SELECTION);
         }}
+        onSearchPress={() => props.navigation.navigate(ENTITY_SEARCH)}
       />
       <TabView
         lazy

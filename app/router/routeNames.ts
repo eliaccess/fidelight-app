@@ -17,6 +17,7 @@ export const PROFILE = 'Profile';
 export const PROFILE_EDIT = 'ProfileEdit';
 export const DEAL_DETAIL = 'DealDetail';
 export const QR_CODE = 'QRCode';
+export const ENTITY_SEARCH = 'EntitySearch';
 
 // Business
 export const BUSINESS_LOGIN = 'BusinessLogin';

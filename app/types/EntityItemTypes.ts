@@ -10,6 +10,7 @@ export interface EntityItemTypes {
 }
 
 export interface EntityDetailItemTypes {
+  id: number;
   name: string;
   phone: string;
   registration_date: string;

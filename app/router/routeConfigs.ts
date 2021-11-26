@@ -57,6 +57,9 @@ const routeConfigs = {
     path: '/qr-code',
     options: { presentation: 'transparentModal' },
   },
+  [routeNames.ENTITY_SEARCH]: {
+    path: '/entity-search',
+  },
   [routeNames.BUSINESS_LOGIN]: {
     path: '/business-login',
   },

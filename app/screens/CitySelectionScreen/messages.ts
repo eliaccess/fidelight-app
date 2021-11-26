@@ -1,21 +1,25 @@
 /**
- * LocationsScreen Messages
+ * CitySelectionScreen Messages
  *
- * This contains all the text for the LocationsScreen component.
+ * This contains all the text for the CitySelectionScreen component.
  */
 import { defineMessages } from 'react-intl';
-
+const scope = 'app.screens.CitySelectionScreen';
 export default defineMessages({
   pitch: {
-    id: 'app.screens.LocationsScreen.pitch',
+    id: `${scope}.pitch`,
     defaultMessage: 'Search the nearby places and offers in your city',
   },
   searchPlaceholder: {
-    id: 'app.screens.LocationsScreen.searchPlaceholder',
+    id: `${scope}.searchPlaceholder`,
     defaultMessage: 'Search your city here',
   },
   cityLabel: {
-    id: 'app.screens.LocationsScreen.cityLabel',
+    id: `${scope}.cityLabel`,
     defaultMessage: '{nom}',
+  },
+  recentSelectedCitiesLabel: {
+    id: `${scope}.recentSelectedCitiesLabel`,
+    defaultMessage: 'Recent selected cities',
   },
 });
