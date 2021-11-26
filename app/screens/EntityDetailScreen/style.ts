@@ -18,8 +18,8 @@ const style = StyleSheet.create({
   sectionWrapper: {
     backgroundColor: Colors.white,
     ...Platform.select({
-      ios: { height: 200 },
-      android: { height: 220 },
+      ios: { height: 240 },
+      android: { height: 250 },
     }),
   },
   loaderHeader: {

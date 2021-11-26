@@ -13,8 +13,21 @@ import React, {
   useMemo,
 } from 'react';
 // @ts-ignore
-import { Animated, Text, View } from 'react-native';
+import { View } from 'react-native';
+import Animated, {
+  runOnJS,
+  useSharedValue,
+  withDelay,
+  withSequence,
+  withTiming,
+} from 'react-native-reanimated';
 import Icon from 'theme/Icon';
+import Text from 'theme/Text';
+import {
+  UseBottomAnimation,
+  UseOpacityAnimation,
+  UseTopAnimation,
+} from './animations';
 import style from './style';
 import { ToastProps, IToastShow } from './types';
 
@@ -77,7 +90,8 @@ const Toast: React.FC<ToastProps> = forwardRef((props, ref) => {
   );
 
   const [state, dispatch] = useReducer(stateReducer, initialState);
-  const animatedValue = useRef(new Animated.Value(0)).current;
+
+  const animation = useRef(useSharedValue(0)).current;
 
   useImperativeHandle(ref, () => ({
     show({
@@ -114,27 +128,36 @@ const Toast: React.FC<ToastProps> = forwardRef((props, ref) => {
 
   useEffect(() => {
     if (state.showToast) {
-      Animated.sequence([
-        Animated.timing(animatedValue, {
-          toValue: 1,
+      animation.value = withSequence(
+        withTiming(1, {
           duration: 600,
-          useNativeDriver: true,
         }),
-        Animated.timing(animatedValue, {
-          toValue: 0,
-          duration: 600,
-          delay: state.delay,
-          useNativeDriver: true,
-        }),
-      ]).start(() =>
-        dispatch({
-          type: 'SHOW_TOAST',
-          payload: false,
-        }),
+        withDelay(
+          // @ts-ignore
+          state.delay,
+          withTiming(
+            0,
+            {
+              duration: 600,
+            },
+            (isFinished) => {
+              if (isFinished) {
+                runOnJS(dispatch)({
+                  type: 'SHOW_TOAST',
+                  payload: false,
+                });
+              }
+            },
+          ),
+        ),
       );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.showToast]);
+
+  const opacityAnimation = UseOpacityAnimation(animation);
+  const bottomAnimation = UseBottomAnimation(animation, state);
+  const topAnimation = UseTopAnimation(animation, state);
 
   if (!state.showToast) {
     return null;
@@ -144,34 +167,16 @@ const Toast: React.FC<ToastProps> = forwardRef((props, ref) => {
     <Animated.View
       style={[
         style.toastWrapper,
-        { opacity: animatedValue },
+        opacityAnimation,
         state.position === 'bottom'
-          ? // eslint-disable-next-line react-native/no-inline-styles
-            {
-              bottom: 0,
-              transform: [
-                {
-                  translateY: animatedValue.interpolate({
-                    inputRange: [0, 1],
-                    // @ts-ignore
-                    outputRange: [0, -state.bottomOffset],
-                  }),
-                },
-              ],
+          ? {
+              ...bottomAnimation,
             }
           : null,
         // state.position === 'top' ? { bottom: state.topOffset } : null,
         state.position === 'top'
           ? {
-              transform: [
-                {
-                  translateY: animatedValue.interpolate({
-                    inputRange: [0, 1],
-                    // @ts-ignore
-                    outputRange: [0, state.topOffset],
-                  }),
-                },
-              ],
+              ...topAnimation,
             }
           : null,
         { backgroundColor: state.backgroundColor },

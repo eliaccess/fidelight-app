@@ -11,9 +11,10 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
+
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import { useBusinessTransactions } from 'containers/Business/BusinessTransactions';
-
+import SuccessAnimation from 'components/SuccessAnimation';
 import Icon from 'theme/Icon';
 import TouchFeedback from 'theme/TouchFeedback';
 import FormattedMessage from 'theme/FormattedMessage';
@@ -34,16 +35,22 @@ function BusinessQRCodeScreen(props: BusinessQRCodeScreenProps) {
   const [showUserPointsForm, setShowUserPointsForm] = useState(false);
   const animation = useRef(useSharedValue(0)).current;
   const toast = useToastContext();
+  const [showSuccess, setShowSuccess] = useState(false);
 
   useEffect(() => {
     if (transactions.success) {
       toast?.show({
         message: transactions.message,
-        delay: 500,
+        delay: 2000,
         type: 'success',
       });
-      transactions.reset();
-      props.navigation.goBack();
+      setShowUserPointsForm(false);
+      setShowSuccess(true);
+      setTimeout(() => {
+        transactions.reset();
+        setShowSuccess(false);
+        props.navigation.goBack();
+      }, 3000);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [transactions]);
@@ -86,55 +93,58 @@ function BusinessQRCodeScreen(props: BusinessQRCodeScreenProps) {
   }, [qrCode]);
 
   return (
-    <Animated.View style={[style.container, QRCodeAnimation]}>
-      <TouchFeedback
-        onPress={() => props.navigation.goBack()}
-        style={style.closeButtonHolder}
-      >
-        <Icon name="x" style={style.closeIcon} />
-      </TouchFeedback>
-      <View style={style.background1} />
-      <View style={style.background2} />
+    <>
+      <Animated.View style={[style.container, QRCodeAnimation]}>
+        <TouchFeedback
+          onPress={() => props.navigation.goBack()}
+          style={style.closeButtonHolder}
+        >
+          <Icon name="x" style={style.closeIcon} />
+        </TouchFeedback>
+        <View style={style.background1} />
+        <View style={style.background2} />
 
-      <View style={style.content}>
-        <View>
-          <FormattedMessage
-            {...messages.qrCodeHeading}
-            style={style.qrCodeHeading}
-          />
-          <FormattedMessage
-            {...messages.scanToAvailLabel}
-            style={style.scanToAvailLabel}
-          />
+        <View style={style.content}>
+          <View>
+            <FormattedMessage
+              {...messages.qrCodeHeading}
+              style={style.qrCodeHeading}
+            />
+            <FormattedMessage
+              {...messages.scanToAvailLabel}
+              style={style.scanToAvailLabel}
+            />
+          </View>
+          {!showUserPointsForm && !showSuccess ? (
+            <QRCodeScanner
+              onRead={(t) => {
+                setQrCode(t.data);
+              }}
+              showMarker
+            />
+          ) : null}
         </View>
-        {!showUserPointsForm ? (
-          <QRCodeScanner
-            onRead={(t) => {
-              setQrCode(t.data);
-            }}
-            showMarker
-          />
-        ) : null}
-      </View>
-      <Modal
-        visible={showUserPointsForm}
-        onRequestClose={() => {
-          setShowUserPointsForm(false);
-          setQrCode('');
-        }}
-      >
-        <UserPointsForm
-          onSubmit={(value) => {
-            transactions.givePointsAsPolicy({
-              data: {
-                user: qrCode,
-                value,
-              },
-            });
+        <Modal
+          visible={showUserPointsForm}
+          onRequestClose={() => {
+            setShowUserPointsForm(false);
+            setQrCode('');
           }}
-        />
-      </Modal>
-    </Animated.View>
+        >
+          <UserPointsForm
+            onSubmit={(value) => {
+              transactions.givePointsAsPolicy({
+                data: {
+                  user: qrCode,
+                  value,
+                },
+              });
+            }}
+          />
+        </Modal>
+      </Animated.View>
+      {showSuccess ? <SuccessAnimation /> : null}
+    </>
   );
 }
 

@@ -30,6 +30,7 @@ const style = StyleSheet.create({
         elevation: 2,
       },
     }),
+    bottom: 0,
   },
   toastMessage: {
     color: '#ffffff',
