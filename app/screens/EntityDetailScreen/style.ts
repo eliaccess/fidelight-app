@@ -59,6 +59,11 @@ const style = StyleSheet.create({
     height: 8,
     width: '80%',
   },
+  favoriteIconWrapper: {
+    backgroundColor: Colors.white,
+    padding: Dimensions.space1x / 2,
+    borderRadius: 30,
+  },
 });
 
 export default style;

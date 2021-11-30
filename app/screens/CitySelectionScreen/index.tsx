@@ -22,6 +22,17 @@ import { CitySelectionScreenProps } from './types';
 
 import RecentWidget from './RecentWidget';
 
+const POPULAR_CITIES = [
+  { name: 'Compiègne' },
+  { name: 'Paris' },
+  { name: 'Margny' },
+  { name: 'les' },
+  { name: 'Compiegne' },
+  { name: 'Lille' },
+  { name: 'Amiens' },
+  { name: 'Beauvais' },
+];
+
 function CitySelectionScreen(props: CitySelectionScreenProps) {
   const userLocation = useUserLocation();
   const recentSelectedCities = useRecentSelectedCities();
@@ -87,6 +98,18 @@ function CitySelectionScreen(props: CitySelectionScreenProps) {
               onPress={onRecentPress}
             />
           )}
+          <RecentWidget
+            headingKey={
+              <FormattedMessage
+                {...messages.popularCitiesLabel}
+                style={style.popularCitiesLabel}
+                isFragment
+              />
+            }
+            // @ts-ignore
+            data={POPULAR_CITIES}
+            onPress={onRecentPress}
+          />
         </View>
       </Screen>
     </>

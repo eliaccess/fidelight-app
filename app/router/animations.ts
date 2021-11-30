@@ -55,10 +55,30 @@ export const bottomToTopAnimation = {
           }),
         },
       ],
-      //   opacity: current.progress.interpolate({
-      //     inputRange: [0, 1],
-      //     outputRange: [0, 1],
-      //   }),
+      opacity: current.progress.interpolate({
+        inputRange: [0, 1],
+        outputRange: [0, 1],
+      }),
+    },
+  }),
+};
+
+export const TopToBottomAnimation = {
+  gestureDirection: 'vertical',
+  cardStyleInterpolator: ({ current, layouts }) => ({
+    cardStyle: {
+      transform: [
+        {
+          translateY: current.progress.interpolate({
+            inputRange: [0, 1],
+            outputRange: [-layouts.screen.height, 0],
+          }),
+        },
+      ],
+      opacity: current.progress.interpolate({
+        inputRange: [0, 1],
+        outputRange: [0, 1],
+      }),
     },
   }),
 };

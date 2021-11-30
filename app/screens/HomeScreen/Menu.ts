@@ -16,11 +16,11 @@ export default [
     name: 'Terms of use',
     routeName: 'Terms',
   },
-  {
-    id: 4,
-    name: 'Privacy',
-    routeName: '',
-  },
+  // {
+  //   id: 4,
+  //   name: 'Privacy',
+  //   routeName: '',
+  // },
   {
     id: 5,
     name: SUPPORT,

@@ -4,7 +4,6 @@
  *
  */
 
-import WishlistButton from 'components/WishlistButton';
 import React from 'react';
 import { View } from 'react-native';
 
@@ -16,7 +15,6 @@ import style from './style';
 
 type EntityInfoProps = {
   data: EntityDetailItemTypes;
-  onWishListPress: (...args: any) => any;
 };
 
 function EntityInfo(props: EntityInfoProps) {
@@ -26,12 +24,6 @@ function EntityInfo(props: EntityInfoProps) {
         <View style={style.nameDescriptionWrapper}>
           <Text style={style.name}>{props.data.name} </Text>
           <Text style={style.description}>{props.data.description}</Text>
-        </View>
-        <View style={style.favoriteIconWrapper}>
-          <WishlistButton
-            active={props.data.isFavorite}
-            onPress={props.onWishListPress}
-          />
         </View>
       </View>
 

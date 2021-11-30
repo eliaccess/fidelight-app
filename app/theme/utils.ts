@@ -21,6 +21,12 @@ export const buttonGradientProps = () => ({
   colors: ['#55C595', '#45BCBD'],
 });
 
+export const screenTopGradientProps = () => ({
+  start: { x: 0, y: -3 },
+  end: { x: 0, y: 3 },
+  colors: [Colors.white, Colors.transparent],
+});
+
 export const getFontFamily = (weight) => {
   if (weight === 'bold') {
     return 'Gilroy-Bold';

@@ -22,6 +22,17 @@ const style = StyleSheet.create({
       android: { height: 220 },
     }),
   },
+  editIconWrapper: {
+    backgroundColor: Colors.translucentBlack,
+    padding: Dimensions.space2x - 3,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 30,
+  },
+  editIcon: {
+    fontSize: 18,
+    color: Colors.white,
+  },
   loaderHeader: {
     marginTop: -120,
     width: Dimensions.screenWidth,

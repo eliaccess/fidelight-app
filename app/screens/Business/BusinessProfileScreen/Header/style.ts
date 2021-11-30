@@ -26,7 +26,13 @@ const style = StyleSheet.create({
     height: '100%',
     backgroundColor: Colors.primary,
   },
-
+  backdrop: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    width: '100%',
+  },
   content: {
     position: 'absolute',
     bottom: '-17%',

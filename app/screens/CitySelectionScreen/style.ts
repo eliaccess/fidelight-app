@@ -46,6 +46,11 @@ const style = StyleSheet.create({
     backgroundColor: Colors.primary,
     borderRadius: Dimensions.borderRadius2x,
   },
+  popularCitiesLabel: {
+    color: Colors.textBlack,
+    fontSize: 16,
+    fontWeight: '700',
+  },
 });
 
 export default style;

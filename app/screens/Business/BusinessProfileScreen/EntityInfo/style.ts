@@ -36,15 +36,7 @@ const style = StyleSheet.create({
     marginRight: Dimensions.space2x,
     marginTop: Dimensions.space2x,
   },
-  editIconWrapper: {
-    backgroundColor: Colors.translucentBlack,
-    padding: Dimensions.space2x,
-    borderRadius: 30,
-  },
-  editIcon: {
-    fontSize: 18,
-    color: Colors.white,
-  },
+
   tagsWrapper: {
     flexDirection: 'row',
     marginTop: Dimensions.space3x - 3,

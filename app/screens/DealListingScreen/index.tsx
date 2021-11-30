@@ -54,7 +54,9 @@ function DealListingScreen(props: DealListingScreenProps) {
               }}
               style={style.item}
             >
-              <Image uri={item.pictureLink} style={style.image} />
+              {item?.pictureLink.includes('http') ? (
+                <Image uri={item.pictureLink} style={style.image} />
+              ) : null}
               <View style={style.contentWrapper}>
                 <Text style={style.title}>{item.name}</Text>
                 <Text style={style.shortDescription} numberOfLines={1}>

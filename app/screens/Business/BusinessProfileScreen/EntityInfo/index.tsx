@@ -9,13 +9,11 @@ import { View } from 'react-native';
 
 import Icon from 'theme/Icon';
 import Text from 'theme/Text';
-import TouchFeedback from 'theme/TouchFeedback';
 
 import style from './style';
 
 type EntityInfoProps = {
   data: IBusinessUser;
-  onEditPress: () => void;
 };
 
 function EntityInfo(props: EntityInfoProps) {
@@ -26,12 +24,6 @@ function EntityInfo(props: EntityInfoProps) {
           <Text style={style.name}>{props.data.name} </Text>
           <Text style={style.description}>{props.data.description}</Text>
         </View>
-        <TouchFeedback
-          onPress={props.onEditPress}
-          style={style.editIconWrapper}
-        >
-          <Icon name="edit" style={style.editIcon} />
-        </TouchFeedback>
       </View>
 
       <View style={style.separationLine} />

@@ -4,6 +4,7 @@
  *
  */
 
+import WishlistButton from 'components/WishlistButton';
 import { useEntityDetail } from 'containers/EntityDetail';
 import { useRecentViewedEntities } from 'containers/RecentViewedEntities';
 import useStateHandler from 'hooks/useStateHandler';
@@ -46,21 +47,31 @@ function EntityDetailScreen(props: EntityDetailScreenProps) {
   }, [entityDetail?.data?.id]);
 
   return (
-    <Screen testID="EntityDetailScreen" headerVisibilityThreshold={80}>
+    <Screen
+      testID="EntityDetailScreen"
+      headerVisibilityThreshold={80}
+      headerRight={
+        showContent || entityDetail?.data ? (
+          <View style={style.favoriteIconWrapper}>
+            <WishlistButton
+              active={entityDetail?.data?.isFavorite}
+              onPress={() => {
+                entityDetail.toggleFavorite({
+                  isFavorite: entityDetail?.data?.isFavorite || false,
+                });
+              }}
+            />
+          </View>
+        ) : null
+      }
+    >
       <View style={style.container}>
         {!showContent || !entityDetail.data ? (
           <EntityDetailLoader />
         ) : (
           <>
             <EntityHeader data={entityDetail.data} />
-            <EntityInfo
-              data={entityDetail.data}
-              onWishListPress={() => {
-                entityDetail.toggleFavorite({
-                  isFavorite: entityDetail?.data?.isFavorite || false,
-                });
-              }}
-            />
+            <EntityInfo data={entityDetail.data} />
             {entityDetail.data?.schedule ? (
               <EntityTimings data={entityDetail.data} />
             ) : null}

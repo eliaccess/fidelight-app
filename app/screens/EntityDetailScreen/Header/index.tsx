@@ -6,6 +6,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import { View } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 
 import {
   Easing,
@@ -18,6 +19,7 @@ import {
 import Icon from 'theme/Icon';
 import Image from 'theme/Image';
 import Text from 'theme/Text';
+import { screenTopGradientProps } from 'theme/utils';
 import { EntityDetailItemTypes } from 'types/EntityItemTypes';
 import style from './style';
 
@@ -55,6 +57,7 @@ function EntityHeader(props: EntityHeaderProps) {
           style={[style.coverImage, animatedStyle]}
           resizeMode="cover"
         />
+        <LinearGradient {...screenTopGradientProps()} style={style.backdrop} />
       </View>
 
       <View style={style.content}>

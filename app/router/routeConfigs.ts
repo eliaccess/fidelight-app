@@ -1,3 +1,4 @@
+import { RightToLeftAnimation, TopToBottomAnimation } from './animations';
 import * as routeNames from './routeNames';
 
 const routeConfigs = {
@@ -6,6 +7,7 @@ const routeConfigs = {
   },
   [routeNames.CITY_SELECTION]: {
     path: '/city-selection',
+    options: TopToBottomAnimation,
   },
   [routeNames.HOME]: {
     path: '/',
@@ -45,6 +47,7 @@ const routeConfigs = {
   },
   [routeNames.PROFILE]: {
     path: '/profile',
+    options: RightToLeftAnimation,
   },
   [routeNames.PROFILE_EDIT]: {
     path: '/profile-edit',

@@ -4,7 +4,7 @@
  *
  */
 
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 
 import Colors from 'theme/Colors';
 import Dimensions from 'theme/Dimensions';
@@ -28,6 +28,10 @@ const style = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     marginRight: Dimensions.space2x,
+    ...Platform.select({
+      ios: { height: 140 },
+      android: { height: 150 },
+    }),
   },
   itemContent: {},
   title: {

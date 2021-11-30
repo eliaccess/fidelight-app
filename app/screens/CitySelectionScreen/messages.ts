@@ -22,4 +22,8 @@ export default defineMessages({
     id: `${scope}.recentSelectedCitiesLabel`,
     defaultMessage: 'Recent selected cities',
   },
+  popularCitiesLabel: {
+    id: `${scope}.popularCitiesLabel`,
+    defaultMessage: 'Popular Cities',
+  },
 });

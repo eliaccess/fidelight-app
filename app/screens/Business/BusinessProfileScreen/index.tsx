@@ -10,6 +10,8 @@ import { View } from 'react-native';
 import { useBusinessProfile } from 'containers/Business/BusinessProfile';
 
 import Screen from 'theme/Screen';
+import TouchFeedback from 'theme/TouchFeedback';
+import Icon from 'theme/Icon';
 import { EDIT_BUSINESS_INFO } from 'router/routeNames';
 
 import DealsSection from './DealsSection';
@@ -25,17 +27,27 @@ function BusinessProfileScreen(props: BusinessProfileScreenProps) {
   const entityDetail = useBusinessProfile();
 
   return (
-    <Screen testID="BusinessProfileScreen" headerVisibilityThreshold={80}>
+    <Screen
+      testID="BusinessProfileScreen"
+      headerVisibilityThreshold={80}
+      headerRight={
+        entityDetail?.data ? (
+          <TouchFeedback
+            onPress={() => {
+              props.navigation.navigate(EDIT_BUSINESS_INFO);
+            }}
+            style={style.editIconWrapper}
+          >
+            <Icon name="edit" style={style.editIcon} />
+          </TouchFeedback>
+        ) : null
+      }
+    >
       <View style={style.container}>
         {entityDetail?.data ? (
           <>
             <EntityHeader data={entityDetail.data} />
-            <EntityInfo
-              data={entityDetail.data}
-              onEditPress={() => {
-                props.navigation.navigate(EDIT_BUSINESS_INFO);
-              }}
-            />
+            <EntityInfo data={entityDetail.data} />
             {entityDetail.data?.schedule ? (
               <EntityTimings data={entityDetail.data} />
             ) : null}

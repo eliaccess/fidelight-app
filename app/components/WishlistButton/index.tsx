@@ -25,11 +25,11 @@ import style from './style';
 const AnimatedLottieView = Animated.createAnimatedComponent(LottieView);
 
 interface WishlistButtonProps {
-  active: boolean;
+  active?: boolean;
   onPress: (...args: any) => any;
 }
 
-const WishlistButton: React.FC<WishlistButtonProps> = (props) => {
+const WishlistButton: React.FC<WishlistButtonProps> = ({ active, onPress }) => {
   const progress = useSharedValue(0);
 
   const animatedProps = useAnimatedProps(() => ({
@@ -37,20 +37,20 @@ const WishlistButton: React.FC<WishlistButtonProps> = (props) => {
   }));
 
   useEffect(() => {
-    progress.value = withTiming(props.active ? 1 : 0, {
+    progress.value = withTiming(active ? 1 : 0, {
       duration: 1500,
       easing: Easing.linear,
     });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [progress, props.active]);
+  }, [progress, active]);
 
   const animatedStyle = useAnimatedStyle(() => ({
     opacity: interpolate(progress.value, [0, 0.25], [1, 0]),
   }));
 
   return (
-    <TouchFeedback onPress={props.onPress} style={style.button}>
+    <TouchFeedback onPress={onPress} style={style.button}>
       <View style={style.button}>
         <AnimatedLottieView
           style={style.buttonIcon}

@@ -50,6 +50,14 @@ const style = StyleSheet.create({
     fontSize: 26,
     color: Colors.white,
   },
+  headerRight: {
+    position: 'absolute',
+    right: Dimensions.space1x,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    zIndex: 100000,
+  },
   title: {
     fontSize: 16,
     fontWeight: 'bold',

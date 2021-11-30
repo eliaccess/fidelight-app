@@ -90,7 +90,7 @@ function SignUpScreen(props: SignUpScreenProps) {
 
   return (
     <>
-      <Screen testID="SignUpScreen">
+      <Screen testID="SignUpScreen" headerVisibilityThreshold={20}>
         <View style={style.container}>
           <ScreenHeading heading={heading} />
           <View style={style.formContainer}>

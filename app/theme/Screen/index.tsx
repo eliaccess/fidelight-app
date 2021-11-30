@@ -23,6 +23,7 @@ interface ScreenProps {
   dark?: boolean;
   [x: string]: any;
   scrollEnabled?: boolean;
+  headerRight?: React.ReactNode;
 }
 
 const Screen: React.FC<ScreenProps> = ({
@@ -77,6 +78,7 @@ const Screen: React.FC<ScreenProps> = ({
         blockBackPress={props.blockBackPress}
         dark={dark}
         isAnimated={headerVisibilityThreshold > 0}
+        headerRight={props.headerRight}
       />
       <View style={style.contentWrapper}>
         <ContentWrapper
