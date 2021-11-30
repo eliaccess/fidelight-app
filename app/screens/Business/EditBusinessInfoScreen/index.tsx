@@ -19,6 +19,7 @@ import messages from './messages';
 import GeneralInfoForm from './GeneralInfoForm';
 import EarningPolicyForm from './EarningPolicyForm';
 import BusinessImages from './BusinessImages';
+import ScheduleForm from './ScheduleForm';
 
 function EditBusinessInfoScreen(_props: EditBusinessInfoScreenProps) {
   const businessProfile = useBusinessProfile();
@@ -56,9 +57,23 @@ function EditBusinessInfoScreen(_props: EditBusinessInfoScreenProps) {
               />
 
               <EarningPolicyForm
-                onSubmit={() => null}
                 data={earningPolicyTypes.data || []}
                 entityId={businessProfile.data.id}
+              />
+            </View>
+            <View style={style.sectionContainer}>
+              <FormattedMessage
+                {...messages.availabilityLabel}
+                style={style.sectionHeading}
+              />
+              <ScheduleForm
+                onSubmit={(data) => {
+                  businessProfile.addSchedule({
+                    data,
+                  });
+                }}
+                // @ts-ignore
+                initialData={businessProfile.data?.schedule}
               />
             </View>
           </>

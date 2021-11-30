@@ -15,6 +15,6 @@ export default defineMessages({
   },
   submitLabel: {
     id: `${scope}.submitLabel`,
-    defaultMessage: 'Submit',
+    defaultMessage: 'Save Policy',
   },
 });

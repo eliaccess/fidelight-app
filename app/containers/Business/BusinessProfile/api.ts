@@ -11,6 +11,8 @@ import {
   AddBackgroundImagePropsPayload,
   AddLogoAPIResponse,
   AddLogoPropsPayload,
+  AddScheduleAPIResponsePayload,
+  AddSchedulePropsPayload,
   BusinessProfileAPIResponse,
   UpdatePropsPayload,
 } from './types';
@@ -34,6 +36,22 @@ export async function update(
   const resp = await service({
     method: 'PUT',
     url: '/v1/company/profile',
+    body,
+  });
+
+  return resp;
+}
+
+export async function addSchedule(
+  payload: AddSchedulePropsPayload,
+): Promise<AddScheduleAPIResponsePayload | Error> {
+  const body = {
+    schedule: [...payload.data],
+  };
+
+  const resp = await service({
+    method: 'POST',
+    url: '/v1/company/schedule/',
     body,
   });
 

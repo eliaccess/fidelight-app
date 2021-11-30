@@ -15,6 +15,7 @@ import {
   UpdatePropsPayload,
   AddLogoPayload,
   AddBackgroundImagePayload,
+  AddSchedulePropsPayload,
 } from './types';
 import makeSelectBusinessProfile from './selectors';
 import { actions, reducer, name as STORE_KEY } from './slice';
@@ -22,6 +23,7 @@ import saga from './saga';
 
 interface BusinessProfileReturn extends State {
   update: (...args: any[]) => any;
+  addSchedule: (args: AddSchedulePropsPayload) => any;
   reset: () => void;
   addLogo: (args: AddLogoPayload) => void;
   addBackgroundImage: (args: AddBackgroundImagePayload) => void;
@@ -49,6 +51,12 @@ export function useBusinessProfile(
     [],
   );
 
+  const addSchedule = useCallback(
+    (payload: AddSchedulePropsPayload) =>
+      dispatch(actions.addSchedule(payload)),
+    [],
+  );
+
   const addLogo = useCallback((args: AddLogoPayload) => {
     dispatch(
       actions.addLogo({
@@ -71,6 +79,7 @@ export function useBusinessProfile(
     update,
     reset,
     addLogo,
+    addSchedule,
     addBackgroundImage,
   };
 }

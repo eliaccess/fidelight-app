@@ -61,6 +61,7 @@ const UserAccount = ({ navigation }: IUserAccountProps) => {
           },
         ],
       });
+      return;
     }
     RNSplashScreen.hide();
     navigation.reset({

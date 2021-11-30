@@ -36,7 +36,6 @@ const POPULAR_CITIES = [
 function CitySelectionScreen(props: CitySelectionScreenProps) {
   const userLocation = useUserLocation();
   const recentSelectedCities = useRecentSelectedCities();
-
   const onSelect = useCallback((item: any) => {
     userLocation.setCity({
       cityName: item.nom,

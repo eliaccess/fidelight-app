@@ -16,40 +16,48 @@ import FormattedMessage from 'theme/FormattedMessage';
 import Radio from 'theme/Radio';
 import Text from 'theme/Text';
 import Button from 'theme/Button';
+import { useToastContext } from 'theme/Toast';
 
 import style from './style';
 import messages from './messages';
 
 interface EarningPolicyFormProps {
-  onSubmit: (data: EarningPolicyFormState) => void;
   data: EarningPolicyTypeItem[];
   entityId: number;
 }
-
-type EarningPolicyFormState = {
-  rewardPoints: string;
-};
 
 const schema = yup.object().shape({
   rewardPoints: yup.string().required('Required'),
 });
 
-const initialValue = {
-  rewardPoints: '',
-};
-
 const EarningPolicyForm: React.FC<EarningPolicyFormProps> = (props) => {
   const rewardPointsFieldRef = useRef();
   const [activeTypeId, setActiveTypeId] = useState(0);
+  const toast = useToastContext();
   const businessEarningPolicies = useBusinessEarningPolicies({
     entityId: props.entityId,
   });
+  const initialValue = {
+    rewardPoints: businessEarningPolicies?.data?.value?.toString() || '',
+  };
 
   useEffect(() => {
     if (businessEarningPolicies?.data?.type) {
       setActiveTypeId(businessEarningPolicies.data.type);
     }
   }, [businessEarningPolicies.data]);
+
+  useEffect(() => {
+    if (businessEarningPolicies.message) {
+      toast?.show({
+        message: businessEarningPolicies.message,
+        delay: 1000,
+        type: 'success',
+      });
+      businessEarningPolicies.reset();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [businessEarningPolicies?.message]);
 
   return (
     <Animatable.View style={style.container} animation="fadeIn">
@@ -98,7 +106,7 @@ const EarningPolicyForm: React.FC<EarningPolicyFormProps> = (props) => {
                 autoCapitalize="none"
                 onChangeText={handleChange('rewardPoints')}
                 onBlur={handleBlur('rewardPoints')}
-                value={values.rewardPoints}
+                value={values?.rewardPoints}
                 error={touched.rewardPoints ? errors.rewardPoints : null}
                 label={
                   <FormattedMessage

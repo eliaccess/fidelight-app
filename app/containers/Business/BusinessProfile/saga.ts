@@ -13,6 +13,7 @@ import {
   AddBackgroundImageProps,
   AddLogoAPIResponse,
   AddLogoProps,
+  AddScheduleProps,
   BusinessProfileAPIResponse,
   FetchProps,
   UpdateProps,
@@ -41,6 +42,27 @@ export const updateSaga = function* update(action: UpdateProps) {
 
     yield put(
       actions.updateFailure({
+        message: error?.message || error?.error?.msg || error?.error,
+      }),
+    );
+  }
+};
+
+export const addScheduleSaga = function* addSchedule(action: AddScheduleProps) {
+  try {
+    const resp = yield call(api.addSchedule, action.payload);
+    yield put(
+      actions.addScheduleSuccess({
+        message: resp?.msg || resp,
+        data: action.payload.data,
+      }),
+    );
+    yield put(actions.fetch());
+  } catch (error: any) {
+    Warn(error);
+
+    yield put(
+      actions.addScheduleFailure({
         message: error?.message || error?.error?.msg || error?.error,
       }),
     );
@@ -80,6 +102,7 @@ export const addBackgroundImageSaga = function* addBackgroundImage(
 export default function* BusinessProfileSaga() {
   yield takeEvery(actions.fetch.type, fetchSaga);
   yield takeEvery(actions.update.type, updateSaga);
+  yield takeEvery(actions.addSchedule.type, addScheduleSaga);
   yield takeEvery(actions.addLogo.type, addLogoSaga);
   yield takeEvery(actions.addBackgroundImage.type, addBackgroundImageSaga);
 }

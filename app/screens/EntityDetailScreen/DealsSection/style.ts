@@ -33,7 +33,9 @@ const style = StyleSheet.create({
       android: { height: 150 },
     }),
   },
-  itemContent: {},
+  itemContent: {
+    width: '80%',
+  },
   title: {
     fontSize: 22,
     color: Colors.textBlack,

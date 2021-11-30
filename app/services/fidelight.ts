@@ -32,6 +32,7 @@ export function removeAuthenticationTokens() {
   LocalStorage.removeItem(configs.AUTH_REFRESH_TOKEN_KEY);
   LocalStorage.removeItem(configs.AUTH_QR_CODE_KEY);
   LocalStorage.removeItem(configs.USER_DETAIL_KEY);
+  LocalStorage.removeItem(configs.USER_LOCATION);
   removeAuthenticationHeader();
 }
 

@@ -10,10 +10,8 @@ import { View } from 'react-native';
 import Icon from 'theme/Icon';
 import Text from 'theme/Text';
 import TouchFeedback from 'theme/TouchFeedback';
-import FormattedMessage from 'theme/FormattedMessage';
 
 import style from './style';
-import messages from '../messages';
 
 type EntityTimingsProps = {
   data: IBusinessUser;
@@ -23,7 +21,7 @@ function EntityTimings(props: EntityTimingsProps) {
   const [showWeeklyTimings, setShowWeeklyTimings] = useState(false);
   return (
     <View style={style.timingsContainer}>
-      {props.data.schedule.map((item, index) => {
+      {props.data?.schedule?.map((item, index) => {
         const activeDay = new Date().getDay() === item.day;
         if (index > 0 && !showWeeklyTimings) {
           return null;
@@ -73,12 +71,7 @@ function EntityTimings(props: EntityTimingsProps) {
                     {item.closePm?.slice(0, 5)}:PM
                   </Text>
                 </View>
-              ) : (
-                <FormattedMessage
-                  {...messages.closedLabel}
-                  style={style.closedLabel}
-                />
-              )}
+              ) : null}
             </View>
           </View>
         );

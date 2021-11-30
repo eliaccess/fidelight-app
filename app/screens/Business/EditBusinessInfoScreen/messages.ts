@@ -34,6 +34,10 @@ export default defineMessages({
   },
   earningPolicyHeading: {
     id: `${scope}.earningPolicyHeading`,
-    defaultMessage: 'Earning Plociy',
+    defaultMessage: 'Earning Policy',
+  },
+  availabilityLabel: {
+    id: `${scope}.availabilityLabel`,
+    defaultMessage: 'Availability',
   },
 });

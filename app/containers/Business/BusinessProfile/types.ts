@@ -103,3 +103,26 @@ export interface AddBackgroundImageAPIResponse {
 export interface FailureAPIResponse {
   message: string;
 }
+
+export interface AddScheduleProps {
+  type: string;
+  payload: AddSchedulePropsPayload;
+}
+
+export interface AddSchedulePropsPayload {
+  data: {
+    day: number;
+    openAm: string;
+    closeAm: string;
+    openPm: string;
+    closePm: string;
+  }[];
+}
+
+export interface AddScheduleResponsePayload extends AddSchedulePropsPayload {
+  message: string;
+}
+
+export interface AddScheduleAPIResponsePayload {
+  message: string;
+}

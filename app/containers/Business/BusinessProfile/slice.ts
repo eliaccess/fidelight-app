@@ -4,6 +4,8 @@ import {
   AddBackgroundImagePropsPayload,
   AddLogoAPIResponse,
   AddLogoPropsPayload,
+  AddSchedulePropsPayload,
+  AddScheduleResponsePayload,
   FailureAPIResponse,
   ResponsePayload,
   State,
@@ -55,6 +57,34 @@ const slice = createSlice({
       };
     },
     updateFailure(
+      state: State,
+      action: PayloadAction<FailureAPIResponse>,
+    ): void {
+      state.updating = false;
+      state.error = true;
+      state.message = action.payload.message;
+    },
+    addSchedule(
+      state: State,
+      _action: PayloadAction<AddSchedulePropsPayload>,
+    ): void {
+      state.updating = true;
+      state.error = false;
+    },
+    addScheduleSuccess(
+      state: State,
+      action: PayloadAction<AddScheduleResponsePayload>,
+    ): void {
+      state.updating = false;
+      state.error = false;
+      state.success = true;
+      state.message = action.payload.message;
+      state.data = {
+        ...state.data,
+        ...action.payload.data,
+      };
+    },
+    addScheduleFailure(
       state: State,
       action: PayloadAction<FailureAPIResponse>,
     ): void {
