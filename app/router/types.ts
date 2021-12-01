@@ -36,4 +36,5 @@ export type RootStackParamList = {
   BusinessProfile: {};
   BusinessQRCode: {};
   EntitySearch: {};
+  BusinessDealListing: {};
 };

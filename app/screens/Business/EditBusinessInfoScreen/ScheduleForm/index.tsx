@@ -91,7 +91,6 @@ const ScheduleForm: React.FC<ScheduleFormProps> = (props) => {
                       const updateDayTimes = days[key].filter(
                         (time) => item.id !== time.id,
                       );
-                      console.log('updateDayTimes', days[key]);
                       days[key] = updateDayTimes;
                       setDays({
                         ...days,

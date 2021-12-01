@@ -22,6 +22,7 @@ import EntityHeader from './Header';
 import style from './style';
 
 import { BusinessProfileScreenProps } from './types';
+import BusinessProfileScreenLoader from './Loader';
 
 function BusinessProfileScreen(props: BusinessProfileScreenProps) {
   const entityDetail = useBusinessProfile();
@@ -44,7 +45,7 @@ function BusinessProfileScreen(props: BusinessProfileScreenProps) {
       }
     >
       <View style={style.container}>
-        {entityDetail?.data ? (
+        {entityDetail?.data?.id ? (
           <>
             <EntityHeader data={entityDetail.data} />
             <EntityInfo data={entityDetail.data} />
@@ -59,7 +60,9 @@ function BusinessProfileScreen(props: BusinessProfileScreenProps) {
               />
             </View>
           </>
-        ) : null}
+        ) : (
+          <BusinessProfileScreenLoader />
+        )}
       </View>
     </Screen>
   );

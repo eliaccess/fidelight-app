@@ -16,6 +16,7 @@ const PROPERTIES_BLACKLIST = [
   'registrationDate',
   'streetName',
   'streetNumber',
+  'schedule',
 ];
 
 const onUserUpdate = (params) => {

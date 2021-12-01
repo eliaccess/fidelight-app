@@ -24,6 +24,7 @@ import BusinessTransactionsScreen from 'screens/Business/BusinessTransactionsScr
 import EditBusinessInfoScreen from 'screens/Business/EditBusinessInfoScreen/Loadable';
 import BusinessProfileScreen from 'screens/Business/BusinessProfileScreen/Loadable';
 import BusinessQRCodeScreen from 'screens/Business/BusinessQRCodeScreen/Loadable';
+import BusinessDealListingScreen from 'screens/Business/BusinessDealListingScreen/Loadable';
 import QRCodeScreen from 'screens/QRCodeScreen/Loadable';
 import routeConfigs from './routeConfigs';
 import * as routeNames from './routeNames';
@@ -136,6 +137,10 @@ const routes = {
   [routeNames.ENTITY_SEARCH]: {
     ...routeConfigs[routeNames.ENTITY_SEARCH],
     screen: EntitySearchScreen,
+  },
+  [routeNames.BUSINESS_DEAL_LISTING]: {
+    ...routeConfigs[routeNames.BUSINESS_DEAL_LISTING],
+    screen: BusinessDealListingScreen,
   },
 
   // [routeNames.FORGET_PASSWORD]: {

@@ -1,16 +1,16 @@
 /**
  *
- * BusinessProfileScreen
+ * BusinessProfileScreenLoader
  *
  */
 import React from 'react';
 import { View } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { useLoaderAnimation } from 'hooks/useLoaderAnimation';
-
+import Section from 'theme/Section';
 import style from './style';
 
-const BusinessProfileScreen: React.FC<{}> = () => {
+const BusinessProfileScreenLoader: React.FC<{}> = () => {
   const animatedStyle = useLoaderAnimation();
 
   return (
@@ -23,6 +23,11 @@ const BusinessProfileScreen: React.FC<{}> = () => {
         <Animated.View style={[style.labelLoader, animatedStyle]} />
         <Animated.View style={[style.labelLoader, animatedStyle]} />
         <Animated.View style={[style.labelLoader, animatedStyle]} />
+      </View>
+      <View style={style.loaderContentWrapper}>
+        <Section heading="loader" isLoading>
+          <Animated.View style={[style.dealSectionLoader, animatedStyle]} />
+        </Section>
       </View>
       {/* {Array.from(Array(numberOfItems), (_a, i) => (
         <Animated.View key={i} style={[style.item, animatedStyle]}>
@@ -37,4 +42,4 @@ const BusinessProfileScreen: React.FC<{}> = () => {
   );
 };
 
-export default BusinessProfileScreen;
+export default BusinessProfileScreenLoader;

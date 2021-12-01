@@ -15,7 +15,7 @@ import Animated, {
 import { useEntityOffersRewards } from 'containers/EntityOffersRewards';
 import useStateHandler from 'hooks/useStateHandler';
 
-import { DEAL_DETAIL, DEAL_LISTING } from 'router/routeNames';
+import { BUSINESS_DEAL_LISTING, DEAL_DETAIL } from 'router/routeNames';
 import FormattedMessage from 'theme/FormattedMessage';
 import Image from 'theme/Image';
 import Section from 'theme/Section';
@@ -67,7 +67,7 @@ function DealsSection(props: DealsSectionProps) {
       headerRight={
         deals ? (
           <TouchFeedback
-            onPress={() => props.navigation.navigate(DEAL_LISTING)}
+            onPress={() => props.navigation.navigate(BUSINESS_DEAL_LISTING)}
           >
             <FormattedMessage
               {...messages.seeAllLabel}

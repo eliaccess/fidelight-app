@@ -70,6 +70,12 @@ const style = StyleSheet.create({
     height: 8,
     width: '80%',
   },
+  dealSectionLoader: {
+    width: Dimensions.screenWidth - Dimensions.screenWidth / 11,
+    height: 120,
+    backgroundColor: Colors.skeleton,
+    borderRadius: Dimensions.borderRadius3x,
+  },
 });
 
 export default style;

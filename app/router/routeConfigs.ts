@@ -87,6 +87,9 @@ const routeConfigs = {
   [routeNames.BUSINESS_QR_CODE]: {
     path: '/business-qr-code',
   },
+  [routeNames.BUSINESS_DEAL_LISTING]: {
+    path: '/business-deal-listing',
+  },
 };
 
 export default routeConfigs;
