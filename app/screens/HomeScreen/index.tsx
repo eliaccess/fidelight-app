@@ -1,6 +1,6 @@
 /* eslint-disable no-fallthrough */
-import React, { useEffect, useRef, useState } from 'react';
-import { View } from 'react-native';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { BackHandler, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Animated, {
   Easing,
@@ -8,15 +8,18 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 
+import configs from 'configs';
+
 import { useAuthentication } from 'containers/Authentication';
 
 import TouchFeedback from 'theme/TouchFeedback';
 import Text from 'theme/Text';
-import FormattedMessage from 'theme/FormattedMessage';
+import FormattedMessage, { useFormattedMessage } from 'theme/FormattedMessage';
 import Modal from 'theme/Modal';
 import Icon from 'theme/Icon';
 import { ACCOUNT_SELECTION, PREFERENCE, SUPPORT } from 'router/routeNames';
 import { buttonGradientProps } from 'theme/utils';
+import { useToastContext } from 'theme/Toast';
 
 import style from './style';
 import HomeTabView from './TabView';
@@ -34,6 +37,11 @@ function HomeScreen(props: HomeScreenProps) {
   const drawerMenuAnimation = UseDrawerMenuAnimation(animation);
   const [showTerms, setShowTerms] = useState(false);
   const [showContactInfo, setShowContactInfo] = useState(false);
+  const timer = useRef();
+  const toast = useToastContext();
+
+  const testMessages = useFormattedMessage(messages.toastMessage);
+
   useEffect(() => {
     animation.value = withTiming(isVisible ? 1 : 0, {
       duration: 400,
@@ -42,6 +50,35 @@ function HomeScreen(props: HomeScreenProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isVisible]);
 
+  const handleBackPress = useCallback(() => {
+    if (timer.current) {
+      // @ts-ignore
+      clearTimeout(timer.current);
+      BackHandler.exitApp();
+      return true;
+    }
+
+    toast.show({
+      message: testMessages,
+      delay: 1000,
+    });
+    // @ts-ignore
+    timer.current = setTimeout(() => {
+      // @ts-ignore
+      timer.current = null;
+    }, configs.BACK_INTERVAL);
+    return true;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      handleBackPress,
+    );
+    return () => backHandler.remove();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <View style={style.container}>
       <Animated.View style={[style.drawer, drawerMenuAnimation]}>

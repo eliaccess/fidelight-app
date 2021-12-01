@@ -7,7 +7,7 @@ const style = StyleSheet.create({
   container: {
     paddingHorizontal: Dimensions.space2x,
     paddingTop: Dimensions.space1x,
-    marginTop: Dimensions.space2x,
+    marginTop: Dimensions.space4x,
   },
   heading: {
     color: Colors.textBlack,

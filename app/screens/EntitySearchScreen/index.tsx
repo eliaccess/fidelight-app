@@ -5,20 +5,18 @@
  */
 
 import React, { useState } from 'react';
-import { View, FlatList } from 'react-native';
+import { View, FlatList, TextInput } from 'react-native';
 import PropTypes from 'prop-types';
 import * as Animatable from 'react-native-animatable';
 
 import { useEntitySearch } from 'containers/EntitySearch';
 import { useRecentViewedEntities } from 'containers/RecentViewedEntities';
 
-import IconButton from 'theme/Button/IconButton';
-import Input from 'theme/Input';
+import Icon from 'theme/Icon';
 import TouchFeedback from 'theme/TouchFeedback';
 import Loader from 'theme/Loader';
 import Text from 'theme/Text';
 
-import Image from 'theme/Image';
 import Screen from 'theme/Screen';
 import NoResult from 'theme/NoResult';
 import FormattedMessage, { useFormattedMessage } from 'theme/FormattedMessage';
@@ -59,7 +57,6 @@ function EntitySearchScreen(props: EntitySearchScreenProps) {
           resetSearch();
         }}
       >
-        <Image uri={item.logo} title="thumb" style={style.listItemImage} />
         <Text style={style.listItemLabel}>{item.name}</Text>
       </TouchFeedback>
     </Animatable.View>
@@ -73,34 +70,16 @@ function EntitySearchScreen(props: EntitySearchScreenProps) {
       headerTitle={<FormattedMessage {...messages.header} isFragment />}
     >
       <View style={style.container}>
-        <View style={style.searchHolder}>
-          <View style={[style.inputHolder]}>
-            <Input
-              key="input"
-              onChangeText={(queryText) => {
-                try {
-                  setQuery(queryText);
-                } catch (e) {
-                  setQuery('');
-                }
-              }}
-              value={query}
-              clearButtonMode="never"
-              placeholder={!query ? searchPlaceholder : ''}
-              autoCorrect={false}
-            />
-
-            {query ? (
-              <View style={style.cancelButton}>
-                <IconButton
-                  icon={{
-                    name: 'x',
-                  }}
-                  onPress={() => resetSearch()}
-                />
-              </View>
-            ) : null}
-          </View>
+        <View style={style.inputHolder} key="input">
+          <Icon name="search" style={style.searchIcon} />
+          <TextInput
+            style={style.input}
+            onChangeText={setQuery}
+            value={query}
+            placeholder={searchPlaceholder}
+            keyboardType="default"
+            clearButtonMode="while-editing"
+          />
         </View>
 
         {query ? (

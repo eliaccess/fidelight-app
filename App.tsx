@@ -6,10 +6,11 @@
 
 import React from 'react';
 import { Provider } from 'react-redux';
-// import { Log } from './app/platform/Logger';
+
 import { initPerformance } from './app/platform/performance';
 import { initCrashlytics } from './app/platform/crashlytics';
 import { initAnalytics } from './app/platform/analytics';
+// import { Log } from './app/platform/Logger';
 // import { getFCMToken, initNotifications } from './app/platform/Notifications';
 
 import LanguageProvider from './app/containers/LanguageProvider';

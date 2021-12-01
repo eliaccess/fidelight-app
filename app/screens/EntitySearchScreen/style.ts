@@ -13,12 +13,7 @@ import elevation from 'theme/elevation';
 const style = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  contentContainer: {
-    ...Platform.select({
-      android: {},
-      ios: { marginTop: -40 },
-    }),
+    paddingHorizontal: Dimensions.horizontalSpace,
   },
   background: {
     position: 'absolute',
@@ -34,24 +29,28 @@ const style = StyleSheet.create({
     zIndex: 100,
   },
   inputHolder: {
-    backgroundColor: Colors.transparent,
-    width: Dimensions.screenWidth,
+    marginTop: Dimensions.space2x,
+    marginHorizontal: Dimensions.space1x,
     flexDirection: 'row',
-    position: 'relative',
-    zIndex: 100,
-  },
-  cancelButton: {
-    position: 'absolute',
+    borderRadius: Dimensions.borderRadius10x,
+    width: '95%',
+    alignItems: 'center',
     ...Platform.select({
-      android: {
-        top: '25%',
-        right: Dimensions.space2x + 3,
-      },
       ios: {
-        top: '25%',
-        right: Dimensions.space2x,
+        paddingVertical: Dimensions.space2x,
       },
     }),
+    paddingHorizontal: Dimensions.space3x,
+    backgroundColor: Colors.white,
+    ...elevation(1),
+  },
+  input: {
+    width: '90%',
+  },
+  searchIcon: {
+    fontSize: 22,
+    color: Colors.textGrey,
+    marginRight: Dimensions.space2x,
   },
   list: {
     borderRadius: Dimensions.radius3x,
@@ -65,28 +64,16 @@ const style = StyleSheet.create({
   },
   listItem: {
     flexDirection: 'row',
-    padding: Dimensions.space2x,
+    padding: Dimensions.space2x + 3,
     marginHorizontal: Dimensions.space2x,
     backgroundColor: Colors.white,
-    borderRadius: Dimensions.radius4x,
+    borderRadius: Dimensions.borderRadius2x,
     alignItems: 'center',
     ...elevation(2),
   },
-  listItemIcon: {
-    fontSize: 18,
-    marginRight: 8,
-    color: Colors.black,
-    marginTop: 2,
-  },
-  listItemImage: {
-    width: 24,
-    height: 24,
-    borderRadius: 3,
-    marginRight: 8,
-  },
   listItemLabel: {
-    fontSize: 18,
-    marginRight: 8,
+    fontSize: 14,
+    marginLeft: Dimensions.space1x,
     color: Colors.black,
   },
 });

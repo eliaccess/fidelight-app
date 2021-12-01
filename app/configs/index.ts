@@ -24,6 +24,7 @@ const configs = {
   DOWNLOAD_URL: '',
   SEARCH_LIMIT: 5,
   USER_LOCATION: 'fideLight/user/location',
+  BACK_INTERVAL: 3000,
 };
 
 export default configs;

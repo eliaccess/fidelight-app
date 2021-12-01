@@ -29,4 +29,8 @@ export default defineMessages({
     id: `${scope}.logoutSuccessMessage`,
     defaultMessage: 'Logged out successfully',
   },
+  toastMessage: {
+    id: `${scope}.toastMessage`,
+    defaultMessage: 'Press again to exit app',
+  },
 });
