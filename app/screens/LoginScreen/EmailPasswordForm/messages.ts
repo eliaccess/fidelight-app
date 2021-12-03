@@ -1,12 +1,12 @@
 /*
- * HomeHeader Messages
+ * LoginScreen.EmailPasswordForm Messages
  *
- * This contains all the text for the HomeHeader component.
+ * This contains all the text for the LoginScreen.EmailPasswordForm.
  */
 
 import { defineMessages } from 'react-intl';
 
-export const scope = 'app.components.HomeHeader';
+export const scope = 'app.screens.LoginScreen.EmailPasswordForm';
 
 export default defineMessages({
   emailLabel: {

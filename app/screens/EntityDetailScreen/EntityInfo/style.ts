@@ -21,7 +21,6 @@ const style = StyleSheet.create({
     justifyContent: 'space-between',
     marginTop: Dimensions.space2x,
   },
-
   nameDescriptionWrapper: {
     width: '85%',
   },
@@ -36,46 +35,12 @@ const style = StyleSheet.create({
     marginRight: Dimensions.space2x,
     marginTop: Dimensions.space2x,
   },
-  tagsWrapper: {
-    flexDirection: 'row',
-    marginTop: Dimensions.space3x - 3,
-    alignItems: 'center',
-  },
-  rating: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  ratingIcon: {
-    fontSize: 16,
-    color: Colors.textGrey,
-    marginRight: Dimensions.space1x,
-  },
-  ratingValue: {
-    fontSize: 16,
-    color: Colors.textGrey,
-  },
-  tagSeparator: {
-    fontSize: 44,
-    color: Colors.textGrey,
-    opacity: 0.7,
-    lineHeight: 22,
-    marginHorizontal: Dimensions.space1x,
-  },
-  distance: {
-    fontSize: 16,
-    color: Colors.textGrey,
-  },
-  reviews: {
-    fontSize: 16,
-    color: Colors.accent,
-  },
   separationLine: {
     width: Dimensions.screenWidth - 30,
     backgroundColor: Colors.textGrey,
     height: 0.5,
     marginVertical: Dimensions.space2x,
   },
-  contactInfoContainer: {},
   contactInfoItem: {
     flexDirection: 'row',
     alignItems: 'center',

@@ -27,7 +27,7 @@ export type RootStackParamList = {
   BusinessTransactions?: {};
   EditBusinessInfo?: {};
   DealDetail: {
-    dealId: string;
+    dealId: number;
   };
   QRCode: {
     rewardId?: number;

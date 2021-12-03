@@ -1,18 +1,14 @@
 /*
- * SignUpScreen.Form Messages
+ * ChangePasswordScreen.Form Messages
  *
- * This contains all the text for the SignUpScreen.Form component.
+ * This contains all the text for the ChangePasswordScreen.Form component.
  */
 
 import { defineMessages } from 'react-intl';
 
-export const scope = 'app.components.SignUpScreen.Form';
+export const scope = 'app.screens.ChangePasswordScreen.Form';
 
 export default defineMessages({
-  usernameLabel: {
-    id: `${scope}.usernameLabel`,
-    defaultMessage: 'User Name',
-  },
   currentPasswordLabel: {
     id: `${scope}.currentPasswordLabel`,
     defaultMessage: 'Current Password',
@@ -25,8 +21,8 @@ export default defineMessages({
     id: `${scope}.confirmPasswordLabel`,
     defaultMessage: 'Confirm Password',
   },
-  submitLabel: {
-    id: `${scope}.submitLabel`,
+  submitButtonLabel: {
+    id: `${scope}.submitButtonLabel`,
     defaultMessage: 'Submit',
   },
 });

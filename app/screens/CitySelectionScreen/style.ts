@@ -1,20 +1,12 @@
 import { StyleSheet } from 'react-native';
 import Dimensions from 'theme/Dimensions';
 import Colors from 'theme/Colors';
-// import elevation from 'theme/elevation';
 
 const style = StyleSheet.create({
   container: {
-    // paddingTop: Dimensions.space6x,
     paddingHorizontal: Dimensions.space1x,
     backgroundColor: Colors.white,
     height: Dimensions.screenHeight,
-  },
-  typeAheadContainer: {
-    zIndex: 100,
-    position: 'relative',
-    marginBottom: Dimensions.space6x,
-    backgroundColor: Colors.primary,
   },
   pitch: {
     fontSize: 28,
@@ -29,6 +21,17 @@ const style = StyleSheet.create({
     color: Colors.textBlack,
     fontSize: 16,
     fontWeight: '700',
+  },
+  popularCitiesLabel: {
+    color: Colors.textBlack,
+    fontSize: 16,
+    fontWeight: '700',
+  },
+  typeAheadContainer: {
+    zIndex: 100,
+    position: 'relative',
+    marginBottom: Dimensions.space6x,
+    backgroundColor: Colors.primary,
   },
   recentSelectedCitiesList: {
     flexDirection: 'row',
@@ -45,11 +48,6 @@ const style = StyleSheet.create({
     paddingHorizontal: Dimensions.space2x,
     backgroundColor: Colors.primary,
     borderRadius: Dimensions.borderRadius2x,
-  },
-  popularCitiesLabel: {
-    color: Colors.textBlack,
-    fontSize: 16,
-    fontWeight: '700',
   },
 });
 

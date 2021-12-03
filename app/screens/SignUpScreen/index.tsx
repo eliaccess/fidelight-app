@@ -7,23 +7,23 @@
 import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 
+import { BUSINESS_HOME, CITY_SELECTION, HOME, LOGIN } from 'router/routeNames';
+
 import { useAuthentication } from 'containers/Authentication';
 import { useUserLocation } from 'containers/UserLocation';
 
-import Screen from 'theme/Screen';
 import FormattedMessage, { useFormattedMessage } from 'theme/FormattedMessage';
-import SocialLogin from 'theme/SocialLogin';
-import ScreenHeading from 'theme/ScreenHeading';
-import Separator from 'theme/Separator';
 import FullScreenLoader from 'theme/FullScreenLoader';
+import ScreenHeading from 'theme/ScreenHeading';
 import { useToastContext } from 'theme/Toast';
+import SocialLogin from 'theme/SocialLogin';
+import Separator from 'theme/Separator';
+import Screen from 'theme/Screen';
 
-import { BUSINESS_HOME, CITY_SELECTION, HOME, LOGIN } from 'router/routeNames';
-
+import { SignUpScreenProps } from './types';
 import EmailPasswordForm from './Form';
 import messages from './messages';
 import style from './style';
-import { SignUpScreenProps } from './types';
 
 function SignUpScreen(props: SignUpScreenProps) {
   const [showLoader, setShowLoader] = useState(false);
@@ -34,14 +34,15 @@ function SignUpScreen(props: SignUpScreenProps) {
   useEffect(() => {
     authentication.reset();
     return authentication.reset;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     const { user } = authentication;
+
     if (!user.data?.name) {
       return;
     }
+
     toast?.show({
       message: authentication.message,
       delay: 500,
@@ -63,6 +64,7 @@ function SignUpScreen(props: SignUpScreenProps) {
       });
       return;
     }
+
     props.navigation.reset({
       index: 0,
       routes: [
@@ -71,7 +73,6 @@ function SignUpScreen(props: SignUpScreenProps) {
         },
       ],
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [authentication]);
 
   useEffect(() => {
@@ -83,7 +84,6 @@ function SignUpScreen(props: SignUpScreenProps) {
       });
       setShowLoader(false);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [authentication.error]);
 
   const heading = useFormattedMessage(messages.headingLabel);
@@ -93,6 +93,7 @@ function SignUpScreen(props: SignUpScreenProps) {
       <Screen testID="SignUpScreen" headerVisibilityThreshold={20}>
         <View style={style.container}>
           <ScreenHeading heading={heading} />
+
           <View style={style.formContainer}>
             <EmailPasswordForm
               onSubmit={(data) => {
@@ -110,6 +111,7 @@ function SignUpScreen(props: SignUpScreenProps) {
               }}
             />
           </View>
+
           <View style={style.buttonContainer}>
             <Separator />
             <SocialLogin
@@ -130,6 +132,7 @@ function SignUpScreen(props: SignUpScreenProps) {
             />
           </View>
         </View>
+
         <View style={style.signInContainer}>
           <FormattedMessage
             {...messages.signInPitch}
@@ -152,4 +155,4 @@ function SignUpScreen(props: SignUpScreenProps) {
   );
 }
 
-export default SignUpScreen;
+export default React.memo(SignUpScreen);

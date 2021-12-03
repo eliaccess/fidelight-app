@@ -19,18 +19,13 @@ const style = StyleSheet.create({
     paddingHorizontal: Dimensions.space3x,
     backgroundColor: Colors.itemBackgroundColor,
   },
-  input: {
-    width: '90%',
-  },
   searchIcon: {
     fontSize: 22,
     color: Colors.textGrey,
     marginRight: Dimensions.space2x,
   },
-  cancelButtonContainer: {
-    position: 'absolute',
-    right: Dimensions.space1x,
-    top: Dimensions.space2x / 1.3,
+  input: {
+    width: '90%',
   },
   listHolder: {
     backgroundColor: Colors.white,
@@ -44,11 +39,6 @@ const style = StyleSheet.create({
     padding: Dimensions.space2x,
     marginHorizontal: Dimensions.horizontalSpace,
     zIndex: 100,
-  },
-  listItemIcon: {
-    fontSize: 18,
-    color: Colors.textBlack,
-    marginRight: Dimensions.space1x,
   },
   listItemText: {
     fontSize: 16,

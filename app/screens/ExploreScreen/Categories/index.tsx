@@ -18,8 +18,7 @@ import { buttonGradientProps } from 'theme/utils';
 import TouchFeedback from 'theme/TouchFeedback';
 
 import messages from './messages';
-
-import { useGetStyles } from './style';
+import style from './style';
 
 type CategoriesWidgetProps = {
   onPress: (...args: any) => void;
@@ -32,49 +31,43 @@ type CategoriesWidgetProps = {
   }[];
 };
 
-function CategoriesWidget(props: CategoriesWidgetProps) {
-  const style = useGetStyles();
-
-  return (
-    <Animatable.View animation="fadeIn" duration={1500}>
-      <Section
-        heading={
-          <FormattedMessage {...messages.categoriesHeading} isFragment />
-        }
-      >
-        <HorizontalSlidingList>
-          {props.data.map((item) => {
-            const active = item.id === props.activeCategoryId;
-            return (
-              <TouchFeedback
-                key={item.id}
-                onPress={() => {
-                  props.onPress(item.id);
-                }}
-                style={style.item}
+const CategoriesWidget: React.FC<CategoriesWidgetProps> = (props) => (
+  <Animatable.View animation="fadeIn" duration={1500}>
+    <Section
+      heading={<FormattedMessage {...messages.categoriesHeading} isFragment />}
+    >
+      <HorizontalSlidingList>
+        {props.data.map((item) => {
+          const active = item.id === props.activeCategoryId;
+          return (
+            <TouchFeedback
+              key={item.id}
+              onPress={() => {
+                props.onPress(item.id);
+              }}
+              style={style.item}
+            >
+              {active ? (
+                <LinearGradient
+                  {...buttonGradientProps()}
+                  style={style.backdrop}
+                />
+              ) : null}
+              <View style={style.itemIconHolder}>
+                <Image uri={item.logoUrl} style={style.itemImage} />
+              </View>
+              <Text
+                style={[style.itemTitle, active ? style.activeItem : null]}
+                numberOfLines={1}
               >
-                {active ? (
-                  <LinearGradient
-                    {...buttonGradientProps()}
-                    style={style.backdrop}
-                  />
-                ) : null}
-                <View style={style.itemIconHolder}>
-                  <Image uri={item.logoUrl} style={style.itemImage} />
-                </View>
-                <Text
-                  style={[style.itemTitle, active ? style.activeItem : null]}
-                  numberOfLines={1}
-                >
-                  {item.name}
-                </Text>
-              </TouchFeedback>
-            );
-          })}
-        </HorizontalSlidingList>
-      </Section>
-    </Animatable.View>
-  );
-}
+                {item.name}
+              </Text>
+            </TouchFeedback>
+          );
+        })}
+      </HorizontalSlidingList>
+    </Section>
+  </Animatable.View>
+);
 
 export default React.memo(CategoriesWidget);

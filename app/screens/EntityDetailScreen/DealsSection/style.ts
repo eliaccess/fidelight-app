@@ -11,6 +11,7 @@ import Dimensions from 'theme/Dimensions';
 
 export const DOT_SIZE = 30;
 export const ITEM_WIDTH = Dimensions.screenWidth - Dimensions.screenWidth / 11;
+
 const style = StyleSheet.create({
   seeAllLabel: {
     fontSize: 12,

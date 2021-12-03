@@ -14,7 +14,6 @@ const style = StyleSheet.create({
     fontSize: 16,
     fontWeight: '700',
   },
-  scrollView: {},
   scrollViewContent: {
     paddingTop: Dimensions.space2x,
     paddingBottom: Dimensions.space1x,

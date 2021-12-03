@@ -7,24 +7,24 @@
 import React from 'react';
 import { View } from 'react-native';
 
+import useStateHandler from 'hooks/useStateHandler';
+import { DEAL_DETAIL } from 'router/routeNames';
+
 import { useHotDeals } from 'containers/HotDeals';
 import { useUserLocation } from 'containers/UserLocation';
-import useStateHandler from 'hooks/useStateHandler';
 
 import Screen from 'theme/Screen';
 import FormattedMessage from 'theme/FormattedMessage';
 import TouchFeedback from 'theme/TouchFeedback';
 import Image from 'theme/Image';
 import Text from 'theme/Text';
-import { DEAL_DETAIL } from 'router/routeNames';
 
+import { DealListingScreenProps } from './types';
+import DealListingLoader from './Loader';
 import style from './style';
 import messages from './messages';
-import { DealListingScreenProps } from './types';
 
-import DealListingLoader from './Loader';
-
-function DealListingScreen(props: DealListingScreenProps) {
+const DealListingScreen: React.FC<DealListingScreenProps> = (props) => {
   const userLocation = useUserLocation();
 
   const hotDeals = useHotDeals({
@@ -49,7 +49,7 @@ function DealListingScreen(props: DealListingScreenProps) {
               key={item.id}
               onPress={() => {
                 props.navigation.navigate(DEAL_DETAIL, {
-                  dealId: item.id.toString(),
+                  dealId: item.id,
                 });
               }}
               style={style.item}
@@ -69,6 +69,6 @@ function DealListingScreen(props: DealListingScreenProps) {
       )}
     </Screen>
   );
-}
+};
 
 export default React.memo(DealListingScreen);

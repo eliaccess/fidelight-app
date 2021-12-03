@@ -10,12 +10,11 @@ import { View } from 'react-native';
 import { EntityItemTypes } from 'types/EntityItemTypes';
 
 import WishlistButton from 'components/WishlistButton';
-
 import Image from 'theme/Image';
 import Text from 'theme/Text';
 import TouchFeedback from 'theme/TouchFeedback';
 
-import { useGetStyles } from './style';
+import style from './style';
 
 interface EntityCardProps {
   entity: EntityItemTypes;
@@ -32,8 +31,6 @@ function EntityCard({
   isFavorite = false,
   showWishList = false,
 }: EntityCardProps) {
-  const style = useGetStyles();
-
   return (
     <TouchFeedback key={entity.id} onPress={onPress} style={style.item}>
       <View style={style.imageWrapper}>
@@ -45,15 +42,8 @@ function EntityCard({
         <Text style={style.shortDescription} numberOfLines={2}>
           {entity.description}
         </Text>
-        {/* <View style={style.tagsWrapper}>
-              <View style={style.rating}>
-                <Icon name="star" style={style.ratingIcon} />
-                <Text style={style.ratingValue}>{item.rating}</Text>
-              </View>
-              <Text style={style.tagSeparator}>.</Text>
-              <Text style={style.distance}>{item.distance}</Text>
-            </View> */}
       </View>
+
       {showWishList ? (
         <WishlistButton active={isFavorite} onPress={onWishListPress} />
       ) : null}

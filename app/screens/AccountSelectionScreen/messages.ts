@@ -1,12 +1,14 @@
 /*
  * AccountSelectionScreen Messages
  *
- * This contains all the text for the AccountSelectionScreen component.
+ * This contains all the text for the AccountSelection screen.
  *
  */
 
 import { defineMessages } from 'react-intl';
+
 const scope = 'app.screens.AccountSelectionScreen';
+
 export default defineMessages({
   chooseOptionHeading: {
     id: `${scope}.chooseOptionHeading`,

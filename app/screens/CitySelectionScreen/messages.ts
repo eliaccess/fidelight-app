@@ -1,10 +1,12 @@
 /**
  * CitySelectionScreen Messages
  *
- * This contains all the text for the CitySelectionScreen component.
+ * This contains all the text for the CitySelection screen.
  */
 import { defineMessages } from 'react-intl';
+
 const scope = 'app.screens.CitySelectionScreen';
+
 export default defineMessages({
   pitch: {
     id: `${scope}.pitch`,

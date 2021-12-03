@@ -21,8 +21,10 @@ import Animated, {
   withSequence,
   withTiming,
 } from 'react-native-reanimated';
+
 import Icon from 'theme/Icon';
 import Text from 'theme/Text';
+
 import {
   UseBottomAnimation,
   UseOpacityAnimation,

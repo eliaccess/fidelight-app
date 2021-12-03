@@ -12,7 +12,6 @@ import useStateHandler from 'hooks/useStateHandler';
 
 import FormattedMessage from 'theme/FormattedMessage';
 import NoResult from 'theme/NoResult';
-
 import Image from 'theme/Image';
 import Section from 'theme/Section';
 import Text from 'theme/Text';
@@ -21,7 +20,7 @@ import style from './style';
 import messages from '../messages';
 import TransactionsWidgetLoader from './Loader';
 
-function TransactionSection(_props) {
+const TransactionSection: React.FC<{}> = () => {
   const transactions = useTransactions();
 
   const showContent = useStateHandler({
@@ -65,6 +64,6 @@ function TransactionSection(_props) {
       </Section>
     </View>
   );
-}
+};
 
 export default React.memo(TransactionSection);

@@ -4,20 +4,20 @@
  *
  */
 
-import { useUserLocation } from 'containers/UserLocation';
 import React from 'react';
 import { View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
+import { useUserLocation } from 'containers/UserLocation';
+
 import FormattedMessage from 'theme/FormattedMessage';
 import Icon from 'theme/Icon';
-
 import Text from 'theme/Text';
 import TouchFeedback from 'theme/TouchFeedback';
 import { buttonGradientProps } from 'theme/utils';
 
 import messages from './messages';
-import { useGetStyles } from './style';
+import style from './style';
 
 type HomeHeader = {
   title?: string;
@@ -28,7 +28,6 @@ type HomeHeader = {
 };
 
 function HomeHeader(props: HomeHeader) {
-  const style = useGetStyles();
   const userLocation = useUserLocation();
   return (
     <View style={style.container}>

@@ -1,4 +1,3 @@
-/* eslint-disable no-fallthrough */
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { BackHandler, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
@@ -9,36 +8,35 @@ import Animated, {
 } from 'react-native-reanimated';
 
 import configs from 'configs';
+import { ACCOUNT_SELECTION, PREFERENCE, SUPPORT } from 'router/routeNames';
 
 import { useAuthentication } from 'containers/Authentication';
 
-import TouchFeedback from 'theme/TouchFeedback';
-import Text from 'theme/Text';
 import FormattedMessage, { useFormattedMessage } from 'theme/FormattedMessage';
+import { buttonGradientProps } from 'theme/utils';
+import TouchFeedback from 'theme/TouchFeedback';
+import { useToastContext } from 'theme/Toast';
+import Text from 'theme/Text';
 import Modal from 'theme/Modal';
 import Icon from 'theme/Icon';
-import { ACCOUNT_SELECTION, PREFERENCE, SUPPORT } from 'router/routeNames';
-import { buttonGradientProps } from 'theme/utils';
-import { useToastContext } from 'theme/Toast';
 
-import style from './style';
-import HomeTabView from './TabView';
+import { UseDrawerAnimation, UseDrawerMenuAnimation } from './animations';
 import { HomeScreenProps } from './types';
+import HomeTabView from './TabView';
+import messages from './messages';
+import style from './style';
 import Menu from './Menu';
 
-import messages from './messages';
-import { UseDrawerAnimation, UseDrawerMenuAnimation } from './animations';
-
-function HomeScreen(props: HomeScreenProps) {
-  const authentication = useAuthentication();
+const HomeScreen: React.FC<HomeScreenProps> = (props: HomeScreenProps) => {
   const [isVisible, setIsVisible] = useState(false);
+  const [showTerms, setShowTerms] = useState(false);
+  const [showContactInfo, setShowContactInfo] = useState(false);
   const animation = useRef(useSharedValue(0)).current;
   const drawerAnimation = UseDrawerAnimation(animation);
   const drawerMenuAnimation = UseDrawerMenuAnimation(animation);
-  const [showTerms, setShowTerms] = useState(false);
-  const [showContactInfo, setShowContactInfo] = useState(false);
-  const timer = useRef();
+  const timer: any = useRef();
   const toast = useToastContext();
+  const authentication = useAuthentication();
 
   const testMessages = useFormattedMessage(messages.toastMessage);
 
@@ -47,29 +45,7 @@ function HomeScreen(props: HomeScreenProps) {
       duration: 400,
       easing: Easing.inOut(Easing.linear),
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isVisible]);
-
-  const handleBackPress = useCallback(() => {
-    if (timer.current) {
-      // @ts-ignore
-      clearTimeout(timer.current);
-      BackHandler.exitApp();
-      return true;
-    }
-
-    toast.show({
-      message: testMessages,
-      delay: 1000,
-    });
-    // @ts-ignore
-    timer.current = setTimeout(() => {
-      // @ts-ignore
-      timer.current = null;
-    }, configs.BACK_INTERVAL);
-    return true;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   useEffect(() => {
     const backHandler = BackHandler.addEventListener(
@@ -77,8 +53,24 @@ function HomeScreen(props: HomeScreenProps) {
       handleBackPress,
     );
     return () => backHandler.remove();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const handleBackPress = useCallback(() => {
+    if (timer.current) {
+      clearTimeout(timer.current);
+      BackHandler.exitApp();
+      return true;
+    }
+    toast.show({
+      message: testMessages,
+      delay: 1000,
+    });
+    timer.current = setTimeout(() => {
+      timer.current = null;
+    }, configs.BACK_INTERVAL);
+    return true;
+  }, []);
+
   return (
     <View style={style.container}>
       <Animated.View style={[style.drawer, drawerMenuAnimation]}>
@@ -122,11 +114,11 @@ function HomeScreen(props: HomeScreenProps) {
               ],
             });
           }}
-          style={style.authButtonHolder}
+          style={style.logoutButtonHolder}
         >
           <FormattedMessage
-            {...messages.logoutButtonLable}
-            style={style.logoutButtonLable}
+            {...messages.logoutButtonLabel}
+            style={style.logoutButtonLabel}
           />
         </TouchFeedback>
       </Animated.View>
@@ -190,6 +182,6 @@ function HomeScreen(props: HomeScreenProps) {
       </Modal>
     </View>
   );
-}
+};
 
 export default React.memo(HomeScreen);

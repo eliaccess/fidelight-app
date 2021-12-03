@@ -8,30 +8,29 @@ import React from 'react';
 import { View } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 
+import useStateHandler from 'hooks/useStateHandler';
+import { DEAL_DETAIL, DEAL_LISTING } from 'router/routeNames';
+
 import { useHotDeals } from 'containers/HotDeals';
 import { useUserLocation } from 'containers/UserLocation';
-import useStateHandler from 'hooks/useStateHandler';
 
 import FormattedMessage from 'theme/FormattedMessage';
 import Image from 'theme/Image';
 import Section from 'theme/Section';
 import Text from 'theme/Text';
-
 import TouchFeedback from 'theme/TouchFeedback';
 import HorizontalSlidingList from 'theme/HorizontalSlidingList';
 import NoResult from 'theme/NoResult';
-import { DEAL_DETAIL, DEAL_LISTING } from 'router/routeNames';
 
 import messages from './messages';
-import { useGetStyles } from './style';
+import style from './style';
 import HottestDealsLoader from './Loader';
 
 type HottestDealsProps = {
   navigation: any;
 };
 
-function HottestDeals(props: HottestDealsProps) {
-  const style = useGetStyles();
+const HottestDeals: React.FC<HottestDealsProps> = (props) => {
   const userLocation = useUserLocation();
 
   const hotDeals = useHotDeals({
@@ -148,6 +147,6 @@ function HottestDeals(props: HottestDealsProps) {
       </Section>
     </Animatable.View>
   );
-}
+};
 
 export default React.memo(HottestDeals);

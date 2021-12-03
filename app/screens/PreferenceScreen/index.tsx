@@ -17,9 +17,10 @@ import messages from './messages';
 
 import { PreferenceScreenProps } from './types';
 
-function PreferenceScreen(_props: PreferenceScreenProps) {
+const PreferenceScreen: React.FC<PreferenceScreenProps> = () => {
   const [p1, setP1] = useState(false);
   const [p2, setP2] = useState(false);
+
   return (
     <Screen
       testID="PreferenceScreen"
@@ -56,6 +57,6 @@ function PreferenceScreen(_props: PreferenceScreenProps) {
       </View>
     </Screen>
   );
-}
+};
 
 export default React.memo(PreferenceScreen);

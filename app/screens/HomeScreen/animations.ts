@@ -1,5 +1,5 @@
 import { interpolate, useAnimatedStyle } from 'react-native-reanimated';
-// import Dimensions from 'theme/Dimensions';
+
 export function UseDrawerAnimation(animationValue) {
   return useAnimatedStyle(() => {
     const scale = interpolate(animationValue.value, [0, 1], [1, 0.7]);

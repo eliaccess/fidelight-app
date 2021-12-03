@@ -17,7 +17,7 @@ import messages from './messages';
 import style from './style';
 import { ProfileEditScreenProps } from './types';
 
-function ProfileEditScreen(props: ProfileEditScreenProps) {
+const ProfileEditScreen: React.FC<ProfileEditScreenProps> = (props) => {
   const userProfile = useUserProfile();
 
   useEffect(() => {
@@ -25,7 +25,6 @@ function ProfileEditScreen(props: ProfileEditScreenProps) {
       userProfile.reset();
       props.navigation.goBack();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userProfile?.success]);
 
   return (
@@ -50,6 +49,6 @@ function ProfileEditScreen(props: ProfileEditScreenProps) {
       </Screen>
     </>
   );
-}
+};
 
-export default ProfileEditScreen;
+export default React.memo(ProfileEditScreen);

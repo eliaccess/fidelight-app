@@ -9,11 +9,10 @@ import Animated from 'react-native-reanimated';
 
 import { useLoaderAnimation } from 'hooks/useLoaderAnimation';
 
-import { useGetStyles } from './style';
+import style from './style';
 
 const EntityCardLoader: React.FC<{}> = () => {
   const animatedStyle = useLoaderAnimation();
-  const style = useGetStyles();
 
   return (
     <Animated.View style={[style.item, animatedStyle]}>

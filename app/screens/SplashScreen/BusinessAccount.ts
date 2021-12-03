@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useIsFocused } from '@react-navigation/core';
 import RNSplashScreen from 'react-native-splash-screen';
+
 import { useBusinessAuthentication } from 'containers/Business/BusinessAuthentication';
 
 import { Log } from 'platform/Logger';
-
 import { deepLinkingHandler } from 'router/utils';
 import { ACCOUNT_SELECTION, BUSINESS_HOME } from 'router/routeNames';
 
@@ -30,10 +30,7 @@ const BusinessAccount = ({ navigation }: IBusinessAccountProps) => {
       RNSplashScreen.hide();
       navigation.reset({
         index: 0,
-        routes: [
-          // @ts-ignore
-          { name: initialRoute.routeName, params: initialRoute.params },
-        ],
+        routes: [{ name: initialRoute.routeName, params: initialRoute.params }],
       });
       return;
     }
@@ -66,7 +63,6 @@ const BusinessAccount = ({ navigation }: IBusinessAccountProps) => {
       onLoad();
     }
     // Linking.addEventListener('url', (e) => onLoad(e.url));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [businessAuthentication.localChecked]);
 
   return null;

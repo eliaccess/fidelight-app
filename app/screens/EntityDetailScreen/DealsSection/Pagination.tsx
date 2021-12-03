@@ -1,9 +1,10 @@
 import React from 'react';
 import { View } from 'react-native';
 import Animated from 'react-native-reanimated';
-import style from './style';
 
+import style from './style';
 import { UsePaginationAnimation } from './animations';
+
 type PaginationProps = {
   length: number;
   scrollX: any;
@@ -11,6 +12,7 @@ type PaginationProps = {
 
 function Pagination({ scrollX, length }: PaginationProps) {
   const usePagination = UsePaginationAnimation(scrollX);
+
   return (
     <View style={[style.pagination]}>
       <Animated.View style={[style.paginationIndicator, usePagination]} />
@@ -23,4 +25,4 @@ function Pagination({ scrollX, length }: PaginationProps) {
   );
 }
 
-export default Pagination;
+export default React.memo(Pagination);

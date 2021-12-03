@@ -10,10 +10,10 @@ import * as Animatable from 'react-native-animatable';
 import * as yup from 'yup';
 import { Formik } from 'formik';
 
-import Button from 'theme/Button';
-import Input from 'theme/Input';
 import FormattedMessage from 'theme/FormattedMessage';
+import Button from 'theme/Button';
 import Screen from 'theme/Screen';
+import Input from 'theme/Input';
 
 import style from './style';
 import messages from './messages';
@@ -30,7 +30,7 @@ const initialValue = {
 };
 
 const SupportScreen: React.FC<SupportScreenProps> = (_props) => {
-  const requestDetailsFiledRef = useRef();
+  const requestDetailsFiledRef: any = useRef();
 
   return (
     <Screen
@@ -41,7 +41,8 @@ const SupportScreen: React.FC<SupportScreenProps> = (_props) => {
         <Formik
           initialValues={initialValue}
           validationSchema={schema}
-          onSubmit={() => console.log()}
+          // @ts-ignore
+          onSubmit={() => null}
         >
           {({
             handleChange,
@@ -63,9 +64,7 @@ const SupportScreen: React.FC<SupportScreenProps> = (_props) => {
                   onBlur={handleBlur('requestTitle')}
                   value={values.requestTitle}
                   onSubmitEditing={() => {
-                    // @ts-ignore
                     if (requestDetailsFiledRef?.current?.focus) {
-                      // @ts-ignore
                       requestDetailsFiledRef.current?.focus();
                     }
                   }}
@@ -78,6 +77,7 @@ const SupportScreen: React.FC<SupportScreenProps> = (_props) => {
                   }
                 />
               </View>
+
               <View style={style.inputContainer}>
                 <Input
                   ref={requestDetailsFiledRef}

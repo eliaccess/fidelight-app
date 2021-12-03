@@ -1,36 +1,35 @@
 /*
  *
- * Search
+ * EntitySearchScreen
  *
  */
 
 import React, { useState } from 'react';
 import { View, FlatList, TextInput } from 'react-native';
-import PropTypes from 'prop-types';
 import * as Animatable from 'react-native-animatable';
+
+import { useDebouncedEffect } from 'hooks/useDebouncedEffect';
+import { ENTITY_DETAIL } from 'router/routeNames';
 
 import { useEntitySearch } from 'containers/EntitySearch';
 import { useRecentViewedEntities } from 'containers/RecentViewedEntities';
 
-import Icon from 'theme/Icon';
-import TouchFeedback from 'theme/TouchFeedback';
-import Loader from 'theme/Loader';
-import Text from 'theme/Text';
-
-import Screen from 'theme/Screen';
-import NoResult from 'theme/NoResult';
 import FormattedMessage, { useFormattedMessage } from 'theme/FormattedMessage';
-
-import { useDebouncedEffect } from 'hooks/useDebouncedEffect';
-import { ENTITY_DETAIL } from 'router/routeNames';
-import messages from './messages';
-import style from './style';
+import TouchFeedback from 'theme/TouchFeedback';
+import NoResult from 'theme/NoResult';
+import Screen from 'theme/Screen';
+import Loader from 'theme/Loader';
+import Icon from 'theme/Icon';
+import Text from 'theme/Text';
 
 import { EntitySearchScreenProps } from './types';
 import RecentWidget from './RecentWidget';
+import messages from './messages';
+import style from './style';
 
-function EntitySearchScreen(props: EntitySearchScreenProps) {
+const EntitySearchScreen: React.FC<EntitySearchScreenProps> = (props) => {
   const [query, setQuery] = useState('');
+
   const entitySearch = useEntitySearch();
   const recentViewedEntities = useRecentViewedEntities();
 
@@ -104,10 +103,9 @@ function EntitySearchScreen(props: EntitySearchScreenProps) {
             }
           />
         ) : null}
+
         {recentViewedEntities.data?.length !== 0 && (
           <RecentWidget
-            headingKey="recentViewedEntities"
-            // @ts-ignore
             data={recentViewedEntities.data}
             navigate={props.navigation.navigate}
           />
@@ -115,11 +113,6 @@ function EntitySearchScreen(props: EntitySearchScreenProps) {
       </View>
     </Screen>
   );
-}
-
-EntitySearchScreen.propTypes = {
-  navigation: PropTypes.object.isRequired,
-  screenProps: PropTypes.object.isRequired,
 };
 
-export default EntitySearchScreen;
+export default React.memo(EntitySearchScreen);

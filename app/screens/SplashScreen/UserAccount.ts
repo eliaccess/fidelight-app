@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { useIsFocused } from '@react-navigation/core';
 import RNSplashScreen from 'react-native-splash-screen';
+
 import { useAuthentication } from 'containers/Authentication';
 import { useUserLocation } from 'containers/UserLocation';
 
 import { Log } from 'platform/Logger';
-
 import { deepLinkingHandler } from 'router/utils';
 import { ACCOUNT_SELECTION, CITY_SELECTION, HOME } from 'router/routeNames';
 
@@ -31,10 +31,7 @@ const UserAccount = ({ navigation }: IUserAccountProps) => {
       RNSplashScreen.hide();
       navigation.reset({
         index: 0,
-        routes: [
-          // @ts-ignore
-          { name: initialRoute.routeName, params: initialRoute.params },
-        ],
+        routes: [{ name: initialRoute.routeName, params: initialRoute.params }],
       });
       return;
     }
@@ -79,7 +76,6 @@ const UserAccount = ({ navigation }: IUserAccountProps) => {
       onLoad();
     }
     // Linking.addEventListener('url', (e) => onLoad(e.url));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [authentication.localChecked]);
 
   return null;

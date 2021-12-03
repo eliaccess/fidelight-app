@@ -6,7 +6,9 @@
  */
 
 import { defineMessages } from 'react-intl';
+
 const scope = 'app.screens.ExploreScreen.CategoriesWidget';
+
 export default defineMessages({
   categoriesHeading: {
     id: `${scope}.categoriesHeading`,

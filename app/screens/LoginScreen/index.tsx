@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 /*
  *
  * LoginScreen
@@ -8,17 +7,6 @@
 import React, { useState, useEffect } from 'react';
 import { Keyboard, View } from 'react-native';
 
-import { useAuthentication } from 'containers/Authentication';
-import { useUserLocation } from 'containers/UserLocation';
-
-import Screen from 'theme/Screen';
-import FormattedMessage, { useFormattedMessage } from 'theme/FormattedMessage';
-import SocialLogin from 'theme/SocialLogin';
-import ScreenHeading from 'theme/ScreenHeading';
-import Separator from 'theme/Separator';
-import ErrorMessage from 'theme/ErrorMessage';
-import FullScreenLoader from 'theme/FullScreenLoader';
-import { useToastContext } from 'theme/Toast';
 import {
   BUSINESS_HOME,
   CITY_SELECTION,
@@ -27,16 +15,28 @@ import {
   SIGNUP,
 } from 'router/routeNames';
 
+import { useAuthentication } from 'containers/Authentication';
+import { useUserLocation } from 'containers/UserLocation';
+
+import FormattedMessage, { useFormattedMessage } from 'theme/FormattedMessage';
+import Screen from 'theme/Screen';
+import SocialLogin from 'theme/SocialLogin';
+import ScreenHeading from 'theme/ScreenHeading';
+import Separator from 'theme/Separator';
+import ErrorMessage from 'theme/ErrorMessage';
+import FullScreenLoader from 'theme/FullScreenLoader';
+import { useToastContext } from 'theme/Toast';
+
 import EmailPasswordForm from './EmailPasswordForm';
 import messages from './messages';
 import style from './style';
 import { LoginScreenProps } from './types';
 
-function LoginScreen(props: LoginScreenProps) {
+const LoginScreen: React.FC<LoginScreenProps> = (props) => {
   const [showLoader, setShowLoader] = useState(false);
   const [showFooter, setShowFooter] = useState(true);
-  const toast = useToastContext();
 
+  const toast = useToastContext();
   const authentication = useAuthentication();
   const userLocation = useUserLocation();
   const heading = useFormattedMessage(messages.headingLabel);
@@ -51,7 +51,6 @@ function LoginScreen(props: LoginScreenProps) {
       delay: 500,
       type: 'success',
     });
-
     if (
       userLocation?.data?.cityName ||
       authentication.accountType === 'business'
@@ -161,6 +160,6 @@ function LoginScreen(props: LoginScreenProps) {
       ) : null}
     </>
   );
-}
+};
 
-export default LoginScreen;
+export default React.memo(LoginScreen);

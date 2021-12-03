@@ -1,6 +1,6 @@
 /**
  *
- * Asynchronously loads the component for EntityDetailScreen
+ * Asynchronously loads the component for DealDetailScreen
  *
  */
 

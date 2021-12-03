@@ -16,14 +16,6 @@ const style = StyleSheet.create({
     overflow: 'hidden',
     borderRadius: Dimensions.borderRadius3x,
   },
-  backdrop: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    width: '100%',
-    borderRadius: 50,
-  },
   drawer: {
     width: Dimensions.screenWidth + 10,
     height: Dimensions.screenHeight + 10,
@@ -31,6 +23,14 @@ const style = StyleSheet.create({
     left: -2,
     position: 'absolute',
     paddingTop: '60%',
+  },
+  backdrop: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    width: '100%',
+    borderRadius: 50,
   },
   drawerMenu: {
     padding: Dimensions.space3x,
@@ -43,7 +43,7 @@ const style = StyleSheet.create({
     color: Colors.white,
     fontWeight: '600',
   },
-  authButtonHolder: {
+  logoutButtonHolder: {
     position: 'absolute',
     bottom: 100,
     left: 15,
@@ -54,7 +54,7 @@ const style = StyleSheet.create({
     backgroundColor: Colors.accentLight,
     borderRadius: Dimensions.borderRadius10x,
   },
-  logoutButtonLable: {
+  logoutButtonLabel: {
     fontSize: 18,
     color: Colors.white,
     fontWeight: '600',
@@ -90,10 +90,5 @@ const style = StyleSheet.create({
     marginLeft: Dimensions.space2x,
   },
 });
-
-export const initialLayout = {
-  height: 0,
-  width: Dimensions.screenWidth,
-};
 
 export default style;

@@ -6,7 +6,9 @@
  */
 
 import { defineMessages } from 'react-intl';
+
 const scope = 'app.screens.ExploreScreen.RestaurantsList';
+
 export default defineMessages({
   restaurantsHeading: {
     id: `${scope}.restaurantsHeading`,

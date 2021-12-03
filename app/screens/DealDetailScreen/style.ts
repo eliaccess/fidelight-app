@@ -8,9 +8,10 @@ import { StyleSheet } from 'react-native';
 
 import Colors from 'theme/Colors';
 import Dimensions from 'theme/Dimensions';
-// import elevation from 'theme/elevation';
+
 export const DOT_SIZE = 40;
 export const ITEM_WIDTH = Dimensions.screenWidth - Dimensions.screenWidth / 6;
+
 const style = StyleSheet.create({
   container: {
     flex: 1,
@@ -27,6 +28,16 @@ const style = StyleSheet.create({
     borderTopLeftRadius: Dimensions.borderRadius3x,
     borderTopRightRadius: Dimensions.borderRadius3x,
     overflow: 'hidden',
+  },
+  dealTitle: {
+    fontSize: 18,
+    color: Colors.textBlack,
+    fontWeight: '600',
+  },
+  dealProduct: {
+    fontSize: 14,
+    color: Colors.textGrey,
+    marginTop: Dimensions.space1x,
   },
   ellipse: {
     position: 'absolute',
@@ -47,16 +58,6 @@ const style = StyleSheet.create({
     borderRadius: 80,
     backgroundColor: Colors.white,
     opacity: 0.4,
-  },
-  dealTitle: {
-    fontSize: 18,
-    color: Colors.textBlack,
-    fontWeight: '600',
-  },
-  dealProduct: {
-    fontSize: 14,
-    color: Colors.textGrey,
-    marginTop: Dimensions.space1x,
   },
   dealImage: {
     position: 'absolute',
@@ -93,7 +94,7 @@ const style = StyleSheet.create({
     color: Colors.textBlack,
     fontWeight: '600',
   },
-  dealDetail: {
+  dealDescription: {
     fontSize: 12,
     color: Colors.textGrey,
     marginTop: Dimensions.space1x,

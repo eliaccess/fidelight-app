@@ -6,7 +6,9 @@
  */
 
 import { defineMessages } from 'react-intl';
+
 const scope = 'app.screens.ProfileScreen';
+
 export default defineMessages({
   title: {
     id: `${scope}.title`,

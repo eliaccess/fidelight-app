@@ -7,18 +7,19 @@
 import React from 'react';
 import * as Animatable from 'react-native-animatable';
 
+import useStateHandler from 'hooks/useStateHandler';
+import { ENTITY_DETAIL } from 'router/routeNames';
+
 import { useEntities } from 'containers/Entities';
 import { useUserLocation } from 'containers/UserLocation';
-import useStateHandler from 'hooks/useStateHandler';
+
+import EntityCard from 'components/EntityCard';
 
 import FormattedMessage from 'theme/FormattedMessage';
 import Section from 'theme/Section';
 import NoResult from 'theme/NoResult';
-import EntityCard from 'components/EntityCard';
-import { ENTITY_DETAIL } from 'router/routeNames';
 
 import messages from './messages';
-
 import RestaurantLoader from './Loader';
 
 type RestaurantsListProps = {
@@ -26,8 +27,9 @@ type RestaurantsListProps = {
   activeCategoryId: number;
 };
 
-function RestaurantsList(props: RestaurantsListProps) {
+const RestaurantsList: React.FC<RestaurantsListProps> = (props) => {
   const userLocation = useUserLocation();
+
   const entities = useEntities({
     city: userLocation.data.cityName,
     type: props.activeCategoryId,
@@ -72,6 +74,6 @@ function RestaurantsList(props: RestaurantsListProps) {
       </Section>
     </Animatable.View>
   );
-}
+};
 
 export default React.memo(RestaurantsList);

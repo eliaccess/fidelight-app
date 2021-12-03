@@ -22,6 +22,11 @@ const style = StyleSheet.create({
       android: { height: 250 },
     }),
   },
+  favoriteIconWrapper: {
+    backgroundColor: Colors.white,
+    padding: Dimensions.space1x / 2,
+    borderRadius: 30,
+  },
   loaderHeader: {
     marginTop: -120,
     width: Dimensions.screenWidth,
@@ -46,7 +51,6 @@ const style = StyleSheet.create({
     height: 8,
     width: '60%',
   },
-
   loaderContentWrapper: {
     marginTop: Dimensions.space10x,
   },
@@ -58,11 +62,6 @@ const style = StyleSheet.create({
     backgroundColor: Colors.skeleton,
     height: 8,
     width: '80%',
-  },
-  favoriteIconWrapper: {
-    backgroundColor: Colors.white,
-    padding: Dimensions.space1x / 2,
-    borderRadius: 30,
   },
 });
 

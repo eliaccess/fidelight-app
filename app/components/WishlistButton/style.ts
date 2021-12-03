@@ -15,8 +15,6 @@ const style = StyleSheet.create({
     height: 36,
     position: 'relative',
     backgroundColor: Colors.transparent,
-    // borderWidth: 0.25,
-    // borderColor: Colors.favorite,
   },
   buttonIcon: {
     width: ICON_SIZE * 4.5,

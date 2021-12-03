@@ -3,9 +3,9 @@
  * WishlistButton
  *
  */
+
 import React, { useEffect } from 'react';
 import { View } from 'react-native';
-
 import LottieView from 'lottie-react-native';
 import animations from 'animations';
 import Animated, {
@@ -41,8 +41,6 @@ const WishlistButton: React.FC<WishlistButtonProps> = ({ active, onPress }) => {
       duration: 1500,
       easing: Easing.linear,
     });
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [progress, active]);
 
   const animatedStyle = useAnimatedStyle(() => ({

@@ -4,23 +4,23 @@
  *
  */
 
-import { useHotDealDetail } from 'containers/HotDealDetail';
-import useStateHandler from 'hooks/useStateHandler';
 import React from 'react';
 import { View } from 'react-native';
+
+import useStateHandler from 'hooks/useStateHandler';
+import { useHotDealDetail } from 'containers/HotDealDetail';
 
 import FormattedMessage from 'theme/FormattedMessage';
 import Image from 'theme/Image';
 import Modal from 'theme/Modal';
 import Text from 'theme/Text';
-import DealDetailLoader from './Loader';
 
+import { DealDetailScreenProps } from './types';
+import DealDetailLoader from './Loader';
 import messages from './messages';
 import style from './style';
 
-import { DealDetailScreenProps } from './types';
-
-function DealDetailScreen(props: DealDetailScreenProps) {
+const DealDetailScreen: React.FC<DealDetailScreenProps> = (props) => {
   const dealDetail = useHotDealDetail({
     dealId: props.route.params.dealId,
   });
@@ -61,7 +61,7 @@ function DealDetailScreen(props: DealDetailScreenProps) {
                   {...messages.offerDetailLabel}
                   style={style.offerDetailLabel}
                 />
-                <Text style={style.dealDetail}>
+                <Text style={style.dealDescription}>
                   {dealDetail?.data?.description}
                 </Text>
               </View>
@@ -71,6 +71,6 @@ function DealDetailScreen(props: DealDetailScreenProps) {
       </Modal>
     </View>
   );
-}
+};
 
 export default React.memo(DealDetailScreen);

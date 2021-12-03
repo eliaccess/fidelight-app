@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import Colors from 'theme/Colors';
+
 import Dimensions from 'theme/Dimensions';
 
 const style = StyleSheet.create({
@@ -14,16 +14,6 @@ const style = StyleSheet.create({
     position: 'relative',
     width: '100%',
     marginBottom: Dimensions.space1x,
-  },
-  policyWrapper: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    alignSelf: 'flex-start',
-    marginHorizontal: Dimensions.space1x,
-  },
-  policyLable: {
-    fontSize: 14,
-    color: Colors.textGrey,
   },
   buttonContainer: {
     flexDirection: 'row',

@@ -4,26 +4,26 @@
  *
  */
 
-import WishlistButton from 'components/WishlistButton';
-import { useEntityDetail } from 'containers/EntityDetail';
-import { useRecentViewedEntities } from 'containers/RecentViewedEntities';
-import useStateHandler from 'hooks/useStateHandler';
 import React, { useEffect } from 'react';
 import { View } from 'react-native';
 
+import useStateHandler from 'hooks/useStateHandler';
+import { useEntityDetail } from 'containers/EntityDetail';
+import { useRecentViewedEntities } from 'containers/RecentViewedEntities';
+
+import WishlistButton from 'components/WishlistButton';
 import Screen from 'theme/Screen';
 
+import { EntityDetailScreenProps } from './types';
 import DealsSection from './DealsSection';
 import EntityInfo from './EntityInfo';
 import EntityTimings from './EntityTimings';
-import EntityHeader from './Header';
+import EntityHeader from './EntityHeader';
 import EntityDetailLoader from './Loader';
 import RewardsSection from './RewardsSection';
 import style from './style';
 
-import { EntityDetailScreenProps } from './types';
-
-function EntityDetailScreen(props: EntityDetailScreenProps) {
+const EntityDetailScreen: React.FC<EntityDetailScreenProps> = (props) => {
   const entityDetail = useEntityDetail({
     entityId: props.route.params.entityId,
   });
@@ -43,7 +43,6 @@ function EntityDetailScreen(props: EntityDetailScreenProps) {
         });
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [entityDetail?.data?.id]);
 
   return (
@@ -84,6 +83,7 @@ function EntityDetailScreen(props: EntityDetailScreenProps) {
             navigation={props.navigation}
           />
         </View>
+
         <RewardsSection
           navigation={props.navigation}
           entityId={props.route.params.entityId}
@@ -91,6 +91,6 @@ function EntityDetailScreen(props: EntityDetailScreenProps) {
       </View>
     </Screen>
   );
-}
+};
 
 export default React.memo(EntityDetailScreen);

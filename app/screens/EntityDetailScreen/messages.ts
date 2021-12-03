@@ -1,29 +1,15 @@
 /*
  * EntityDetailScreen Messages
  *
- * This contains all the text for the EntityDetailScreen component.
+ * This contains all the text for the EntityDetail screen.
  *
  */
 
 import { defineMessages } from 'react-intl';
+
 const scope = 'app.screens.EntityDetailScreen';
+
 export default defineMessages({
-  title: {
-    id: `${scope}.title`,
-    defaultMessage: 'Comming Soon!',
-  },
-  openLabel: {
-    id: `${scope}.openLabel`,
-    defaultMessage: 'Open  ',
-  },
-  closesLabel: {
-    id: `${scope}.closesLabel`,
-    defaultMessage: 'Closes  ',
-  },
-  closedLabel: {
-    id: `${scope}.closedLabel`,
-    defaultMessage: 'Closed',
-  },
   weeksDealHeading: {
     id: `${scope}.weeksDealHeading`,
     defaultMessage: "Week's Deal",
@@ -35,10 +21,6 @@ export default defineMessages({
   rewardsHeading: {
     id: `${scope}.rewardsHeading`,
     defaultMessage: 'Rewards',
-  },
-  offerDetailLabel: {
-    id: `${scope}.offerDetailLabel`,
-    defaultMessage: 'Offer Detail',
   },
   makePointsLabel: {
     id: `${scope}.makePointsLabel`,

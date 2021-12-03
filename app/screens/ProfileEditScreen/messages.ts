@@ -1,7 +1,7 @@
 /*
  * ProfileEditScreen Messages
  *
- * This contains all the text for the ProfileEditScreen component.
+ * This contains all the text for the ProfileEditScreen.
  */
 
 import { defineMessages } from 'react-intl';

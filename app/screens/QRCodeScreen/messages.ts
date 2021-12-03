@@ -1,12 +1,13 @@
 /*
- * QRcode Messages
+ * QRCodeScreen Messages
  *
- * This contains all the text for the QRcode component.
+ * This contains all the text for the QRCodeScreen component.
  *
  */
 
 import { defineMessages } from 'react-intl';
-const scope = 'app.components.QRcode';
+const scope = 'app.screens.QRCodeScreen';
+
 export default defineMessages({
   qrCodeHeading: {
     id: `${scope}.qrCodeHeading`,
@@ -15,9 +16,5 @@ export default defineMessages({
   scanToAvailLabel: {
     id: `${scope}.scanToAvailLabel`,
     defaultMessage: 'Scan to avail offer',
-  },
-  asBusinessLabel: {
-    id: `${scope}.asBusinessLabel`,
-    defaultMessage: 'Continue as bussiness',
   },
 });

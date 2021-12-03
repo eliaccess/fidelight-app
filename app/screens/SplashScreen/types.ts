@@ -2,11 +2,14 @@ import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from 'router/types';
 
-type SplashRouteProp = RouteProp<RootStackParamList, 'Home'>;
+type SplashScreenRouteProp = RouteProp<RootStackParamList, 'Splash'>;
 
-type SplashNavigationProp = StackNavigationProp<RootStackParamList, 'Splash'>;
+type SplashScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  'Splash'
+>;
 
-export type SplashProps = {
-  route: SplashRouteProp;
-  navigation: SplashNavigationProp;
+export type SplashScreenProps = {
+  route: SplashScreenRouteProp;
+  navigation: SplashScreenNavigationProp;
 };

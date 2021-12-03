@@ -23,7 +23,6 @@ import Text from 'theme/Text';
 import { UseQRCodeAnimation } from './animation';
 import messages from './messages';
 import style from './style';
-
 import { QRCodeScreenProps } from './types';
 
 function QRCodeScreen(props: QRCodeScreenProps) {
@@ -32,13 +31,14 @@ function QRCodeScreen(props: QRCodeScreenProps) {
   });
 
   const animation = useRef(useSharedValue(0)).current;
+  const QRCodeAnimation = UseQRCodeAnimation(animation);
+
   useEffect(() => {
     animation.value = withTiming(1, {
       duration: 400,
       easing: Easing.inOut(Easing.ease),
     });
   }, [animation]);
-  const QRCodeAnimation = UseQRCodeAnimation(animation);
 
   return (
     <Animated.View style={[style.container, QRCodeAnimation]}>

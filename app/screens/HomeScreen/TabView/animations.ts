@@ -4,8 +4,8 @@ import {
   interpolateColor,
   useAnimatedStyle,
 } from 'react-native-reanimated';
+
 import Colors from 'theme/Colors';
-// import Dimensions from 'theme/Dimensions';
 
 export function UseAnimatedIcon(animationValue) {
   return useAnimatedStyle(() => {

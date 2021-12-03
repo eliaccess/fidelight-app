@@ -1,6 +1,6 @@
 /*
  *
- * HomeScreen TabBarButtonButton
+ * HomeScreen TabView TabBarButton
  *
  */
 
@@ -13,12 +13,11 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 
-import Icon from 'theme/Icon';
 import { buttonGradientProps } from 'theme/utils';
+import Icon from 'theme/Icon';
 
 import { UseAnimatedIcon } from './animations';
-
-import { useGetStyles } from './style';
+import style from './style';
 
 type TabBarButtonProps = {
   route: {
@@ -32,15 +31,13 @@ type TabBarButtonProps = {
 };
 
 function TabBarButton({ active = false, ...props }: TabBarButtonProps) {
-  const style = useGetStyles();
   const animationValue = useRef(useSharedValue(active ? 0 : 1)).current;
+
   useEffect(() => {
     animationValue.value = withTiming(active ? 1 : 0, {
       duration: 100,
       easing: Easing.inOut(Easing.ease),
     });
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props]);
 
   const animatedIcon = UseAnimatedIcon(animationValue);
@@ -76,4 +73,4 @@ function TabBarButton({ active = false, ...props }: TabBarButtonProps) {
   );
 }
 
-export default TabBarButton;
+export default React.memo(TabBarButton);

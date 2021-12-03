@@ -1,6 +1,6 @@
 /**
  *
- * Form
+ * SignUpScreenForm
  *
  */
 
@@ -10,20 +10,20 @@ import * as Animatable from 'react-native-animatable';
 import * as yup from 'yup';
 import { Formik } from 'formik';
 
+import DateSelector from 'components/DateSelector';
+import { email, password } from 'utils/validations';
+
+import FormattedMessage, { useFormattedMessage } from 'theme/FormattedMessage';
+import PasswordInput from 'theme/Input/PasswordInput';
+import { useToastContext } from 'theme/Toast';
 import Button from 'theme/Button';
 import Input from 'theme/Input';
-import PasswordInput from 'theme/Input/PasswordInput';
-import FormattedMessage, { useFormattedMessage } from 'theme/FormattedMessage';
 import Radio from 'theme/Radio';
-import { useToastContext } from 'theme/Toast';
-import DateSelector from 'components/DateSelector';
-
-import { email, password } from 'utils/validations';
 
 import style from './style';
 import messages from './messages';
 
-interface FormProps {
+interface SignUpScreenFormProps {
   onSubmit: (data: FormState) => void;
 }
 
@@ -54,15 +54,17 @@ const initialValue = {
   password: '',
 };
 
-const Form: React.FC<FormProps> = (props) => {
-  const nameFieldRef = useRef();
-  const emailFieldRef = useRef();
-  const phoneFieldRef = useRef();
-  const dobFieldRef = useRef();
+const SignUpScreenForm: React.FC<SignUpScreenFormProps> = (props) => {
+  const nameFieldRef: any = useRef();
+  const emailFieldRef: any = useRef();
+  const phoneFieldRef: any = useRef();
+  const dobFieldRef: any = useRef();
   const passwordFieldRef = useRef();
-  const [acceptPolicy, setAcceptPolicy] = useState(false);
+
   const acceptPolicyMessage = useFormattedMessage(messages.acceptPolicyMessage);
+  const [acceptPolicy, setAcceptPolicy] = useState(false);
   const toast = useToastContext();
+
   return (
     <Animatable.View style={style.container} animation="fadeIn">
       <Formik
@@ -76,7 +78,7 @@ const Form: React.FC<FormProps> = (props) => {
           toast?.show({
             message: acceptPolicyMessage,
             delay: 500,
-            // @ts-ignore
+
             type: 'error',
           });
         }}
@@ -87,7 +89,6 @@ const Form: React.FC<FormProps> = (props) => {
           handleSubmit,
           values,
           errors,
-          isValid,
           touched,
           setFieldValue,
           setFieldTouched,
@@ -103,9 +104,7 @@ const Form: React.FC<FormProps> = (props) => {
                 onBlur={handleBlur('surname')}
                 value={values.surname}
                 onSubmitEditing={() => {
-                  // @ts-ignore
                   if (nameFieldRef?.current?.focus) {
-                    // @ts-ignore
                     nameFieldRef.current?.focus();
                   }
                 }}
@@ -115,6 +114,7 @@ const Form: React.FC<FormProps> = (props) => {
                 }
               />
             </View>
+
             <View style={style.inputContainer}>
               <Input
                 ref={nameFieldRef}
@@ -126,9 +126,7 @@ const Form: React.FC<FormProps> = (props) => {
                 onBlur={handleBlur('name')}
                 value={values.name}
                 onSubmitEditing={() => {
-                  // @ts-ignore
                   if (emailFieldRef?.current?.focus) {
-                    // @ts-ignore
                     emailFieldRef.current?.focus();
                   }
                 }}
@@ -136,6 +134,7 @@ const Form: React.FC<FormProps> = (props) => {
                 label={<FormattedMessage {...messages.nameLabel} isFragment />}
               />
             </View>
+
             <View style={style.inputContainer}>
               <Input
                 ref={emailFieldRef}
@@ -147,9 +146,7 @@ const Form: React.FC<FormProps> = (props) => {
                 onBlur={handleBlur('email')}
                 value={values.email}
                 onSubmitEditing={() => {
-                  // @ts-ignore
                   if (phoneFieldRef?.current?.focus) {
-                    // @ts-ignore
                     phoneFieldRef.current?.focus();
                   }
                 }}
@@ -157,6 +154,7 @@ const Form: React.FC<FormProps> = (props) => {
                 label={<FormattedMessage {...messages.emailLabel} isFragment />}
               />
             </View>
+
             <View style={style.inputContainer}>
               <Input
                 ref={phoneFieldRef}
@@ -168,9 +166,7 @@ const Form: React.FC<FormProps> = (props) => {
                 onBlur={handleBlur('phone')}
                 value={values.phone}
                 onSubmitEditing={() => {
-                  // @ts-ignore
                   if (dobFieldRef?.current?.focus) {
-                    // @ts-ignore
                     dobFieldRef.current?.focus();
                   }
                 }}
@@ -178,6 +174,7 @@ const Form: React.FC<FormProps> = (props) => {
                 label={<FormattedMessage {...messages.phoneLabel} isFragment />}
               />
             </View>
+
             <View style={style.dateSelectorWrapper}>
               <DateSelector
                 onSelect={(value) => {
@@ -188,6 +185,7 @@ const Form: React.FC<FormProps> = (props) => {
                 error={touched.dob ? errors.dob : null}
               />
             </View>
+
             <View style={style.inputContainer}>
               <PasswordInput
                 onChangeText={handleChange('password')}
@@ -212,8 +210,8 @@ const Form: React.FC<FormProps> = (props) => {
                 }}
               />
               <FormattedMessage
-                {...messages.policyLable}
-                style={style.policyLable}
+                {...messages.policyLabel}
+                style={style.policyLabel}
                 onPress={() => {
                   setAcceptPolicy(!acceptPolicy);
                 }}
@@ -223,7 +221,6 @@ const Form: React.FC<FormProps> = (props) => {
             <View style={style.buttonContainer}>
               <Button
                 flex
-                // disabled={!isValid}
                 label={
                   <FormattedMessage {...messages.submitLabel} isFragment />
                 }
@@ -237,4 +234,4 @@ const Form: React.FC<FormProps> = (props) => {
   );
 };
 
-export default Form;
+export default React.memo(SignUpScreenForm);

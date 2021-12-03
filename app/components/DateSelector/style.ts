@@ -1,7 +1,6 @@
 import { StyleSheet } from 'react-native';
 import Colors from 'theme/Colors';
 import Dimensions from 'theme/Dimensions';
-// import elevation from 'theme/elevation';
 
 const style = StyleSheet.create({
   container: {
@@ -15,13 +14,19 @@ const style = StyleSheet.create({
     alignItems: 'center',
     marginVertical: Dimensions.space3x,
   },
-  label: {
+  heading: {
+    position: 'absolute',
+    top: '-120%',
     fontSize: 14,
     color: Colors.textGrey,
   },
   value: {
     fontSize: 14,
     color: Colors.textBlack,
+  },
+  label: {
+    fontSize: 14,
+    color: Colors.textGrey,
   },
   icon: {
     fontSize: 18,
@@ -34,12 +39,6 @@ const style = StyleSheet.create({
     color: Colors.errorBackground,
     fontWeight: '600',
     fontSize: 13,
-  },
-  heading: {
-    position: 'absolute',
-    top: '-120%',
-    fontSize: 14,
-    color: Colors.textGrey,
   },
 });
 

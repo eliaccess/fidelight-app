@@ -7,24 +7,23 @@
 import React from 'react';
 import { View } from 'react-native';
 
+import { CHANGE_PASSWORD, PROFILE_EDIT } from 'router/routeNames';
+
 import { useUserProfile } from 'containers/UserProfile';
 
 import Screen from 'theme/Screen';
 import FormattedMessage from 'theme/FormattedMessage';
-// import Image from 'theme/Image';
 import Text from 'theme/Text';
 import Icon from 'theme/Icon';
 import TouchFeedback from 'theme/TouchFeedback';
 
-import { CHANGE_PASSWORD, PROFILE_EDIT } from 'router/routeNames';
-
-import style from './style';
-import { ProfileScreenProps } from './types';
-import messages from './messages';
 import TransactionSection from './TransactionSection';
 import UserInfoLoader from './UserInfoLoader';
+import { ProfileScreenProps } from './types';
+import messages from './messages';
+import style from './style';
 
-function ProfileScreen(props: ProfileScreenProps) {
+const ProfileScreen: React.FC<ProfileScreenProps> = (props) => {
   const userProfile = useUserProfile();
 
   return (
@@ -39,11 +38,6 @@ function ProfileScreen(props: ProfileScreenProps) {
         ) : (
           <View style={style.userInfoSection}>
             <View style={style.imageInfoWrapper}>
-              {/* <Image
-                uri={userProfile.data.avatar}
-                style={style.avatar}
-                resizeMode="cover"
-              /> */}
               <View style={style.userInfo}>
                 <Text style={style.userName}>{userProfile.data.name}</Text>
                 <Text style={style.userPhone}>{userProfile.data.phone}</Text>
@@ -73,6 +67,6 @@ function ProfileScreen(props: ProfileScreenProps) {
       </View>
     </Screen>
   );
-}
+};
 
 export default React.memo(ProfileScreen);

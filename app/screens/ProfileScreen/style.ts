@@ -17,7 +17,6 @@ const style = StyleSheet.create({
   container: {
     backgroundColor: Colors.bg1Color,
   },
-
   userInfoSection: {
     marginVertical: Dimensions.space2x,
     width: Dimensions.screenWidth,
@@ -82,7 +81,6 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     width: '100%',
-    // backgroundColor: Colors.accent,
   },
   avatarLoader: {
     width: 80,

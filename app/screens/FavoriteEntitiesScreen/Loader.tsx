@@ -1,24 +1,24 @@
 /**
  *
- * FavoriteEntitiesLoader
+ * FavoriteEntitiesScreenLoader
  *
  */
+
 import React from 'react';
 
 import EntityCardLoader from 'components/EntityCard/Loader';
 
-interface FavoriteEntitiesLoaderProps {
+interface FavoriteEntitiesScreenLoaderProps {
   numberOfItems: number;
 }
 
-const FavoriteEntitiesLoader: React.FC<FavoriteEntitiesLoaderProps> = ({
-  numberOfItems,
-}) => (
-  <>
-    {Array.from(Array(numberOfItems), (_a, i) => (
-      <EntityCardLoader />
-    ))}
-  </>
-);
+const FavoriteEntitiesScreenLoader: React.FC<FavoriteEntitiesScreenLoaderProps> =
+  ({ numberOfItems }) => (
+    <>
+      {Array.from(Array(numberOfItems), (_a, i) => (
+        <EntityCardLoader />
+      ))}
+    </>
+  );
 
-export default FavoriteEntitiesLoader;
+export default FavoriteEntitiesScreenLoader;

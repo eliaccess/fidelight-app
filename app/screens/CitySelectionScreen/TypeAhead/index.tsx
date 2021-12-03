@@ -8,14 +8,13 @@ import React, { useState } from 'react';
 import { View, FlatList, TextInput } from 'react-native';
 
 import { useDebouncedEffect } from 'hooks/useDebouncedEffect';
+import { useCitiesSearch } from 'containers/CitiesSearch';
 
 import Loader from 'theme/Loader';
 import NoResult from 'theme/NoResult';
 import TouchFeedback from 'theme/TouchFeedback';
 import Icon from 'theme/Icon';
 import FormattedMessage, { useFormattedMessage } from 'theme/FormattedMessage';
-
-import { useCitiesSearch } from 'containers/CitiesSearch';
 
 import messages from '../messages';
 import style from './style';
@@ -74,4 +73,4 @@ const CitiesTypeAhead: React.FC<{
   );
 };
 
-export default CitiesTypeAhead;
+export default React.memo(CitiesTypeAhead);

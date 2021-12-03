@@ -1,12 +1,9 @@
 /**
  *
- * Asynchronously loads the component for RecentWidget
+ * Asynchronously loads the component for CitySelectionScreen.RecentWidget
  *
  */
 
-import Loadable from 'react-loadable';
+import loadable from 'react-suspense-loadable';
 
-export default Loadable({
-  loader: () => import('./index'),
-  loading: () => null,
-});
+export default loadable(() => import('./index'));

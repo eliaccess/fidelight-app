@@ -1,12 +1,12 @@
 /*
- * SignUpScreen.Form Messages
+ * SignUpScreen.SignUpScreenForm Messages
  *
- * This contains all the text for the SignUpScreen.Form component.
+ * This contains all the text for the SignUpScreen.SignUpScreenForm component.
  */
 
 import { defineMessages } from 'react-intl';
 
-export const scope = 'app.components.SignUpScreen.Form';
+export const scope = 'app.screens.SignUpScreen.SignUpScreenForm';
 
 export default defineMessages({
   surnameLabel: {
@@ -33,8 +33,8 @@ export default defineMessages({
     id: `${scope}.passwordLabel`,
     defaultMessage: 'Password',
   },
-  policyLable: {
-    id: `${scope}.policyLable`,
+  policyLabel: {
+    id: `${scope}.policyLabel`,
     defaultMessage: 'I accept the policy and terms.',
   },
   submitLabel: {

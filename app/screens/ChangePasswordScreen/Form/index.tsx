@@ -12,7 +12,7 @@ import { Formik } from 'formik';
 
 import Button from 'theme/Button';
 import PasswordInput from 'theme/Input/PasswordInput';
-import FormattedMessage from 'theme/FormattedMessage';
+import { useFormattedMessage } from 'theme/FormattedMessage';
 
 import { password } from 'utils/validations';
 
@@ -45,8 +45,17 @@ const initialValue = {
 };
 
 const Form: React.FC<FormProps> = (props) => {
-  const newPasswordFieldRef = useRef();
-  const confirmPasswordFieldRef = useRef();
+  const newPasswordFieldRef: any = useRef();
+  const confirmPasswordFieldRef: any = useRef();
+
+  const currentPasswordLabel = useFormattedMessage(
+    messages.currentPasswordLabel,
+  );
+  const newPasswordLabel = useFormattedMessage(messages.newPasswordLabel);
+  const confirmPasswordLabel = useFormattedMessage(
+    messages.confirmPasswordLabel,
+  );
+  const submitButtonLabel = useFormattedMessage(messages.submitButtonLabel);
 
   return (
     <Animatable.View style={style.container} animation="fadeIn">
@@ -72,21 +81,15 @@ const Form: React.FC<FormProps> = (props) => {
                 value={values.currentPassword}
                 returnKeyType="next"
                 onSubmitEditing={() => {
-                  // @ts-ignore
                   if (newPasswordFieldRef?.current?.focus) {
-                    // @ts-ignore
                     newPasswordFieldRef.current?.focus();
                   }
                 }}
                 error={touched.currentPassword ? errors.currentPassword : null}
-                label={
-                  <FormattedMessage
-                    {...messages.currentPasswordLabel}
-                    isFragment
-                  />
-                }
+                label={currentPasswordLabel}
               />
             </View>
+
             <View style={style.inputContainer}>
               <PasswordInput
                 ref={newPasswordFieldRef}
@@ -95,18 +98,15 @@ const Form: React.FC<FormProps> = (props) => {
                 value={values.newPassword}
                 returnKeyType="next"
                 onSubmitEditing={() => {
-                  // @ts-ignore
                   if (confirmPasswordFieldRef?.current?.focus) {
-                    // @ts-ignore
                     confirmPasswordFieldRef.current?.focus();
                   }
                 }}
                 error={touched.newPassword ? errors.newPassword : null}
-                label={
-                  <FormattedMessage {...messages.newPasswordLabel} isFragment />
-                }
+                label={newPasswordLabel}
               />
             </View>
+
             <View style={style.inputContainer}>
               <PasswordInput
                 ref={confirmPasswordFieldRef}
@@ -115,12 +115,7 @@ const Form: React.FC<FormProps> = (props) => {
                 value={values.confirmPassword}
                 returnKeyType="done"
                 error={touched.confirmPassword ? errors.confirmPassword : null}
-                label={
-                  <FormattedMessage
-                    {...messages.confirmPasswordLabel}
-                    isFragment
-                  />
-                }
+                label={confirmPasswordLabel}
               />
             </View>
 
@@ -128,9 +123,7 @@ const Form: React.FC<FormProps> = (props) => {
               <Button
                 flex
                 disabled={!isValid}
-                label={
-                  <FormattedMessage {...messages.submitLabel} isFragment />
-                }
+                label={submitButtonLabel}
                 onPress={handleSubmit}
               />
             </View>
@@ -141,4 +134,4 @@ const Form: React.FC<FormProps> = (props) => {
   );
 };
 
-export default Form;
+export default React.memo(Form);

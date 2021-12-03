@@ -7,35 +7,25 @@
 import React, { useCallback } from 'react';
 import { View } from 'react-native';
 
-import Screen from 'theme/Screen';
-import FormattedMessage from 'theme/FormattedMessage';
+import { HOME } from 'router/routeNames';
 
 import { useUserLocation } from 'containers/UserLocation';
-import { HOME } from 'router/routeNames';
 import { useRecentSelectedCities } from 'containers/RecentSelectedCities';
+
+import Screen from 'theme/Screen';
+import FormattedMessage from 'theme/FormattedMessage';
 
 import TypeAhead from './TypeAhead';
 import messages from './messages';
 import style from './style';
-
 import { CitySelectionScreenProps } from './types';
-
 import RecentWidget from './RecentWidget';
+import PopularCities from './PopularCities';
 
-const POPULAR_CITIES = [
-  { name: 'Compiègne' },
-  { name: 'Paris' },
-  { name: 'Margny' },
-  { name: 'les' },
-  { name: 'Compiegne' },
-  { name: 'Lille' },
-  { name: 'Amiens' },
-  { name: 'Beauvais' },
-];
-
-function CitySelectionScreen(props: CitySelectionScreenProps) {
+const CitySelectionScreen: React.FC<CitySelectionScreenProps> = (props) => {
   const userLocation = useUserLocation();
   const recentSelectedCities = useRecentSelectedCities();
+
   const onSelect = useCallback((item: any) => {
     userLocation.setCity({
       cityName: item.nom,
@@ -46,8 +36,6 @@ function CitySelectionScreen(props: CitySelectionScreenProps) {
       });
       navigate();
     }, 100);
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const navigate = useCallback(() => {
@@ -76,43 +64,40 @@ function CitySelectionScreen(props: CitySelectionScreenProps) {
   };
 
   return (
-    <>
-      <Screen testID="locationsScreen" useScrollView={false}>
-        <View style={style.container}>
-          <FormattedMessage {...messages.pitch} style={style.pitch} />
+    <Screen testID="locationsScreen" useScrollView={false}>
+      <View style={style.container}>
+        <FormattedMessage {...messages.pitch} style={style.pitch} />
 
-          <TypeAhead onSelect={onSelect} />
+        <TypeAhead onSelect={onSelect} />
 
-          {recentSelectedCities.data?.length !== 0 && (
-            <RecentWidget
-              headingKey={
-                <FormattedMessage
-                  {...messages.recentSelectedCitiesLabel}
-                  style={style.recentSelectedCitiesLabel}
-                  isFragment
-                />
-              }
-              // @ts-ignore
-              data={recentSelectedCities.data}
-              onPress={onRecentPress}
-            />
-          )}
+        {recentSelectedCities.data?.length !== 0 && (
           <RecentWidget
             headingKey={
               <FormattedMessage
-                {...messages.popularCitiesLabel}
-                style={style.popularCitiesLabel}
+                {...messages.recentSelectedCitiesLabel}
+                style={style.recentSelectedCitiesLabel}
                 isFragment
               />
             }
-            // @ts-ignore
-            data={POPULAR_CITIES}
+            data={recentSelectedCities.data}
             onPress={onRecentPress}
           />
-        </View>
-      </Screen>
-    </>
-  );
-}
+        )}
 
-export default CitySelectionScreen;
+        <RecentWidget
+          headingKey={
+            <FormattedMessage
+              {...messages.popularCitiesLabel}
+              style={style.popularCitiesLabel}
+              isFragment
+            />
+          }
+          data={PopularCities}
+          onPress={onRecentPress}
+        />
+      </View>
+    </Screen>
+  );
+};
+
+export default React.memo(CitySelectionScreen);

@@ -1,7 +1,7 @@
 /*
  * ChangePasswordScreen Messages
  *
- * This contains all the text for the ChangePasswordScreen component.
+ * This contains all the text for the ChangePassword screen.
  */
 
 import { defineMessages } from 'react-intl';

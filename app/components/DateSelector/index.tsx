@@ -5,12 +5,12 @@
  */
 
 import React, { useState } from 'react';
-
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
-import Text from 'theme/Text';
 
+import Text from 'theme/Text';
 import TouchFeedback from 'theme/TouchFeedback';
 import Icon from 'theme/Icon';
+
 import style from './style';
 
 type DateSelectorProps = {
@@ -22,7 +22,6 @@ type DateSelectorProps = {
 
 function DateSelector(props: DateSelectorProps) {
   const [value, setValue] = useState(props?.value || '');
-
   const [openDatePicker, setOpenDatePicker] = useState(false);
 
   return (
@@ -41,6 +40,7 @@ function DateSelector(props: DateSelectorProps) {
         )}
         <Icon name="calendar" style={style.icon} />
       </TouchFeedback>
+
       <DateTimePickerModal
         isVisible={openDatePicker}
         mode="date"
@@ -53,6 +53,7 @@ function DateSelector(props: DateSelectorProps) {
           setOpenDatePicker(false);
         }}
       />
+
       {props.error ? <Text style={style.error}>{props.error}</Text> : null}
     </>
   );

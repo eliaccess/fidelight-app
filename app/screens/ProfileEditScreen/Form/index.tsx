@@ -1,6 +1,6 @@
 /**
  *
- * Form
+ * ProfileEditScreenForm
  *
  */
 
@@ -21,7 +21,7 @@ import { email } from 'utils/validations';
 import style from './style';
 import messages from './messages';
 
-interface FormProps {
+interface ProfileEditScreenFormProps {
   onSubmit: (data: FormState) => void;
   initialValues: FormState;
 }
@@ -42,19 +42,11 @@ const schema = yup.object().shape({
   birthdate: yup.string().required('required'),
 });
 
-// const initialValue = {
-//   surname: 'Ahmed',
-//   name: 'Michelle johnson',
-//   email: 'Michellejohnson75@gmail.com',
-//   phone: '+42 323236562',
-//   dob: '12th Jan, 2020',
-// };
-
-const Form: React.FC<FormProps> = (props) => {
-  const nameFieldRef = useRef();
-  const emailFieldRef = useRef();
-  const phoneFieldRef = useRef();
-  const dobFieldRef = useRef();
+const ProfileEditScreenForm: React.FC<ProfileEditScreenFormProps> = (props) => {
+  const nameFieldRef: any = useRef();
+  const emailFieldRef: any = useRef();
+  const phoneFieldRef: any = useRef();
+  const dobFieldRef: any = useRef();
 
   return (
     <Animatable.View style={style.container} animation="fadeIn">
@@ -69,18 +61,11 @@ const Form: React.FC<FormProps> = (props) => {
           handleSubmit,
           values,
           errors,
-          isValid,
           touched,
           setFieldTouched,
           setFieldValue,
         }) => (
           <>
-            {/* <View style={style.profilePictureContainer}>
-              <Image title="avatar" style={style.avatar} resizeMode="cover" />
-              <View style={style.profileEditIcon}>
-                <Icon name="edit" style={style.editIcon} />
-              </View>
-            </View> */}
             <View style={style.inputContainer}>
               <Input
                 textContentType="name"
@@ -91,9 +76,7 @@ const Form: React.FC<FormProps> = (props) => {
                 onBlur={handleBlur('surname')}
                 value={values.surname}
                 onSubmitEditing={() => {
-                  // @ts-ignore
                   if (nameFieldRef?.current?.focus) {
-                    // @ts-ignore
                     nameFieldRef.current?.focus();
                   }
                 }}
@@ -103,6 +86,7 @@ const Form: React.FC<FormProps> = (props) => {
                 }
               />
             </View>
+
             <View style={style.inputContainer}>
               <Input
                 ref={nameFieldRef}
@@ -114,9 +98,7 @@ const Form: React.FC<FormProps> = (props) => {
                 onBlur={handleBlur('name')}
                 value={values.name}
                 onSubmitEditing={() => {
-                  // @ts-ignore
                   if (emailFieldRef?.current?.focus) {
-                    // @ts-ignore
                     emailFieldRef.current?.focus();
                   }
                 }}
@@ -124,6 +106,7 @@ const Form: React.FC<FormProps> = (props) => {
                 label={<FormattedMessage {...messages.nameLabel} isFragment />}
               />
             </View>
+
             <View style={style.inputContainer}>
               <Input
                 ref={emailFieldRef}
@@ -135,9 +118,7 @@ const Form: React.FC<FormProps> = (props) => {
                 onBlur={handleBlur('email')}
                 value={values.email}
                 onSubmitEditing={() => {
-                  // @ts-ignore
                   if (phoneFieldRef?.current?.focus) {
-                    // @ts-ignore
                     phoneFieldRef.current?.focus();
                   }
                 }}
@@ -145,6 +126,7 @@ const Form: React.FC<FormProps> = (props) => {
                 label={<FormattedMessage {...messages.emailLabel} isFragment />}
               />
             </View>
+
             <View style={style.inputContainer}>
               <Input
                 ref={phoneFieldRef}
@@ -156,9 +138,7 @@ const Form: React.FC<FormProps> = (props) => {
                 onBlur={handleBlur('phone')}
                 value={values.phone}
                 onSubmitEditing={() => {
-                  // @ts-ignore
                   if (dobFieldRef?.current?.focus) {
-                    // @ts-ignore
                     dobFieldRef.current?.focus();
                   }
                 }}
@@ -180,10 +160,10 @@ const Form: React.FC<FormProps> = (props) => {
                 error={touched.birthdate ? errors.birthdate : null}
               />
             </View>
+
             <View style={style.buttonContainer}>
               <Button
                 flex
-                // disabled={!isValid}
                 label={
                   <FormattedMessage {...messages.submitLabel} isFragment />
                 }
@@ -197,4 +177,4 @@ const Form: React.FC<FormProps> = (props) => {
   );
 };
 
-export default Form;
+export default React.memo(ProfileEditScreenForm);

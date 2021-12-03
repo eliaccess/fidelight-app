@@ -1,6 +1,6 @@
 /**
  *
- * EmailPasswordForm
+ * LoginScreen EmailPasswordForm
  *
  */
 
@@ -42,7 +42,7 @@ const initialValue = {
 };
 
 const EmailPasswordForm: React.FC<EmailPasswordFormProps> = (props) => {
-  const passwordFieldRef = useRef();
+  const passwordFieldRef: any = useRef();
   const [rememberMe, setRememberMe] = useState(false);
 
   return (
@@ -72,9 +72,7 @@ const EmailPasswordForm: React.FC<EmailPasswordFormProps> = (props) => {
                 onBlur={handleBlur('email')}
                 value={values.email}
                 onSubmitEditing={() => {
-                  // @ts-ignore
                   if (passwordFieldRef?.current?.focus) {
-                    // @ts-ignore
                     passwordFieldRef.current?.focus();
                   }
                 }}
@@ -82,6 +80,7 @@ const EmailPasswordForm: React.FC<EmailPasswordFormProps> = (props) => {
                 label={<FormattedMessage {...messages.emailLabel} isFragment />}
               />
             </View>
+
             <View style={style.inputContainer}>
               <PasswordInput
                 onChangeText={handleChange('password')}
@@ -96,6 +95,7 @@ const EmailPasswordForm: React.FC<EmailPasswordFormProps> = (props) => {
                 }
               />
             </View>
+
             <View style={style.rememberMeForgetWrapper}>
               <View style={style.rememberMeWrapper}>
                 <Radio
@@ -119,6 +119,7 @@ const EmailPasswordForm: React.FC<EmailPasswordFormProps> = (props) => {
                 style={style.forgotPasswordLabel}
               />
             </View>
+
             <View style={style.buttonContainer}>
               <Button
                 flex
@@ -136,4 +137,4 @@ const EmailPasswordForm: React.FC<EmailPasswordFormProps> = (props) => {
   );
 };
 
-export default EmailPasswordForm;
+export default React.memo(EmailPasswordForm);

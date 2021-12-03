@@ -7,19 +7,19 @@
 import React from 'react';
 import { View } from 'react-native';
 
+import useStateHandler from 'hooks/useStateHandler';
+import { QR_CODE } from 'router/routeNames';
+
 import { useEntityOffersRewards } from 'containers/EntityOffersRewards';
 import { useUser } from 'containers/Authentication';
-import useStateHandler from 'hooks/useStateHandler';
 
 import FormattedMessage from 'theme/FormattedMessage';
-
 import Image from 'theme/Image';
 import Section from 'theme/Section';
 import Text from 'theme/Text';
 import NoResult from 'theme/NoResult';
 import TouchFeedback from 'theme/TouchFeedback';
 import { useToastContext } from 'theme/Toast';
-import { QR_CODE } from 'router/routeNames';
 
 import style from './style';
 import messages from '../messages';
@@ -29,9 +29,11 @@ type RewardsSectionProps = {
   entityId: number;
   navigation: any;
 };
-function RewardsSection(props: RewardsSectionProps) {
+
+const RewardsSection: React.FC<RewardsSectionProps> = (props) => {
   const user = useUser();
   const toast = useToastContext();
+
   const entityOffersRewards = useEntityOffersRewards({
     entityId: props.entityId,
   });
@@ -48,7 +50,9 @@ function RewardsSection(props: RewardsSectionProps) {
       />
     );
   }
+
   const rewards = entityOffersRewards?.data?.rewards;
+
   return (
     <View style={style.rewardSectionContainer}>
       <Section
@@ -119,6 +123,6 @@ function RewardsSection(props: RewardsSectionProps) {
       </Section>
     </View>
   );
-}
+};
 
 export default React.memo(RewardsSection);

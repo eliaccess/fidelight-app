@@ -6,7 +6,9 @@
  */
 
 import { defineMessages } from 'react-intl';
+
 const scope = 'app.screens.ExploreScreen.HottestDeals';
+
 export default defineMessages({
   dealsHeading: {
     id: `${scope}.dealsHeading`,

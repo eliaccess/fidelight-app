@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+
 import Colors from 'theme/Colors';
 import Dimensions from 'theme/Dimensions';
 
@@ -21,7 +22,7 @@ const style = StyleSheet.create({
     alignSelf: 'flex-start',
     marginHorizontal: Dimensions.space1x,
   },
-  policyLable: {
+  policyLabel: {
     fontSize: 14,
     color: Colors.textGrey,
   },

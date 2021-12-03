@@ -3,14 +3,16 @@
  * SuccessAnimation
  *
  */
+
 import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
-import animations from 'animations';
 import LottieView from 'lottie-react-native';
+
+import animations from 'animations';
 
 import style from './style';
 
-function SuccessAnimation(_props) {
+function SuccessAnimation() {
   const [show, setShow] = useState(false);
 
   useEffect(() => {

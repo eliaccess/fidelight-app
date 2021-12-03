@@ -15,19 +15,6 @@ const style = StyleSheet.create({
     flex: 1,
     paddingHorizontal: Dimensions.horizontalSpace,
   },
-  background: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
-    opacity: 0.1,
-  },
-  searchHolder: {
-    marginTop: Dimensions.space1x,
-    position: 'relative',
-    zIndex: 100,
-  },
   inputHolder: {
     marginTop: Dimensions.space2x,
     marginHorizontal: Dimensions.space1x,

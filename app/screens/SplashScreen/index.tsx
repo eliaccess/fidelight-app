@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 /*
  *
  * SplashScreen
@@ -12,11 +11,11 @@ import { ACCOUNT_SELECTION } from 'router/routeNames';
 import LocalStorage from 'platform/LocalStorage';
 import configs from 'configs';
 
-import { SplashProps } from './types';
+import { SplashScreenProps } from './types';
 import UserAccount from './UserAccount';
 import BusinessAccount from './BusinessAccount';
 
-function SplashScreen({ navigation }: SplashProps) {
+const SplashScreen: React.FC<SplashScreenProps> = ({ navigation }) => {
   const [accountType, setAccountType] = useState('');
 
   // @ts-ignore
@@ -36,10 +35,12 @@ function SplashScreen({ navigation }: SplashProps) {
   if (accountType === 'user') {
     return <UserAccount navigation={navigation} />;
   }
+
   if (accountType === 'business') {
     return <BusinessAccount navigation={navigation} />;
   }
+
   return null;
-}
+};
 
 export default React.memo(SplashScreen);

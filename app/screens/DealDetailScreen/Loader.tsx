@@ -1,6 +1,6 @@
 /**
  *
- * DealDetailLoader
+ * DealDetailScreenLoader
  *
  */
 import React from 'react';
@@ -10,10 +10,10 @@ import { useLoaderAnimation } from 'hooks/useLoaderAnimation';
 
 import style from './style';
 
-const DealDetailLoader: React.FC<{}> = () => {
+const DealDetailScreenLoader: React.FC<{}> = () => {
   const animatedStyle = useLoaderAnimation();
 
   return <Animated.View style={[style.loaderContainer, animatedStyle]} />;
 };
 
-export default DealDetailLoader;
+export default DealDetailScreenLoader;

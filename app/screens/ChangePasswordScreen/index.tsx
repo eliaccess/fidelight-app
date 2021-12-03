@@ -14,12 +14,13 @@ import FormattedMessage from 'theme/FormattedMessage';
 import { useToastContext } from 'theme/Toast';
 import FullScreenLoader from 'theme/FullScreenLoader';
 
+import { ChangePasswordScreenProps } from './types';
+
 import Form from './Form';
 import messages from './messages';
 import style from './style';
-import { ChangePasswordScreenProps } from './types';
 
-function ChangePasswordScreen(props: ChangePasswordScreenProps) {
+const ChangePasswordScreen: React.FC<ChangePasswordScreenProps> = (props) => {
   const changePassword = useChangePassword();
   const toast = useToastContext();
 
@@ -33,7 +34,6 @@ function ChangePasswordScreen(props: ChangePasswordScreenProps) {
       changePassword.reset();
       props.navigation.goBack();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [changePassword?.success]);
 
   useEffect(() => {
@@ -45,25 +45,24 @@ function ChangePasswordScreen(props: ChangePasswordScreenProps) {
       });
       changePassword.reset();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [changePassword.error]);
-  return (
-    <>
-      <Screen
-        testID="ChangePasswordScreen"
-        headerTitle={<FormattedMessage {...messages.title} isFragment />}
-      >
-        <View style={style.container}>
-          <Form
-            onSubmit={(values) => {
-              changePassword.submit({ ...values });
-            }}
-          />
-        </View>
-        {changePassword.submitting ? <FullScreenLoader /> : null}
-      </Screen>
-    </>
-  );
-}
 
-export default ChangePasswordScreen;
+  return (
+    <Screen
+      testID="ChangePasswordScreen"
+      headerTitle={<FormattedMessage {...messages.title} isFragment />}
+    >
+      <View style={style.container}>
+        <Form
+          onSubmit={(values) => {
+            changePassword.submit({ ...values });
+          }}
+        />
+      </View>
+
+      {changePassword.submitting ? <FullScreenLoader /> : null}
+    </Screen>
+  );
+};
+
+export default React.memo(ChangePasswordScreen);

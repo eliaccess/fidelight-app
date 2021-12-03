@@ -6,7 +6,9 @@
  */
 
 import { defineMessages } from 'react-intl';
+
 const scope = 'app.components.HomeHeader';
+
 export default defineMessages({
   searchPlaceHolder: {
     id: `${scope}.searchPlaceHolder`,

@@ -1,13 +1,12 @@
 /*
  *
- * EntityHeader
+ * EntityDetailScreen EntityHeader
  *
  */
 
 import React, { useEffect, useRef } from 'react';
 import { View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-
 import {
   Easing,
   interpolate,
@@ -20,6 +19,7 @@ import Icon from 'theme/Icon';
 import Image from 'theme/Image';
 import Text from 'theme/Text';
 import { screenTopGradientProps } from 'theme/utils';
+
 import { EntityDetailItemTypes } from 'types/EntityItemTypes';
 import style from './style';
 
@@ -29,17 +29,16 @@ type EntityHeaderProps = {
 
 function EntityHeader(props: EntityHeaderProps) {
   const animation = useRef(useSharedValue(0)).current;
+
   useEffect(() => {
     animation.value = withTiming(1, {
       duration: 3000,
       easing: Easing.ease,
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const animatedStyle = useAnimatedStyle(() => {
     const scale = interpolate(animation.value, [0, 1], [1.2, 1]);
-
     return {
       transform: [
         {
@@ -48,6 +47,7 @@ function EntityHeader(props: EntityHeaderProps) {
       ],
     };
   });
+
   return (
     <View style={style.container}>
       <View style={style.coverImageWrapper}>

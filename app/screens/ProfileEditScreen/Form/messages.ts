@@ -1,12 +1,12 @@
 /*
- * ProfileEditScreen.Form Messages
+ * ProfileEditScreen.ProfileEditScreenForm Messages
  *
- * This contains all the text for the ProfileEditScreen.Form component.
+ * This contains all the text for the ProfileEditScreen.ProfileEditScreenForm component.
  */
 
 import { defineMessages } from 'react-intl';
 
-export const scope = 'app.screens.ProfileEditScreen.Form';
+export const scope = 'app.screens.ProfileEditScreen.ProfileEditScreenForm';
 
 export default defineMessages({
   surnameLabel: {

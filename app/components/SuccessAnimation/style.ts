@@ -7,7 +7,6 @@
 import { StyleSheet } from 'react-native';
 
 import Dimensions from 'theme/Dimensions';
-// import elevation from 'theme/elevation';
 
 const style = StyleSheet.create({
   animationWrapper: {

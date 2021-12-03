@@ -7,10 +7,10 @@ import React from 'react';
 import { View } from 'react-native';
 import Animated from 'react-native-reanimated';
 
-import Section, { SectionProps } from 'theme/Section';
 import { useLoaderAnimation } from 'hooks/useLoaderAnimation';
+import Section, { SectionProps } from 'theme/Section';
 
-import { useGetStyles } from './style';
+import style from './style';
 
 interface HottestDealsLoaderProps extends SectionProps {
   numberOfItems: number;
@@ -21,7 +21,6 @@ const HottestDealsLoader: React.FC<HottestDealsLoaderProps> = ({
   ...props
 }) => {
   const animatedStyle = useLoaderAnimation();
-  const style = useGetStyles();
 
   return (
     <Section heading={props.heading} isLoading>

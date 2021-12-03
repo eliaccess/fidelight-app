@@ -1,12 +1,14 @@
 /*
  * ExploreScreen Messages
  *
- * This contains all the text for the ExploreScreen component.
+ * This contains all the text for the Explore screen.
  *
  */
 
 import { defineMessages } from 'react-intl';
+
 const scope = 'app.screens.ExploreScreen';
+
 export default defineMessages({
   categoriesHeading: {
     id: `${scope}.categoriesHeading`,

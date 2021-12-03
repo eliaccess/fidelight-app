@@ -1,19 +1,20 @@
 /**
  *
- * RestaurantLoader
+ * RestaurantsListLoader
  *
  */
+
 import React from 'react';
 import { View } from 'react-native';
 
 import Section, { SectionProps } from 'theme/Section';
 import EntityCardLoader from 'components/EntityCard/Loader';
 
-interface RestaurantLoaderProps extends SectionProps {
+interface RestaurantsListLoaderProps extends SectionProps {
   numberOfItems: number;
 }
 
-const RestaurantLoader: React.FC<RestaurantLoaderProps> = ({
+const RestaurantsListLoader: React.FC<RestaurantsListLoaderProps> = ({
   numberOfItems,
   ...props
 }) => (
@@ -26,4 +27,4 @@ const RestaurantLoader: React.FC<RestaurantLoaderProps> = ({
   </Section>
 );
 
-export default RestaurantLoader;
+export default RestaurantsListLoader;

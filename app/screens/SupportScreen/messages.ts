@@ -1,12 +1,14 @@
 /*
  * SupportScreen Messages
  *
- * This contains all the text for the SupportScreen component.
+ * This contains all the text for the SupportScreen.
  *
  */
 
 import { defineMessages } from 'react-intl';
+
 const scope = 'app.screens.SupportScreen';
+
 export default defineMessages({
   title: {
     id: `${scope}.title`,
