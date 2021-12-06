@@ -10,13 +10,13 @@ import LinearGradient from 'react-native-linear-gradient';
 
 import { useUser } from 'containers/Business/BusinessAuthentication';
 
+import FormattedMessage from 'theme/FormattedMessage';
+import { buttonGradientProps } from 'theme/utils';
+import TouchFeedback from 'theme/TouchFeedback';
 import Icon from 'theme/Icon';
 import Text from 'theme/Text';
-import TouchFeedback from 'theme/TouchFeedback';
-import { buttonGradientProps } from 'theme/utils';
-import FormattedMessage from 'theme/FormattedMessage';
 
-import { useGetStyles } from './style';
+import style from './style';
 import messages from './messages';
 
 type BusinessHomeHeader = {
@@ -29,7 +29,6 @@ type BusinessHomeHeader = {
 };
 
 function BusinessHomeHeader(props: BusinessHomeHeader) {
-  const style = useGetStyles();
   const user = useUser();
 
   return (
@@ -80,6 +79,7 @@ function BusinessHomeHeader(props: BusinessHomeHeader) {
               ]}
             />
           </TouchFeedback>
+
           <TouchFeedback
             onPress={() => props.onExploreTabPress(1)}
             style={[

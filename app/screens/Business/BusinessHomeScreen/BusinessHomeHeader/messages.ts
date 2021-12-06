@@ -6,7 +6,9 @@
  */
 
 import { defineMessages } from 'react-intl';
-const scope = 'app.components.BusinessHomeHeader';
+
+const scope = 'app.screens.Business.BusinessHomeScreen.BusinessHomeHeader';
+
 export default defineMessages({
   offersLabel: {
     id: `${scope}.offersLabel`,

@@ -10,20 +10,23 @@ import { View } from 'react-native';
 import { useBusinessProfile } from 'containers/Business/BusinessProfile';
 import { useEarningPolicyTypes } from 'containers/EarningPolicyTypes';
 
-import Screen from 'theme/Screen';
 import FormattedMessage from 'theme/FormattedMessage';
+import Screen from 'theme/Screen';
 
-import style from './style';
 import { EditBusinessInfoScreenProps } from './types';
-import messages from './messages';
-import GeneralInfoForm from './GeneralInfoForm';
 import EarningPolicyForm from './EarningPolicyForm';
+import GeneralInfoForm from './GeneralInfoForm';
 import BusinessImages from './BusinessImages';
 import ScheduleForm from './ScheduleForm';
+import messages from './messages';
+import style from './style';
 
-function EditBusinessInfoScreen(_props: EditBusinessInfoScreenProps) {
+const EditBusinessInfoScreen: React.FC<EditBusinessInfoScreenProps> = (
+  _props,
+) => {
   const businessProfile = useBusinessProfile();
   const earningPolicyTypes = useEarningPolicyTypes();
+
   return (
     <Screen
       testID="EditBusinessInfoScreen"
@@ -81,6 +84,6 @@ function EditBusinessInfoScreen(_props: EditBusinessInfoScreenProps) {
       </View>
     </Screen>
   );
-}
+};
 
 export default React.memo(EditBusinessInfoScreen);

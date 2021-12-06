@@ -6,7 +6,8 @@
 
 import { defineMessages } from 'react-intl';
 
-export const scope = 'app.screens.EditBusinessInfoScreen.EarningPolicyForm';
+export const scope =
+  'app.screens.Business.EditBusinessInfoScreen.EarningPolicyForm';
 
 export default defineMessages({
   rewardPointsLabel: {

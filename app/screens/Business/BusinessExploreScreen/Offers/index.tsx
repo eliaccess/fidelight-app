@@ -8,23 +8,24 @@ import React, { useEffect, useState } from 'react';
 import { Alert, View } from 'react-native';
 import { launchImageLibrary } from 'react-native-image-picker';
 
-import { useEntityOffersRewards } from 'containers/EntityOffersRewards';
 import useStateHandler from 'hooks/useStateHandler';
+
+import { useEntityOffersRewards } from 'containers/EntityOffersRewards';
+
 import FormattedMessage from 'theme/FormattedMessage';
+import FullScreenLoader from 'theme/FullScreenLoader';
+import TouchFeedback from 'theme/TouchFeedback';
+import { useToastContext } from 'theme/Toast';
+import NoResult from 'theme/NoResult';
+import Image from 'theme/Image';
+import Modal from 'theme/Modal';
 import Text from 'theme/Text';
 import Icon from 'theme/Icon';
-import Image from 'theme/Image';
-import NoResult from 'theme/NoResult';
-import TouchFeedback from 'theme/TouchFeedback';
-import Modal from 'theme/Modal';
-import { useToastContext } from 'theme/Toast';
-import FullScreenLoader from 'theme/FullScreenLoader';
 
 import style from './style';
 import messages from '../messages';
 
 import BusinessOffersRewardsLoaderProps from '../Loader';
-
 import EditOfferForm from '../EditOfferForm';
 
 const OPTION = {
@@ -61,7 +62,6 @@ function BusinessExploreOffers(props: BusinessExploreOffersProps) {
       });
       entityOffersRewards.reset();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [entityOffersRewards?.message]);
 
   const offers = entityOffersRewards?.data?.offers;
@@ -76,7 +76,6 @@ function BusinessExploreOffers(props: BusinessExploreOffersProps) {
       entityOffersRewards.addLogo({
         data: resp?.assets[0],
         entityId: props.entityId,
-        // @ts-ignore
         discountId: offerId,
       });
     });
@@ -94,6 +93,7 @@ function BusinessExploreOffers(props: BusinessExploreOffersProps) {
           style={style.deactiveHeading}
         />
       </View>
+
       <View style={style.list}>
         {!showContent ? (
           <BusinessOffersRewardsLoaderProps numberOfItems={4} />
@@ -126,7 +126,6 @@ function BusinessExploreOffers(props: BusinessExploreOffersProps) {
                                   onPress: () => {
                                     entityOffersRewards.removeLogo({
                                       entityId: props.entityId,
-                                      // @ts-ignore
                                       discountId: item.id,
                                     });
                                   },
@@ -146,13 +145,15 @@ function BusinessExploreOffers(props: BusinessExploreOffersProps) {
                       </>
                     ) : null}
                   </View>
+
                   <View style={style.contentWrapper}>
                     <Text style={style.title}>{item.name}</Text>
                     <Text style={style.shortDescription}>
                       {item.description}
                     </Text>
                   </View>
-                  <View style={style.actionsWrapper}>
+
+                  <View>
                     <TouchFeedback
                       onPress={() => {
                         setInitialData(item);
@@ -166,6 +167,7 @@ function BusinessExploreOffers(props: BusinessExploreOffersProps) {
                         style={style.editIcon}
                       />
                     </TouchFeedback>
+
                     <TouchFeedback
                       onPress={() => {
                         Alert.alert(
@@ -199,6 +201,7 @@ function BusinessExploreOffers(props: BusinessExploreOffersProps) {
                         style={style.deleteIcon}
                       />
                     </TouchFeedback>
+
                     <TouchFeedback
                       onPress={() => {
                         onAddLogoPress(item.id);
@@ -230,7 +233,7 @@ function BusinessExploreOffers(props: BusinessExploreOffersProps) {
               style={style.modalHeading}
             />
             <EditOfferForm
-              onSubmit={(values) => {
+              onSubmit={(values: any) => {
                 entityOffersRewards.update({
                   data: {
                     name: values.offerName,
@@ -238,13 +241,13 @@ function BusinessExploreOffers(props: BusinessExploreOffersProps) {
                     discountType: values.offerType.id,
                     startDate: values.startDate,
                     expirationDate: values.endDate,
-                    // @ts-ignore
+
                     perDay: values.perDay,
                     cost: 0,
                     value: values.discountValue,
                   },
                   entityId: props.entityId,
-                  // @ts-ignore
+
                   discountId: values.discountId,
                 });
                 setShowEditOfferForm(false);

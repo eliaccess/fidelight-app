@@ -6,7 +6,9 @@
  */
 
 import { defineMessages } from 'react-intl';
-const scope = 'app.screens.BusinessQRCodeScreen';
+
+const scope = 'app.screens.Business.BusinessQRCodeScreen';
+
 export default defineMessages({
   qrCodeHeading: {
     id: `${scope}.qrCodeHeading`,
@@ -18,6 +20,6 @@ export default defineMessages({
   },
   asBusinessLabel: {
     id: `${scope}.asBusinessLabel`,
-    defaultMessage: 'Continue as bussiness',
+    defaultMessage: 'Continue as business',
   },
 });

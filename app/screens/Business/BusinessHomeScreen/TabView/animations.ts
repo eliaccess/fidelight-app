@@ -4,6 +4,7 @@ import {
   interpolateColor,
   useAnimatedStyle,
 } from 'react-native-reanimated';
+
 import Colors from 'theme/Colors';
 import Dimensions from 'theme/Dimensions';
 

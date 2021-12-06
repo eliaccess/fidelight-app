@@ -6,7 +6,7 @@
 
 import { defineMessages } from 'react-intl';
 
-export const scope = 'app.screens.EditBusinessInfoScreen.ScheduleForm';
+export const scope = 'app.screens.Business.EditBusinessInfoScreen.ScheduleForm';
 
 export default defineMessages({
   addTimings: {

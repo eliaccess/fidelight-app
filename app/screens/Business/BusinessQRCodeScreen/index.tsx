@@ -6,36 +6,39 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { View } from 'react-native';
+import QRCodeScanner from 'react-native-qrcode-scanner';
 import Animated, {
   Easing,
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
 
-import QRCodeScanner from 'react-native-qrcode-scanner';
 import { useBusinessTransactions } from 'containers/Business/BusinessTransactions';
+
 import SuccessAnimation from 'components/SuccessAnimation';
-import Icon from 'theme/Icon';
-import TouchFeedback from 'theme/TouchFeedback';
+
 import FormattedMessage from 'theme/FormattedMessage';
+import TouchFeedback from 'theme/TouchFeedback';
 import { useToastContext } from 'theme/Toast';
 import Modal from 'theme/Modal';
+import Icon from 'theme/Icon';
 
+import { BusinessQRCodeScreenProps } from './types';
 import { UseQRCodeAnimation } from './animation';
+import UserPointsForm from './UserPointsForm';
 import messages from './messages';
 import style from './style';
 
-import { BusinessQRCodeScreenProps } from './types';
-
-import UserPointsForm from './UserPointsForm';
-
-function BusinessQRCodeScreen(props: BusinessQRCodeScreenProps) {
-  const transactions = useBusinessTransactions();
-  const [qrCode, setQrCode] = useState('');
+const BusinessQRCodeScreen: React.FC<BusinessQRCodeScreenProps> = (props) => {
   const [showUserPointsForm, setShowUserPointsForm] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [qrCode, setQrCode] = useState('');
+
   const animation = useRef(useSharedValue(0)).current;
   const toast = useToastContext();
-  const [showSuccess, setShowSuccess] = useState(false);
+
+  const QRCodeAnimation = UseQRCodeAnimation(animation);
+  const transactions = useBusinessTransactions();
 
   useEffect(() => {
     if (transactions.success) {
@@ -52,7 +55,6 @@ function BusinessQRCodeScreen(props: BusinessQRCodeScreenProps) {
         props.navigation.goBack();
       }, 3000);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [transactions]);
 
   useEffect(() => {
@@ -63,9 +65,7 @@ function BusinessQRCodeScreen(props: BusinessQRCodeScreenProps) {
         type: 'error',
       });
       transactions.reset();
-      // props.navigation.goBack();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [transactions.error]);
 
   useEffect(() => {
@@ -74,7 +74,6 @@ function BusinessQRCodeScreen(props: BusinessQRCodeScreenProps) {
       easing: Easing.inOut(Easing.ease),
     });
   }, [animation]);
-  const QRCodeAnimation = UseQRCodeAnimation(animation);
 
   useEffect(() => {
     if (qrCode) {
@@ -89,7 +88,6 @@ function BusinessQRCodeScreen(props: BusinessQRCodeScreenProps) {
         },
       });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [qrCode]);
 
   return (
@@ -124,6 +122,7 @@ function BusinessQRCodeScreen(props: BusinessQRCodeScreenProps) {
             />
           ) : null}
         </View>
+
         <Modal
           visible={showUserPointsForm}
           onRequestClose={() => {
@@ -146,6 +145,6 @@ function BusinessQRCodeScreen(props: BusinessQRCodeScreenProps) {
       {showSuccess ? <SuccessAnimation /> : null}
     </>
   );
-}
+};
 
 export default React.memo(BusinessQRCodeScreen);

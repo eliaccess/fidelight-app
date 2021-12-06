@@ -7,20 +7,22 @@
 import React, { useRef, useState } from 'react';
 import { View } from 'react-native';
 import * as Animatable from 'react-native-animatable';
-
 import * as yup from 'yup';
 import { Formik } from 'formik';
 
-import Button from 'theme/Button';
-import FormattedMessage from 'theme/FormattedMessage';
-import Input from 'theme/Input';
-import InputDropDown from 'theme/InputDropDown';
-import { useDiscountTypes } from 'containers/Business/DiscountTypes';
 import { DealItemTypes } from 'types/DealItemTypes';
-import style from './style';
-import messages from './messages';
+
+import { useDiscountTypes } from 'containers/Business/DiscountTypes';
+
+import FormattedMessage from 'theme/FormattedMessage';
+import InputDropDown from 'theme/InputDropDown';
+import Button from 'theme/Button';
+import Input from 'theme/Input';
+
 import DateSelector from './DateSelector';
 import DaySelector from '../DaySelector';
+import messages from './messages';
+import style from './style';
 
 interface EditOfferFormProps {
   onSubmit: (data: FormState) => void;
@@ -52,15 +54,18 @@ const schema = yup.object().shape({
 });
 
 const EditOfferForm: React.FC<EditOfferFormProps> = (props) => {
-  const discountDescriptionFieldRef = useRef();
-  const offerDurationFieldRef = useRef();
+  const discountDescriptionFieldRef: any = useRef();
+  const offerDurationFieldRef: any = useRef();
   const [perDay, setPerDay] = useState({ ...props.data.perDay });
+
   const discountTypes = useDiscountTypes();
 
   if (!discountTypes?.data?.length) {
     return null;
   }
+
   const { data } = props;
+
   const initialValues = {
     offerName: data?.name,
     discountDescription: data?.description,
@@ -106,9 +111,7 @@ const EditOfferForm: React.FC<EditOfferFormProps> = (props) => {
                 onBlur={handleBlur('offerName')}
                 value={values.offerName}
                 onSubmitEditing={() => {
-                  // @ts-ignore
                   if (discountDescriptionFieldRef?.current?.focus) {
-                    // @ts-ignore
                     discountDescriptionFieldRef.current?.focus();
                   }
                 }}
@@ -130,9 +133,7 @@ const EditOfferForm: React.FC<EditOfferFormProps> = (props) => {
                 onBlur={handleBlur('discountDescription')}
                 value={values.discountDescription}
                 onSubmitEditing={() => {
-                  // @ts-ignore
                   if (offerDurationFieldRef?.current?.focus) {
-                    // @ts-ignore
                     offerDurationFieldRef.current?.focus();
                   }
                 }}
@@ -149,6 +150,7 @@ const EditOfferForm: React.FC<EditOfferFormProps> = (props) => {
                 }
               />
             </View>
+
             <View style={style.inputContainer}>
               <InputDropDown
                 label={
@@ -166,6 +168,7 @@ const EditOfferForm: React.FC<EditOfferFormProps> = (props) => {
                 error={errors.offerType ? 'Required' : null}
               />
             </View>
+
             <View style={style.inputContainer}>
               <Input
                 textContentType="name"
@@ -174,7 +177,6 @@ const EditOfferForm: React.FC<EditOfferFormProps> = (props) => {
                 autoCapitalize="none"
                 onChangeText={handleChange('discountValue')}
                 onBlur={handleBlur('discountValue')}
-                // @ts-ignore
                 value={values.discountValue.toString()}
                 error={touched.discountValue ? errors.discountValue : null}
                 label={
@@ -198,6 +200,7 @@ const EditOfferForm: React.FC<EditOfferFormProps> = (props) => {
                   error={errors.startDate ? 'Required' : null}
                 />
               </View>
+
               <View style={style.dateSelectorWrapper}>
                 <DateSelector
                   value={values.endDate || ''}
@@ -210,6 +213,7 @@ const EditOfferForm: React.FC<EditOfferFormProps> = (props) => {
                 />
               </View>
             </View>
+
             <DaySelector
               onSelect={(key, value) => {
                 const updateDay = perDay;
@@ -236,4 +240,4 @@ const EditOfferForm: React.FC<EditOfferFormProps> = (props) => {
   );
 };
 
-export default EditOfferForm;
+export default React.memo(EditOfferForm);

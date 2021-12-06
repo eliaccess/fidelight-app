@@ -9,25 +9,22 @@ import { View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import { useUser } from 'containers/Business/BusinessAuthentication';
-
-import FormattedMessage from 'theme/FormattedMessage';
-import Icon from 'theme/Icon';
-
 import { useEntityOffersRewards } from 'containers/EntityOffersRewards';
 
+import FormattedMessage from 'theme/FormattedMessage';
 import TouchFeedback from 'theme/TouchFeedback';
-import Modal from 'theme/Modal';
 import { useToastContext } from 'theme/Toast';
+import Modal from 'theme/Modal';
+import Icon from 'theme/Icon';
 
-import { BusinessExploreScreenProps } from './types';
-import style from './style';
-import messages from './messages';
-import BusinessExploreOffers from './Offers';
-import BusinessExploreRewards from './Rewards';
-import CreateOfferForm from './CreateOfferForm';
 import CreateRewardForm from './CreateRewardForm';
+import CreateOfferForm from './CreateOfferForm';
+import BusinessExploreRewards from './Rewards';
+import BusinessExploreOffers from './Offers';
+import messages from './messages';
+import style from './style';
 
-function BusinessExploreScreen(props: BusinessExploreScreenProps) {
+const BusinessExploreScreen: React.FC<{ activeTabIndex: number }> = (props) => {
   const [showCreateOffers, setShowCreateOffers] = useState(false);
   const [showCreateReward, setShowCreateReward] = useState(false);
   const user = useUser();
@@ -37,7 +34,6 @@ function BusinessExploreScreen(props: BusinessExploreScreenProps) {
     entityId: user?.data?.id || -1,
   });
 
-  // @ts-ignore
   const { activeTabIndex } = props;
 
   useEffect(() => {
@@ -49,7 +45,6 @@ function BusinessExploreScreen(props: BusinessExploreScreenProps) {
       });
       entityOffersRewards.reset();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [entityOffersRewards?.data]);
 
   return (
@@ -89,7 +84,7 @@ function BusinessExploreScreen(props: BusinessExploreScreenProps) {
             style={style.modalHeading}
           />
           <CreateOfferForm
-            onSubmit={(values) => {
+            onSubmit={(values: any) => {
               entityOffersRewards.submit({
                 data: {
                   company: user?.data?.id || 1,
@@ -98,7 +93,6 @@ function BusinessExploreScreen(props: BusinessExploreScreenProps) {
                   discountType: values.offerType.id,
                   startDate: values.startDate,
                   expirationDate: values.endDate,
-                  // @ts-ignore
                   perDay: values.perDay,
                   cost: 0,
                   value: values.discountValue,
@@ -120,7 +114,7 @@ function BusinessExploreScreen(props: BusinessExploreScreenProps) {
             style={style.modalHeading}
           />
           <CreateRewardForm
-            onSubmit={(values) => {
+            onSubmit={(values: any) => {
               entityOffersRewards.submit({
                 data: {
                   company: user?.data?.id || 1,
@@ -129,7 +123,6 @@ function BusinessExploreScreen(props: BusinessExploreScreenProps) {
                   discountType: values.rewardType.id,
                   cost: values.rewardsPoints,
                   value: values.discountValue,
-                  // @ts-ignore
                   perDay: values.perDay,
                 },
               });
@@ -140,6 +133,6 @@ function BusinessExploreScreen(props: BusinessExploreScreenProps) {
       </Modal>
     </>
   );
-}
+};
 
 export default React.memo(BusinessExploreScreen);

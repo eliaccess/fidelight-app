@@ -7,50 +7,51 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 
+import configs from 'configs';
+import { ACCOUNT_SELECTION, PREFERENCE, SUPPORT } from 'router/routeNames';
+
 import { useBusinessAuthentication } from 'containers/Business/BusinessAuthentication';
 
-import TouchFeedback from 'theme/TouchFeedback';
-import Text from 'theme/Text';
 import FormattedMessage, { useFormattedMessage } from 'theme/FormattedMessage';
-import Modal from 'theme/Modal';
-import Icon from 'theme/Icon';
-import { ACCOUNT_SELECTION, PREFERENCE, SUPPORT } from 'router/routeNames';
+import TouchFeedback from 'theme/TouchFeedback';
 import { buttonGradientProps } from 'theme/utils';
 import { useToastContext } from 'theme/Toast';
-import configs from 'configs';
+import Modal from 'theme/Modal';
+import Text from 'theme/Text';
+import Icon from 'theme/Icon';
 
-import style from './style';
-import HomeTabView from './TabView';
+import { UseDrawerAnimation, UseDrawerMenuAnimation } from './animations';
 import { BusinessHomeScreenProps } from './types';
+import HomeTabView from './TabView';
+import messages from './messages';
+import style from './style';
 import Menu from './Menu';
 
-import messages from './messages';
-import { UseDrawerAnimation, UseDrawerMenuAnimation } from './animations';
-
-function BusinessHomeScreen(props: BusinessHomeScreenProps) {
-  const businessAuthentication = useBusinessAuthentication();
+const BusinessHomeScreen: React.FC<BusinessHomeScreenProps> = (props) => {
   const [isVisible, setIsVisible] = useState(false);
+  const [showTerms, setShowTerms] = useState(false);
+  const [showContactInfo, setShowContactInfo] = useState(false);
+  const timer: any = useRef();
+
   const animation = useRef(useSharedValue(0)).current;
   const drawerAnimation = UseDrawerAnimation(animation);
   const drawerMenuAnimation = UseDrawerMenuAnimation(animation);
-  const [showTerms, setShowTerms] = useState(false);
-  const [showContactInfo, setShowContactInfo] = useState(false);
-  const timer = useRef();
+
   const toast = useToastContext();
 
   const testMessages = useFormattedMessage(messages.toastMessage);
+
+  const businessAuthentication = useBusinessAuthentication();
 
   useEffect(() => {
     animation.value = withTiming(isVisible ? 1 : 0, {
       duration: 400,
       easing: Easing.inOut(Easing.linear),
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isVisible]);
 
   const handleBackPress = useCallback(() => {
     if (timer.current) {
-      // @ts-ignore
       clearTimeout(timer.current);
       BackHandler.exitApp();
       return true;
@@ -60,13 +61,12 @@ function BusinessHomeScreen(props: BusinessHomeScreenProps) {
       message: testMessages,
       delay: 1000,
     });
-    // @ts-ignore
+
     timer.current = setTimeout(() => {
-      // @ts-ignore
       timer.current = null;
     }, configs.BACK_INTERVAL);
+
     return true;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -75,7 +75,6 @@ function BusinessHomeScreen(props: BusinessHomeScreenProps) {
       handleBackPress,
     );
     return () => backHandler.remove();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -108,6 +107,7 @@ function BusinessHomeScreen(props: BusinessHomeScreenProps) {
             </TouchFeedback>
           ))}
         </View>
+
         <TouchFeedback
           onPress={() => {
             businessAuthentication.logout();
@@ -124,8 +124,8 @@ function BusinessHomeScreen(props: BusinessHomeScreenProps) {
           style={style.authButtonHolder}
         >
           <FormattedMessage
-            {...messages.logoutButtonLable}
-            style={style.logoutButtonLable}
+            {...messages.logoutButtonLabel}
+            style={style.logoutButtonLabel}
           />
         </TouchFeedback>
       </Animated.View>
@@ -157,6 +157,7 @@ function BusinessHomeScreen(props: BusinessHomeScreenProps) {
           </Text>
         </View>
       </Modal>
+
       <Modal
         visible={showContactInfo}
         onRequestClose={() => setShowContactInfo(false)}
@@ -166,7 +167,7 @@ function BusinessHomeScreen(props: BusinessHomeScreenProps) {
             {...messages.contactUsHeading}
             style={style.modalHeading}
           />
-          <View style={style.contactInfoContainer}>
+          <View>
             <View style={style.contactInfoItem}>
               <Icon name="map-pin" style={style.contactInfoIcon} />
               <Text style={style.contactInfoItemLabel}>
@@ -189,6 +190,6 @@ function BusinessHomeScreen(props: BusinessHomeScreenProps) {
       </Modal>
     </View>
   );
-}
+};
 
 export default React.memo(BusinessHomeScreen);

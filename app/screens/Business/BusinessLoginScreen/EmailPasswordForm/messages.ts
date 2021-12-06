@@ -6,7 +6,8 @@
 
 import { defineMessages } from 'react-intl';
 
-export const scope = 'app.components.HomeHeader';
+export const scope =
+  'app.screens.Business.BusinessLoginScreen.EmailPasswordForm';
 
 export default defineMessages({
   emailLabel: {

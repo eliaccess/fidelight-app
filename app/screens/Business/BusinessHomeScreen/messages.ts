@@ -6,15 +6,15 @@
 
 import { defineMessages } from 'react-intl';
 
-const scope = 'app.screens.BusinessHomeScreen';
+const scope = 'app.screens.Business.BusinessHomeScreen';
 
 export default defineMessages({
   title: {
     id: `${scope}.title`,
     defaultMessage: 'Home Screen!',
   },
-  logoutButtonLable: {
-    id: `${scope}.logoutButtonLable`,
+  logoutButtonLabel: {
+    id: `${scope}.logoutButtonLabel`,
     defaultMessage: 'Logout',
   },
   termsHeading: {

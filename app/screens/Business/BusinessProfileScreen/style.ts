@@ -11,6 +11,7 @@ import Dimensions from 'theme/Dimensions';
 
 export const DOT_SIZE = 40;
 export const ITEM_WIDTH = Dimensions.screenWidth - Dimensions.screenWidth / 6;
+
 const style = StyleSheet.create({
   container: {
     backgroundColor: Colors.bg1Color,
@@ -57,7 +58,6 @@ const style = StyleSheet.create({
     height: 8,
     width: '60%',
   },
-
   loaderContentWrapper: {
     marginTop: Dimensions.space10x,
   },

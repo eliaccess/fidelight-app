@@ -1,5 +1,5 @@
 export interface DealItemTypes {
-  id: string;
+  id: number;
   company: number;
   discountType: number;
   timesUsed: number;

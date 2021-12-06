@@ -8,12 +8,13 @@ import { StyleSheet } from 'react-native';
 
 import Colors from 'theme/Colors';
 import Dimensions from 'theme/Dimensions';
+
 export const DOT_SIZE = 40;
 export const ITEM_WIDTH = Dimensions.screenWidth - Dimensions.screenWidth / 6;
+
 const style = StyleSheet.create({
   timingsContainer: {
     backgroundColor: Colors.white,
-
     padding: Dimensions.space1x,
     marginVertical: Dimensions.space2x,
   },

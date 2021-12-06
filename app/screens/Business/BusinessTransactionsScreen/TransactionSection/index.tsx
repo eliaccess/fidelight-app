@@ -8,11 +8,11 @@ import React from 'react';
 import { View } from 'react-native';
 
 import useStateHandler from 'hooks/useStateHandler';
+
 import { useBusinessTransactions } from 'containers/Business/BusinessTransactions';
 
 import FormattedMessage from 'theme/FormattedMessage';
 import NoResult from 'theme/NoResult';
-
 import Section from 'theme/Section';
 import Text from 'theme/Text';
 

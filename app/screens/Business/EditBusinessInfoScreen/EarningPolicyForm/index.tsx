@@ -9,14 +9,16 @@ import { View } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import * as yup from 'yup';
 import { Formik } from 'formik';
+
 import { EarningPolicyTypeItem } from 'containers/EarningPolicyTypes/types';
 import { useBusinessEarningPolicies } from 'containers/Business/BusinessEarningPolicies';
-import Input from 'theme/Input';
+
 import FormattedMessage from 'theme/FormattedMessage';
-import Radio from 'theme/Radio';
-import Text from 'theme/Text';
-import Button from 'theme/Button';
 import { useToastContext } from 'theme/Toast';
+import Button from 'theme/Button';
+import Radio from 'theme/Radio';
+import Input from 'theme/Input';
+import Text from 'theme/Text';
 
 import style from './style';
 import messages from './messages';
@@ -56,7 +58,6 @@ const EarningPolicyForm: React.FC<EarningPolicyFormProps> = (props) => {
       });
       businessEarningPolicies.reset();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [businessEarningPolicies?.message]);
 
   return (

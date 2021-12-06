@@ -11,6 +11,13 @@ import Dimensions from 'theme/Dimensions';
 import elevation from 'theme/elevation';
 
 const style = StyleSheet.create({
+  contentContainerStyle: {
+    width: Dimensions.screenWidth,
+    height: 'auto',
+    paddingTop: '45%',
+    paddingBottom: Dimensions.bottomSpacing,
+    backgroundColor: Colors.bg1Color,
+  },
   addButtonWrapper: {
     position: 'absolute',
     bottom: '10%',
@@ -24,12 +31,8 @@ const style = StyleSheet.create({
     fontSize: 28,
     color: Colors.accent,
   },
-  contentContainerStyle: {
-    width: Dimensions.screenWidth,
-    height: 'auto',
-    paddingTop: '45%',
-    paddingBottom: Dimensions.bottomSpacing,
-    backgroundColor: Colors.bg1Color,
+  OfferContainer: {
+    height: 560,
   },
   modalHeading: {
     fontSize: 14,
@@ -76,9 +79,7 @@ const style = StyleSheet.create({
     width: '100%',
     borderRadius: Dimensions.borderRadius2x,
   },
-  OfferContainer: {
-    height: 560,
-  },
+
   rewardContainer: {
     height: 600,
   },

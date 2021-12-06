@@ -10,12 +10,13 @@ import { launchImageLibrary } from 'react-native-image-picker';
 import * as Animatable from 'react-native-animatable';
 
 import { useBusinessProfile } from 'containers/Business/BusinessProfile';
-import Image from 'theme/Image';
+
 import FullScreenLoader from 'theme/FullScreenLoader';
-import { useToastContext } from 'theme/Toast';
 import FormattedMessage from 'theme/FormattedMessage';
-import Icon from 'theme/Icon';
 import TouchFeedback from 'theme/TouchFeedback';
+import { useToastContext } from 'theme/Toast';
+import Image from 'theme/Image';
+import Icon from 'theme/Icon';
 
 import style from './style';
 import messages from './messages';
@@ -42,7 +43,6 @@ function BusinessImages(_props) {
       });
       businessProfile.reset();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [businessProfile?.success]);
 
   useEffect(() => {
@@ -54,7 +54,6 @@ function BusinessImages(_props) {
       });
       businessProfile.reset();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [businessProfile?.error]);
 
   const onAddLogoPress = () => {

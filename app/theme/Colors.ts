@@ -13,6 +13,7 @@ export default {
   bg1Color: '#F5FAFF',
   bg2Color: '#D4ECFB',
   itemBackgroundColor: '#F6F6F6',
+  dealBackgroundColor: '#D4ECFB',
 
   accentLight: '#73C9A4',
   accent: '#55C595',

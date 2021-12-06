@@ -11,16 +11,16 @@ import Dimensions from 'theme/Dimensions';
 
 export const DOT_SIZE = 30;
 export const ITEM_WIDTH = Dimensions.screenWidth - Dimensions.screenWidth / 11;
+
 const style = StyleSheet.create({
   seeAllLabel: {
     fontSize: 12,
     color: Colors.accentDark,
     fontWeight: 'bold',
   },
-  // eslint-disable-next-line react-native/no-color-literals
   itemWrapper: {
     width: Dimensions.screenWidth - Dimensions.screenWidth / 11,
-    backgroundColor: '#D4ECFB',
+    backgroundColor: Colors.dealBackgroundColor,
     borderRadius: Dimensions.borderRadius3x,
     paddingHorizontal: Dimensions.space3x,
     paddingVertical: Dimensions.space5x,

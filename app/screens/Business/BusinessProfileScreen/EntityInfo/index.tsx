@@ -16,40 +16,38 @@ type EntityInfoProps = {
   data: IBusinessUser;
 };
 
-function EntityInfo(props: EntityInfoProps) {
-  return (
-    <View style={style.infoContainer}>
-      <View style={style.entityInfoWrapper}>
-        <View style={style.nameDescriptionWrapper}>
-          <Text style={style.name}>{props.data.name} </Text>
-          <Text style={style.description}>{props.data.description}</Text>
-        </View>
-      </View>
-
-      <View style={style.separationLine} />
-      <View style={style.contactInfoContainer}>
-        <View style={style.contactInfoItem}>
-          <Icon name="map-pin" style={style.contactInfoIcon} />
-          <Text style={style.contactInfoItemLabel}>
-            {props.data?.streetName}, {props.data?.streetNumber} ,{' '}
-            {props.data?.city} , {props.data?.country}
-          </Text>
-        </View>
-        <View style={style.contactInfoItem}>
-          <Icon name="phone" style={style.contactInfoIcon} />
-          <Text style={style.contactInfoItemLabel}> {props.data.phone}</Text>
-        </View>
-        {props.data.websiteUrl ? (
-          <View style={style.contactInfoItem}>
-            <Icon name="globe" style={style.contactInfoIcon} />
-            <Text style={style.contactInfoItemLabel}>
-              {props.data.websiteUrl}
-            </Text>
-          </View>
-        ) : null}
+const EntityInfo: React.FC<EntityInfoProps> = (props) => (
+  <View style={style.infoContainer}>
+    <View style={style.entityInfoWrapper}>
+      <View style={style.nameDescriptionWrapper}>
+        <Text style={style.name}>{props.data.name} </Text>
+        <Text style={style.description}>{props.data.description}</Text>
       </View>
     </View>
-  );
-}
+
+    <View style={style.separationLine} />
+    <View style={style.contactInfoContainer}>
+      <View style={style.contactInfoItem}>
+        <Icon name="map-pin" style={style.contactInfoIcon} />
+        <Text style={style.contactInfoItemLabel}>
+          {props.data?.streetName}, {props.data?.streetNumber} ,{' '}
+          {props.data?.city} , {props.data?.country}
+        </Text>
+      </View>
+      <View style={style.contactInfoItem}>
+        <Icon name="phone" style={style.contactInfoIcon} />
+        <Text style={style.contactInfoItemLabel}> {props.data.phone}</Text>
+      </View>
+      {props.data.websiteUrl ? (
+        <View style={style.contactInfoItem}>
+          <Icon name="globe" style={style.contactInfoIcon} />
+          <Text style={style.contactInfoItemLabel}>
+            {props.data.websiteUrl}
+          </Text>
+        </View>
+      ) : null}
+    </View>
+  </View>
+);
 
 export default React.memo(EntityInfo);

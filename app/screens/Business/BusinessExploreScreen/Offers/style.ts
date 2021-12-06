@@ -76,7 +76,6 @@ const style = StyleSheet.create({
     color: Colors.textGrey,
     marginTop: Dimensions.space1x,
   },
-  actionsWrapper: {},
   actionIconHolder: {
     backgroundColor: Colors.white,
     padding: Dimensions.space1x,

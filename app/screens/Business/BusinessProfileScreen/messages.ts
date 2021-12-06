@@ -6,12 +6,9 @@
  */
 
 import { defineMessages } from 'react-intl';
-const scope = 'app.screens.BusinessProfileScreen';
+const scope = 'app.screens.Business.BusinessProfileScreen';
+
 export default defineMessages({
-  title: {
-    id: `${scope}.title`,
-    defaultMessage: 'Comming Soon!',
-  },
   openLabel: {
     id: `${scope}.openLabel`,
     defaultMessage: 'Open  ',

@@ -8,28 +8,27 @@ import React from 'react';
 import { View } from 'react-native';
 
 import useStateHandler from 'hooks/useStateHandler';
-
-import Screen from 'theme/Screen';
-import FormattedMessage from 'theme/FormattedMessage';
-import TouchFeedback from 'theme/TouchFeedback';
-import Image from 'theme/Image';
-import Text from 'theme/Text';
 import { DEAL_DETAIL } from 'router/routeNames';
+
 import { useEntityOffersRewards } from 'containers/EntityOffersRewards';
 import { useUser } from 'containers/Business/BusinessAuthentication';
 
-import style from './style';
-import messages from './messages';
-import { BusinessDealListingScreenProps } from './types';
+import FormattedMessage from 'theme/FormattedMessage';
+import TouchFeedback from 'theme/TouchFeedback';
+import Screen from 'theme/Screen';
+import Image from 'theme/Image';
+import Text from 'theme/Text';
 
+import { BusinessDealListingScreenProps } from './types';
 import DealListingLoader from './Loader';
+import messages from './messages';
+import style from './style';
 
 function BusinessDealListingScreen(props: BusinessDealListingScreenProps) {
   const user = useUser();
 
   const entityOffersRewards = useEntityOffersRewards({
-    // @ts-ignore
-    entityId: user.data?.id,
+    entityId: user.data?.id || -1,
   });
 
   const showContent = useStateHandler({
@@ -52,7 +51,7 @@ function BusinessDealListingScreen(props: BusinessDealListingScreenProps) {
               key={item.id}
               onPress={() => {
                 props.navigation.navigate(DEAL_DETAIL, {
-                  dealId: item.id.toString(),
+                  dealId: item.id,
                 });
               }}
               style={style.item}

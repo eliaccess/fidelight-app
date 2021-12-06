@@ -6,7 +6,8 @@
 
 import { defineMessages } from 'react-intl';
 
-export const scope = 'app.screens.BusinessExploreScreen.CreateOfferForm';
+export const scope =
+  'app.screens.Business.BusinessExploreScreen.CreateOfferForm';
 
 export default defineMessages({
   offerNameLabel: {

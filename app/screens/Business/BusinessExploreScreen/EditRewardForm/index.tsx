@@ -9,13 +9,15 @@ import { View } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import * as yup from 'yup';
 import { Formik } from 'formik';
+
+import { DealItemTypes } from 'types/DealItemTypes';
+
 import { useDiscountTypes } from 'containers/Business/DiscountTypes';
 
+import FormattedMessage from 'theme/FormattedMessage';
 import InputDropDown from 'theme/InputDropDown';
 import Button from 'theme/Button';
-import FormattedMessage from 'theme/FormattedMessage';
 import Input from 'theme/Input';
-import { DealItemTypes } from 'types/DealItemTypes';
 
 import style from './style';
 import messages from './messages';
@@ -49,15 +51,18 @@ const schema = yup.object().shape({
 });
 
 const EditRewardForm: React.FC<EditRewardFormProps> = (props) => {
-  const rewardDescriptionFieldRef = useRef();
-  const rewardsPointsFieldRef = useRef();
-  const discountTypes = useDiscountTypes();
+  const rewardDescriptionFieldRef: any = useRef();
+  const rewardsPointsFieldRef: any = useRef();
   const [perDay, setPerDay] = useState({ ...props.data.perDay });
+
+  const discountTypes = useDiscountTypes();
 
   if (!discountTypes?.data?.length) {
     return null;
   }
+
   const { data } = props;
+
   const initialValues = {
     offerName: data?.name,
     rewardDescription: data?.description,
@@ -99,9 +104,7 @@ const EditRewardForm: React.FC<EditRewardFormProps> = (props) => {
                 onBlur={handleBlur('offerName')}
                 value={values.offerName}
                 onSubmitEditing={() => {
-                  // @ts-ignore
                   if (rewardDescriptionFieldRef?.current?.focus) {
-                    // @ts-ignore
                     rewardDescriptionFieldRef.current?.focus();
                   }
                 }}
@@ -123,9 +126,7 @@ const EditRewardForm: React.FC<EditRewardFormProps> = (props) => {
                 onBlur={handleBlur('rewardDescription')}
                 value={values.rewardDescription}
                 onSubmitEditing={() => {
-                  // @ts-ignore
                   if (rewardsPointsFieldRef?.current?.focus) {
-                    // @ts-ignore
                     rewardsPointsFieldRef.current?.focus();
                   }
                 }}
@@ -165,7 +166,6 @@ const EditRewardForm: React.FC<EditRewardFormProps> = (props) => {
                 autoCapitalize="none"
                 onChangeText={handleChange('discountValue')}
                 onBlur={handleBlur('discountValue')}
-                // @ts-ignore
                 value={values.discountValue.toString()}
                 error={touched.discountValue ? errors.discountValue : null}
                 label={
@@ -185,7 +185,6 @@ const EditRewardForm: React.FC<EditRewardFormProps> = (props) => {
                 autoCapitalize="none"
                 onChangeText={handleChange('rewardsPoints')}
                 onBlur={handleBlur('rewardsPoints')}
-                // @ts-ignore
                 value={values.rewardsPoints.toString()}
                 error={touched.rewardsPoints ? errors.rewardsPoints : null}
                 label={
@@ -222,4 +221,4 @@ const EditRewardForm: React.FC<EditRewardFormProps> = (props) => {
   );
 };
 
-export default EditRewardForm;
+export default React.memo(EditRewardForm);

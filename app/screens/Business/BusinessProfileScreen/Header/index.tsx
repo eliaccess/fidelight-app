@@ -7,7 +7,6 @@
 import React, { useEffect, useRef } from 'react';
 import { View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-
 import {
   Easing,
   interpolate,
@@ -16,13 +15,12 @@ import {
   withTiming,
 } from 'react-native-reanimated';
 
-import Image from 'theme/Image';
 import { screenTopGradientProps } from 'theme/utils';
+import Image from 'theme/Image';
 
 import style from './style';
 
 type EntityHeaderProps = {
-  // eslint-disable-next-line react/no-unused-prop-types
   data: IBusinessUser;
 };
 
@@ -33,12 +31,10 @@ function EntityHeader(props: EntityHeaderProps) {
       duration: 3000,
       easing: Easing.ease,
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const animatedStyle = useAnimatedStyle(() => {
     const scale = interpolate(animation.value, [0, 1], [1.2, 1]);
-
     return {
       transform: [
         {

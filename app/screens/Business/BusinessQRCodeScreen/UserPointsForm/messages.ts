@@ -6,7 +6,9 @@
  */
 
 import { defineMessages } from 'react-intl';
-const scope = 'app.screens.BusinessQRCodeScreen';
+
+const scope = 'app.screens.Business.BusinessQRCodeScreen.UserPointsForm';
+
 export default defineMessages({
   inputPlaceholder: {
     id: `${scope}.inputPlaceholder`,

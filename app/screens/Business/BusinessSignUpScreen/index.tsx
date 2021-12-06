@@ -7,22 +7,23 @@
 import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 
-import Screen from 'theme/Screen';
-import FormattedMessage, { useFormattedMessage } from 'theme/FormattedMessage';
-import ScreenHeading from 'theme/ScreenHeading';
-
 import { BUSINESS_HOME, CITY_SELECTION, LOGIN } from 'router/routeNames';
+
 import { useBusinessAuthentication } from 'containers/Business/BusinessAuthentication';
 import { useUserLocation } from 'containers/UserLocation';
-import { useToastContext } from 'theme/Toast';
-import FullScreenLoader from 'theme/FullScreenLoader';
 
-import Form from './Form';
+import FormattedMessage, { useFormattedMessage } from 'theme/FormattedMessage';
+import FullScreenLoader from 'theme/FullScreenLoader';
+import ScreenHeading from 'theme/ScreenHeading';
+import { useToastContext } from 'theme/Toast';
+import Screen from 'theme/Screen';
+
+import { BusinessSignUpScreenProps } from './types';
 import messages from './messages';
 import style from './style';
-import { BusinessSignUpScreenProps } from './types';
+import Form from './Form';
 
-function BusinessSignUpScreen(props: BusinessSignUpScreenProps) {
+const BusinessSignUpScreen: React.FC<BusinessSignUpScreenProps> = (props) => {
   const [activeStep, setActiveStep] = useState(1);
   const [showLoader, setShowLoader] = useState(false);
   const businessAuthentication = useBusinessAuthentication();
@@ -32,7 +33,6 @@ function BusinessSignUpScreen(props: BusinessSignUpScreenProps) {
   useEffect(() => {
     businessAuthentication.reset();
     return businessAuthentication.reset;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -68,7 +68,6 @@ function BusinessSignUpScreen(props: BusinessSignUpScreenProps) {
         },
       ],
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [businessAuthentication]);
 
   useEffect(() => {
@@ -80,7 +79,6 @@ function BusinessSignUpScreen(props: BusinessSignUpScreenProps) {
       });
       setShowLoader(false);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [businessAuthentication.error]);
 
   const heading = useFormattedMessage(messages.headingLabel);
@@ -147,6 +145,6 @@ function BusinessSignUpScreen(props: BusinessSignUpScreenProps) {
       ) : null}
     </>
   );
-}
+};
 
-export default BusinessSignUpScreen;
+export default React.memo(BusinessSignUpScreen);

@@ -10,13 +10,15 @@ import { View } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import * as yup from 'yup';
 import { Formik } from 'formik';
+
 import { email } from 'utils/validations';
 
-import Input from 'theme/Input';
-import FormattedMessage from 'theme/FormattedMessage';
-import Button from 'theme/Button';
-import InputDropDown from 'theme/InputDropDown';
 import { useCategories } from 'containers/Categories';
+
+import FormattedMessage from 'theme/FormattedMessage';
+import InputDropDown from 'theme/InputDropDown';
+import Button from 'theme/Button';
+import Input from 'theme/Input';
 
 import style from './style';
 import messages from './messages';
@@ -57,15 +59,15 @@ const schema = yup.object().shape({
 });
 
 const GeneralInfoForm: React.FC<GeneralInfoFormProps> = (props) => {
-  const emailFieldRef = useRef();
-  const companyTypeFieldRef = useRef();
-  const streetNameFieldRef = useRef();
-  const streetNumberFieldRef = useRef();
-  const cityFieldRef = useRef();
-  const countryFieldRef = useRef();
-  const phoneFieldRef = useRef();
-  const websiteFieldRef = useRef();
-  const descriptionFieldRef = useRef();
+  const emailFieldRef: any = useRef();
+  const companyTypeFieldRef: any = useRef();
+  const streetNameFieldRef: any = useRef();
+  const streetNumberFieldRef: any = useRef();
+  const cityFieldRef: any = useRef();
+  const countryFieldRef: any = useRef();
+  const phoneFieldRef: any = useRef();
+  const websiteFieldRef: any = useRef();
+  const descriptionFieldRef: any = useRef();
 
   const companyTypes = useCategories();
 
@@ -121,9 +123,7 @@ const GeneralInfoForm: React.FC<GeneralInfoFormProps> = (props) => {
                 onBlur={handleBlur('email')}
                 value={values.email}
                 onSubmitEditing={() => {
-                  // @ts-ignore
                   if (companyTypeFieldRef?.current?.focus) {
-                    // @ts-ignore
                     companyTypeFieldRef.current?.focus();
                   }
                 }}
@@ -141,7 +141,6 @@ const GeneralInfoForm: React.FC<GeneralInfoFormProps> = (props) => {
                 title={
                   <FormattedMessage isFragment {...messages.companyTypeLabel} />
                 }
-                // @ts-ignore
                 selectedValue={values.companyType?.name}
                 onSelect={(item) => {
                   setFieldValue('companyType', item);
@@ -150,6 +149,7 @@ const GeneralInfoForm: React.FC<GeneralInfoFormProps> = (props) => {
                 error={errors.companyType ? 'Required' : null}
               />
             </View>
+
             <View style={style.inputContainer}>
               <Input
                 ref={streetNameFieldRef}
@@ -161,9 +161,7 @@ const GeneralInfoForm: React.FC<GeneralInfoFormProps> = (props) => {
                 onBlur={handleBlur('streetName')}
                 value={values.streetName}
                 onSubmitEditing={() => {
-                  // @ts-ignore
                   if (streetNumberFieldRef?.current?.focus) {
-                    // @ts-ignore
                     streetNumberFieldRef.current?.focus();
                   }
                 }}
@@ -173,6 +171,7 @@ const GeneralInfoForm: React.FC<GeneralInfoFormProps> = (props) => {
                 }
               />
             </View>
+
             <View style={style.inputContainer}>
               <Input
                 ref={streetNumberFieldRef}
@@ -184,9 +183,7 @@ const GeneralInfoForm: React.FC<GeneralInfoFormProps> = (props) => {
                 onBlur={handleBlur('streetNumber')}
                 value={values.streetNumber}
                 onSubmitEditing={() => {
-                  // @ts-ignore
                   if (cityFieldRef?.current?.focus) {
-                    // @ts-ignore
                     cityFieldRef.current?.focus();
                   }
                 }}
@@ -199,6 +196,7 @@ const GeneralInfoForm: React.FC<GeneralInfoFormProps> = (props) => {
                 }
               />
             </View>
+
             <View style={style.inputContainer}>
               <Input
                 ref={cityFieldRef}
@@ -210,9 +208,7 @@ const GeneralInfoForm: React.FC<GeneralInfoFormProps> = (props) => {
                 onBlur={handleBlur('city')}
                 value={values.city}
                 onSubmitEditing={() => {
-                  // @ts-ignore
                   if (countryFieldRef?.current?.focus) {
-                    // @ts-ignore
                     countryFieldRef.current?.focus();
                   }
                 }}
@@ -220,6 +216,7 @@ const GeneralInfoForm: React.FC<GeneralInfoFormProps> = (props) => {
                 label={<FormattedMessage {...messages.cityLabel} isFragment />}
               />
             </View>
+
             <View style={style.inputContainer}>
               <Input
                 ref={countryFieldRef}
@@ -231,9 +228,7 @@ const GeneralInfoForm: React.FC<GeneralInfoFormProps> = (props) => {
                 onBlur={handleBlur('country')}
                 value={values.country}
                 onSubmitEditing={() => {
-                  // @ts-ignore
                   if (companyTypeFieldRef?.current?.focus) {
-                    // @ts-ignore
                     companyTypeFieldRef.current?.focus();
                   }
                 }}
@@ -243,6 +238,7 @@ const GeneralInfoForm: React.FC<GeneralInfoFormProps> = (props) => {
                 }
               />
             </View>
+
             <View style={style.inputContainer}>
               <Input
                 ref={phoneFieldRef}
@@ -254,9 +250,7 @@ const GeneralInfoForm: React.FC<GeneralInfoFormProps> = (props) => {
                 onBlur={handleBlur('phone')}
                 value={values.phone}
                 onSubmitEditing={() => {
-                  // @ts-ignore
                   if (websiteFieldRef?.current?.focus) {
-                    // @ts-ignore
                     websiteFieldRef.current?.focus();
                   }
                 }}
@@ -264,6 +258,7 @@ const GeneralInfoForm: React.FC<GeneralInfoFormProps> = (props) => {
                 label={<FormattedMessage {...messages.phoneLabel} isFragment />}
               />
             </View>
+
             <View style={style.inputContainer}>
               <Input
                 ref={websiteFieldRef}
@@ -275,9 +270,7 @@ const GeneralInfoForm: React.FC<GeneralInfoFormProps> = (props) => {
                 onBlur={handleBlur('websiteUrl')}
                 value={values.websiteUrl}
                 onSubmitEditing={() => {
-                  // @ts-ignore
                   if (descriptionFieldRef?.current?.focus) {
-                    // @ts-ignore
                     descriptionFieldRef.current?.focus();
                   }
                 }}
@@ -287,6 +280,7 @@ const GeneralInfoForm: React.FC<GeneralInfoFormProps> = (props) => {
                 }
               />
             </View>
+
             <View style={style.inputContainer}>
               <Input
                 ref={descriptionFieldRef}
@@ -303,6 +297,7 @@ const GeneralInfoForm: React.FC<GeneralInfoFormProps> = (props) => {
                 multiline
               />
             </View>
+
             <View style={style.updateButtonContainer}>
               <Button
                 large
@@ -321,4 +316,4 @@ const GeneralInfoForm: React.FC<GeneralInfoFormProps> = (props) => {
   );
 };
 
-export default GeneralInfoForm;
+export default React.memo(GeneralInfoForm);

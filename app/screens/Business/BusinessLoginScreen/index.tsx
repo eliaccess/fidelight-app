@@ -7,9 +7,6 @@
 import React, { useEffect, useState } from 'react';
 import { Keyboard, Platform, View } from 'react-native';
 
-import Screen from 'theme/Screen';
-import FormattedMessage, { useFormattedMessage } from 'theme/FormattedMessage';
-import ScreenHeading from 'theme/ScreenHeading';
 import {
   BUSINESS_HOME,
   FORGET_PASSWORD,
@@ -17,13 +14,17 @@ import {
 } from 'router/routeNames';
 
 import { useBusinessAuthentication } from 'containers/Business/BusinessAuthentication';
-import { useToastContext } from 'theme/Toast';
+
+import FormattedMessage, { useFormattedMessage } from 'theme/FormattedMessage';
 import FullScreenLoader from 'theme/FullScreenLoader';
+import ScreenHeading from 'theme/ScreenHeading';
+import { useToastContext } from 'theme/Toast';
+import Screen from 'theme/Screen';
 
 import EmailPasswordForm from './EmailPasswordForm';
+import { BusinessLoginScreenProps } from './types';
 import messages from './messages';
 import style from './style';
-import { BusinessLoginScreenProps } from './types';
 
 function BusinessLoginScreen(props: BusinessLoginScreenProps) {
   const [showLoader, setShowLoader] = useState(false);
@@ -53,8 +54,6 @@ function BusinessLoginScreen(props: BusinessLoginScreenProps) {
         },
       ],
     });
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [businessAuthentication]);
 
   useEffect(() => {
@@ -66,13 +65,11 @@ function BusinessLoginScreen(props: BusinessLoginScreenProps) {
       });
       setShowLoader(false);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [businessAuthentication.error]);
 
   useEffect(() => {
     businessAuthentication.reset();
     return businessAuthentication.reset;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -114,6 +111,7 @@ function BusinessLoginScreen(props: BusinessLoginScreenProps) {
           </View>
         </View>
       </Screen>
+
       {showFooter ? (
         <View style={style.signUpContainer}>
           <FormattedMessage
@@ -127,6 +125,7 @@ function BusinessLoginScreen(props: BusinessLoginScreenProps) {
           />
         </View>
       ) : null}
+
       {showLoader ||
       businessAuthentication.fetchingRemoteToken ||
       businessAuthentication.user.fetching ? (
@@ -136,4 +135,4 @@ function BusinessLoginScreen(props: BusinessLoginScreenProps) {
   );
 }
 
-export default BusinessLoginScreen;
+export default React.memo(BusinessLoginScreen);

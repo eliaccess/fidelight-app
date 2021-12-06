@@ -7,9 +7,9 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
 
+import TouchFeedback from 'theme/TouchFeedback';
 import Icon from 'theme/Icon';
 import Text from 'theme/Text';
-import TouchFeedback from 'theme/TouchFeedback';
 
 import style from './style';
 
@@ -17,8 +17,9 @@ type EntityTimingsProps = {
   data: IBusinessUser;
 };
 
-function EntityTimings(props: EntityTimingsProps) {
+const EntityTimings: React.FC<EntityTimingsProps> = (props) => {
   const [showWeeklyTimings, setShowWeeklyTimings] = useState(false);
+
   return (
     <View style={style.timingsContainer}>
       {props.data?.schedule?.map((item, index) => {
@@ -88,6 +89,6 @@ function EntityTimings(props: EntityTimingsProps) {
       </TouchFeedback>
     </View>
   );
-}
+};
 
 export default React.memo(EntityTimings);

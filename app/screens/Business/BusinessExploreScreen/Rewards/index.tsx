@@ -8,24 +8,24 @@ import React, { useEffect, useState } from 'react';
 import { Alert, View } from 'react-native';
 import { launchImageLibrary } from 'react-native-image-picker';
 
-import { useEntityOffersRewards } from 'containers/EntityOffersRewards';
 import useStateHandler from 'hooks/useStateHandler';
 
+import { useEntityOffersRewards } from 'containers/EntityOffersRewards';
+
 import FormattedMessage from 'theme/FormattedMessage';
+import FullScreenLoader from 'theme/FullScreenLoader';
+import TouchFeedback from 'theme/TouchFeedback';
+import { useToastContext } from 'theme/Toast';
+import NoResult from 'theme/NoResult';
+import Image from 'theme/Image';
 import Text from 'theme/Text';
 import Icon from 'theme/Icon';
-
-import Image from 'theme/Image';
-import NoResult from 'theme/NoResult';
-import TouchFeedback from 'theme/TouchFeedback';
 import Modal from 'theme/Modal';
-import { useToastContext } from 'theme/Toast';
-import FullScreenLoader from 'theme/FullScreenLoader';
-import style from './style';
-import messages from '../messages';
-import BusinessOffersRewardsLoaderProps from '../Loader';
 
+import BusinessOffersRewardsLoaderProps from '../Loader';
 import EditRewardForm from '../EditRewardForm';
+import messages from '../messages';
+import style from './style';
 
 const OPTION = {
   title: 'Select Image',
@@ -60,7 +60,6 @@ function BusinessExploreRewards(props: BusinessExploreRewardsProps) {
       });
       entityOffersRewards.reset();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [entityOffersRewards?.message]);
 
   const rewards = entityOffersRewards?.data?.rewards;
@@ -75,7 +74,6 @@ function BusinessExploreRewards(props: BusinessExploreRewardsProps) {
       entityOffersRewards.addLogo({
         data: resp?.assets[0],
         entityId: props.entityId,
-        // @ts-ignore
         discountId: rewardId,
       });
     });
@@ -93,6 +91,7 @@ function BusinessExploreRewards(props: BusinessExploreRewardsProps) {
           style={style.deactiveHeading}
         />
       </View>
+
       <View style={style.list}>
         {!showContent ? (
           <BusinessOffersRewardsLoaderProps numberOfItems={4} />
@@ -145,12 +144,14 @@ function BusinessExploreRewards(props: BusinessExploreRewardsProps) {
                       </>
                     ) : null}
                   </View>
+
                   <View style={style.contentWrapper}>
                     <Text style={style.title}>{item.name}</Text>
                     <Text style={style.shortDescription}>
                       {item.description}
                     </Text>
                   </View>
+
                   <View style={style.actionsWrapper}>
                     <TouchFeedback
                       onPress={() => {
@@ -165,6 +166,7 @@ function BusinessExploreRewards(props: BusinessExploreRewardsProps) {
                         style={style.editIcon}
                       />
                     </TouchFeedback>
+
                     <TouchFeedback
                       onPress={() => {
                         Alert.alert(
@@ -198,6 +200,7 @@ function BusinessExploreRewards(props: BusinessExploreRewardsProps) {
                         style={style.deleteIcon}
                       />
                     </TouchFeedback>
+
                     <TouchFeedback
                       onPress={() => {
                         onAddLogoPress(item.id);
@@ -222,6 +225,7 @@ function BusinessExploreRewards(props: BusinessExploreRewardsProps) {
             )}
           </>
         )}
+
         <Modal
           visible={showEditRewardForm}
           onRequestClose={() => setShowEditRewardForm(false)}
@@ -232,7 +236,7 @@ function BusinessExploreRewards(props: BusinessExploreRewardsProps) {
               style={style.modalHeading}
             />
             <EditRewardForm
-              onSubmit={(values) => {
+              onSubmit={(values: any) => {
                 entityOffersRewards.update({
                   data: {
                     name: values.offerName,
@@ -240,11 +244,9 @@ function BusinessExploreRewards(props: BusinessExploreRewardsProps) {
                     discountType: values.rewardType.id,
                     cost: values.rewardsPoints,
                     value: values.discountValue,
-                    // @ts-ignore
                     perDay: values.perDay,
                   },
                   entityId: props.entityId,
-                  // @ts-ignore
                   discountId: values.discountId,
                 });
                 setShowEditRewardForm(false);
@@ -253,6 +255,7 @@ function BusinessExploreRewards(props: BusinessExploreRewardsProps) {
             />
           </View>
         </Modal>
+
         {entityOffersRewards.submitting ||
         entityOffersRewards.updating ||
         entityOffersRewards.removing ? (

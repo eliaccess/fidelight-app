@@ -7,15 +7,15 @@
 import React, { useRef, useState } from 'react';
 import { View } from 'react-native';
 import * as Animatable from 'react-native-animatable';
-
 import * as yup from 'yup';
 import { Formik } from 'formik';
 
-import Button from 'theme/Button';
-import FormattedMessage from 'theme/FormattedMessage';
-import Input from 'theme/Input';
-import InputDropDown from 'theme/InputDropDown';
 import { useDiscountTypes } from 'containers/Business/DiscountTypes';
+
+import FormattedMessage from 'theme/FormattedMessage';
+import InputDropDown from 'theme/InputDropDown';
+import Button from 'theme/Button';
+import Input from 'theme/Input';
 
 import style from './style';
 import messages from './messages';
@@ -60,8 +60,9 @@ const initialValue = {
 };
 
 const Form: React.FC<FormProps> = (props) => {
-  const discountDescriptionFieldRef = useRef();
-  const offerDurationFieldRef = useRef();
+  const discountDescriptionFieldRef: any = useRef();
+  const offerDurationFieldRef: any = useRef();
+
   const [perDay, setPerDay] = useState({
     monday: 0,
     tuesday: 0,
@@ -71,6 +72,7 @@ const Form: React.FC<FormProps> = (props) => {
     saturday: 0,
     sunday: 0,
   });
+
   const discountTypes = useDiscountTypes();
 
   if (!discountTypes?.data?.length) {
@@ -109,9 +111,7 @@ const Form: React.FC<FormProps> = (props) => {
                 onBlur={handleBlur('offerName')}
                 value={values.offerName}
                 onSubmitEditing={() => {
-                  // @ts-ignore
                   if (discountDescriptionFieldRef?.current?.focus) {
-                    // @ts-ignore
                     discountDescriptionFieldRef.current?.focus();
                   }
                 }}
@@ -133,9 +133,7 @@ const Form: React.FC<FormProps> = (props) => {
                 onBlur={handleBlur('discountDescription')}
                 value={values.discountDescription}
                 onSubmitEditing={() => {
-                  // @ts-ignore
                   if (offerDurationFieldRef?.current?.focus) {
-                    // @ts-ignore
                     offerDurationFieldRef.current?.focus();
                   }
                 }}
@@ -152,6 +150,7 @@ const Form: React.FC<FormProps> = (props) => {
                 }
               />
             </View>
+
             <View style={style.inputContainer}>
               <InputDropDown
                 label={
@@ -169,6 +168,7 @@ const Form: React.FC<FormProps> = (props) => {
                 error={errors.offerType ? 'Required' : null}
               />
             </View>
+
             <View style={style.inputContainer}>
               <Input
                 textContentType="name"
@@ -177,7 +177,6 @@ const Form: React.FC<FormProps> = (props) => {
                 autoCapitalize="none"
                 onChangeText={handleChange('discountValue')}
                 onBlur={handleBlur('discountValue')}
-                // @ts-ignore
                 value={values.discountValue}
                 error={touched.discountValue ? errors.discountValue : null}
                 label={

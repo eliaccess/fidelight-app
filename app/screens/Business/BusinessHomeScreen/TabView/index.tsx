@@ -3,34 +3,31 @@ import { View } from 'react-native';
 import { TabView } from 'react-native-tab-view';
 import { Easing, useSharedValue, withTiming } from 'react-native-reanimated';
 
+import { BUSINESS_PROFILE, BUSINESS_QR_CODE } from 'router/routeNames';
+
 import BusinessExploreScreen from 'screens/Business/BusinessExploreScreen/Loadable';
 import BusinessTransactionsScreen from 'screens/Business/BusinessTransactionsScreen/Loadable';
 
-import { BUSINESS_PROFILE, BUSINESS_QR_CODE } from 'router/routeNames';
-
-import TabBarButton from './TabBarButton';
-import style, { initialLayout } from './style';
-
 import BusinessHomeHeader from '../BusinessHomeHeader';
+import style, { initialLayout } from './style';
+import TabBarButton from './TabBarButton';
 
 function HomeTabView(props) {
   const [activeExploreTabIndex, setActiveExploreTabIndex] = useState(0);
-
   const [routeIndex, setRouteIndex] = useState(0);
-  const tabBarAnimation = useSharedValue(0);
-
   const [routes] = useState([
     { key: 'explore', icon: 'businesshome', font: 'fidelight' },
     { key: 'QR', major: true, icon: 'qr-code-sharp' },
     { key: 'favorites', icon: 'transactions', font: 'fidelight' },
   ]);
 
+  const tabBarAnimation = useSharedValue(0);
+
   useEffect(() => {
     tabBarAnimation.value = withTiming(routeIndex, {
       duration: 100,
       easing: Easing.inOut(Easing.ease),
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [routeIndex]);
 
   const renderTabBar = (tabBarProps) => (
@@ -51,10 +48,10 @@ function HomeTabView(props) {
       ))}
     </View>
   );
+
   const renderScene = ({ route }) => {
     switch (route.key) {
       case 'explore':
-        // @ts-ignore
         return (
           <BusinessExploreScreen
             navigation={props.navigation}

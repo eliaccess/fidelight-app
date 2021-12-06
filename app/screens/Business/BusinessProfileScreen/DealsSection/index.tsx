@@ -12,22 +12,22 @@ import Animated, {
   useSharedValue,
 } from 'react-native-reanimated';
 
-import { useEntityOffersRewards } from 'containers/EntityOffersRewards';
 import useStateHandler from 'hooks/useStateHandler';
-
 import { BUSINESS_DEAL_LISTING, DEAL_DETAIL } from 'router/routeNames';
+
+import { useEntityOffersRewards } from 'containers/EntityOffersRewards';
+
 import FormattedMessage from 'theme/FormattedMessage';
-import Image from 'theme/Image';
-import Section from 'theme/Section';
-import Text from 'theme/Text';
 import TouchFeedback from 'theme/TouchFeedback';
 import NoResult from 'theme/NoResult';
+import Section from 'theme/Section';
+import Image from 'theme/Image';
+import Text from 'theme/Text';
 
+import DealsSectionLoader from './Loader';
+import Pagination from './Pagination';
 import messages from '../messages';
 import style from './style';
-
-import Pagination from './Pagination';
-import DealsSectionLoader from './Loader';
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 
@@ -35,7 +35,8 @@ type DealsSectionProps = {
   entityId: number;
   navigation: any;
 };
-function DealsSection(props: DealsSectionProps) {
+
+const DealsSection: React.FC<DealsSectionProps> = (props) => {
   const entityOffersRewards = useEntityOffersRewards({
     entityId: props.entityId,
   });
@@ -44,6 +45,7 @@ function DealsSection(props: DealsSectionProps) {
     state: entityOffersRewards,
     stateIdentifier: 'data.offers.length',
   });
+
   const scrollX = useRef(useSharedValue(0)).current;
 
   const scrollHandler = useAnimatedScrollHandler({
@@ -59,6 +61,7 @@ function DealsSection(props: DealsSectionProps) {
       />
     );
   }
+
   const deals = entityOffersRewards?.data?.offers;
 
   return (
@@ -113,6 +116,6 @@ function DealsSection(props: DealsSectionProps) {
       )}
     </Section>
   );
-}
+};
 
 export default React.memo(DealsSection);

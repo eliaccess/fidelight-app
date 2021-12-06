@@ -38,6 +38,7 @@ function DateSelector(props: DateSelectorProps) {
         )}
         <Icon name="calendar" style={style.icon} />
       </TouchFeedback>
+
       <DateTimePickerModal
         isVisible={openDatePicker}
         mode="date"

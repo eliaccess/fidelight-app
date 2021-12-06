@@ -6,7 +6,8 @@
 
 import { defineMessages } from 'react-intl';
 
-export const scope = 'app.screens.EditBusinessInfoScreen.GeneralInfoForm';
+export const scope =
+  'app.screens.Business.EditBusinessInfoScreen.GeneralInfoForm';
 
 export default defineMessages({
   nameLabel: {

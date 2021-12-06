@@ -10,10 +10,10 @@ import * as Animatable from 'react-native-animatable';
 import * as yup from 'yup';
 import { Formik } from 'formik';
 
-import Button from 'theme/Button';
-import Input from 'theme/Input';
 import PasswordInput from 'theme/Input/PasswordInput';
 import FormattedMessage from 'theme/FormattedMessage';
+import Button from 'theme/Button';
+import Input from 'theme/Input';
 import Radio from 'theme/Radio';
 
 import { email, password } from 'utils/validations';
@@ -73,16 +73,17 @@ const initialValue = {
 };
 
 const Form: React.FC<FormProps> = (props) => {
-  const emailFieldRef = useRef();
-  const phoneFieldRef = useRef();
-  const passwordFieldRef = useRef();
-  const confirmPasswordFieldRef = useRef();
-  const streetNameFieldRef = useRef();
-  const streetNumberFieldRef = useRef();
-  const descriptionFieldRef = useRef();
-  const cityFieldRef = useRef();
-  const countryFieldRef = useRef();
-  const companyTypeFieldRef = useRef();
+  const emailFieldRef: any = useRef();
+  const phoneFieldRef: any = useRef();
+  const passwordFieldRef: any = useRef();
+  const confirmPasswordFieldRef: any = useRef();
+  const streetNameFieldRef: any = useRef();
+  const streetNumberFieldRef: any = useRef();
+  const descriptionFieldRef: any = useRef();
+  const cityFieldRef: any = useRef();
+  const countryFieldRef: any = useRef();
+  const companyTypeFieldRef: any = useRef();
+
   const [acceptPolicy, setAcceptPolicy] = useState(false);
 
   return (
@@ -114,9 +115,7 @@ const Form: React.FC<FormProps> = (props) => {
                     onBlur={handleBlur('companyName')}
                     value={values.companyName}
                     onSubmitEditing={() => {
-                      // @ts-ignore
                       if (emailFieldRef?.current?.focus) {
-                        // @ts-ignore
                         emailFieldRef.current?.focus();
                       }
                     }}
@@ -129,6 +128,7 @@ const Form: React.FC<FormProps> = (props) => {
                     }
                   />
                 </View>
+
                 <View style={style.inputContainer}>
                   <Input
                     ref={emailFieldRef}
@@ -140,9 +140,7 @@ const Form: React.FC<FormProps> = (props) => {
                     onBlur={handleBlur('email')}
                     value={values.email}
                     onSubmitEditing={() => {
-                      // @ts-ignore
                       if (phoneFieldRef?.current?.focus) {
-                        // @ts-ignore
                         phoneFieldRef.current?.focus();
                       }
                     }}
@@ -152,6 +150,7 @@ const Form: React.FC<FormProps> = (props) => {
                     }
                   />
                 </View>
+
                 <View style={style.inputContainer}>
                   <Input
                     ref={phoneFieldRef}
@@ -163,9 +162,7 @@ const Form: React.FC<FormProps> = (props) => {
                     onBlur={handleBlur('phone')}
                     value={values.phone}
                     onSubmitEditing={() => {
-                      // @ts-ignore
                       if (passwordFieldRef?.current?.focus) {
-                        // @ts-ignore
                         passwordFieldRef.current?.focus();
                       }
                     }}
@@ -182,9 +179,7 @@ const Form: React.FC<FormProps> = (props) => {
                     onBlur={handleBlur('password')}
                     value={values.password}
                     onSubmitEditing={() => {
-                      // @ts-ignore
                       if (confirmPasswordFieldRef?.current?.focus) {
-                        // @ts-ignore
                         confirmPasswordFieldRef.current?.focus();
                       }
                     }}
@@ -199,6 +194,7 @@ const Form: React.FC<FormProps> = (props) => {
                     }
                   />
                 </View>
+
                 <View style={style.inputContainer}>
                   <PasswordInput
                     onChangeText={handleChange('confirmPassword')}
@@ -240,9 +236,7 @@ const Form: React.FC<FormProps> = (props) => {
                     onBlur={handleBlur('description')}
                     value={values.description}
                     onSubmitEditing={() => {
-                      // @ts-ignore
                       if (streetNameFieldRef?.current?.focus) {
-                        // @ts-ignore
                         streetNameFieldRef.current?.focus();
                       }
                     }}
@@ -256,6 +250,7 @@ const Form: React.FC<FormProps> = (props) => {
                     multiline
                   />
                 </View>
+
                 <View style={style.inputContainer}>
                   <Input
                     ref={streetNameFieldRef}
@@ -267,9 +262,7 @@ const Form: React.FC<FormProps> = (props) => {
                     onBlur={handleBlur('streetName')}
                     value={values.streetName}
                     onSubmitEditing={() => {
-                      // @ts-ignore
                       if (streetNumberFieldRef?.current?.focus) {
-                        // @ts-ignore
                         streetNumberFieldRef.current?.focus();
                       }
                     }}
@@ -282,6 +275,7 @@ const Form: React.FC<FormProps> = (props) => {
                     }
                   />
                 </View>
+
                 <View style={style.inputContainer}>
                   <Input
                     ref={streetNumberFieldRef}
@@ -293,9 +287,7 @@ const Form: React.FC<FormProps> = (props) => {
                     onBlur={handleBlur('streetNumber')}
                     value={values.streetNumber}
                     onSubmitEditing={() => {
-                      // @ts-ignore
                       if (cityFieldRef?.current?.focus) {
-                        // @ts-ignore
                         cityFieldRef.current?.focus();
                       }
                     }}
@@ -320,9 +312,7 @@ const Form: React.FC<FormProps> = (props) => {
                     onBlur={handleBlur('city')}
                     value={values.city}
                     onSubmitEditing={() => {
-                      // @ts-ignore
                       if (countryFieldRef?.current?.focus) {
-                        // @ts-ignore
                         countryFieldRef.current?.focus();
                       }
                     }}
@@ -332,6 +322,7 @@ const Form: React.FC<FormProps> = (props) => {
                     }
                   />
                 </View>
+
                 <View style={style.inputContainer}>
                   <Input
                     ref={countryFieldRef}
@@ -343,9 +334,7 @@ const Form: React.FC<FormProps> = (props) => {
                     onBlur={handleBlur('country')}
                     value={values.country}
                     onSubmitEditing={() => {
-                      // @ts-ignore
                       if (companyTypeFieldRef?.current?.focus) {
-                        // @ts-ignore
                         companyTypeFieldRef.current?.focus();
                       }
                     }}
@@ -355,6 +344,7 @@ const Form: React.FC<FormProps> = (props) => {
                     }
                   />
                 </View>
+
                 <View style={style.inputContainer}>
                   <Input
                     ref={companyTypeFieldRef}
@@ -375,6 +365,7 @@ const Form: React.FC<FormProps> = (props) => {
                     }
                   />
                 </View>
+
                 <View style={style.policyWrapper}>
                   <Radio
                     type="checkbox"
@@ -410,4 +401,4 @@ const Form: React.FC<FormProps> = (props) => {
   );
 };
 
-export default Form;
+export default React.memo(Form);

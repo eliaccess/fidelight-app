@@ -6,7 +6,9 @@
  */
 
 import { defineMessages } from 'react-intl';
-const scope = 'app.screens.BusinessTransactionsScreen';
+
+const scope = 'app.screens.Business.BusinessTransactionsScreen';
+
 export default defineMessages({
   title: {
     id: `${scope}.title`,

@@ -8,20 +8,22 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
+import FormattedMessage from 'theme/FormattedMessage';
 import TouchFeedback from 'theme/TouchFeedback';
 import Icon from 'theme/Icon';
-
 import Modal from 'theme/Modal';
-import FormattedMessage from 'theme/FormattedMessage';
 
-import TransactionSection from './TransactionSection';
-import style from './style';
-import messages from './messages';
 import { BusinessTransactionsScreenProps } from './types';
+import TransactionSection from './TransactionSection';
 import CreateGiftForm from './CreateGiftForm';
+import messages from './messages';
+import style from './style';
 
-function BusinessTransactionsScreen(_props: BusinessTransactionsScreenProps) {
+const BusinessTransactionsScreen: React.FC<BusinessTransactionsScreenProps> = (
+  _props,
+) => {
   const [showCreateGift, setShowCreateGift] = useState(false);
+
   return (
     <>
       <ScrollView
@@ -53,6 +55,6 @@ function BusinessTransactionsScreen(_props: BusinessTransactionsScreenProps) {
       </Modal>
     </>
   );
-}
+};
 
 export default React.memo(BusinessTransactionsScreen);

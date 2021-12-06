@@ -1,9 +1,10 @@
 import React from 'react';
 import { View } from 'react-native';
 import Animated from 'react-native-reanimated';
-import style from './style';
 
 import { UsePaginationAnimation } from './animations';
+import style from './style';
+
 type PaginationProps = {
   length: number;
   scrollX: any;
@@ -23,4 +24,4 @@ function Pagination({ scrollX, length }: PaginationProps) {
   );
 }
 
-export default Pagination;
+export default React.memo(Pagination);

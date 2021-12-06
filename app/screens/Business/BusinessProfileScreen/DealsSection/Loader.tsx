@@ -11,8 +11,6 @@ import Animated from 'react-native-reanimated';
 import Section, { SectionProps } from 'theme/Section';
 import style from './style';
 
-// import style from './style';
-
 interface DealsSectionLoaderProps extends SectionProps {}
 
 const DealsSectionLoader: React.FC<DealsSectionLoaderProps> = (props) => {

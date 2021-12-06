@@ -33,25 +33,6 @@ const style = StyleSheet.create({
     padding: Dimensions.space1x,
     textDecorationLine: 'underline',
   },
-  errorMessage: {
-    backgroundColor: Colors.errorBackground,
-    color: Colors.errorForeground,
-    padding: Dimensions.space2x,
-    paddingVertical: Dimensions.space1x,
-    marginHorizontal: Dimensions.space4x,
-    marginTop: Dimensions.space4x,
-    borderRadius: Dimensions.borderRadius,
-    overflow: 'hidden',
-    fontWeight: '600',
-    textAlign: 'center',
-  },
-  termsLable: {
-    fontSize: 16,
-    color: Colors.textGrey,
-    textDecorationLine: 'underline',
-    alignSelf: 'center',
-    marginTop: Dimensions.space4x,
-  },
 });
 
 export default style;

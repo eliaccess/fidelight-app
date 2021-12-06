@@ -6,11 +6,9 @@ import elevation from 'theme/elevation';
 
 const style = StyleSheet.create({
   container: {
-    // flex: 1,
     backgroundColor: Colors.white,
     width: Dimensions.screenWidth,
     height: Dimensions.screenHeight,
-
     borderRadius: Dimensions.borderRadius10x,
   },
   tabBarContainer: {

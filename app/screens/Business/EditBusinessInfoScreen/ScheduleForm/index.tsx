@@ -1,12 +1,12 @@
 /* eslint-disable array-callback-return */
 import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
-import Button from 'theme/Button';
-import FormattedMessage from 'theme/FormattedMessage';
 
+import FormattedMessage from 'theme/FormattedMessage';
+import TouchFeedback from 'theme/TouchFeedback';
+import Button from 'theme/Button';
 import Icon from 'theme/Icon';
 import Text from 'theme/Text';
-import TouchFeedback from 'theme/TouchFeedback';
 
 import style from './style';
 import TimingForm from './TimingForm';
@@ -59,7 +59,6 @@ const ScheduleForm: React.FC<ScheduleFormProps> = (props) => {
       // @ts-ignore
       setShowForm('');
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props]);
 
   return (

@@ -7,24 +7,24 @@
 import React from 'react';
 import { View } from 'react-native';
 
-import { useBusinessProfile } from 'containers/Business/BusinessProfile';
-
-import Screen from 'theme/Screen';
-import TouchFeedback from 'theme/TouchFeedback';
-import Icon from 'theme/Icon';
 import { EDIT_BUSINESS_INFO } from 'router/routeNames';
 
+import { useBusinessProfile } from 'containers/Business/BusinessProfile';
+
+import TouchFeedback from 'theme/TouchFeedback';
+import Screen from 'theme/Screen';
+import Icon from 'theme/Icon';
+
+import EntityTimings from './EntityTimings';
 import DealsSection from './DealsSection';
 import EntityInfo from './EntityInfo';
-import EntityTimings from './EntityTimings';
 import EntityHeader from './Header';
-
 import style from './style';
 
 import { BusinessProfileScreenProps } from './types';
 import BusinessProfileScreenLoader from './Loader';
 
-function BusinessProfileScreen(props: BusinessProfileScreenProps) {
+const BusinessProfileScreen: React.FC<BusinessProfileScreenProps> = (props) => {
   const entityDetail = useBusinessProfile();
 
   return (
@@ -66,6 +66,6 @@ function BusinessProfileScreen(props: BusinessProfileScreenProps) {
       </View>
     </Screen>
   );
-}
+};
 
 export default React.memo(BusinessProfileScreen);

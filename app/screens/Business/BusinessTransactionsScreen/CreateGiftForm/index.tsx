@@ -10,15 +10,16 @@ import * as Animatable from 'react-native-animatable';
 import * as yup from 'yup';
 import { Formik } from 'formik';
 import QRCodeScanner from 'react-native-qrcode-scanner';
-import { useBusinessTransactions } from 'containers/Business/BusinessTransactions';
-import { useToastContext } from 'theme/Toast';
 
-import Modal from 'theme/Modal';
-import Button from 'theme/Button';
+import { useBusinessTransactions } from 'containers/Business/BusinessTransactions';
+
 import FormattedMessage, { useFormattedMessage } from 'theme/FormattedMessage';
+import { useToastContext } from 'theme/Toast';
+import TouchFeedback from 'theme/TouchFeedback';
+import Button from 'theme/Button';
+import Modal from 'theme/Modal';
 import Input from 'theme/Input';
 import Icon from 'theme/Icon';
-import TouchFeedback from 'theme/TouchFeedback';
 
 import style from './style';
 import messages from './messages';
@@ -56,7 +57,6 @@ const Form: React.FC<FormProps> = (props) => {
       transactions.reset();
       props.onRequestClose();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [transactions]);
 
   useEffect(() => {
@@ -69,7 +69,6 @@ const Form: React.FC<FormProps> = (props) => {
       transactions.reset();
       props.onRequestClose();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [transactions.error]);
 
   return (
@@ -194,4 +193,4 @@ const Form: React.FC<FormProps> = (props) => {
   );
 };
 
-export default Form;
+export default React.memo(Form);

@@ -10,10 +10,10 @@ import * as Animatable from 'react-native-animatable';
 import * as yup from 'yup';
 import { Formik } from 'formik';
 
-import Button from 'theme/Button';
-import Input from 'theme/Input';
 import PasswordInput from 'theme/Input/PasswordInput';
 import FormattedMessage from 'theme/FormattedMessage';
+import Button from 'theme/Button';
+import Input from 'theme/Input';
 import Radio from 'theme/Radio';
 
 import { email, password } from 'utils/validations';
@@ -42,7 +42,7 @@ const initialValue = {
 };
 
 const EmailPasswordForm: React.FC<EmailPasswordFormProps> = (props) => {
-  const passwordFieldRef = useRef();
+  const passwordFieldRef: any = useRef();
   const [rememberMe, setRememberMe] = useState(false);
 
   return (
@@ -72,9 +72,7 @@ const EmailPasswordForm: React.FC<EmailPasswordFormProps> = (props) => {
                 onBlur={handleBlur('email')}
                 value={values.email}
                 onSubmitEditing={() => {
-                  // @ts-ignore
                   if (passwordFieldRef?.current?.focus) {
-                    // @ts-ignore
                     passwordFieldRef.current?.focus();
                   }
                 }}
@@ -136,4 +134,4 @@ const EmailPasswordForm: React.FC<EmailPasswordFormProps> = (props) => {
   );
 };
 
-export default EmailPasswordForm;
+export default React.memo(EmailPasswordForm);

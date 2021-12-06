@@ -6,7 +6,7 @@
 
 import { defineMessages } from 'react-intl';
 
-export const scope = 'app.components.SignUpScreen.Form';
+export const scope = 'app.screens.Business.SignUpScreen.Form';
 
 export default defineMessages({
   companyNameLabel: {

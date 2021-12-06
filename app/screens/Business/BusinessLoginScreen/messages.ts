@@ -6,7 +6,7 @@
 
 import { defineMessages } from 'react-intl';
 
-export const scope = 'app.screens.LoginScreen';
+export const scope = 'app.screens.Business.BusinessLoginScreen';
 
 export default defineMessages({
   headingLabel: {

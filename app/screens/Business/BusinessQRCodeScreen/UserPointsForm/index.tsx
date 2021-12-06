@@ -7,9 +7,9 @@
 import React, { useState } from 'react';
 import { TextInput, View } from 'react-native';
 
-import Button from 'theme/Button';
 import FormattedMessage, { useFormattedMessage } from 'theme/FormattedMessage';
 import { useToastContext } from 'theme/Toast';
+import Button from 'theme/Button';
 
 import messages from './messages';
 import style from './style';
@@ -18,10 +18,12 @@ type UserPointsFormProps = {
   onSubmit: (...args: any[]) => void;
 };
 
-function UserPointsForm(props: UserPointsFormProps) {
+const UserPointsForm: React.FC<UserPointsFormProps> = (props) => {
   const [value, setValue] = useState('');
+
   const placeholder = useFormattedMessage(messages.inputPlaceholder);
   const inputError = useFormattedMessage(messages.inputError);
+
   const toast = useToastContext();
 
   return (
@@ -52,6 +54,6 @@ function UserPointsForm(props: UserPointsFormProps) {
       </View>
     </View>
   );
-}
+};
 
 export default React.memo(UserPointsForm);
