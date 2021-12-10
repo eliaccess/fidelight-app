@@ -129,7 +129,7 @@
 
 **URL** : `https://api.fidelight.fr/v1/user/connect/social/`
 
-**Method** : `POST`
+**Method** : `DELETE`
 
 **Auth required** : YES
 
@@ -283,7 +283,9 @@ Please set the `oldPassword` to `null` if it is a set up.
     "name": "Dos Santos",
     "phone": "0605040302",
     "email": "jeff.dos-santos@gmail.com",
-    "birthdate": 1995-05-21
+    "birthdate": 1995-05-21,
+    "google": true,
+    "facebook": false
   },
   "msg": "success"
 }
