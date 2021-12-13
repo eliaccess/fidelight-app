@@ -21,6 +21,7 @@ import messages from './messages';
 
 interface FormProps {
   onSubmit: (data: FormState) => void;
+  showCurrentPassword?: boolean;
 }
 
 type FormState = {
@@ -30,7 +31,7 @@ type FormState = {
 };
 
 const schema = yup.object().shape({
-  currentPassword: password.required('Required'),
+  currentPassword: password,
   newPassword: password.required('Required'),
   confirmPassword: password.oneOf(
     [yup.ref('newPassword')],
@@ -74,21 +75,25 @@ const Form: React.FC<FormProps> = (props) => {
           touched,
         }) => (
           <>
-            <View style={style.inputContainer}>
-              <PasswordInput
-                onChangeText={handleChange('currentPassword')}
-                onBlur={handleBlur('currentPassword')}
-                value={values.currentPassword}
-                returnKeyType="next"
-                onSubmitEditing={() => {
-                  if (newPasswordFieldRef?.current?.focus) {
-                    newPasswordFieldRef.current?.focus();
+            {props?.showCurrentPassword ? (
+              <View style={style.inputContainer}>
+                <PasswordInput
+                  onChangeText={handleChange('currentPassword')}
+                  onBlur={handleBlur('currentPassword')}
+                  value={values.currentPassword}
+                  returnKeyType="next"
+                  onSubmitEditing={() => {
+                    if (newPasswordFieldRef?.current?.focus) {
+                      newPasswordFieldRef.current?.focus();
+                    }
+                  }}
+                  error={
+                    touched.currentPassword ? errors.currentPassword : null
                   }
-                }}
-                error={touched.currentPassword ? errors.currentPassword : null}
-                label={currentPasswordLabel}
-              />
-            </View>
+                  label={currentPasswordLabel}
+                />
+              </View>
+            ) : null}
 
             <View style={style.inputContainer}>
               <PasswordInput
@@ -122,9 +127,11 @@ const Form: React.FC<FormProps> = (props) => {
             <View style={style.buttonContainer}>
               <Button
                 flex
-                disabled={!isValid}
                 label={submitButtonLabel}
-                onPress={handleSubmit}
+                onPress={() => {
+                  console.log('values', values);
+                  props.onSubmit(values);
+                }}
               />
             </View>
           </>

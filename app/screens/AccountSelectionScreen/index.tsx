@@ -24,7 +24,7 @@ const AccountSelectionScreen: React.FC<AccountSelectionScreenProps> = (
   props,
 ) => (
   <View style={style.container}>
-    <Animatable.View animation="fadeIn" duration={1500}>
+    <Animatable.View animation="fadeIn" duration={800}>
       <Image title="splash" style={style.imageBackground} />
     </Animatable.View>
     <View style={style.content}>
@@ -32,7 +32,11 @@ const AccountSelectionScreen: React.FC<AccountSelectionScreenProps> = (
         style={style.chooseOptionHeading}
         {...messages.chooseOptionHeading}
       />
-      <View style={style.buttonHolder}>
+      <Animatable.View
+        animation="fadeInLeft"
+        duration={1000}
+        style={style.buttonHolder}
+      >
         <Button
           onPress={() => {
             LocalStorage.setItem(configs.ACCOUNT_TYPE, 'user');
@@ -40,8 +44,12 @@ const AccountSelectionScreen: React.FC<AccountSelectionScreenProps> = (
           }}
           label={<FormattedMessage {...messages.asUserLabel} isFragment />}
         />
-      </View>
-      <View style={style.buttonHolder}>
+      </Animatable.View>
+      <Animatable.View
+        animation="fadeInRight"
+        duration={1000}
+        style={style.buttonHolder}
+      >
         <Button
           type="primary"
           onPress={() => {
@@ -50,7 +58,7 @@ const AccountSelectionScreen: React.FC<AccountSelectionScreenProps> = (
           }}
           label={<FormattedMessage {...messages.asBusinessLabel} isFragment />}
         />
-      </View>
+      </Animatable.View>
     </View>
   </View>
 );

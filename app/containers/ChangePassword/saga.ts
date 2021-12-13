@@ -21,7 +21,7 @@ export const submitSaga = function* submit(action: SubmitProps) {
   } catch (error: any) {
     yield put(
       actions.submitFailure({
-        message: error.error.msg,
+        message: error.error?.msg,
       }),
     );
   }

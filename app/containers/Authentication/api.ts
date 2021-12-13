@@ -13,12 +13,12 @@ import service, {
 } from 'services/fidelight';
 import {
   FetchUserAPIResponse,
+  LinkSocialAccountActionPayload,
+  LinkSocialAccountResponsePayload,
   LoginActionPayload,
   LoginResponsePayload,
   SignUpActionPayload,
   SignUpResponsePayload,
-  UpdateUserInfoActionPayload,
-  UpdateUserInfoAPIResponse,
 } from './types';
 
 export async function fetchLocalToken(): Promise<boolean> {
@@ -58,27 +58,6 @@ export async function fetchUserDetails(): Promise<
   return resp;
 }
 
-export function updateUserInfo(
-  payload: UpdateUserInfoActionPayload,
-): Promise<UpdateUserInfoAPIResponse | Error> {
-  const body: {
-    googleId?: string;
-    facebookId?: string;
-    email?: string;
-    name?: string;
-    contactNumber?: string;
-  } = {
-    ...payload.data,
-  };
-
-  return service({
-    method: 'POST',
-    url: '/api/v1.1/user/profile/update',
-    body,
-    parseError: true,
-  });
-}
-
 export async function signUp(
   payload: SignUpActionPayload,
 ): Promise<SignUpResponsePayload | Error> {
@@ -100,19 +79,17 @@ export async function signUp(
       parseError: true,
     });
   } else {
-    // const body = {
-    //   email: payload.data.email,
-    //   name: payload.data.name,
-    //   provider: payload.provider,
-    //   userId: payload.userId,
-    // };
-    // console.log('body', payload);
-    // resp = await service({
-    //   method: 'POST',
-    //   url: '/v1/auth/social',
-    //   body,
-    //   noAuth: true,
-    // });
+    const body = {
+      email: payload.data.email,
+      name: payload.data.name,
+      provider: payload.provider,
+      userId: payload.userId,
+    };
+    resp = await service({
+      method: 'POST',
+      url: '/v1/user/social',
+      body,
+    });
   }
 
   if (resp?.data?.id) {
@@ -143,20 +120,20 @@ export async function login(
       parseError: true,
     });
   } else {
-    // const body = {
-    //   email: payload.data.email,
-    //   name: payload.data.name,
-    //   provider: payload.provider,
-    //   userId: payload.userId,
-    // };
-    // console.log('body', body);
-    // resp = await service({
-    //   method: 'POST',
-    //   url: '/v1/auth/social',
-    //   body,
-    //   noAuth: true,
-    // });
+    const body = {
+      email: payload.data.email,
+      name: payload.data.name,
+      provider: payload.provider,
+      userId: payload.userId,
+    };
+    resp = await service({
+      method: 'POST',
+      url: '/v1/user/social',
+      body,
+      noAuth: true,
+    });
   }
+
   if (resp?.data?.id) {
     setAuthenticationTokens({
       accessToken: resp.data.accessToken,
@@ -166,6 +143,31 @@ export async function login(
     return { message: resp.msg };
   }
   throw Error(resp?.msg);
+}
+
+export async function linkSocialAccount(
+  payload: LinkSocialAccountActionPayload,
+): Promise<LinkSocialAccountResponsePayload | Error> {
+  let body: any = null;
+
+  if (payload.data?.userId) {
+    body = {
+      email: payload.data.email,
+      name: payload.data.name,
+      provider: payload.data.provider,
+      userId: payload.data.userId,
+    };
+  } else {
+    body = { provider: payload.data.provider };
+  }
+
+  const resp = await service({
+    method: payload.data?.userId ? 'POST' : 'DELETE',
+    url: '/v1/user/connect/social/',
+    body,
+  });
+
+  return { message: resp.msg };
 }
 
 export function logout() {

@@ -14,8 +14,8 @@ import {
   State,
   LoginActionPayload,
   UseAuthenticationReturn,
-  UpdateUserInfoActionPayload,
   SignUpActionPayload,
+  LinkSocialAccountActionPayload,
 } from './types';
 import makeSelectAuthentication from './selectors';
 import { actions, reducer, name as STORE_KEY } from './slice';
@@ -33,7 +33,6 @@ export function useAuthentication(): UseAuthenticationReturn {
       dispatch(actions.getAccountType());
       dispatch(actions.fetchLocalToken());
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const signUp = (payload: SignUpActionPayload) =>
@@ -41,10 +40,11 @@ export function useAuthentication(): UseAuthenticationReturn {
   const login = (payload: LoginActionPayload) =>
     dispatch(actions.login(payload));
   const logout = () => dispatch(actions.logout());
-  const updateUserInfo = (payload: UpdateUserInfoActionPayload) =>
-    dispatch(actions.updateUserInfo(payload));
   const reset = () => dispatch(actions.reset());
-  return { ...store, signUp, login, logout, updateUserInfo, reset };
+  const linkSocialAccount = (payload: LinkSocialAccountActionPayload) =>
+    dispatch(actions.linkSocialAccount(payload));
+
+  return { ...store, signUp, login, logout, reset, linkSocialAccount };
 }
 
 export function useUser() {

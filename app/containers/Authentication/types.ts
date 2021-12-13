@@ -1,8 +1,8 @@
 export type UseAuthenticationProps = {};
 export interface UseAuthenticationReturn extends State {
   login: (payload: LoginActionPayload) => void;
+  linkSocialAccount: (payload: LinkSocialAccountActionPayload) => void;
   signUp: (payload: SignUpActionPayload) => void;
-  updateUserInfo: (payload: UpdateUserInfoActionPayload) => void;
   logout: () => void;
   reset: () => void;
 }
@@ -29,36 +29,9 @@ export interface State {
   };
 }
 
-export interface UpdateUserInfoActionProp {
-  type: string;
-  payload: UpdateUserInfoActionPayload;
-}
-export interface UpdateUserInfoActionPayload {
-  data: {
-    email?: IUser['email'];
-    name?: IUser['name'];
-    contactNo?: IUser['contactNumber'];
-  };
-  avoidApiRequest?: boolean;
-}
-export interface UpdateUserInfoAPIResponse {
-  data?: IUser;
-  error?: {
-    message: string;
-  };
-}
-
-export interface UpdateUserInfoResponsePayload
-  extends UpdateUserInfoAPIResponse {}
-
 export interface LoginActionProps {
   type: string;
   payload: LoginActionPayload;
-}
-
-export interface SignUpActionProps {
-  type: string;
-  payload: SignUpActionPayload;
 }
 
 export interface LoginActionPayload {
@@ -71,17 +44,30 @@ export interface LoginActionPayload {
   };
 }
 
+export interface LoginResponsePayload {
+  message: string;
+}
+
+export interface SignUpActionProps {
+  type: string;
+  payload: SignUpActionPayload;
+}
+
 export interface SignUpActionPayload {
   provider: 'facebook' | 'google' | 'local' | 'apple';
   userId?: string;
   data: {
-    surname: string;
+    surname?: string;
     name: string;
     email: string;
-    phone: string;
-    birthdate: string;
-    password: string;
+    phone?: string;
+    birthdate?: string;
+    password?: string;
   };
+}
+
+export interface SignUpResponsePayload {
+  message: string;
 }
 
 export interface FailureResponsePayload {
@@ -107,10 +93,20 @@ export interface ErrorResponsePayload {
   message: string;
 }
 
-export interface SignUpResponsePayload {
-  message: string;
+export interface LinkSocialAccountActionProps {
+  type: string;
+  payload: LinkSocialAccountActionPayload;
 }
 
-export interface LoginResponsePayload {
+export interface LinkSocialAccountActionPayload {
+  data: {
+    email: string;
+    name: string;
+    userId: string;
+    provider: 'facebook' | 'google' | 'local' | 'apple';
+  };
+}
+
+export interface LinkSocialAccountResponsePayload {
   message: string;
 }

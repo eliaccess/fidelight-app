@@ -1,14 +1,15 @@
 export declare global {
   interface IUser {
-    email: string;
-    provider: 'local' | 'facebook' | 'google' | 'apple';
-    contactNumber: string;
-    name: string;
     id: number;
+    surname: string;
+    name: string;
     qrCode: string;
-    preferences: any;
-    profilePicture?: string;
-    transactionCount?: number;
+    email: string;
+    phone: string;
+    birthdate: string;
+    google: boolean;
+    facebook: boolean;
+    passwordSet: boolean;
     accountType: 'business' | 'user';
   }
   interface IBusinessUser {

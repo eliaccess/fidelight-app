@@ -28,7 +28,7 @@ const ChangePasswordScreen: React.FC<ChangePasswordScreenProps> = (props) => {
     if (changePassword.success) {
       toast?.show({
         message: changePassword.message,
-        delay: 500,
+        delay: 1000,
         type: 'success',
       });
       changePassword.reset();
@@ -40,7 +40,7 @@ const ChangePasswordScreen: React.FC<ChangePasswordScreenProps> = (props) => {
     if (changePassword.error) {
       toast?.show({
         message: changePassword.message,
-        delay: 500,
+        delay: 1000,
         type: 'error',
       });
       changePassword.reset();
@@ -57,6 +57,7 @@ const ChangePasswordScreen: React.FC<ChangePasswordScreenProps> = (props) => {
           onSubmit={(values) => {
             changePassword.submit({ ...values });
           }}
+          showCurrentPassword={props.route?.params?.showCurrentPassword}
         />
       </View>
 

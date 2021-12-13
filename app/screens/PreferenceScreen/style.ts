@@ -24,16 +24,40 @@ const style = StyleSheet.create({
     marginBottom: Dimensions.space2x,
     borderBottomColor: Colors.primaryDark,
   },
-  content: {},
-  itemTitle: {
-    fontSize: 14,
-    color: Colors.textBlack,
-    fontWeight: 'bold',
+  content: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
-  itemDescription: {
-    fontSize: 12,
+  socialIconImage: {
+    width: 18,
+    height: 18,
+    marginRight: Dimensions.space2x,
+  },
+  buttonWrapper: {
+    padding: Dimensions.space2x,
+  },
+  buttonLabel: {
+    fontSize: 14,
+    color: Colors.accent,
+  },
+  passwordButtonWrapper: {
+    paddingVertical: Dimensions.space3x - 3,
+    margin: Dimensions.space3x,
+    borderRadius: Dimensions.space5x,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    flexDirection: 'row',
+    borderColor: Colors.separator,
+  },
+  passwordIcon: {
+    fontSize: 16,
+    color: Colors.textBlack,
+    marginRight: Dimensions.space3x,
+  },
+  chevronIcon: {
+    fontSize: 25,
     color: Colors.textGrey,
-    marginTop: Dimensions.space2x,
   },
 });
 

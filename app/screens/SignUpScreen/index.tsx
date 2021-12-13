@@ -116,18 +116,7 @@ function SignUpScreen(props: SignUpScreenProps) {
             <Separator />
             <SocialLogin
               setShowLoader={setShowLoader}
-              onSuccess={(resp) =>
-                authentication.signUp({
-                  ...resp,
-                  data: {
-                    ...resp.data,
-                    surname: '',
-                    phone: '',
-                    birthdate: '',
-                    password: '',
-                  },
-                })
-              }
+              onSuccess={(data) => authentication.signUp(data)}
               onFailure={() => {}}
             />
           </View>

@@ -10,7 +10,7 @@ export async function submit(
   payload: SubmitPropsPayload,
 ): Promise<ChangePasswordAPIResponse | Error> {
   const body = {
-    oldPassword: payload.currentPassword,
+    oldPassword: payload?.currentPassword || null,
     newPassword: payload.newPassword,
   };
 

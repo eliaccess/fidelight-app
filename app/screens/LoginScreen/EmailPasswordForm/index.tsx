@@ -62,7 +62,11 @@ const EmailPasswordForm: React.FC<EmailPasswordFormProps> = (props) => {
           touched,
         }) => (
           <>
-            <View style={style.inputContainer}>
+            <Animatable.View
+              style={style.inputContainer}
+              animation="fadeInUp"
+              duration={800}
+            >
               <Input
                 textContentType="emailAddress"
                 keyboardType="email-address"
@@ -79,9 +83,14 @@ const EmailPasswordForm: React.FC<EmailPasswordFormProps> = (props) => {
                 error={touched.email ? errors.email : null}
                 label={<FormattedMessage {...messages.emailLabel} isFragment />}
               />
-            </View>
+            </Animatable.View>
 
-            <View style={style.inputContainer}>
+            <Animatable.View
+              style={style.inputContainer}
+              animation="fadeInUp"
+              duration={800}
+              delay={100}
+            >
               <PasswordInput
                 onChangeText={handleChange('password')}
                 onBlur={handleBlur('password')}
@@ -94,9 +103,14 @@ const EmailPasswordForm: React.FC<EmailPasswordFormProps> = (props) => {
                   <FormattedMessage {...messages.passwordLabel} isFragment />
                 }
               />
-            </View>
+            </Animatable.View>
 
-            <View style={style.rememberMeForgetWrapper}>
+            <Animatable.View
+              style={style.rememberMeForgetWrapper}
+              animation="fadeInUp"
+              duration={800}
+              delay={150}
+            >
               <View style={style.rememberMeWrapper}>
                 <Radio
                   type="checkbox"
@@ -118,9 +132,14 @@ const EmailPasswordForm: React.FC<EmailPasswordFormProps> = (props) => {
                 onPress={props.onForgotPasswordPress}
                 style={style.forgotPasswordLabel}
               />
-            </View>
+            </Animatable.View>
 
-            <View style={style.buttonContainer}>
+            <Animatable.View
+              style={style.buttonContainer}
+              animation="fadeInUp"
+              duration={800}
+              delay={200}
+            >
               <Button
                 flex
                 disabled={!isValid}
@@ -129,7 +148,7 @@ const EmailPasswordForm: React.FC<EmailPasswordFormProps> = (props) => {
                 }
                 onPress={handleSubmit}
               />
-            </View>
+            </Animatable.View>
           </>
         )}
       </Formik>

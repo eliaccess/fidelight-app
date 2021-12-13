@@ -61,9 +61,8 @@ function SocialLogin({ setShowLoader, onSuccess }: SocialLoginProps) {
           provider: 'facebook',
           userId: fbUser.userId,
           data: {
-            email: `${fbUser.userId}@facebook.com`,
-            name: fbUser.name || 'Name',
-            ...fbUser,
+            email: fbUser.email || '',
+            name: fbUser.name || '',
           },
         });
       }

@@ -1,32 +1,18 @@
-import omit from 'lodash/omit';
-// import { subscribeToTopic, unsubscribeFromTopic } from 'platform/Notifications';
-// import LocalStorage from 'platform/LocalStorage';
 import { Log } from 'platform/Logger';
 
 import { setUserProperties as crashlyticsSetUser } from './crashlytics';
 import { setUser as analyticsSetUser } from './analytics';
 
-const PROPERTIES_BLACKLIST = [
-  'password',
-  'qrCode',
-  'companyType',
-  'backgroundPicture',
-  'description',
-  'logoUrl',
-  'registrationDate',
-  'streetName',
-  'streetNumber',
-  'schedule',
-];
-
 const onUserUpdate = (params) => {
   Log('Setting Analytics User', params);
-  const user: any = omit(
-    {
-      ...params,
-    },
-    PROPERTIES_BLACKLIST,
-  );
+  const user = {
+    name: params.name,
+    email: params.email,
+    id: params.id,
+    surname: params.surname,
+    phone: params.phone,
+    birthday: params.birthday,
+  };
   analyticsSetUser(user);
   crashlyticsSetUser(user);
 };
@@ -35,12 +21,14 @@ const onUserUpdate = (params) => {
  * All functions to handle events like sign in, sign out, etc for side effects
  */
 export function onSignIn(user): void {
-  const analyticsUser: any = omit(
-    {
-      ...user,
-    },
-    PROPERTIES_BLACKLIST,
-  );
+  const analyticsUser = {
+    id: user.id,
+    name: user.name,
+    email: user.email,
+    surname: user.surname,
+    phone: user.phone,
+    birthday: user.birthday,
+  };
 
   if (analyticsUser?.name) {
     onUserUpdate(analyticsUser);

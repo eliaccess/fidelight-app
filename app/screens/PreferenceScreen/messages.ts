@@ -14,4 +14,24 @@ export default defineMessages({
     id: `${scope}.title`,
     defaultMessage: 'Preference Management',
   },
+  connectGoogleLabel: {
+    id: `${scope}.connectGoogleLabel`,
+    defaultMessage: 'Connect with Google Account',
+  },
+  connectFacebookLabel: {
+    id: `${scope}.connectFacebookLabel`,
+    defaultMessage: 'Connect with Facebook Account',
+  },
+  addPasswordLabel: {
+    id: `${scope}.addPasswordLabel`,
+    defaultMessage: 'Add Password',
+  },
+  removeGoogleLabel: {
+    id: `${scope}.removeGoogleLabel`,
+    defaultMessage: 'Remove Google Account',
+  },
+  removeFacebookLabel: {
+    id: `${scope}.removeFacebookLabel`,
+    defaultMessage: 'Remove Facebook Account',
+  },
 });

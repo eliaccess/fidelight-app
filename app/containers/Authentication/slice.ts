@@ -4,12 +4,12 @@ import {
   LoginActionPayload,
   FetchUserResponsePayload,
   State,
-  UpdateUserInfoActionPayload,
-  UpdateUserInfoResponsePayload,
   SignUpActionPayload,
   ErrorResponsePayload,
   SignUpResponsePayload,
   LoginResponsePayload,
+  LinkSocialAccountActionPayload,
+  LinkSocialAccountResponsePayload,
 } from './types';
 export const initialState = {
   fetchingLocalToken: false,
@@ -68,6 +68,28 @@ const slice = createSlice({
       state.message = action.payload.message;
       state.error = true;
     },
+    linkSocialAccount(
+      state: State,
+      _action: PayloadAction<LinkSocialAccountActionPayload>,
+    ): void {
+      state.submitting = true;
+      state.error = undefined;
+    },
+    linkSocialAccountSuccess(
+      state: State,
+      action: PayloadAction<LinkSocialAccountResponsePayload>,
+    ): void {
+      state.submitting = false;
+      state.message = action.payload.message;
+    },
+    linkSocialAccountFailure(
+      state: State,
+      action: PayloadAction<ErrorResponsePayload>,
+    ): void {
+      state.submitting = false;
+      state.message = action.payload.message;
+      state.error = true;
+    },
 
     signUp(state: State, _action: PayloadAction<SignUpActionPayload>): void {
       state.submitting = true;
@@ -115,32 +137,6 @@ const slice = createSlice({
       state.user.fetching = false;
       state.user.error = action.payload.error?.message;
     },
-    updateUserInfo(
-      state: State,
-      _action: PayloadAction<UpdateUserInfoActionPayload>,
-    ): void {
-      state.user.updating = true;
-    },
-    updateUserInfoSuccess(
-      state: State,
-      action: PayloadAction<UpdateUserInfoResponsePayload>,
-    ): void {
-      state.user.updating = false;
-      if (action.payload.data) {
-        state.user.data = {
-          ...(state.user?.data || {}),
-          ...action.payload.data,
-        };
-        state.user.updated = true;
-      }
-    },
-    updateUserInfoFailure(
-      state: State,
-      action: PayloadAction<UpdateUserInfoResponsePayload>,
-    ): void {
-      state.user.updating = false;
-      state.user.error = action.payload.error?.message;
-    },
     logout(state: State): void {
       state.localChecked = true;
       state.isAuthenticated = false;
@@ -148,6 +144,7 @@ const slice = createSlice({
     },
     reset(state: State): void {
       state.error = undefined;
+      state.message = '';
       state.user.updated = false;
     },
     getAccountType(state: State): void {

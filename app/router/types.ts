@@ -16,7 +16,9 @@ export type RootStackParamList = {
     entityId: number;
   };
   Support?: {};
-  ChangePassword?: {};
+  ChangePassword?: {
+    showCurrentPassword?: boolean;
+  };
   Preference?: {};
   Profile?: {};
   ProfileEdit?: {};
