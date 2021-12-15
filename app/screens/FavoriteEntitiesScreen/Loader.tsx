@@ -15,7 +15,7 @@ interface FavoriteEntitiesScreenLoaderProps {
 const FavoriteEntitiesScreenLoader: React.FC<FavoriteEntitiesScreenLoaderProps> =
   ({ numberOfItems }) => (
     <>
-      {Array.from(Array(numberOfItems), (_a, i) => (
+      {Array.from(Array(numberOfItems), (_a) => (
         <EntityCardLoader />
       ))}
     </>

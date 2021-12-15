@@ -1,5 +1,8 @@
 pre-commit:
   commands:
+    type-check:
+      glob: '*.{ts,tsx}'
+      run: yarn type-check
     spelling:
       glob: '*.{js,ts,jsx,tsx,md}'
       run: yarn cspell {staged_files}

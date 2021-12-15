@@ -14,7 +14,7 @@ interface BusinessOffersRewardsLoaderProps {
 const BusinessOffersRewardsLoader: React.FC<BusinessOffersRewardsLoaderProps> =
   ({ numberOfItems }) => (
     <>
-      {Array.from(Array(numberOfItems), (_a, i) => (
+      {Array.from(Array(numberOfItems), (_a) => (
         <EntityCardLoader />
       ))}
     </>

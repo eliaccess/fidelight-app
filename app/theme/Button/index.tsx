@@ -3,8 +3,8 @@
  * Button
  *
  */
-import React, { useRef } from 'react';
-import { useSharedValue } from 'react-native-reanimated';
+import React from 'react';
+
 import LinearGradient from 'react-native-linear-gradient';
 
 import { buttonGradientProps } from 'theme/utils';
@@ -51,68 +51,47 @@ const Button: React.FC<ButtonProps> = ({
   disabled = false,
   onPress,
   ...props
-}) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const _animation = useRef(useSharedValue(disabled ? 0.5 : 1)).current;
-  // useEffect(() => {
-  //   animation.value = withTiming(disabled ? 0.5 : 1, {
-  //     duration: 400,
-  //     easing: Easing.inOut(Easing.ease),
-  //   });
-  // }, [animation, disabled]);
-
-  // const animatedStyle = useAnimatedStyle(() => {
-  //   const opacity = interpolate(
-  //     animation.value,
-  //     [0, 1],
-  //     [0, 1],
-  //     Extrapolate.CLAMP,
-  //   );
-  //   return { opacity };
-  // });
-
-  return (
-    <TouchFeedback
-      onPress={disabled ? () => null : onPress}
-      style={[
-        style.button,
-        props.large ? style.large : {},
-        props.flex ? style.flex : {},
-        {
-          // ...animatedStyle,
-          ...typeBackground[type],
-        },
-      ]}
-    >
-      {type === 'linear' ? (
-        <LinearGradient {...buttonGradientProps()} style={style.backdrop} />
-      ) : null}
-      {props.icon && !props.trailingIcon ? (
-        <Icon
-          name={props.icon}
-          style={[
-            style.icon,
-            typeForeground[type],
-            props.large ? style.largeIcon : {},
-          ]}
-        />
-      ) : null}
-
-      {props.image ? <Image style={style.image} {...props.image} /> : null}
-
-      <Text
-        animated
+}) => (
+  <TouchFeedback
+    onPress={disabled ? () => null : onPress}
+    style={[
+      style.button,
+      props.large ? style.large : {},
+      props.flex ? style.flex : {},
+      {
+        // ...animatedStyle,
+        ...typeBackground[type],
+      },
+    ]}
+  >
+    {type === 'linear' ? (
+      <LinearGradient {...buttonGradientProps()} style={style.backdrop} />
+    ) : null}
+    {props.icon && !props.trailingIcon ? (
+      <Icon
+        name={props.icon}
         style={[
-          style.label,
+          style.icon,
           typeForeground[type],
-          props.large ? style.largeLabel : {},
+          props.large ? style.largeIcon : {},
         ]}
-        numberOfLines={2}
-      >
-        {props.label}
-      </Text>
-    </TouchFeedback>
-  );
-};
+      />
+    ) : null}
+
+    {props.image ? <Image style={style.image} {...props.image} /> : null}
+
+    <Text
+      animated
+      style={[
+        style.label,
+        typeForeground[type],
+        props.large ? style.largeLabel : {},
+      ]}
+      numberOfLines={2}
+    >
+      {props.label}
+    </Text>
+  </TouchFeedback>
+);
 
 export default Button;

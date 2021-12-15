@@ -71,7 +71,7 @@ const Form: React.FC<FormProps> = (props) => {
           handleSubmit,
           values,
           errors,
-          isValid,
+
           touched,
         }) => (
           <>
@@ -125,14 +125,7 @@ const Form: React.FC<FormProps> = (props) => {
             </View>
 
             <View style={style.buttonContainer}>
-              <Button
-                flex
-                label={submitButtonLabel}
-                onPress={() => {
-                  console.log('values', values);
-                  props.onSubmit(values);
-                }}
-              />
+              <Button flex label={submitButtonLabel} onPress={handleSubmit} />
             </View>
           </>
         )}

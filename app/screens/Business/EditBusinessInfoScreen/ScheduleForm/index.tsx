@@ -39,7 +39,7 @@ const ScheduleForm: React.FC<ScheduleFormProps> = (props) => {
 
   useEffect(() => {
     if (props.initialData) {
-      props.initialData.map((item, index) => {
+      props.initialData.map((item) => {
         days[item.dayName] = [
           {
             id: new Date().toString() + item.openAM,

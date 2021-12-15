@@ -20,7 +20,7 @@ const slice = createSlice({
   name: 'app/BusinessEarningPolicies',
   initialState,
   reducers: {
-    fetch(state: State, action: PayloadAction<FetchPayload>): void {
+    fetch(state: State, _action: PayloadAction<FetchPayload>): void {
       state.fetching = true;
       state.error = false;
     },
