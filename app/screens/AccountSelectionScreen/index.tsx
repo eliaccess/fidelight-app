@@ -6,7 +6,6 @@
 
 import React from 'react';
 import { View } from 'react-native';
-import * as Animatable from 'react-native-animatable';
 
 import configs from 'configs';
 import LocalStorage from 'platform/LocalStorage';
@@ -24,19 +23,14 @@ const AccountSelectionScreen: React.FC<AccountSelectionScreenProps> = (
   props,
 ) => (
   <View style={style.container}>
-    <Animatable.View animation="fadeIn" duration={800}>
-      <Image title="splash" style={style.imageBackground} />
-    </Animatable.View>
+    <Image title="splash" style={style.imageBackground} />
+
     <View style={style.content}>
       <FormattedMessage
         style={style.chooseOptionHeading}
         {...messages.chooseOptionHeading}
       />
-      <Animatable.View
-        animation="fadeInLeft"
-        duration={1000}
-        style={style.buttonHolder}
-      >
+      <View style={style.buttonHolder}>
         <Button
           onPress={() => {
             LocalStorage.setItem(configs.ACCOUNT_TYPE, 'user');
@@ -44,12 +38,8 @@ const AccountSelectionScreen: React.FC<AccountSelectionScreenProps> = (
           }}
           label={<FormattedMessage {...messages.asUserLabel} isFragment />}
         />
-      </Animatable.View>
-      <Animatable.View
-        animation="fadeInRight"
-        duration={1000}
-        style={style.buttonHolder}
-      >
+      </View>
+      <View style={style.buttonHolder}>
         <Button
           type="primary"
           onPress={() => {
@@ -58,7 +48,7 @@ const AccountSelectionScreen: React.FC<AccountSelectionScreenProps> = (
           }}
           label={<FormattedMessage {...messages.asBusinessLabel} isFragment />}
         />
-      </Animatable.View>
+      </View>
     </View>
   </View>
 );

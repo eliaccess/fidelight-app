@@ -6,7 +6,6 @@
 
 import React, { useState, useEffect } from 'react';
 import { Keyboard, View } from 'react-native';
-import * as Animatable from 'react-native-animatable';
 
 import {
   BUSINESS_HOME,
@@ -111,9 +110,8 @@ const LoginScreen: React.FC<LoginScreenProps> = (props) => {
     <>
       <Screen testID="loginScreen">
         <View style={style.container}>
-          <Animatable.View animation="slideInLeft" duration={800}>
-            <ScreenHeading heading={heading} />
-          </Animatable.View>
+          <ScreenHeading heading={heading} />
+
           {authentication.error ? (
             <ErrorMessage text={authentication.error} />
           ) : null}
@@ -133,19 +131,14 @@ const LoginScreen: React.FC<LoginScreenProps> = (props) => {
               }
             />
           </View>
-          <Animatable.View
-            style={style.buttonContainer}
-            animation="fadeInUp"
-            duration={800}
-            delay={300}
-          >
+          <View style={style.buttonContainer}>
             <Separator />
             <SocialLogin
               setShowLoader={setShowLoader}
               onSuccess={(data) => authentication.login(data)}
               onFailure={() => {}}
             />
-          </Animatable.View>
+          </View>
         </View>
       </Screen>
       {showFooter ? (
