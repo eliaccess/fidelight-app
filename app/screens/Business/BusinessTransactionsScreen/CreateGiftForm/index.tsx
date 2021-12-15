@@ -51,7 +51,7 @@ const Form: React.FC<FormProps> = (props) => {
     if (transactions.success) {
       toast?.show({
         message: transactions.message,
-        delay: 500,
+        delay: 1000,
         type: 'success',
       });
       transactions.reset();
@@ -63,7 +63,7 @@ const Form: React.FC<FormProps> = (props) => {
     if (transactions.error) {
       toast?.show({
         message: transactions.message,
-        delay: 800,
+        delay: 1000,
         type: 'error',
       });
       transactions.reset();

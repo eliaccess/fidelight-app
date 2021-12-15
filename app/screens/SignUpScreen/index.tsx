@@ -45,7 +45,7 @@ function SignUpScreen(props: SignUpScreenProps) {
 
     toast?.show({
       message: authentication.message,
-      delay: 500,
+      delay: 1000,
       type: 'success',
     });
 
@@ -79,7 +79,7 @@ function SignUpScreen(props: SignUpScreenProps) {
     if (authentication.error) {
       toast?.show({
         message: authentication.message,
-        delay: 500,
+        delay: 1000,
         type: 'error',
       });
       setShowLoader(false);

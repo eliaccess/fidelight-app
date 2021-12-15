@@ -77,7 +77,7 @@ const SignUpScreenForm: React.FC<SignUpScreenFormProps> = (props) => {
           }
           toast?.show({
             message: acceptPolicyMessage,
-            delay: 500,
+            delay: 1000,
 
             type: 'error',
           });

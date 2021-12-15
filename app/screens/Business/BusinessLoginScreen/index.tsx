@@ -42,7 +42,7 @@ function BusinessLoginScreen(props: BusinessLoginScreenProps) {
     }
     toast?.show({
       message: businessAuthentication.message,
-      delay: 500,
+      delay: 1000,
       type: 'success',
     });
 
@@ -60,7 +60,7 @@ function BusinessLoginScreen(props: BusinessLoginScreenProps) {
     if (businessAuthentication.error) {
       toast?.show({
         message: businessAuthentication.message,
-        delay: 500,
+        delay: 1000,
         type: 'error',
       });
       setShowLoader(false);

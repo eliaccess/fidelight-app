@@ -49,7 +49,7 @@ function BusinessImages(_props) {
     if (businessProfile.error) {
       toast?.show({
         message: businessProfile.message,
-        delay: 500,
+        delay: 1000,
         type: 'error',
       });
       businessProfile.reset();

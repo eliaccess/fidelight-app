@@ -42,7 +42,7 @@ const BusinessSignUpScreen: React.FC<BusinessSignUpScreenProps> = (props) => {
     }
     toast?.show({
       message: businessAuthentication.message,
-      delay: 500,
+      delay: 1000,
       type: 'success',
     });
 
@@ -74,7 +74,7 @@ const BusinessSignUpScreen: React.FC<BusinessSignUpScreenProps> = (props) => {
     if (businessAuthentication.error) {
       toast?.show({
         message: businessAuthentication.message,
-        delay: 500,
+        delay: 1000,
         type: 'error',
       });
       setShowLoader(false);

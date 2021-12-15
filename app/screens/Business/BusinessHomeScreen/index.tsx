@@ -57,7 +57,7 @@ const BusinessHomeScreen: React.FC<BusinessHomeScreenProps> = (props) => {
       return true;
     }
 
-    toast.show({
+    toast?.show({
       message: testMessages,
       delay: 1000,
     });

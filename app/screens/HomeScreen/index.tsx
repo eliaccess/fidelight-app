@@ -61,7 +61,7 @@ const HomeScreen: React.FC<HomeScreenProps> = (props: HomeScreenProps) => {
       BackHandler.exitApp();
       return true;
     }
-    toast.show({
+    toast?.show({
       message: testMessages,
       delay: 1000,
     });
