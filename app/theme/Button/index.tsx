@@ -3,15 +3,8 @@
  * Button
  *
  */
-import React, { useEffect, useRef } from 'react';
-import Animated, {
-  Easing,
-  Extrapolate,
-  interpolate,
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-} from 'react-native-reanimated';
+import React, { useRef } from 'react';
+import { useSharedValue } from 'react-native-reanimated';
 import LinearGradient from 'react-native-linear-gradient';
 
 import { buttonGradientProps } from 'theme/utils';

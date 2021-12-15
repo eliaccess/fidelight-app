@@ -75,7 +75,7 @@ export default StyleSheet.create({
     fontWeight: '600',
     fontSize: 13,
   },
-  inpuCheckbox: {
+  inputCheckbox: {
     position: 'absolute',
     right: 0,
   },

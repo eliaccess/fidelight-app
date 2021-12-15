@@ -42,13 +42,6 @@ const style = StyleSheet.create({
     fontWeight: '600',
     textAlign: 'center',
   },
-  termsLable: {
-    fontSize: 16,
-    color: Colors.textGrey,
-    textDecorationLine: 'underline',
-    alignSelf: 'center',
-    marginTop: Dimensions.space4x,
-  },
   stepLabel: {
     fontSize: 16,
     color: Colors.textGrey,

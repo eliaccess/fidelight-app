@@ -86,7 +86,7 @@ const Input = React.forwardRef(
           </Text>
         ) : null}
         {!props.error && props.value && isCorrect && showSuccessInput ? (
-          <View style={style.inpuCheckbox}>
+          <View style={style.inputCheckbox}>
             <Radio type="checkbox" onPress={() => null} active />
           </View>
         ) : null}

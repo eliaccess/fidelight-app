@@ -1,0 +1,7 @@
+{
+  // language - current active spelling language
+  "language": ["en", "fr"],
+  // words - list of words to be always considered correct
+  "words": ["Fidelight"],
+  "ignorePaths": ["node_modules/**"]
+}

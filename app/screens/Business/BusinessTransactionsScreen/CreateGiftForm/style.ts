@@ -21,10 +21,6 @@ const style = StyleSheet.create({
     alignSelf: 'flex-start',
     marginHorizontal: Dimensions.space1x,
   },
-  policyLable: {
-    fontSize: 14,
-    color: Colors.textGrey,
-  },
   buttonContainer: {
     flexDirection: 'row',
     alignItems: 'center',

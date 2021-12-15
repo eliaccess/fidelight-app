@@ -1,0 +1,5 @@
+pre-commit:
+  commands:
+    spelling:
+      glob: '*.{js,ts,jsx,tsx,md}'
+      run: yarn cspell {staged_files}
