@@ -59,6 +59,7 @@ const CitiesTypeAhead: React.FC<{
               />
             </TouchFeedback>
           )}
+          keyExtractor={({ nom }) => nom}
           ListFooterComponent={
             fetching ? (
               <View style={style.listItem}>

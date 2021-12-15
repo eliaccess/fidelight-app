@@ -21,7 +21,7 @@ const RestaurantsListLoader: React.FC<RestaurantsListLoaderProps> = ({
   <Section heading={props.heading} isLoading>
     <View>
       {Array.from(Array(numberOfItems), (_a, i) => (
-        <EntityCardLoader />
+        <EntityCardLoader key={i} />
       ))}
     </View>
   </Section>

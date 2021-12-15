@@ -60,6 +60,7 @@ const RestaurantsList: React.FC<RestaurantsListProps> = (props) => {
         {entities?.data?.length ? (
           entities?.data?.map((item) => (
             <EntityCard
+              key={item.id}
               entity={item}
               onPress={() =>
                 props.navigation.navigate(ENTITY_DETAIL, {

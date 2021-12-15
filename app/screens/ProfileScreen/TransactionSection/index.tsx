@@ -47,7 +47,7 @@ const TransactionSection: React.FC<{}> = () => {
       >
         {transactions?.data ? (
           transactions.data.map((item) => (
-            <View key={item.companyId} style={style.itemWrapper}>
+            <View key={item.id} style={style.itemWrapper}>
               <View style={style.logoWrapper}>
                 <Image title="transactionIcon" style={style.logo} />
               </View>

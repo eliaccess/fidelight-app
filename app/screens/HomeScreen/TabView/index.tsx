@@ -26,7 +26,6 @@ import style, { initialLayout } from './style';
 
 function HomeTabView(props) {
   const user = useUser();
-
   const [routeIndex, setRouteIndex] = useState(0);
   const tabBarAnimation = useSharedValue(0);
 
