@@ -43,16 +43,20 @@ interface ButtonProps {
   disabled?: boolean;
   large?: boolean;
   trailingIcon?: boolean;
+  testID?: string;
   [x: string]: any;
 }
 const Button: React.FC<ButtonProps> = ({
   isFilled = true,
   type = 'linear',
   disabled = false,
+  testID = 'button',
+
   onPress,
   ...props
 }) => (
   <TouchFeedback
+    testID={testID}
     onPress={disabled ? () => null : onPress}
     style={[
       style.button,

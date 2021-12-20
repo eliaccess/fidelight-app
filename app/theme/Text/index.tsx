@@ -51,7 +51,7 @@ const Text: React.FC<TextProps> = ({
     }
   }
 
-  return <Component style={style} {...props} />;
+  return <Component testID={props.testID} style={style} {...props} />;
 };
 
 export default Text;

@@ -1,16 +1,11 @@
-import AsyncStorage from '@react-native-community/async-storage';
-import DefaultPreference from 'react-native-default-preference';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 class LocalStorage {
-  constructor() {
-    DefaultPreference.setName('FIDELIGHT');
-  }
-
   setItem(key: string, data: any, options?: { isAuthToken?: boolean }) {
     if (options?.isAuthToken) {
-      DefaultPreference.set('authToken', `Bearer ${data}`);
+      AsyncStorage.setItem('authToken', `Bearer ${data}`);
     } else {
-      DefaultPreference.set(key, JSON.stringify(data));
+      AsyncStorage.setItem(key, JSON.stringify(data));
     }
     return AsyncStorage.setItem(key, JSON.stringify(data));
   }
