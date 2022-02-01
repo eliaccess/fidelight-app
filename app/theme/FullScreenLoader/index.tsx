@@ -9,7 +9,7 @@ import Loader from 'theme/Loader';
 import style from './style';
 
 const FullScreenLoader: React.FC<{}> = () => (
-  <View style={style.container}>
+  <View testID="FullScreenLoader" style={style.container}>
     <Loader />
   </View>
 );

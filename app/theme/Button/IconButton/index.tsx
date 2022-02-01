@@ -66,12 +66,14 @@ type IconButtonProps = {
   disabled?: boolean;
   type?: 'primary' | 'accent';
   icon?: IconProps;
+  testID?: string;
 };
 
 const IconButton: React.FC<IconButtonProps> = (props) => {
   const { onPress, disabled, type = 'primary' } = props;
   return (
     <TouchFeedback
+      testID={props.testID}
       onPress={!disabled ? onPress : () => {}}
       style={[
         style.iconButton,

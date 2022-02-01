@@ -18,9 +18,14 @@ type RadioProps = {
   label?: string | React.ReactNode;
   onPress: (...args: any[]) => any;
   type?: 'checkbox' | 'radio';
+  testID?: string;
 };
 
-const Radio: React.FC<RadioProps> = ({ type = 'radio', ...props }) => {
+const Radio: React.FC<RadioProps> = ({
+  type = 'radio',
+  testID = 'radioButton',
+  ...props
+}) => {
   const animation = useRef(useSharedValue(0)).current;
 
   useEffect(() => {
@@ -35,7 +40,10 @@ const Radio: React.FC<RadioProps> = ({ type = 'radio', ...props }) => {
   return (
     <TouchFeedback onPress={props.onPress} style={style.container}>
       {props.label && (
-        <Text style={[style.label, props.active && style.activeLabel]}>
+        <Text
+          testID={testID}
+          style={[style.label, props.active && style.activeLabel]}
+        >
           {props.label}
         </Text>
       )}

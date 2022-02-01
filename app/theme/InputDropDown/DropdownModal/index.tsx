@@ -14,11 +14,12 @@ import { DataProps } from '../types';
 type DropdownModalProps = {
   visible?: boolean;
   onRequestClose?: (...args: any[]) => any;
-  title: object;
+  title: string;
   data: DataProps[];
   onSelect?: (...args: any[]) => any;
   selectedValue?: string;
   selectionProperty?: string;
+  testID: string;
 };
 
 const DropdownModal: React.FC<DropdownModalProps> = ({
@@ -37,7 +38,7 @@ const DropdownModal: React.FC<DropdownModalProps> = ({
       visible={visible}
       onRequestClose={onRequestClose}
     >
-      <View style={style.modal}>
+      <View testID={props.testID} style={style.modal}>
         <TouchFeedback onPress={onRequestClose} style={style.overlay} />
         <ScrollView
           ref={scroll}
@@ -56,6 +57,7 @@ const DropdownModal: React.FC<DropdownModalProps> = ({
               }}
               active={selectedValue === item[selectionProperty]}
               label={item.name}
+              testID={`listItem-${item.name}`}
             />
           ))}
         </ScrollView>

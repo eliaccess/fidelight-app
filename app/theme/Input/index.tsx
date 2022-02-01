@@ -19,6 +19,7 @@ export interface InputProps extends TextInputProps {
   error?: string | React.ReactNode;
   label?: string | React.ReactNode;
   style?: object;
+  testID?: string;
   showSuccessInput?: boolean;
 }
 
@@ -71,6 +72,7 @@ const Input = React.forwardRef(
             !props.error && props.value ? style.successInput : {},
             props.multiline ? style.multiline : {},
           ]}
+          testID={props.testID}
         />
         {props.label ? (
           <Text

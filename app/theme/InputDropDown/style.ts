@@ -17,7 +17,6 @@ export default StyleSheet.create({
     minHeight: INPUT_HEIGHT,
     width: '95%',
     margin: Dimensions.space3x,
-
     padding: Dimensions.space3x,
     paddingHorizontal: Dimensions.space3x,
     borderRadius: Dimensions.borderRadius,
@@ -68,41 +67,6 @@ export default StyleSheet.create({
     color: Colors.grey,
     fontWeight: '800',
     marginRight: -Dimensions.space1x,
-  },
-  listItemContainer: {
-    flexDirection: 'row',
-    paddingVertical: Dimensions.space2x,
-    alignItems: 'center',
-    borderBottomWidth: 1,
-    borderBottomColor: Colors.inputBorder,
-  },
-  listItemContainerLast: {
-    borderBottomWidth: 0,
-  },
-  listItemImage: {
-    width: 26,
-    height: 26,
-    borderRadius: Dimensions.borderRadius,
-    backgroundColor: Colors.primary,
-    color: Colors.textGrey,
-    marginRight: Dimensions.space2x,
-  },
-  listItemIcon: {
-    fontSize: 18,
-    color: Colors.textGrey,
-  },
-  listItemName: {
-    fontSize: 15,
-    color: Colors.textGrey,
-  },
-  list: {
-    paddingHorizontal: Dimensions.space2x,
-    paddingVertical: Dimensions.space1x,
-    backgroundColor: Colors.white,
-    borderBottomLeftRadius: Dimensions.borderRadius,
-    borderBottomRightRadius: Dimensions.borderRadius,
-    borderWidth: 1,
-    borderColor: Colors.primaryDark,
   },
   selectedValue: {
     fontSize: 14,

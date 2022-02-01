@@ -10,10 +10,15 @@ import style from './style';
 
 interface HorizontalSlidingListProps {
   children: React.ReactNode;
+  testID?: string;
 }
 
-const HorizontalSlidingList: React.FC<HorizontalSlidingListProps> = (props) => (
+const HorizontalSlidingList: React.FC<HorizontalSlidingListProps> = ({
+  testID = 'HorizontalSlidingList',
+  ...props
+}) => (
   <ScrollView
+    testID={testID}
     horizontal
     bounces={false}
     style={style.container}
